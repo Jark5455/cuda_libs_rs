@@ -3,12 +3,6 @@
 #[cfg(feature = "cudart")]
 pub use cuda_libs_cudart::types;
 
-#[cfg(feature = "runtime-link")]
-pub use cuda_libs_macros::cuda_load;
-
-#[cfg(feature = "nvptx")]
-pub use cuda_libs_macros::global;
-
 #[cfg(feature = "driver")]
 pub use cuda_libs_driver as driver;
 
@@ -71,11 +65,6 @@ pub mod prelude {
     pub use cuda_libs_driver::safe::*;
     #[cfg(feature = "driver")]
     pub use cuda_libs_driver::types::*;
-    #[cfg(all(feature = "driver", not(feature = "nvptx")))]
-    pub use cuda_libs_macros::*;
-
-    #[cfg(feature = "nvptx")]
-    pub use cuda_libs_macros::*;
 
     #[cfg(feature = "cublas")]
     pub use cuda_libs_cublas::safe::*;

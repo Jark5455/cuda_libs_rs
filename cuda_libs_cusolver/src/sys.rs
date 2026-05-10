@@ -51,10 +51,10 @@ pub enum cusolverDnFunction_t {
     CUSOLVERDN_SYEVBATCHED = 2,
     CUSOLVERDN_GEQRF = 3,
 }
-pub type __uint64_t = ::std::os::raw::c_ulong;
-pub type __off_t = ::std::os::raw::c_long;
-pub type __off64_t = ::std::os::raw::c_long;
-pub type cusolver_int_t = ::std::os::raw::c_int;
+pub type __uint64_t = ::core::ffi::c_ulong;
+pub type __off_t = ::core::ffi::c_long;
+pub type __off64_t = ::core::ffi::c_long;
+pub type cusolver_int_t = ::core::ffi::c_int;
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cusolverStatus_t {
@@ -188,11 +188,11 @@ pub enum cusolverMathMode_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverGetProperty(type_: libraryPropertyType, value: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverGetVersion(version: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverGetVersion(version: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -244,19 +244,19 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnGetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -340,7 +340,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSInfosGetResidualHistory(infos: cusolverDnIRSInfos_t, residual_history: *mut *mut ::std::os::raw::c_void) -> cusolverStatus_t;
+    pub fn cusolverDnIRSInfosGetResidualHistory(infos: cusolverDnIRSInfos_t, residual_history: *mut *mut ::core::ffi::c_void) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -359,7 +359,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -378,7 +378,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -397,7 +397,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -416,7 +416,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -435,7 +435,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -454,7 +454,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -473,7 +473,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -492,7 +492,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -511,7 +511,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -530,7 +530,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -549,7 +549,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -568,7 +568,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -587,7 +587,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -606,7 +606,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -625,7 +625,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -644,7 +644,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -663,7 +663,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -682,7 +682,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -701,7 +701,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -718,7 +718,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -735,7 +735,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -752,7 +752,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -769,7 +769,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -786,7 +786,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -803,7 +803,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -820,7 +820,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -837,7 +837,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -854,7 +854,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -871,7 +871,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -888,7 +888,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -905,7 +905,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -922,7 +922,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -939,7 +939,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -956,7 +956,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -973,7 +973,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -990,7 +990,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1007,7 +1007,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1026,7 +1026,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1045,7 +1045,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1064,7 +1064,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1083,7 +1083,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1102,7 +1102,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1121,7 +1121,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1140,7 +1140,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1159,7 +1159,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1178,7 +1178,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1197,7 +1197,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1216,7 +1216,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1235,7 +1235,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1254,7 +1254,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1273,7 +1273,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1292,7 +1292,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1311,7 +1311,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1330,7 +1330,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         iter: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1349,7 +1349,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1366,7 +1366,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1383,7 +1383,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1400,7 +1400,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1417,7 +1417,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuDoubleComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1434,7 +1434,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1451,7 +1451,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1468,7 +1468,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1485,7 +1485,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut cuComplex,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1502,7 +1502,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1519,7 +1519,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1536,7 +1536,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1553,7 +1553,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1570,7 +1570,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f64,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1587,7 +1587,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1604,7 +1604,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1621,7 +1621,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1638,7 +1638,7 @@ unsafe extern "C" {
         lddb: cusolver_int_t,
         dX: *mut f32,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -1650,13 +1650,13 @@ unsafe extern "C" {
         gesv_irs_infos: cusolverDnIRSInfos_t,
         n: cusolver_int_t,
         nrhs: cusolver_int_t,
-        dA: *mut ::std::os::raw::c_void,
+        dA: *mut ::core::ffi::c_void,
         ldda: cusolver_int_t,
-        dB: *mut ::std::os::raw::c_void,
+        dB: *mut ::core::ffi::c_void,
         lddb: cusolver_int_t,
-        dX: *mut ::std::os::raw::c_void,
+        dX: *mut ::core::ffi::c_void,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         niters: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1675,13 +1675,13 @@ unsafe extern "C" {
         m: cusolver_int_t,
         n: cusolver_int_t,
         nrhs: cusolver_int_t,
-        dA: *mut ::std::os::raw::c_void,
+        dA: *mut ::core::ffi::c_void,
         ldda: cusolver_int_t,
-        dB: *mut ::std::os::raw::c_void,
+        dB: *mut ::core::ffi::c_void,
         lddb: cusolver_int_t,
-        dX: *mut ::std::os::raw::c_void,
+        dX: *mut ::core::ffi::c_void,
         lddx: cusolver_int_t,
-        dWorkspace: *mut ::std::os::raw::c_void,
+        dWorkspace: *mut ::core::ffi::c_void,
         lwork_bytes: usize,
         niters: *mut cusolver_int_t,
         d_info: *mut cusolver_int_t,
@@ -1693,82 +1693,81 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, Workspace: *mut f32, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, Workspace: *mut f64, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, Workspace: *mut cuComplex, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, Workspace: *mut cuDoubleComplex, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, B: *mut f32, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, B: *mut f32, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, B: *mut f64, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, B: *mut f64, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, B: *mut cuComplex, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, B: *mut cuComplex, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, B: *mut cuDoubleComplex, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int)
-    -> cusolverStatus_t;
+    pub fn cusolverDnZpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, B: *mut cuDoubleComplex, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f32, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, Aarray: *mut *mut f32, lda: ::core::ffi::c_int, infoArray: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f64, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, Aarray: *mut *mut f64, lda: ::core::ffi::c_int, infoArray: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, Aarray: *mut *mut cuComplex, lda: ::core::ffi::c_int, infoArray: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuDoubleComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, Aarray: *mut *mut cuDoubleComplex, lda: ::core::ffi::c_int, infoArray: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnSpotrsBatched(
         handle: cusolverDnHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         A: *mut *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut *mut f32,
-        ldb: ::std::os::raw::c_int,
-        d_info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        d_info: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1776,14 +1775,14 @@ unsafe extern "C" {
     pub fn cusolverDnDpotrsBatched(
         handle: cusolverDnHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         A: *mut *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut *mut f64,
-        ldb: ::std::os::raw::c_int,
-        d_info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        d_info: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1791,14 +1790,14 @@ unsafe extern "C" {
     pub fn cusolverDnCpotrsBatched(
         handle: cusolverDnHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         A: *mut *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut *mut cuComplex,
-        ldb: ::std::os::raw::c_int,
-        d_info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        d_info: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1806,51 +1805,51 @@ unsafe extern "C" {
     pub fn cusolverDnZpotrsBatched(
         handle: cusolverDnHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         A: *mut *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
-        d_info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        d_info: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, work: *mut f32, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, work: *mut f64, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, work: *mut cuComplex, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, work: *mut cuDoubleComplex, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXtrtri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, diag: cublasDiagType_t, n: i64, dataTypeA: cudaDataType, A: *mut ::std::os::raw::c_void, lda: i64, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t;
+    pub fn cusolverDnXtrtri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, diag: cublasDiagType_t, n: i64, dataTypeA: cudaDataType, A: *mut ::core::ffi::c_void, lda: i64, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1860,138 +1859,116 @@ unsafe extern "C" {
         diag: cublasDiagType_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        devInfo: *mut ::std::os::raw::c_int,
+        devInfo: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnClauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnClauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, work: *mut f32, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, work: *mut f64, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnClauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnClauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, work: *mut cuComplex, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, work: *mut cuDoubleComplex, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSgetrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, Workspace: *mut f32, devIpiv: *mut ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDgetrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, Workspace: *mut f64, devIpiv: *mut ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCgetrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, Workspace: *mut cuComplex, devIpiv: *mut ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZgetrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, Workspace: *mut cuDoubleComplex, devIpiv: *mut ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSlaswp(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, k1: ::core::ffi::c_int, k2: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, incx: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDlaswp(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, k1: ::core::ffi::c_int, k2: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, incx: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnClaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnClaswp(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, k1: ::core::ffi::c_int, k2: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, incx: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZlaswp(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, k1: ::core::ffi::c_int, k2: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, incx: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgetrs(
-        handle: cusolverDnHandle_t,
-        trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
-        B: *mut f32,
-        ldb: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSgetrs(handle: cusolverDnHandle_t, trans: cublasOperation_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, B: *mut f32, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgetrs(
-        handle: cusolverDnHandle_t,
-        trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
-        B: *mut f64,
-        ldb: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDgetrs(handle: cusolverDnHandle_t, trans: cublasOperation_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, B: *mut f64, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnCgetrs(
         handle: cusolverDnHandle_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        devIpiv: *const ::core::ffi::c_int,
         B: *mut cuComplex,
-        ldb: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        devInfo: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1999,110 +1976,89 @@ unsafe extern "C" {
     pub fn cusolverDnZgetrs(
         handle: cusolverDnHandle_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        devIpiv: *const ::core::ffi::c_int,
         B: *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        devInfo: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, TAU: *mut f32, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSgeqrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, TAU: *mut f32, Workspace: *mut f32, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, TAU: *mut f64, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDgeqrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, TAU: *mut f64, Workspace: *mut f64, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, TAU: *mut cuComplex, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCgeqrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, TAU: *mut cuComplex, Workspace: *mut cuComplex, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgeqrf(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        TAU: *mut cuDoubleComplex,
-        Workspace: *mut cuDoubleComplex,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZgeqrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, TAU: *mut cuDoubleComplex, Workspace: *mut cuDoubleComplex, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, tau: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, tau: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCungqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCungqr_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, tau: *const cuComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZungqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZungqr_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, tau: *const cuDoubleComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgqr(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSorgqr(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, tau: *const f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgqr(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDorgqr(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, tau: *const f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCungqr(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        tau: *const cuComplex,
-        work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCungqr(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, tau: *const cuComplex, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnZungqr(
         handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const cuDoubleComplex,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2111,15 +2067,15 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const f32,
         C: *const f32,
-        ldc: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2128,15 +2084,15 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const f64,
         C: *const f64,
-        ldc: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2145,15 +2101,15 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const cuComplex,
         C: *const cuComplex,
-        ldc: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2162,15 +2118,15 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const cuDoubleComplex,
         C: *const cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2179,17 +2135,17 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const f32,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        devInfo: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2198,17 +2154,17 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const f64,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        devInfo: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2217,17 +2173,17 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        devInfo: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2236,60 +2192,50 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        devInfo: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, ipiv: *mut ::core::ffi::c_int, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, ipiv: *mut ::core::ffi::c_int, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, ipiv: *mut ::core::ffi::c_int, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZsytrf(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        ipiv: *mut ::std::os::raw::c_int,
-        work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, ipiv: *mut ::core::ffi::c_int, work: *mut cuDoubleComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2299,11 +2245,11 @@ unsafe extern "C" {
         n: i64,
         nrhs: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         ipiv: *const i64,
         dataTypeB: cudaDataType,
-        B: *mut ::std::os::raw::c_void,
+        B: *mut ::core::ffi::c_void,
         ldb: i64,
         workspaceInBytesOnDevice: *mut usize,
         workspaceInBytesOnHost: *mut usize,
@@ -2317,217 +2263,147 @@ unsafe extern "C" {
         n: i64,
         nrhs: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         ipiv: *const i64,
         dataTypeB: cudaDataType,
-        B: *mut ::std::os::raw::c_void,
+        B: *mut ::core::ffi::c_void,
         ldb: i64,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZsytri(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        ipiv: *const ::std::os::raw::c_int,
-        work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, work: *mut cuDoubleComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgebrd(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        D: *mut f32,
-        E: *mut f32,
-        TAUQ: *mut f32,
-        TAUP: *mut f32,
-        Work: *mut f32,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSgebrd(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, D: *mut f32, E: *mut f32, TAUQ: *mut f32, TAUP: *mut f32, Work: *mut f32, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgebrd(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        D: *mut f64,
-        E: *mut f64,
-        TAUQ: *mut f64,
-        TAUP: *mut f64,
-        Work: *mut f64,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDgebrd(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, D: *mut f64, E: *mut f64, TAUQ: *mut f64, TAUP: *mut f64, Work: *mut f64, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnCgebrd(
         handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         D: *mut f32,
         E: *mut f32,
         TAUQ: *mut cuComplex,
         TAUP: *mut cuComplex,
         Work: *mut cuComplex,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
+        Lwork: ::core::ffi::c_int,
+        devInfo: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnZgebrd(
         handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         D: *mut f64,
         E: *mut f64,
         TAUQ: *mut cuDoubleComplex,
         TAUP: *mut cuDoubleComplex,
         Work: *mut cuDoubleComplex,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
+        Lwork: ::core::ffi::c_int,
+        devInfo: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, tau: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, tau: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCungbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCungbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, tau: *const cuComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZungbr_bufferSize(
-        handle: cusolverDnHandle_t,
-        side: cublasSideMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        tau: *const cuDoubleComplex,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZungbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, tau: *const cuDoubleComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgbr(
-        handle: cusolverDnHandle_t,
-        side: cublasSideMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        tau: *const f32,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSorgbr(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, tau: *const f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgbr(
-        handle: cusolverDnHandle_t,
-        side: cublasSideMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        tau: *const f64,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDorgbr(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, tau: *const f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnCungbr(
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const cuComplex,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2535,105 +2411,92 @@ unsafe extern "C" {
     pub fn cusolverDnZungbr(
         handle: cusolverDnHandle_t,
         side: cublasSideMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const cuDoubleComplex,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, d: *const f32, e: *const f32, tau: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, d: *const f64, e: *const f64, tau: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnChetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnChetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, d: *const f32, e: *const f32, tau: *const cuComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZhetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZhetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, d: *const f64, e: *const f64, tau: *const cuDoubleComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytrd(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, d: *mut f32, e: *mut f32, tau: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSsytrd(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, d: *mut f32, e: *mut f32, tau: *mut f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytrd(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, d: *mut f64, e: *mut f64, tau: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDsytrd(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, d: *mut f64, e: *mut f64, tau: *mut f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnChetrd(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        d: *mut f32,
-        e: *mut f32,
-        tau: *mut cuComplex,
-        work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnChetrd(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, d: *mut f32, e: *mut f32, tau: *mut cuComplex, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnZhetrd(
         handle: cusolverDnHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         d: *mut f64,
         e: *mut f64,
         tau: *mut cuDoubleComplex,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, tau: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, tau: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, tau: *const cuComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, tau: *const cuDoubleComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, tau: *const f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, tau: *const f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCungtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCungtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, tau: *const cuComplex, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZungtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int)
-    -> cusolverStatus_t;
+    pub fn cusolverDnZungtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, tau: *const cuDoubleComplex, work: *mut cuDoubleComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2642,14 +2505,14 @@ unsafe extern "C" {
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const f32,
         C: *const f32,
-        ldc: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2659,14 +2522,14 @@ unsafe extern "C" {
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const f64,
         C: *const f64,
-        ldc: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2676,14 +2539,14 @@ unsafe extern "C" {
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const cuComplex,
         C: *const cuComplex,
-        ldc: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2693,14 +2556,14 @@ unsafe extern "C" {
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *const cuDoubleComplex,
         C: *const cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2710,16 +2573,16 @@ unsafe extern "C" {
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *mut f32,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2729,16 +2592,16 @@ unsafe extern "C" {
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *mut f64,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2748,16 +2611,16 @@ unsafe extern "C" {
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *mut cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2767,160 +2630,149 @@ unsafe extern "C" {
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         tau: *mut cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnSgesvd(
         handle: cusolverDnHandle_t,
-        jobu: ::std::os::raw::c_schar,
-        jobvt: ::std::os::raw::c_schar,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        jobu: ::core::ffi::c_schar,
+        jobvt: ::core::ffi::c_schar,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f32,
         U: *mut f32,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         VT: *mut f32,
-        ldvt: ::std::os::raw::c_int,
+        ldvt: ::core::ffi::c_int,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
         rwork: *mut f32,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnDgesvd(
         handle: cusolverDnHandle_t,
-        jobu: ::std::os::raw::c_schar,
-        jobvt: ::std::os::raw::c_schar,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        jobu: ::core::ffi::c_schar,
+        jobvt: ::core::ffi::c_schar,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f64,
         U: *mut f64,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         VT: *mut f64,
-        ldvt: ::std::os::raw::c_int,
+        ldvt: ::core::ffi::c_int,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
         rwork: *mut f64,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnCgesvd(
         handle: cusolverDnHandle_t,
-        jobu: ::std::os::raw::c_schar,
-        jobvt: ::std::os::raw::c_schar,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        jobu: ::core::ffi::c_schar,
+        jobvt: ::core::ffi::c_schar,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f32,
         U: *mut cuComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         VT: *mut cuComplex,
-        ldvt: ::std::os::raw::c_int,
+        ldvt: ::core::ffi::c_int,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
         rwork: *mut f32,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnZgesvd(
         handle: cusolverDnHandle_t,
-        jobu: ::std::os::raw::c_schar,
-        jobvt: ::std::os::raw::c_schar,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        jobu: ::core::ffi::c_schar,
+        jobvt: ::core::ffi::c_schar,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f64,
         U: *mut cuDoubleComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         VT: *mut cuDoubleComplex,
-        ldvt: ::std::os::raw::c_int,
+        ldvt: ::core::ffi::c_int,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
         rwork: *mut f64,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, W: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, W: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, W: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnZheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, W: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnSsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, W: *mut f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, W: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnDsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, W: *mut f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCheevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnCheevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, W: *mut f32, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZheevd(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        W: *mut f64,
-        work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZheevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, W: *mut f64, work: *mut cuDoubleComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2929,16 +2781,16 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         vl: f32,
         vu: f32,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2948,16 +2800,16 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         vl: f64,
         vu: f64,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2967,16 +2819,16 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         vl: f32,
         vu: f32,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2986,16 +2838,16 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         vl: f64,
         vu: f64,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3005,18 +2857,18 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         vl: f32,
         vu: f32,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *mut f32,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3026,18 +2878,18 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         vl: f64,
         vu: f64,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *mut f64,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3047,18 +2899,18 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         vl: f32,
         vu: f32,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *mut f32,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3068,18 +2920,18 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         vl: f64,
         vu: f64,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *mut f64,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3090,18 +2942,18 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         vl: f32,
         vu: f32,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3112,18 +2964,18 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         vl: f64,
         vu: f64,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3134,18 +2986,18 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         vl: f32,
         vu: f32,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3156,18 +3008,18 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         vl: f64,
         vu: f64,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3178,20 +3030,20 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         vl: f32,
         vu: f32,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *mut f32,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3202,20 +3054,20 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         vl: f64,
         vu: f64,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *mut f64,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3226,20 +3078,20 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         vl: f32,
         vu: f32,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *mut f32,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3250,20 +3102,20 @@ unsafe extern "C" {
         jobz: cusolverEigMode_t,
         range: cusolverEigRange_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         vl: f64,
         vu: f64,
-        il: ::std::os::raw::c_int,
-        iu: ::std::os::raw::c_int,
-        meig: *mut ::std::os::raw::c_int,
+        il: ::core::ffi::c_int,
+        iu: ::core::ffi::c_int,
+        meig: *mut ::core::ffi::c_int,
         W: *mut f64,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3273,13 +3125,13 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3289,13 +3141,13 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3305,13 +3157,13 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3321,13 +3173,13 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3337,15 +3189,15 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *mut f32,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3355,15 +3207,15 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *mut f64,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3373,15 +3225,15 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *mut f32,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3391,15 +3243,15 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *mut f64,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3412,13 +3264,13 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        d_A: *const ::std::os::raw::c_void,
+        d_A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeB: cudaDataType,
-        d_B: *const ::std::os::raw::c_void,
+        d_B: *const ::core::ffi::c_void,
         ldb: i64,
         dataTypeW: cudaDataType,
-        d_W: *const ::std::os::raw::c_void,
+        d_W: *const ::core::ffi::c_void,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
         workspaceInBytesOnHost: *mut usize,
@@ -3434,19 +3286,19 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        d_A: *mut ::std::os::raw::c_void,
+        d_A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeB: cudaDataType,
-        d_B: *mut ::std::os::raw::c_void,
+        d_B: *mut ::core::ffi::c_void,
         ldb: i64,
         dataTypeW: cudaDataType,
-        d_W: *mut ::std::os::raw::c_void,
+        d_W: *mut ::core::ffi::c_void,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        d_info: *mut ::std::os::raw::c_int,
+        d_info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3459,18 +3311,18 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        d_A: *const ::std::os::raw::c_void,
+        d_A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeB: cudaDataType,
-        d_B: *const ::std::os::raw::c_void,
+        d_B: *const ::core::ffi::c_void,
         ldb: i64,
-        vl: *mut ::std::os::raw::c_void,
-        vu: *mut ::std::os::raw::c_void,
+        vl: *mut ::core::ffi::c_void,
+        vu: *mut ::core::ffi::c_void,
         il: i64,
         iu: i64,
         meig: *mut i64,
         dataTypeW: cudaDataType,
-        d_W: *const ::std::os::raw::c_void,
+        d_W: *const ::core::ffi::c_void,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
         workspaceInBytesOnHost: *mut usize,
@@ -3487,24 +3339,24 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        d_A: *mut ::std::os::raw::c_void,
+        d_A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeB: cudaDataType,
-        d_B: *mut ::std::os::raw::c_void,
+        d_B: *mut ::core::ffi::c_void,
         ldb: i64,
-        vl: *mut ::std::os::raw::c_void,
-        vu: *mut ::std::os::raw::c_void,
+        vl: *mut ::core::ffi::c_void,
+        vu: *mut ::core::ffi::c_void,
         il: i64,
         iu: i64,
         meig: *mut i64,
         dataTypeW: cudaDataType,
-        d_W: *mut ::std::os::raw::c_void,
+        d_W: *mut ::core::ffi::c_void,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        d_info: *mut ::std::os::raw::c_int,
+        d_info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3521,11 +3373,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXsyevjSetMaxSweeps(info: syevjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnXsyevjSetMaxSweeps(info: syevjInfo_t, max_sweeps: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXsyevjSetSortEig(info: syevjInfo_t, sort_eig: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnXsyevjSetSortEig(info: syevjInfo_t, sort_eig: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3533,7 +3385,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXsyevjGetSweeps(handle: cusolverDnHandle_t, info: syevjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnXsyevjGetSweeps(handle: cusolverDnHandle_t, info: syevjInfo_t, executed_sweeps: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3541,13 +3393,13 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3556,13 +3408,13 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3571,13 +3423,13 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3586,13 +3438,13 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3601,15 +3453,15 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *mut f32,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3618,15 +3470,15 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *mut f64,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3635,15 +3487,15 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *mut f32,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3652,64 +3504,40 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *mut f64,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t;
+    pub fn cusolverDnSsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, W: *const f32, lwork: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t;
+    pub fn cusolverDnDsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, W: *const f64, lwork: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t;
+    pub fn cusolverDnCheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, W: *const f32, lwork: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t;
+    pub fn cusolverDnZheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, W: *const f64, lwork: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsyevj(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        W: *mut f32,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        params: syevjInfo_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsyevj(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, W: *mut f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsyevj(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        W: *mut f64,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        params: syevjInfo_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsyevj(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, W: *mut f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3717,13 +3545,13 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *mut f32,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3733,13 +3561,13 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         W: *mut f64,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3750,13 +3578,13 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3767,13 +3595,13 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3784,13 +3612,13 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3801,13 +3629,13 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3818,15 +3646,15 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *mut f32,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3837,15 +3665,15 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *mut f64,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3856,15 +3684,15 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *mut f32,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3875,15 +3703,15 @@ unsafe extern "C" {
         itype: cusolverEigType_t,
         jobz: cusolverEigMode_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         W: *mut f64,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: syevjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -3901,11 +3729,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXgesvdjSetMaxSweeps(info: gesvdjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnXgesvdjSetMaxSweeps(info: gesvdjInfo_t, max_sweeps: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXgesvdjSetSortEig(info: gesvdjInfo_t, sort_svd: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnXgesvdjSetSortEig(info: gesvdjInfo_t, sort_svd: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3913,25 +3741,25 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXgesvdjGetSweeps(handle: cusolverDnHandle_t, info: gesvdjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnXgesvdjGetSweeps(handle: cusolverDnHandle_t, info: gesvdjInfo_t, executed_sweeps: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnSgesvdjBatched_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *const f32,
         U: *const f32,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *const f32,
-        ldv: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3939,18 +3767,18 @@ unsafe extern "C" {
     pub fn cusolverDnDgesvdjBatched_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *const f64,
         U: *const f64,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *const f64,
-        ldv: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3958,18 +3786,18 @@ unsafe extern "C" {
     pub fn cusolverDnCgesvdjBatched_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *const f32,
         U: *const cuComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *const cuComplex,
-        ldv: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3977,18 +3805,18 @@ unsafe extern "C" {
     pub fn cusolverDnZgesvdjBatched_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *const f64,
         U: *const cuDoubleComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *const cuDoubleComplex,
-        ldv: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3996,20 +3824,20 @@ unsafe extern "C" {
     pub fn cusolverDnSgesvdjBatched(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f32,
         U: *mut f32,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *mut f32,
-        ldv: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4017,20 +3845,20 @@ unsafe extern "C" {
     pub fn cusolverDnDgesvdjBatched(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f64,
         U: *mut f64,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *mut f64,
-        ldv: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4038,20 +3866,20 @@ unsafe extern "C" {
     pub fn cusolverDnCgesvdjBatched(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f32,
         U: *mut cuComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *mut cuComplex,
-        ldv: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4059,20 +3887,20 @@ unsafe extern "C" {
     pub fn cusolverDnZgesvdjBatched(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f64,
         U: *mut cuDoubleComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *mut cuDoubleComplex,
-        ldv: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4080,17 +3908,17 @@ unsafe extern "C" {
     pub fn cusolverDnSgesvdj_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *const f32,
         U: *const f32,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *const f32,
-        ldv: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -4099,17 +3927,17 @@ unsafe extern "C" {
     pub fn cusolverDnDgesvdj_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *const f64,
         U: *const f64,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *const f64,
-        ldv: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -4118,17 +3946,17 @@ unsafe extern "C" {
     pub fn cusolverDnCgesvdj_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *const f32,
         U: *const cuComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *const cuComplex,
-        ldv: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -4137,17 +3965,17 @@ unsafe extern "C" {
     pub fn cusolverDnZgesvdj_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *const f64,
         U: *const cuDoubleComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *const cuDoubleComplex,
-        ldv: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        lwork: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -4156,19 +3984,19 @@ unsafe extern "C" {
     pub fn cusolverDnSgesvdj(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f32,
         U: *mut f32,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *mut f32,
-        ldv: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
         work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -4177,19 +4005,19 @@ unsafe extern "C" {
     pub fn cusolverDnDgesvdj(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f64,
         U: *mut f64,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *mut f64,
-        ldv: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
         work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -4198,19 +4026,19 @@ unsafe extern "C" {
     pub fn cusolverDnCgesvdj(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f32,
         U: *mut cuComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *mut cuComplex,
-        ldv: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
         work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -4219,19 +4047,19 @@ unsafe extern "C" {
     pub fn cusolverDnZgesvdj(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         S: *mut f64,
         U: *mut cuDoubleComplex,
-        ldu: ::std::os::raw::c_int,
+        ldu: ::core::ffi::c_int,
         V: *mut cuDoubleComplex,
-        ldv: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
         work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
         params: gesvdjInfo_t,
     ) -> cusolverStatus_t;
 }
@@ -4240,22 +4068,22 @@ unsafe extern "C" {
     pub fn cusolverDnSgesvdaStridedBatched_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        rank: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         d_A: *const f32,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         d_S: *const f32,
-        strideS: ::std::os::raw::c_longlong,
+        strideS: ::core::ffi::c_longlong,
         d_U: *const f32,
-        ldu: ::std::os::raw::c_int,
-        strideU: ::std::os::raw::c_longlong,
+        ldu: ::core::ffi::c_int,
+        strideU: ::core::ffi::c_longlong,
         d_V: *const f32,
-        ldv: ::std::os::raw::c_int,
-        strideV: ::std::os::raw::c_longlong,
-        lwork: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        strideV: ::core::ffi::c_longlong,
+        lwork: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4263,22 +4091,22 @@ unsafe extern "C" {
     pub fn cusolverDnDgesvdaStridedBatched_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        rank: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         d_A: *const f64,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         d_S: *const f64,
-        strideS: ::std::os::raw::c_longlong,
+        strideS: ::core::ffi::c_longlong,
         d_U: *const f64,
-        ldu: ::std::os::raw::c_int,
-        strideU: ::std::os::raw::c_longlong,
+        ldu: ::core::ffi::c_int,
+        strideU: ::core::ffi::c_longlong,
         d_V: *const f64,
-        ldv: ::std::os::raw::c_int,
-        strideV: ::std::os::raw::c_longlong,
-        lwork: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        strideV: ::core::ffi::c_longlong,
+        lwork: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4286,22 +4114,22 @@ unsafe extern "C" {
     pub fn cusolverDnCgesvdaStridedBatched_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        rank: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         d_A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         d_S: *const f32,
-        strideS: ::std::os::raw::c_longlong,
+        strideS: ::core::ffi::c_longlong,
         d_U: *const cuComplex,
-        ldu: ::std::os::raw::c_int,
-        strideU: ::std::os::raw::c_longlong,
+        ldu: ::core::ffi::c_int,
+        strideU: ::core::ffi::c_longlong,
         d_V: *const cuComplex,
-        ldv: ::std::os::raw::c_int,
-        strideV: ::std::os::raw::c_longlong,
-        lwork: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        strideV: ::core::ffi::c_longlong,
+        lwork: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4309,22 +4137,22 @@ unsafe extern "C" {
     pub fn cusolverDnZgesvdaStridedBatched_bufferSize(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        rank: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         d_A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         d_S: *const f64,
-        strideS: ::std::os::raw::c_longlong,
+        strideS: ::core::ffi::c_longlong,
         d_U: *const cuDoubleComplex,
-        ldu: ::std::os::raw::c_int,
-        strideU: ::std::os::raw::c_longlong,
+        ldu: ::core::ffi::c_int,
+        strideU: ::core::ffi::c_longlong,
         d_V: *const cuDoubleComplex,
-        ldv: ::std::os::raw::c_int,
-        strideV: ::std::os::raw::c_longlong,
-        lwork: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldv: ::core::ffi::c_int,
+        strideV: ::core::ffi::c_longlong,
+        lwork: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4332,25 +4160,25 @@ unsafe extern "C" {
     pub fn cusolverDnSgesvdaStridedBatched(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        rank: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         d_A: *const f32,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         d_S: *mut f32,
-        strideS: ::std::os::raw::c_longlong,
+        strideS: ::core::ffi::c_longlong,
         d_U: *mut f32,
-        ldu: ::std::os::raw::c_int,
-        strideU: ::std::os::raw::c_longlong,
+        ldu: ::core::ffi::c_int,
+        strideU: ::core::ffi::c_longlong,
         d_V: *mut f32,
-        ldv: ::std::os::raw::c_int,
-        strideV: ::std::os::raw::c_longlong,
+        ldv: ::core::ffi::c_int,
+        strideV: ::core::ffi::c_longlong,
         d_work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        d_info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        d_info: *mut ::core::ffi::c_int,
         h_R_nrmF: *mut f64,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4358,25 +4186,25 @@ unsafe extern "C" {
     pub fn cusolverDnDgesvdaStridedBatched(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        rank: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         d_A: *const f64,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         d_S: *mut f64,
-        strideS: ::std::os::raw::c_longlong,
+        strideS: ::core::ffi::c_longlong,
         d_U: *mut f64,
-        ldu: ::std::os::raw::c_int,
-        strideU: ::std::os::raw::c_longlong,
+        ldu: ::core::ffi::c_int,
+        strideU: ::core::ffi::c_longlong,
         d_V: *mut f64,
-        ldv: ::std::os::raw::c_int,
-        strideV: ::std::os::raw::c_longlong,
+        ldv: ::core::ffi::c_int,
+        strideV: ::core::ffi::c_longlong,
         d_work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        d_info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        d_info: *mut ::core::ffi::c_int,
         h_R_nrmF: *mut f64,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4384,25 +4212,25 @@ unsafe extern "C" {
     pub fn cusolverDnCgesvdaStridedBatched(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        rank: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         d_A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         d_S: *mut f32,
-        strideS: ::std::os::raw::c_longlong,
+        strideS: ::core::ffi::c_longlong,
         d_U: *mut cuComplex,
-        ldu: ::std::os::raw::c_int,
-        strideU: ::std::os::raw::c_longlong,
+        ldu: ::core::ffi::c_int,
+        strideU: ::core::ffi::c_longlong,
         d_V: *mut cuComplex,
-        ldv: ::std::os::raw::c_int,
-        strideV: ::std::os::raw::c_longlong,
+        ldv: ::core::ffi::c_int,
+        strideV: ::core::ffi::c_longlong,
         d_work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        d_info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        d_info: *mut ::core::ffi::c_int,
         h_R_nrmF: *mut f64,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4410,25 +4238,25 @@ unsafe extern "C" {
     pub fn cusolverDnZgesvdaStridedBatched(
         handle: cusolverDnHandle_t,
         jobz: cusolverEigMode_t,
-        rank: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         d_A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         d_S: *mut f64,
-        strideS: ::std::os::raw::c_longlong,
+        strideS: ::core::ffi::c_longlong,
         d_U: *mut cuDoubleComplex,
-        ldu: ::std::os::raw::c_int,
-        strideU: ::std::os::raw::c_longlong,
+        ldu: ::core::ffi::c_int,
+        strideU: ::core::ffi::c_longlong,
         d_V: *mut cuDoubleComplex,
-        ldv: ::std::os::raw::c_int,
-        strideV: ::std::os::raw::c_longlong,
+        ldv: ::core::ffi::c_int,
+        strideV: ::core::ffi::c_longlong,
         d_work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        d_info: *mut ::std::os::raw::c_int,
+        lwork: ::core::ffi::c_int,
+        d_info: *mut ::core::ffi::c_int,
         h_R_nrmF: *mut f64,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4451,7 +4279,7 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
@@ -4466,14 +4294,14 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4485,12 +4313,12 @@ unsafe extern "C" {
         n: i64,
         nrhs: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeB: cudaDataType,
-        B: *mut ::std::os::raw::c_void,
+        B: *mut ::core::ffi::c_void,
         ldb: i64,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4501,10 +4329,10 @@ unsafe extern "C" {
         m: i64,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeTau: cudaDataType,
-        tau: *const ::std::os::raw::c_void,
+        tau: *const ::core::ffi::c_void,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
         workspaceInBytesOnHost: *mut usize,
@@ -4518,32 +4346,21 @@ unsafe extern "C" {
         m: i64,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeTau: cudaDataType,
-        tau: *mut ::std::os::raw::c_void,
+        tau: *mut ::core::ffi::c_void,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXgetrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        params: cusolverDnParams_t,
-        m: i64,
-        n: i64,
-        dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
-        lda: i64,
-        computeType: cudaDataType,
-        workspaceInBytesOnDevice: *mut usize,
-        workspaceInBytesOnHost: *mut usize,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXgetrf_bufferSize(handle: cusolverDnHandle_t, params: cusolverDnParams_t, m: i64, n: i64, dataTypeA: cudaDataType, A: *const ::core::ffi::c_void, lda: i64, computeType: cudaDataType, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -4553,15 +4370,15 @@ unsafe extern "C" {
         m: i64,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         ipiv: *mut i64,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4573,13 +4390,13 @@ unsafe extern "C" {
         n: i64,
         nrhs: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         ipiv: *const i64,
         dataTypeB: cudaDataType,
-        B: *mut ::std::os::raw::c_void,
+        B: *mut ::core::ffi::c_void,
         ldb: i64,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4591,10 +4408,10 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeW: cudaDataType,
-        W: *const ::std::os::raw::c_void,
+        W: *const ::core::ffi::c_void,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
         workspaceInBytesOnHost: *mut usize,
@@ -4609,16 +4426,16 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeW: cudaDataType,
-        W: *mut ::std::os::raw::c_void,
+        W: *mut ::core::ffi::c_void,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4629,10 +4446,10 @@ unsafe extern "C" {
         compz: cusolverEigComp_t,
         n: i64,
         dataTypeDE: cudaDataType,
-        D: *const ::std::os::raw::c_void,
-        E: *const ::std::os::raw::c_void,
+        D: *const ::core::ffi::c_void,
+        E: *const ::core::ffi::c_void,
         dataTypeZ: cudaDataType,
-        Z: *const ::std::os::raw::c_void,
+        Z: *const ::core::ffi::c_void,
         ldz: i64,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
@@ -4647,17 +4464,17 @@ unsafe extern "C" {
         compz: cusolverEigComp_t,
         n: i64,
         dataTypeDE: cudaDataType,
-        D: *mut ::std::os::raw::c_void,
-        E: *mut ::std::os::raw::c_void,
+        D: *mut ::core::ffi::c_void,
+        E: *mut ::core::ffi::c_void,
         dataTypeZ: cudaDataType,
-        Z: *mut ::std::os::raw::c_void,
+        Z: *mut ::core::ffi::c_void,
         ldz: i64,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4669,10 +4486,10 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeW: cudaDataType,
-        W: *const ::std::os::raw::c_void,
+        W: *const ::core::ffi::c_void,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
         workspaceInBytesOnHost: *mut usize,
@@ -4688,16 +4505,16 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeW: cudaDataType,
-        W: *mut ::std::os::raw::c_void,
+        W: *mut ::core::ffi::c_void,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
         batchSize: i64,
     ) -> cusolverStatus_t;
 }
@@ -4711,15 +4528,15 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
-        vl: *mut ::std::os::raw::c_void,
-        vu: *mut ::std::os::raw::c_void,
+        vl: *mut ::core::ffi::c_void,
+        vu: *mut ::core::ffi::c_void,
         il: i64,
         iu: i64,
         h_meig: *mut i64,
         dataTypeW: cudaDataType,
-        W: *const ::std::os::raw::c_void,
+        W: *const ::core::ffi::c_void,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
         workspaceInBytesOnHost: *mut usize,
@@ -4735,21 +4552,21 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
-        vl: *mut ::std::os::raw::c_void,
-        vu: *mut ::std::os::raw::c_void,
+        vl: *mut ::core::ffi::c_void,
+        vu: *mut ::core::ffi::c_void,
         il: i64,
         iu: i64,
         meig64: *mut i64,
         dataTypeW: cudaDataType,
-        W: *mut ::std::os::raw::c_void,
+        W: *mut ::core::ffi::c_void,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4761,15 +4578,15 @@ unsafe extern "C" {
         jobvr: cusolverEigMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeW: cudaDataType,
-        W: *const ::std::os::raw::c_void,
+        W: *const ::core::ffi::c_void,
         dataTypeVL: cudaDataType,
-        VL: *const ::std::os::raw::c_void,
+        VL: *const ::core::ffi::c_void,
         ldvl: i64,
         dataTypeVR: cudaDataType,
-        VR: *const ::std::os::raw::c_void,
+        VR: *const ::core::ffi::c_void,
         ldvr: i64,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
@@ -4785,22 +4602,22 @@ unsafe extern "C" {
         jobvr: cusolverEigMode_t,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeW: cudaDataType,
-        W: *mut ::std::os::raw::c_void,
+        W: *mut ::core::ffi::c_void,
         dataTypeVL: cudaDataType,
-        VL: *mut ::std::os::raw::c_void,
+        VL: *mut ::core::ffi::c_void,
         ldvl: i64,
         dataTypeVR: cudaDataType,
-        VR: *mut ::std::os::raw::c_void,
+        VR: *mut ::core::ffi::c_void,
         ldvr: i64,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4808,20 +4625,20 @@ unsafe extern "C" {
     pub fn cusolverDnXgesvd_bufferSize(
         handle: cusolverDnHandle_t,
         params: cusolverDnParams_t,
-        jobu: ::std::os::raw::c_schar,
-        jobvt: ::std::os::raw::c_schar,
+        jobu: ::core::ffi::c_schar,
+        jobvt: ::core::ffi::c_schar,
         m: i64,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeS: cudaDataType,
-        S: *const ::std::os::raw::c_void,
+        S: *const ::core::ffi::c_void,
         dataTypeU: cudaDataType,
-        U: *const ::std::os::raw::c_void,
+        U: *const ::core::ffi::c_void,
         ldu: i64,
         dataTypeVT: cudaDataType,
-        VT: *const ::std::os::raw::c_void,
+        VT: *const ::core::ffi::c_void,
         ldvt: i64,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
@@ -4833,27 +4650,27 @@ unsafe extern "C" {
     pub fn cusolverDnXgesvd(
         handle: cusolverDnHandle_t,
         params: cusolverDnParams_t,
-        jobu: ::std::os::raw::c_schar,
-        jobvt: ::std::os::raw::c_schar,
+        jobu: ::core::ffi::c_schar,
+        jobvt: ::core::ffi::c_schar,
         m: i64,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeS: cudaDataType,
-        S: *mut ::std::os::raw::c_void,
+        S: *mut ::core::ffi::c_void,
         dataTypeU: cudaDataType,
-        U: *mut ::std::os::raw::c_void,
+        U: *mut ::core::ffi::c_void,
         ldu: i64,
         dataTypeVT: cudaDataType,
-        VT: *mut ::std::os::raw::c_void,
+        VT: *mut ::core::ffi::c_void,
         ldvt: i64,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        info: *mut ::std::os::raw::c_int,
+        info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4862,19 +4679,19 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         params: cusolverDnParams_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
         m: i64,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeS: cudaDataType,
-        S: *const ::std::os::raw::c_void,
+        S: *const ::core::ffi::c_void,
         dataTypeU: cudaDataType,
-        U: *const ::std::os::raw::c_void,
+        U: *const ::core::ffi::c_void,
         ldu: i64,
         dataTypeV: cudaDataType,
-        V: *const ::std::os::raw::c_void,
+        V: *const ::core::ffi::c_void,
         ldv: i64,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
@@ -4887,26 +4704,26 @@ unsafe extern "C" {
         handle: cusolverDnHandle_t,
         params: cusolverDnParams_t,
         jobz: cusolverEigMode_t,
-        econ: ::std::os::raw::c_int,
+        econ: ::core::ffi::c_int,
         m: i64,
         n: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeS: cudaDataType,
-        S: *mut ::std::os::raw::c_void,
+        S: *mut ::core::ffi::c_void,
         dataTypeU: cudaDataType,
-        U: *mut ::std::os::raw::c_void,
+        U: *mut ::core::ffi::c_void,
         ldu: i64,
         dataTypeV: cudaDataType,
-        V: *mut ::std::os::raw::c_void,
+        V: *mut ::core::ffi::c_void,
         ldv: i64,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        d_info: *mut ::std::os::raw::c_int,
+        d_info: *mut ::core::ffi::c_int,
         h_err_sigma: *mut f64,
     ) -> cusolverStatus_t;
 }
@@ -4915,23 +4732,23 @@ unsafe extern "C" {
     pub fn cusolverDnXgesvdr_bufferSize(
         handle: cusolverDnHandle_t,
         params: cusolverDnParams_t,
-        jobu: ::std::os::raw::c_schar,
-        jobv: ::std::os::raw::c_schar,
+        jobu: ::core::ffi::c_schar,
+        jobv: ::core::ffi::c_schar,
         m: i64,
         n: i64,
         k: i64,
         p: i64,
         niters: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeSrand: cudaDataType,
-        Srand: *const ::std::os::raw::c_void,
+        Srand: *const ::core::ffi::c_void,
         dataTypeUrand: cudaDataType,
-        Urand: *const ::std::os::raw::c_void,
+        Urand: *const ::core::ffi::c_void,
         ldUrand: i64,
         dataTypeVrand: cudaDataType,
-        Vrand: *const ::std::os::raw::c_void,
+        Vrand: *const ::core::ffi::c_void,
         ldVrand: i64,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
@@ -4943,30 +4760,30 @@ unsafe extern "C" {
     pub fn cusolverDnXgesvdr(
         handle: cusolverDnHandle_t,
         params: cusolverDnParams_t,
-        jobu: ::std::os::raw::c_schar,
-        jobv: ::std::os::raw::c_schar,
+        jobu: ::core::ffi::c_schar,
+        jobv: ::core::ffi::c_schar,
         m: i64,
         n: i64,
         k: i64,
         p: i64,
         niters: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeSrand: cudaDataType,
-        Srand: *mut ::std::os::raw::c_void,
+        Srand: *mut ::core::ffi::c_void,
         dataTypeUrand: cudaDataType,
-        Urand: *mut ::std::os::raw::c_void,
+        Urand: *mut ::core::ffi::c_void,
         ldUrand: i64,
         dataTypeVrand: cudaDataType,
-        Vrand: *mut ::std::os::raw::c_void,
+        Vrand: *mut ::core::ffi::c_void,
         ldVrand: i64,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
-        d_info: *mut ::std::os::raw::c_int,
+        d_info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4979,12 +4796,12 @@ unsafe extern "C" {
         n: i64,
         k: i64,
         dataTypeV: cudaDataType,
-        V: *const ::std::os::raw::c_void,
+        V: *const ::core::ffi::c_void,
         ldv: i64,
         dataTypeTau: cudaDataType,
-        tau: *const ::std::os::raw::c_void,
+        tau: *const ::core::ffi::c_void,
         dataTypeT: cudaDataType,
-        T: *mut ::std::os::raw::c_void,
+        T: *mut ::core::ffi::c_void,
         ldt: i64,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
@@ -5001,21 +4818,21 @@ unsafe extern "C" {
         n: i64,
         k: i64,
         dataTypeV: cudaDataType,
-        V: *const ::std::os::raw::c_void,
+        V: *const ::core::ffi::c_void,
         ldv: i64,
         dataTypeTau: cudaDataType,
-        tau: *const ::std::os::raw::c_void,
+        tau: *const ::core::ffi::c_void,
         dataTypeT: cudaDataType,
-        T: *mut ::std::os::raw::c_void,
+        T: *mut ::core::ffi::c_void,
         ldt: i64,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
     ) -> cusolverStatus_t;
 }
-pub type cusolverDnLoggerCallback_t = ::std::option::Option<unsafe extern "C" fn(logLevel: ::std::os::raw::c_int, functionName: *const ::std::os::raw::c_char, message: *const ::std::os::raw::c_char)>;
+pub type cusolverDnLoggerCallback_t = ::core::option::Option<unsafe extern "C" fn(logLevel: ::core::ffi::c_int, functionName: *const ::core::ffi::c_char, message: *const ::core::ffi::c_char)>;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnLoggerSetCallback(callback: cusolverDnLoggerCallback_t) -> cusolverStatus_t;
@@ -5026,15 +4843,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnLoggerOpenFile(logFile: *const ::std::os::raw::c_char) -> cusolverStatus_t;
+    pub fn cusolverDnLoggerOpenFile(logFile: *const ::core::ffi::c_char) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnLoggerSetLevel(level: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnLoggerSetLevel(level: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnLoggerSetMask(mask: ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverDnLoggerSetMask(mask: ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5049,10 +4866,10 @@ unsafe extern "C" {
         M: i64,
         N: i64,
         dataTypeA: cudaDataType,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         lda: i64,
         dataTypeH: cudaDataType,
-        H: *const ::std::os::raw::c_void,
+        H: *const ::core::ffi::c_void,
         ldh: i64,
         computeType: cudaDataType,
         workspaceInBytesOnDevice: *mut usize,
@@ -5068,20 +4885,20 @@ unsafe extern "C" {
         M: i64,
         N: i64,
         dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
+        A: *mut ::core::ffi::c_void,
         lda: i64,
         dataTypeH: cudaDataType,
-        H: *mut ::std::os::raw::c_void,
+        H: *mut ::core::ffi::c_void,
         ldh: i64,
         computeType: cudaDataType,
-        bufferOnDevice: *mut ::std::os::raw::c_void,
+        bufferOnDevice: *mut ::core::ffi::c_void,
         workspaceInBytesOnDevice: usize,
-        bufferOnHost: *mut ::std::os::raw::c_void,
+        bufferOnHost: *mut ::core::ffi::c_void,
         workspaceInBytesOnHost: usize,
         d_res_nrm: *mut f64,
         d_A_nrmF: *mut f64,
         d_rcond: *mut f64,
-        d_info: *mut ::std::os::raw::c_int,
+        d_info: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[repr(C)]
@@ -5116,371 +4933,371 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpXcsrissymHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrEndPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        issym: *mut ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrEndPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
+        issym: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpScsrlsvluHost(
         handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f32,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const f32,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f32,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpDcsrlsvluHost(
         handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f64,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const f64,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f64,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpCcsrlsvluHost(
         handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const cuComplex,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpZcsrlsvluHost(
         handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuDoubleComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const cuDoubleComplex,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuDoubleComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpScsrlsvqr(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const f32,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const f32,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f32,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpDcsrlsvqr(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const f64,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const f64,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f64,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpCcsrlsvqr(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const cuComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const cuComplex,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpZcsrlsvqr(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const cuDoubleComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const cuDoubleComplex,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuDoubleComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpScsrlsvqrHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f32,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const f32,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f32,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpDcsrlsvqrHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f64,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const f64,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f64,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpCcsrlsvqrHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const cuComplex,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpZcsrlsvqrHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuDoubleComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const cuDoubleComplex,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuDoubleComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpScsrlsvcholHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const f32,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const f32,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f32,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpDcsrlsvcholHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const f64,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const f64,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f64,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpCcsrlsvcholHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const cuComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const cuComplex,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpZcsrlsvcholHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const cuDoubleComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const cuDoubleComplex,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuDoubleComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpScsrlsvchol(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const f32,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const f32,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f32,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpDcsrlsvchol(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const f64,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const f64,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut f64,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpCcsrlsvchol(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const cuComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const cuComplex,
         tol: f32,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpZcsrlsvchol(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const cuDoubleComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
         b: *const cuDoubleComplex,
         tol: f64,
-        reorder: ::std::os::raw::c_int,
+        reorder: ::core::ffi::c_int,
         x: *mut cuDoubleComplex,
-        singularity: *mut ::std::os::raw::c_int,
+        singularity: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpScsrlsqvqrHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f32,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const f32,
         tol: f32,
-        rankA: *mut ::std::os::raw::c_int,
+        rankA: *mut ::core::ffi::c_int,
         x: *mut f32,
-        p: *mut ::std::os::raw::c_int,
+        p: *mut ::core::ffi::c_int,
         min_norm: *mut f32,
     ) -> cusolverStatus_t;
 }
@@ -5488,18 +5305,18 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpDcsrlsqvqrHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f64,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const f64,
         tol: f64,
-        rankA: *mut ::std::os::raw::c_int,
+        rankA: *mut ::core::ffi::c_int,
         x: *mut f64,
-        p: *mut ::std::os::raw::c_int,
+        p: *mut ::core::ffi::c_int,
         min_norm: *mut f64,
     ) -> cusolverStatus_t;
 }
@@ -5507,18 +5324,18 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpCcsrlsqvqrHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const cuComplex,
         tol: f32,
-        rankA: *mut ::std::os::raw::c_int,
+        rankA: *mut ::core::ffi::c_int,
         x: *mut cuComplex,
-        p: *mut ::std::os::raw::c_int,
+        p: *mut ::core::ffi::c_int,
         min_norm: *mut f32,
     ) -> cusolverStatus_t;
 }
@@ -5526,18 +5343,18 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpZcsrlsqvqrHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuDoubleComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const cuDoubleComplex,
         tol: f64,
-        rankA: *mut ::std::os::raw::c_int,
+        rankA: *mut ::core::ffi::c_int,
         x: *mut cuDoubleComplex,
-        p: *mut ::std::os::raw::c_int,
+        p: *mut ::core::ffi::c_int,
         min_norm: *mut f64,
     ) -> cusolverStatus_t;
 }
@@ -5545,15 +5362,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpScsreigvsiHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f32,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         mu0: f32,
         x0: *const f32,
-        maxite: ::std::os::raw::c_int,
+        maxite: ::core::ffi::c_int,
         tol: f32,
         mu: *mut f32,
         x: *mut f32,
@@ -5563,15 +5380,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpDcsreigvsiHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f64,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         mu0: f64,
         x0: *const f64,
-        maxite: ::std::os::raw::c_int,
+        maxite: ::core::ffi::c_int,
         tol: f64,
         mu: *mut f64,
         x: *mut f64,
@@ -5581,15 +5398,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpCcsreigvsiHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         mu0: cuComplex,
         x0: *const cuComplex,
-        maxite: ::std::os::raw::c_int,
+        maxite: ::core::ffi::c_int,
         tol: f32,
         mu: *mut cuComplex,
         x: *mut cuComplex,
@@ -5599,15 +5416,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpZcsreigvsiHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuDoubleComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         mu0: cuDoubleComplex,
         x0: *const cuDoubleComplex,
-        maxite: ::std::os::raw::c_int,
+        maxite: ::core::ffi::c_int,
         tol: f64,
         mu: *mut cuDoubleComplex,
         x: *mut cuDoubleComplex,
@@ -5617,15 +5434,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpScsreigvsi(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f32,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         mu0: f32,
         x0: *const f32,
-        maxite: ::std::os::raw::c_int,
+        maxite: ::core::ffi::c_int,
         eps: f32,
         mu: *mut f32,
         x: *mut f32,
@@ -5635,15 +5452,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpDcsreigvsi(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f64,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         mu0: f64,
         x0: *const f64,
-        maxite: ::std::os::raw::c_int,
+        maxite: ::core::ffi::c_int,
         eps: f64,
         mu: *mut f64,
         x: *mut f64,
@@ -5653,15 +5470,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpCcsreigvsi(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         mu0: cuComplex,
         x0: *const cuComplex,
-        maxite: ::std::os::raw::c_int,
+        maxite: ::core::ffi::c_int,
         eps: f32,
         mu: *mut cuComplex,
         x: *mut cuComplex,
@@ -5671,15 +5488,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpZcsreigvsi(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuDoubleComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         mu0: cuDoubleComplex,
         x0: *const cuDoubleComplex,
-        maxite: ::std::os::raw::c_int,
+        maxite: ::core::ffi::c_int,
         eps: f64,
         mu: *mut cuDoubleComplex,
         x: *mut cuDoubleComplex,
@@ -5689,155 +5506,146 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpScsreigsHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f32,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         left_bottom_corner: cuComplex,
         right_upper_corner: cuComplex,
-        num_eigs: *mut ::std::os::raw::c_int,
+        num_eigs: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpDcsreigsHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f64,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         left_bottom_corner: cuDoubleComplex,
         right_upper_corner: cuDoubleComplex,
-        num_eigs: *mut ::std::os::raw::c_int,
+        num_eigs: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpCcsreigsHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         left_bottom_corner: cuComplex,
         right_upper_corner: cuComplex,
-        num_eigs: *mut ::std::os::raw::c_int,
+        num_eigs: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpZcsreigsHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuDoubleComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         left_bottom_corner: cuDoubleComplex,
         right_upper_corner: cuDoubleComplex,
-        num_eigs: *mut ::std::os::raw::c_int,
+        num_eigs: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpXcsrsymrcmHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverSpXcsrsymrcmHost(handle: cusolverSpHandle_t, n: ::core::ffi::c_int, nnzA: ::core::ffi::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, p: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpXcsrsymmdqHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverSpXcsrsymmdqHost(handle: cusolverSpHandle_t, n: ::core::ffi::c_int, nnzA: ::core::ffi::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, p: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpXcsrsymamdHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
+    pub fn cusolverSpXcsrsymamdHost(handle: cusolverSpHandle_t, n: ::core::ffi::c_int, nnzA: ::core::ffi::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, p: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpXcsrmetisndHost(
-        handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
-        descrA: cusparseMatDescr_t,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        options: *const i64,
-        p: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverSpXcsrmetisndHost(handle: cusolverSpHandle_t, n: ::core::ffi::c_int, nnzA: ::core::ffi::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, options: *const i64, p: *mut ::core::ffi::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpScsrzfdHost(
         handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f32,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        P: *mut ::std::os::raw::c_int,
-        numnz: *mut ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
+        P: *mut ::core::ffi::c_int,
+        numnz: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpDcsrzfdHost(
         handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f64,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        P: *mut ::std::os::raw::c_int,
-        numnz: *mut ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
+        P: *mut ::core::ffi::c_int,
+        numnz: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpCcsrzfdHost(
         handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        P: *mut ::std::os::raw::c_int,
-        numnz: *mut ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
+        P: *mut ::core::ffi::c_int,
+        numnz: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpZcsrzfdHost(
         handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuDoubleComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        P: *mut ::std::os::raw::c_int,
-        numnz: *mut ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
+        P: *mut ::core::ffi::c_int,
+        numnz: *mut ::core::ffi::c_int,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpXcsrperm_bufferSizeHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        p: *const ::std::os::raw::c_int,
-        q: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
+        p: *const ::core::ffi::c_int,
+        q: *const ::core::ffi::c_int,
         bufferSizeInBytes: *mut usize,
     ) -> cusolverStatus_t;
 }
@@ -5845,16 +5653,16 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpXcsrpermHost(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        csrRowPtrA: *mut ::std::os::raw::c_int,
-        csrColIndA: *mut ::std::os::raw::c_int,
-        p: *const ::std::os::raw::c_int,
-        q: *const ::std::os::raw::c_int,
-        map: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrRowPtrA: *mut ::core::ffi::c_int,
+        csrColIndA: *mut ::core::ffi::c_int,
+        p: *const ::core::ffi::c_int,
+        q: *const ::core::ffi::c_int,
+        map: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -5867,29 +5675,20 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpXcsrqrAnalysisBatched(
-        handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
-        descrA: cusparseMatDescr_t,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        info: csrqrInfo_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverSpXcsrqrAnalysisBatched(handle: cusolverSpHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnzA: ::core::ffi::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, info: csrqrInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpScsrqrBufferInfoBatched(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const f32,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
         info: csrqrInfo_t,
         internalDataInBytes: *mut usize,
         workspaceInBytes: *mut usize,
@@ -5899,14 +5698,14 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpDcsrqrBufferInfoBatched(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const f64,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
         info: csrqrInfo_t,
         internalDataInBytes: *mut usize,
         workspaceInBytes: *mut usize,
@@ -5916,14 +5715,14 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpCcsrqrBufferInfoBatched(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const cuComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
         info: csrqrInfo_t,
         internalDataInBytes: *mut usize,
         workspaceInBytes: *mut usize,
@@ -5933,14 +5732,14 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpZcsrqrBufferInfoBatched(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *const cuDoubleComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
         info: csrqrInfo_t,
         internalDataInBytes: *mut usize,
         workspaceInBytes: *mut usize,
@@ -5950,78 +5749,78 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusolverSpScsrqrsvBatched(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f32,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const f32,
         x: *mut f32,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
         info: csrqrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpDcsrqrsvBatched(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const f64,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const f64,
         x: *mut f64,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
         info: csrqrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpCcsrqrsvBatched(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const cuComplex,
         x: *mut cuComplex,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
         info: csrqrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverSpZcsrqrsvBatched(
         handle: cusolverSpHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrValA: *const cuDoubleComplex,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *const ::core::ffi::c_int,
         b: *const cuDoubleComplex,
         x: *mut cuDoubleComplex,
-        batchSize: ::std::os::raw::c_int,
+        batchSize: ::core::ffi::c_int,
         info: csrqrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusolverStatus_t;
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cusolverGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverGetVersion: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverGetVersion: Option<unsafe extern "C" fn(*mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnCreate: Option<unsafe extern "C" fn(*mut cusolverDnHandle_t) -> cusolverStatus_t>,
     pub cusolverDnDestroy: Option<unsafe extern "C" fn(cusolverDnHandle_t) -> cusolverStatus_t>,
     pub cusolverDnSetStream: Option<unsafe extern "C" fn(cusolverDnHandle_t, cudaStream_t) -> cusolverStatus_t>,
@@ -6034,10 +5833,10 @@ pub struct DynamicBindings {
     pub cusolverDnGetEmulationStrategy: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut cudaEmulationStrategy_t) -> cusolverStatus_t>,
     pub cusolverDnSetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(cusolverDnHandle_t, cudaEmulationMantissaControl_t) -> cusolverStatus_t>,
     pub cusolverDnGetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut cudaEmulationMantissaControl_t) -> cusolverStatus_t>,
-    pub cusolverDnSetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnGetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnGetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnGetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnGetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnSetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(cusolverDnHandle_t, cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t>,
     pub cusolverDnGetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t>,
     pub cusolverDnIRSParamsCreate: Option<unsafe extern "C" fn(*mut cusolverDnIRSParams_t) -> cusolverStatus_t>,
@@ -6058,7 +5857,7 @@ pub struct DynamicBindings {
     pub cusolverDnIRSInfosGetNiters: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnIRSInfosGetOuterNiters: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnIRSInfosRequestResidual: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosGetResidualHistory: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t, *mut *mut ::std::os::raw::c_void) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosGetResidualHistory: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t, *mut *mut ::core::ffi::c_void) -> cusolverStatus_t>,
     pub cusolverDnIRSInfosGetMaxIters: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnZZgesv: Option<
         unsafe extern "C" fn(
@@ -6072,7 +5871,7 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
@@ -6090,7 +5889,7 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
@@ -6108,7 +5907,7 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
@@ -6126,7 +5925,7 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
@@ -6144,65 +5943,65 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCCgesv: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
     >,
     pub cusolverDnCEgesv: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
     >,
     pub cusolverDnCKgesv: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
     >,
     pub cusolverDnCYgesv: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
     >,
     pub cusolverDnDDgesv:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnDSgesv:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnDHgesv:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnDBgesv:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnDXgesv:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnSSgesv:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnSHgesv:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnSBgesv:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnSXgesv:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnZZgesv_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZCgesv_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZKgesv_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZEgesv_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZYgesv_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnCCgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnCKgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnCEgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnCYgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDDgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDSgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDHgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDBgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDXgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSSgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSHgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSBgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSXgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCCgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCKgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCEgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCYgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDDgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDSgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDHgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDBgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDXgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSSgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSHgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSBgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSXgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZZgels: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
@@ -6215,7 +6014,7 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
@@ -6233,7 +6032,7 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
@@ -6251,7 +6050,7 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
@@ -6269,7 +6068,7 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
@@ -6287,52 +6086,52 @@ pub struct DynamicBindings {
             cusolver_int_t,
             *mut cuDoubleComplex,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCCgels:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnCKgels:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnCEgels:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnCYgels:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnDDgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnDSgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnDHgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnDBgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnDXgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnSSgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnSHgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnSBgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnSXgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDDgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDSgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDHgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDBgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDXgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSSgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSHgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSBgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSXgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnZZgels_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZCgels_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZKgels_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZEgels_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZYgels_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnCCgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnCKgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnCEgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnCYgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDDgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDSgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDHgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDBgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnDXgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSSgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSHgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSBgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSXgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCCgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCKgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCEgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCYgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDDgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDSgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDHgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDBgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDXgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSSgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSHgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSBgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSXgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::core::ffi::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnIRSXgesv: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
@@ -6340,13 +6139,13 @@ pub struct DynamicBindings {
             cusolverDnIRSInfos_t,
             cusolver_int_t,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
@@ -6361,181 +6160,133 @@ pub struct DynamicBindings {
             cusolver_int_t,
             cusolver_int_t,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cusolver_int_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut cusolver_int_t,
             *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnIRSXgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnIRSParams_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotrsBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut *mut f32, ::std::os::raw::c_int, *mut *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotrsBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut *mut f64, ::std::os::raw::c_int, *mut *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotrsBatched:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut *mut cuComplex, ::std::os::raw::c_int, *mut *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotrsBatched:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut *mut cuDoubleComplex, ::std::os::raw::c_int, *mut *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXtrtri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, cublasDiagType_t, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut usize, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnXtrtri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, cublasDiagType_t, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSlauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDlauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnClauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZlauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSlauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDlauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnClauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZlauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSlaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDlaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnClaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZlaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgetrs:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSorgqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSorgqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungqr:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrsBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut *mut f32, ::core::ffi::c_int, *mut *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrsBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut *mut f64, ::core::ffi::c_int, *mut *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrsBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut *mut cuComplex, ::core::ffi::c_int, *mut *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrsBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut *mut cuDoubleComplex, ::core::ffi::c_int, *mut *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXtrtri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, cublasDiagType_t, i64, cudaDataType, *mut ::core::ffi::c_void, i64, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXtrtri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, cublasDiagType_t, i64, cudaDataType, *mut ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSlauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDlauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnClauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZlauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSlauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDlauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnClauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZlauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSlaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDlaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnClaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZlaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnSormqr_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnDormqr_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCunmqr_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cublasSideMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCunmqr_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnZunmqr_bufferSize: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cublasSideMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSormqr: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cublasSideMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f32,
-            ::std::os::raw::c_int,
-            *const f32,
-            *mut f32,
-            ::std::os::raw::c_int,
-            *mut f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnDormqr: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cublasSideMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f64,
-            ::std::os::raw::c_int,
-            *const f64,
-            *mut f64,
-            ::std::os::raw::c_int,
-            *mut f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnCunmqr: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cublasSideMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZunmqr: Option<
@@ -6543,168 +6294,114 @@ pub struct DynamicBindings {
             cusolverDnHandle_t,
             cublasSideMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXsytrs_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, *const i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut usize, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnXsytrs: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cublasFillMode_t,
-            i64,
-            i64,
-            cudaDataType,
-            *const ::std::os::raw::c_void,
-            i64,
-            *const i64,
-            cudaDataType,
-            *mut ::std::os::raw::c_void,
-            i64,
-            *mut ::std::os::raw::c_void,
-            usize,
-            *mut ::std::os::raw::c_void,
-            usize,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgebrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, *mut f32, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgebrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, *mut f64, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgebrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut f32, *mut cuComplex, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgebrd: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut f64, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSorgbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSorgbr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgbr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungbr:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungbr: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsytrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnChetrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *const f32, *const cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZhetrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *const f64, *const cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsytrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnChetrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut f32, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZhetrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut f64, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSorgtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSorgtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsytrs_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::core::ffi::c_void, i64, *const i64, cudaDataType, *mut ::core::ffi::c_void, i64, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXsytrs:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::core::ffi::c_void, i64, *const i64, cudaDataType, *mut ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgebrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut f32, *mut f32, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgebrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut f64, *mut f64, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgebrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut f32, *mut f32, *mut cuComplex, *mut cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgebrd:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut f64, *mut f64, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgbr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgbr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungbr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungbr:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *const f32, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *const f64, *const f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnChetrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *const f32, *const cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZhetrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const f64, *const f64, *const cuDoubleComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut f32, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut f64, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnChetrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut f32, *mut f32, *mut cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZhetrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut f64, *mut f64, *mut cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnSormtr_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnDormtr_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCunmtr_bufferSize: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCunmtr_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnZunmtr_bufferSize: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cublasSideMode_t,
             cublasFillMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSormtr: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cublasSideMode_t,
-            cublasFillMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut f32,
-            ::std::os::raw::c_int,
-            *mut f32,
-            *mut f32,
-            ::std::os::raw::c_int,
-            *mut f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDormtr: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cublasSideMode_t,
-            cublasFillMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut f64,
-            ::std::os::raw::c_int,
-            *mut f64,
-            *mut f64,
-            ::std::os::raw::c_int,
-            *mut f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSormtr:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDormtr:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnCunmtr: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cublasSideMode_t,
             cublasFillMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZunmtr: Option<
@@ -6713,163 +6410,116 @@ pub struct DynamicBindings {
             cublasSideMode_t,
             cublasFillMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnSgesvd: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvd: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvd: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvd: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsyevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsyevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCheevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZheevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsyevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsyevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCheevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZheevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsyevdx_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cusolverEigMode_t,
-            cusolverEigRange_t,
-            cublasFillMode_t,
-            ::std::os::raw::c_int,
-            *const f32,
-            ::std::os::raw::c_int,
-            f32,
-            f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *const f32,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsyevdx_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cusolverEigMode_t,
-            cusolverEigRange_t,
-            cublasFillMode_t,
-            ::std::os::raw::c_int,
-            *const f64,
-            ::std::os::raw::c_int,
-            f64,
-            f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *const f64,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsyevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCheevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZheevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsyevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCheevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut f32, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZheevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut f64, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsyevdx_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cusolverEigRange_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, f32, f32, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevdx_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cusolverEigRange_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, f64, f64, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnCheevdx_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cusolverEigMode_t,
-            cusolverEigRange_t,
-            cublasFillMode_t,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            f32,
-            f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *const f32,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cusolverEigRange_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, f32, f32, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnZheevdx_bufferSize: Option<
         unsafe extern "C" fn(
@@ -6877,16 +6527,16 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f64,
             f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *const f64,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSsyevdx: Option<
@@ -6895,18 +6545,18 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f32,
             f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f32,
             *mut f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDsyevdx: Option<
@@ -6915,18 +6565,18 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f64,
             f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
             *mut f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCheevdx: Option<
@@ -6935,18 +6585,18 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f32,
             f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f32,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZheevdx: Option<
@@ -6955,18 +6605,18 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f64,
             f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSsygvdx_bufferSize: Option<
@@ -6976,18 +6626,18 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f32,
             f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *const f32,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDsygvdx_bufferSize: Option<
@@ -6997,18 +6647,18 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f64,
             f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *const f64,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnChegvdx_bufferSize: Option<
@@ -7018,18 +6668,18 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f32,
             f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *const f32,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZhegvdx_bufferSize: Option<
@@ -7039,18 +6689,18 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f64,
             f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *const f64,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSsygvdx: Option<
@@ -7060,20 +6710,20 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f32,
             f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f32,
             *mut f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDsygvdx: Option<
@@ -7083,20 +6733,20 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f64,
             f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
             *mut f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnChegvdx: Option<
@@ -7106,20 +6756,20 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f32,
             f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f32,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZhegvdx: Option<
@@ -7129,64 +6779,46 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             cusolverEigRange_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f64,
             f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsygvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsygvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnChegvd_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsygvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsygvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnChegvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnZhegvd_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsygvd:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsygvd:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnChegvd: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cusolverEigType_t,
-            cusolverEigMode_t,
-            cublasFillMode_t,
-            ::std::os::raw::c_int,
-            *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut f32,
-            *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsygvd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsygvd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnChegvd:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut f32, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnZhegvd: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigType_t,
             cusolverEigMode_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXsygvd_bufferSize: Option<
@@ -7198,13 +6830,13 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
             *mut usize,
             *mut usize,
@@ -7219,19 +6851,19 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXsygvdx_bufferSize: Option<
@@ -7243,18 +6875,18 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
-            *mut ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             i64,
             *mut i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
             *mut usize,
             *mut usize,
@@ -7270,84 +6902,75 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
-            *mut ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             i64,
             *mut i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCreateSyevjInfo: Option<unsafe extern "C" fn(*mut syevjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnDestroySyevjInfo: Option<unsafe extern "C" fn(syevjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnXsyevjSetTolerance: Option<unsafe extern "C" fn(syevjInfo_t, f64) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjSetMaxSweeps: Option<unsafe extern "C" fn(syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjSetSortEig: Option<unsafe extern "C" fn(syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjSetMaxSweeps: Option<unsafe extern "C" fn(syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjSetSortEig: Option<unsafe extern "C" fn(syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnXsyevjGetResidual: Option<unsafe extern "C" fn(cusolverDnHandle_t, syevjInfo_t, *mut f64) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjGetSweeps: Option<unsafe extern "C" fn(cusolverDnHandle_t, syevjInfo_t, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsyevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsyevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCheevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZheevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsyevjBatched:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsyevjBatched:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCheevjBatched:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZheevjBatched: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsyevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnDsyevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnCheevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnZheevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnSsyevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnDsyevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnCheevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnZheevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnSsygvj_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnDsygvj_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjGetSweeps: Option<unsafe extern "C" fn(cusolverDnHandle_t, syevjInfo_t, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsyevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int, syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int, syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCheevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int, syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZheevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int, syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsyevjBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevjBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCheevjBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut f32, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZheevjBatched:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut f64, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsyevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDsyevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnCheevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnZheevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnSsyevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDsyevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnCheevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut f32, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnZheevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut f64, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnSsygvj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDsygvj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnChegvj_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnZhegvj_bufferSize: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsygvj: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsygvj: Option<
-        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t,
-    >,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnZhegvj_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const f64, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnSsygvj:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDsygvj:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, syevjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnChegvj: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigType_t,
             cusolverEigMode_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             syevjInfo_t,
         ) -> cusolverStatus_t,
     >,
@@ -7357,228 +6980,168 @@ pub struct DynamicBindings {
             cusolverEigType_t,
             cusolverEigMode_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             syevjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCreateGesvdjInfo: Option<unsafe extern "C" fn(*mut gesvdjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnDestroyGesvdjInfo: Option<unsafe extern "C" fn(gesvdjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnXgesvdjSetTolerance: Option<unsafe extern "C" fn(gesvdjInfo_t, f64) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjSetMaxSweeps: Option<unsafe extern "C" fn(gesvdjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjSetSortEig: Option<unsafe extern "C" fn(gesvdjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjSetMaxSweeps: Option<unsafe extern "C" fn(gesvdjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjSetSortEig: Option<unsafe extern "C" fn(gesvdjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnXgesvdjGetResidual: Option<unsafe extern "C" fn(cusolverDnHandle_t, gesvdjInfo_t, *mut f64) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjGetSweeps: Option<unsafe extern "C" fn(cusolverDnHandle_t, gesvdjInfo_t, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjGetSweeps: Option<unsafe extern "C" fn(cusolverDnHandle_t, gesvdjInfo_t, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnSgesvdjBatched_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f32,
-            ::std::os::raw::c_int,
-            *const f32,
-            *const f32,
-            ::std::os::raw::c_int,
-            *const f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            gesvdjInfo_t,
-            ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, gesvdjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdjBatched_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f64,
-            ::std::os::raw::c_int,
-            *const f64,
-            *const f64,
-            ::std::os::raw::c_int,
-            *const f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            gesvdjInfo_t,
-            ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, gesvdjInfo_t, ::core::ffi::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdjBatched_bufferSize: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdjBatched_bufferSize: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSgesvdjBatched: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdjBatched: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdjBatched: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdjBatched: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSgesvdj_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f32,
-            ::std::os::raw::c_int,
-            *const f32,
-            *const f32,
-            ::std::os::raw::c_int,
-            *const f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            gesvdjInfo_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, gesvdjInfo_t) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdj_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f64,
-            ::std::os::raw::c_int,
-            *const f64,
-            *const f64,
-            ::std::os::raw::c_int,
-            *const f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            gesvdjInfo_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, gesvdjInfo_t) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdj_bufferSize: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
@@ -7586,17 +7149,17 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
@@ -7604,19 +7167,19 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
@@ -7624,19 +7187,19 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
@@ -7644,19 +7207,19 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
@@ -7664,19 +7227,19 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
@@ -7684,221 +7247,203 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f32,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *const f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdaStridedBatched_bufferSize: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *const f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdaStridedBatched_bufferSize: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f32,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdaStridedBatched_bufferSize: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSgesvdaStridedBatched: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut f32,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *mut f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdaStridedBatched: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut f64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *mut f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdaStridedBatched: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut f32,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdaStridedBatched: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut f64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCreateParams: Option<unsafe extern "C" fn(*mut cusolverDnParams_t) -> cusolverStatus_t>,
     pub cusolverDnDestroyParams: Option<unsafe extern "C" fn(cusolverDnParams_t) -> cusolverStatus_t>,
     pub cusolverDnSetAdvOptions: Option<unsafe extern "C" fn(cusolverDnParams_t, cusolverDnFunction_t, cusolverAlgMode_t) -> cusolverStatus_t>,
-    pub cusolverDnXpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnXpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, cudaDataType, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnXgeqrf: Option<
-        unsafe extern "C" fn(
-            cusolverDnHandle_t,
-            cusolverDnParams_t,
-            i64,
-            i64,
-            cudaDataType,
-            *mut ::std::os::raw::c_void,
-            i64,
-            cudaDataType,
-            *mut ::std::os::raw::c_void,
-            cudaDataType,
-            *mut ::std::os::raw::c_void,
-            usize,
-            *mut ::std::os::raw::c_void,
-            usize,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnXgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut i64, cudaDataType, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasOperation_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, *const i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXsyevd_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cusolverEigMode_t, cublasFillMode_t, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, cudaDataType, *const ::core::ffi::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, cudaDataType, *mut ::core::ffi::c_void, i64, cudaDataType, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::core::ffi::c_void, i64, cudaDataType, *mut ::core::ffi::c_void, i64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *const ::core::ffi::c_void, i64, cudaDataType, *const ::core::ffi::c_void, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXgeqrf:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *mut ::core::ffi::c_void, i64, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *const ::core::ffi::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *mut ::core::ffi::c_void, i64, *mut i64, cudaDataType, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_void, usize, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasOperation_t, i64, i64, cudaDataType, *const ::core::ffi::c_void, i64, *const i64, cudaDataType, *mut ::core::ffi::c_void, i64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsyevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cusolverEigMode_t, cublasFillMode_t, i64, cudaDataType, *const ::core::ffi::c_void, i64, cudaDataType, *const ::core::ffi::c_void, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXsyevd: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
@@ -7907,20 +7452,20 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXstedc_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cusolverEigComp_t, i64, cudaDataType, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cusolverEigComp_t, i64, cudaDataType, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudaDataType, *const ::core::ffi::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXstedc: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
@@ -7928,21 +7473,21 @@ pub struct DynamicBindings {
             cusolverEigComp_t,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXsyevBatched_bufferSize:
-        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cusolverEigMode_t, cublasFillMode_t, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, *mut usize, *mut usize, i64) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cusolverEigMode_t, cublasFillMode_t, i64, cudaDataType, *const ::core::ffi::c_void, i64, cudaDataType, *const ::core::ffi::c_void, cudaDataType, *mut usize, *mut usize, i64) -> cusolverStatus_t>,
     pub cusolverDnXsyevBatched: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
@@ -7951,16 +7496,16 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             i64,
         ) -> cusolverStatus_t,
     >,
@@ -7973,15 +7518,15 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
-            *mut ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             i64,
             *mut i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
             *mut usize,
             *mut usize,
@@ -7996,21 +7541,21 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
-            *mut ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             i64,
             *mut i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgeev_bufferSize: Option<
@@ -8021,15 +7566,15 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
             *mut usize,
@@ -8044,42 +7589,42 @@ pub struct DynamicBindings {
             cusolverEigMode_t,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgesvd_bufferSize: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverDnParams_t,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_schar,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_schar,
             i64,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
             *mut usize,
@@ -8090,27 +7635,27 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverDnParams_t,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_schar,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_schar,
             i64,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgesvdp_bufferSize: Option<
@@ -8118,19 +7663,19 @@ pub struct DynamicBindings {
             cusolverDnHandle_t,
             cusolverDnParams_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             i64,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
             *mut usize,
@@ -8142,26 +7687,26 @@ pub struct DynamicBindings {
             cusolverDnHandle_t,
             cusolverDnParams_t,
             cusolverEigMode_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             i64,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
         ) -> cusolverStatus_t,
     >,
@@ -8169,23 +7714,23 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverDnParams_t,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_schar,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_schar,
             i64,
             i64,
             i64,
             i64,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
             *mut usize,
@@ -8196,30 +7741,30 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusolverDnHandle_t,
             cusolverDnParams_t,
-            ::std::os::raw::c_schar,
-            ::std::os::raw::c_schar,
+            ::core::ffi::c_schar,
+            ::core::ffi::c_schar,
             i64,
             i64,
             i64,
             i64,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXlarft_bufferSize: Option<
@@ -8231,12 +7776,12 @@ pub struct DynamicBindings {
             i64,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
             *mut usize,
@@ -8252,27 +7797,27 @@ pub struct DynamicBindings {
             i64,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnLoggerSetCallback: Option<unsafe extern "C" fn(cusolverDnLoggerCallback_t) -> cusolverStatus_t>,
     pub cusolverDnLoggerSetFile: Option<unsafe extern "C" fn(*mut FILE) -> cusolverStatus_t>,
-    pub cusolverDnLoggerOpenFile: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char) -> cusolverStatus_t>,
-    pub cusolverDnLoggerSetLevel: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnLoggerSetMask: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnLoggerOpenFile: Option<unsafe extern "C" fn(*const ::core::ffi::c_char) -> cusolverStatus_t>,
+    pub cusolverDnLoggerSetLevel: Option<unsafe extern "C" fn(::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverDnLoggerSetMask: Option<unsafe extern "C" fn(::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverDnLoggerForceDisable: Option<unsafe extern "C" fn() -> cusolverStatus_t>,
-    pub cusolverDnXpolar_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXpolar_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::core::ffi::c_void, i64, cudaDataType, *const ::core::ffi::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXpolar: Option<
         unsafe extern "C" fn(
             cusolverDnHandle_t,
@@ -8281,479 +7826,321 @@ pub struct DynamicBindings {
             i64,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             i64,
             cudaDataType,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             usize,
             *mut f64,
             *mut f64,
             *mut f64,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpCreate: Option<unsafe extern "C" fn(*mut cusolverSpHandle_t) -> cusolverStatus_t>,
     pub cusolverSpDestroy: Option<unsafe extern "C" fn(cusolverSpHandle_t) -> cusolverStatus_t>,
     pub cusolverSpSetStream: Option<unsafe extern "C" fn(cusolverSpHandle_t, cudaStream_t) -> cusolverStatus_t>,
     pub cusolverSpGetStream: Option<unsafe extern "C" fn(cusolverSpHandle_t, *mut cudaStream_t) -> cusolverStatus_t>,
-    pub cusolverSpXcsrissymHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpScsrlsvluHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpDcsrlsvluHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpCcsrlsvluHost: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const cuComplex,
-            f32,
-            ::std::os::raw::c_int,
-            *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpXcsrissymHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpScsrlsvluHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f32, f32, ::core::ffi::c_int, *mut f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrlsvluHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f64, f64, ::core::ffi::c_int, *mut f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpCcsrlsvluHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const cuComplex, f32, ::core::ffi::c_int, *mut cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverSpZcsrlsvluHost: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsrlsvqr:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpDcsrlsvqr:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpCcsrlsvqr: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const cuComplex,
-            f32,
-            ::std::os::raw::c_int,
-            *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsrlsvqr: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f32, f32, ::core::ffi::c_int, *mut f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrlsvqr: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f64, f64, ::core::ffi::c_int, *mut f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpCcsrlsvqr:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const cuComplex, f32, ::core::ffi::c_int, *mut cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverSpZcsrlsvqr: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsrlsvqrHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpDcsrlsvqrHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpCcsrlsvqrHost: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const cuComplex,
-            f32,
-            ::std::os::raw::c_int,
-            *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsrlsvqrHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f32, f32, ::core::ffi::c_int, *mut f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrlsvqrHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f64, f64, ::core::ffi::c_int, *mut f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpCcsrlsvqrHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const cuComplex, f32, ::core::ffi::c_int, *mut cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverSpZcsrlsvqrHost: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpScsrlsvcholHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f32, f32, ::core::ffi::c_int, *mut f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverSpDcsrlsvcholHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpCcsrlsvcholHost: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const cuComplex,
-            f32,
-            ::std::os::raw::c_int,
-            *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f64, f64, ::core::ffi::c_int, *mut f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpCcsrlsvcholHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const cuComplex, f32, ::core::ffi::c_int, *mut cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverSpZcsrlsvcholHost: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsrlsvchol:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpDcsrlsvchol:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpCcsrlsvchol: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const cuComplex,
-            f32,
-            ::std::os::raw::c_int,
-            *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsrlsvchol: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f32, f32, ::core::ffi::c_int, *mut f32, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrlsvchol: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f64, f64, ::core::ffi::c_int, *mut f64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpCcsrlsvchol:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const cuComplex, f32, ::core::ffi::c_int, *mut cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverSpZcsrlsvchol: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpScsrlsqvqrHost: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
             f32,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             *mut f32,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             *mut f32,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpDcsrlsqvqrHost: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
             f64,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpCcsrlsqvqrHost: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuComplex,
             f32,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             *mut cuComplex,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             *mut f32,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrlsqvqrHost: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             f64,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
             *mut f64,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsreigvsiHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, f32, *const f32, ::std::os::raw::c_int, f32, *mut f32, *mut f32) -> cusolverStatus_t>,
-    pub cusolverSpDcsreigvsiHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, f64, *const f64, ::std::os::raw::c_int, f64, *mut f64, *mut f64) -> cusolverStatus_t>,
-    pub cusolverSpCcsreigvsiHost: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            cuComplex,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            f32,
-            *mut cuComplex,
-            *mut cuComplex,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsreigvsiHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, f32, *const f32, ::core::ffi::c_int, f32, *mut f32, *mut f32) -> cusolverStatus_t>,
+    pub cusolverSpDcsreigvsiHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, f64, *const f64, ::core::ffi::c_int, f64, *mut f64, *mut f64) -> cusolverStatus_t>,
+    pub cusolverSpCcsreigvsiHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, cuComplex, *const cuComplex, ::core::ffi::c_int, f32, *mut cuComplex, *mut cuComplex) -> cusolverStatus_t>,
     pub cusolverSpZcsreigvsiHost: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f64,
             *mut cuDoubleComplex,
             *mut cuDoubleComplex,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsreigvsi:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, f32, *const f32, ::std::os::raw::c_int, f32, *mut f32, *mut f32) -> cusolverStatus_t>,
-    pub cusolverSpDcsreigvsi:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, f64, *const f64, ::std::os::raw::c_int, f64, *mut f64, *mut f64) -> cusolverStatus_t>,
-    pub cusolverSpCcsreigvsi: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            cuComplex,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            f32,
-            *mut cuComplex,
-            *mut cuComplex,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsreigvsi: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, f32, *const f32, ::core::ffi::c_int, f32, *mut f32, *mut f32) -> cusolverStatus_t>,
+    pub cusolverSpDcsreigvsi: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, f64, *const f64, ::core::ffi::c_int, f64, *mut f64, *mut f64) -> cusolverStatus_t>,
+    pub cusolverSpCcsreigvsi:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, cuComplex, *const cuComplex, ::core::ffi::c_int, f32, *mut cuComplex, *mut cuComplex) -> cusolverStatus_t>,
     pub cusolverSpZcsreigvsi: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             f64,
             *mut cuDoubleComplex,
             *mut cuDoubleComplex,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsreigsHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cuComplex, cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpDcsreigsHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cuDoubleComplex, cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpCcsreigsHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cuComplex, cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpZcsreigsHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cuDoubleComplex, cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpXcsrsymrcmHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpXcsrsymmdqHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpXcsrsymamdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpXcsrmetisndHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const i64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpScsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpDcsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpCcsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpZcsrzfdHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpScsreigsHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, cuComplex, cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsreigsHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, cuDoubleComplex, cuDoubleComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpCcsreigsHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, cuComplex, cuComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpZcsreigsHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, cuDoubleComplex, cuDoubleComplex, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrsymrcmHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrsymmdqHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrsymamdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrmetisndHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const i64, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpScsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpCcsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
+    pub cusolverSpZcsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusolverStatus_t>,
     pub cusolverSpXcsrperm_bufferSizeHost:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut usize) -> cusolverStatus_t>,
     pub cusolverSpXcsrpermHost: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpCreateCsrqrInfo: Option<unsafe extern "C" fn(*mut csrqrInfo_t) -> cusolverStatus_t>,
     pub cusolverSpDestroyCsrqrInfo: Option<unsafe extern "C" fn(csrqrInfo_t) -> cusolverStatus_t>,
-    pub cusolverSpXcsrqrAnalysisBatched: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrqrInfo_t) -> cusolverStatus_t>,
+    pub cusolverSpXcsrqrAnalysisBatched: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrqrInfo_t) -> cusolverStatus_t>,
     pub cusolverSpScsrqrBufferInfoBatched:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t>,
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverSpDcsrqrBufferInfoBatched:
-        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t>,
-    pub cusolverSpCcsrqrBufferInfoBatched: Option<
-        unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t,
-    >,
-    pub cusolverSpZcsrqrBufferInfoBatched: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            csrqrInfo_t,
-            *mut usize,
-            *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverSpCcsrqrBufferInfoBatched:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverSpZcsrqrBufferInfoBatched:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverSpScsrqrsvBatched: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const f32,
-            *mut f32,
-            ::std::os::raw::c_int,
-            csrqrInfo_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int, csrqrInfo_t, *mut ::core::ffi::c_void) -> cusolverStatus_t,
     >,
     pub cusolverSpDcsrqrsvBatched: Option<
-        unsafe extern "C" fn(
-            cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const f64,
-            *mut f64,
-            ::std::os::raw::c_int,
-            csrqrInfo_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverSpHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int, csrqrInfo_t, *mut ::core::ffi::c_void) -> cusolverStatus_t,
     >,
     pub cusolverSpCcsrqrsvBatched: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             csrqrInfo_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrqrsvBatched: Option<
         unsafe extern "C" fn(
             cusolverSpHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             csrqrInfo_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusolverStatus_t,
     >,
 }
@@ -8765,7 +8152,7 @@ unsafe impl Sync for DynamicBindings {}
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverGetProperty(type_: libraryPropertyType, value: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverGetProperty {
         Some(____func) => unsafe { ____func(type_, value) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverGetProperty"),
@@ -8773,7 +8160,7 @@ pub unsafe extern "C" fn cusolverGetProperty(type_: libraryPropertyType, value: 
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverGetVersion(version: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverGetVersion(version: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverGetVersion {
         Some(____func) => unsafe { ____func(version) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverGetVersion"),
@@ -8895,7 +8282,7 @@ pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMantissaControl(handle:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetFixedPointEmulationMaxMantissaBitCount {
         Some(____func) => unsafe { ____func(handle, mantissaBitCount) },
         None => panic!(
@@ -8906,7 +8293,7 @@ pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(han
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetFixedPointEmulationMaxMantissaBitCount {
         Some(____func) => unsafe { ____func(handle, mantissaBitCount) },
         None => panic!(
@@ -8917,7 +8304,7 @@ pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(han
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetFixedPointEmulationMantissaBitOffset {
         Some(____func) => unsafe { ____func(handle, mantissaBitOffset) },
         None => panic!(
@@ -8928,7 +8315,7 @@ pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMantissaBitOffset(handl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetFixedPointEmulationMantissaBitOffset {
         Some(____func) => unsafe { ____func(handle, mantissaBitOffset) },
         None => panic!(
@@ -9156,7 +8543,7 @@ pub unsafe extern "C" fn cusolverDnIRSInfosRequestResidual(infos: cusolverDnIRSI
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSInfosGetResidualHistory(infos: cusolverDnIRSInfos_t, residual_history: *mut *mut ::std::os::raw::c_void) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSInfosGetResidualHistory(infos: cusolverDnIRSInfos_t, residual_history: *mut *mut ::core::ffi::c_void) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSInfosGetResidualHistory {
         Some(____func) => unsafe { ____func(infos, residual_history) },
         None => panic!(
@@ -9189,7 +8576,7 @@ pub unsafe extern "C" fn cusolverDnZZgesv(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9212,7 +8599,7 @@ pub unsafe extern "C" fn cusolverDnZCgesv(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9235,7 +8622,7 @@ pub unsafe extern "C" fn cusolverDnZKgesv(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9258,7 +8645,7 @@ pub unsafe extern "C" fn cusolverDnZEgesv(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9281,7 +8668,7 @@ pub unsafe extern "C" fn cusolverDnZYgesv(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9304,7 +8691,7 @@ pub unsafe extern "C" fn cusolverDnCCgesv(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9327,7 +8714,7 @@ pub unsafe extern "C" fn cusolverDnCEgesv(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9350,7 +8737,7 @@ pub unsafe extern "C" fn cusolverDnCKgesv(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9373,7 +8760,7 @@ pub unsafe extern "C" fn cusolverDnCYgesv(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9396,7 +8783,7 @@ pub unsafe extern "C" fn cusolverDnDDgesv(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9419,7 +8806,7 @@ pub unsafe extern "C" fn cusolverDnDSgesv(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9442,7 +8829,7 @@ pub unsafe extern "C" fn cusolverDnDHgesv(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9465,7 +8852,7 @@ pub unsafe extern "C" fn cusolverDnDBgesv(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9488,7 +8875,7 @@ pub unsafe extern "C" fn cusolverDnDXgesv(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9511,7 +8898,7 @@ pub unsafe extern "C" fn cusolverDnSSgesv(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9534,7 +8921,7 @@ pub unsafe extern "C" fn cusolverDnSHgesv(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9557,7 +8944,7 @@ pub unsafe extern "C" fn cusolverDnSBgesv(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9580,7 +8967,7 @@ pub unsafe extern "C" fn cusolverDnSXgesv(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -9603,7 +8990,7 @@ pub unsafe extern "C" fn cusolverDnZZgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZZgesv_bufferSize {
@@ -9627,7 +9014,7 @@ pub unsafe extern "C" fn cusolverDnZCgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZCgesv_bufferSize {
@@ -9651,7 +9038,7 @@ pub unsafe extern "C" fn cusolverDnZKgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZKgesv_bufferSize {
@@ -9675,7 +9062,7 @@ pub unsafe extern "C" fn cusolverDnZEgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZEgesv_bufferSize {
@@ -9699,7 +9086,7 @@ pub unsafe extern "C" fn cusolverDnZYgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZYgesv_bufferSize {
@@ -9723,7 +9110,7 @@ pub unsafe extern "C" fn cusolverDnCCgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCCgesv_bufferSize {
@@ -9747,7 +9134,7 @@ pub unsafe extern "C" fn cusolverDnCKgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCKgesv_bufferSize {
@@ -9771,7 +9158,7 @@ pub unsafe extern "C" fn cusolverDnCEgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCEgesv_bufferSize {
@@ -9795,7 +9182,7 @@ pub unsafe extern "C" fn cusolverDnCYgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCYgesv_bufferSize {
@@ -9819,7 +9206,7 @@ pub unsafe extern "C" fn cusolverDnDDgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDDgesv_bufferSize {
@@ -9843,7 +9230,7 @@ pub unsafe extern "C" fn cusolverDnDSgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDSgesv_bufferSize {
@@ -9867,7 +9254,7 @@ pub unsafe extern "C" fn cusolverDnDHgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDHgesv_bufferSize {
@@ -9891,7 +9278,7 @@ pub unsafe extern "C" fn cusolverDnDBgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDBgesv_bufferSize {
@@ -9915,7 +9302,7 @@ pub unsafe extern "C" fn cusolverDnDXgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDXgesv_bufferSize {
@@ -9939,7 +9326,7 @@ pub unsafe extern "C" fn cusolverDnSSgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSSgesv_bufferSize {
@@ -9963,7 +9350,7 @@ pub unsafe extern "C" fn cusolverDnSHgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSHgesv_bufferSize {
@@ -9987,7 +9374,7 @@ pub unsafe extern "C" fn cusolverDnSBgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSBgesv_bufferSize {
@@ -10011,7 +9398,7 @@ pub unsafe extern "C" fn cusolverDnSXgesv_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSXgesv_bufferSize {
@@ -10035,7 +9422,7 @@ pub unsafe extern "C" fn cusolverDnZZgels(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10058,7 +9445,7 @@ pub unsafe extern "C" fn cusolverDnZCgels(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10081,7 +9468,7 @@ pub unsafe extern "C" fn cusolverDnZKgels(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10104,7 +9491,7 @@ pub unsafe extern "C" fn cusolverDnZEgels(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10127,7 +9514,7 @@ pub unsafe extern "C" fn cusolverDnZYgels(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10150,7 +9537,7 @@ pub unsafe extern "C" fn cusolverDnCCgels(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10173,7 +9560,7 @@ pub unsafe extern "C" fn cusolverDnCKgels(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10196,7 +9583,7 @@ pub unsafe extern "C" fn cusolverDnCEgels(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10219,7 +9606,7 @@ pub unsafe extern "C" fn cusolverDnCYgels(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10242,7 +9629,7 @@ pub unsafe extern "C" fn cusolverDnDDgels(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10265,7 +9652,7 @@ pub unsafe extern "C" fn cusolverDnDSgels(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10288,7 +9675,7 @@ pub unsafe extern "C" fn cusolverDnDHgels(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10311,7 +9698,7 @@ pub unsafe extern "C" fn cusolverDnDBgels(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10334,7 +9721,7 @@ pub unsafe extern "C" fn cusolverDnDXgels(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10357,7 +9744,7 @@ pub unsafe extern "C" fn cusolverDnSSgels(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10380,7 +9767,7 @@ pub unsafe extern "C" fn cusolverDnSHgels(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10403,7 +9790,7 @@ pub unsafe extern "C" fn cusolverDnSBgels(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10426,7 +9813,7 @@ pub unsafe extern "C" fn cusolverDnSXgels(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10449,7 +9836,7 @@ pub unsafe extern "C" fn cusolverDnZZgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZZgels_bufferSize {
@@ -10473,7 +9860,7 @@ pub unsafe extern "C" fn cusolverDnZCgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZCgels_bufferSize {
@@ -10497,7 +9884,7 @@ pub unsafe extern "C" fn cusolverDnZKgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZKgels_bufferSize {
@@ -10521,7 +9908,7 @@ pub unsafe extern "C" fn cusolverDnZEgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZEgels_bufferSize {
@@ -10545,7 +9932,7 @@ pub unsafe extern "C" fn cusolverDnZYgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuDoubleComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZYgels_bufferSize {
@@ -10569,7 +9956,7 @@ pub unsafe extern "C" fn cusolverDnCCgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCCgels_bufferSize {
@@ -10593,7 +9980,7 @@ pub unsafe extern "C" fn cusolverDnCKgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCKgels_bufferSize {
@@ -10617,7 +10004,7 @@ pub unsafe extern "C" fn cusolverDnCEgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCEgels_bufferSize {
@@ -10641,7 +10028,7 @@ pub unsafe extern "C" fn cusolverDnCYgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut cuComplex,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCYgels_bufferSize {
@@ -10665,7 +10052,7 @@ pub unsafe extern "C" fn cusolverDnDDgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDDgels_bufferSize {
@@ -10689,7 +10076,7 @@ pub unsafe extern "C" fn cusolverDnDSgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDSgels_bufferSize {
@@ -10713,7 +10100,7 @@ pub unsafe extern "C" fn cusolverDnDHgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDHgels_bufferSize {
@@ -10737,7 +10124,7 @@ pub unsafe extern "C" fn cusolverDnDBgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDBgels_bufferSize {
@@ -10761,7 +10148,7 @@ pub unsafe extern "C" fn cusolverDnDXgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f64,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDXgels_bufferSize {
@@ -10785,7 +10172,7 @@ pub unsafe extern "C" fn cusolverDnSSgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSSgels_bufferSize {
@@ -10809,7 +10196,7 @@ pub unsafe extern "C" fn cusolverDnSHgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSHgels_bufferSize {
@@ -10833,7 +10220,7 @@ pub unsafe extern "C" fn cusolverDnSBgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSBgels_bufferSize {
@@ -10857,7 +10244,7 @@ pub unsafe extern "C" fn cusolverDnSXgels_bufferSize(
     lddb: cusolver_int_t,
     dX: *mut f32,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSXgels_bufferSize {
@@ -10876,13 +10263,13 @@ pub unsafe extern "C" fn cusolverDnIRSXgesv(
     gesv_irs_infos: cusolverDnIRSInfos_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
-    dA: *mut ::std::os::raw::c_void,
+    dA: *mut ::core::ffi::c_void,
     ldda: cusolver_int_t,
-    dB: *mut ::std::os::raw::c_void,
+    dB: *mut ::core::ffi::c_void,
     lddb: cusolver_int_t,
-    dX: *mut ::std::os::raw::c_void,
+    dX: *mut ::core::ffi::c_void,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     niters: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10912,13 +10299,13 @@ pub unsafe extern "C" fn cusolverDnIRSXgels(
     m: cusolver_int_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
-    dA: *mut ::std::os::raw::c_void,
+    dA: *mut ::core::ffi::c_void,
     ldda: cusolver_int_t,
-    dB: *mut ::std::os::raw::c_void,
+    dB: *mut ::core::ffi::c_void,
     lddb: cusolver_int_t,
-    dX: *mut ::std::os::raw::c_void,
+    dX: *mut ::core::ffi::c_void,
     lddx: cusolver_int_t,
-    dWorkspace: *mut ::std::os::raw::c_void,
+    dWorkspace: *mut ::core::ffi::c_void,
     lwork_bytes: usize,
     niters: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
@@ -10941,7 +10328,7 @@ pub unsafe extern "C" fn cusolverDnIRSXgels_bufferSize(handle: cusolverDnHandle_
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Lwork) },
         None => panic!(
@@ -10952,7 +10339,7 @@ pub unsafe extern "C" fn cusolverDnSpotrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Lwork) },
         None => panic!(
@@ -10963,7 +10350,7 @@ pub unsafe extern "C" fn cusolverDnDpotrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Lwork) },
         None => panic!(
@@ -10974,7 +10361,7 @@ pub unsafe extern "C" fn cusolverDnCpotrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Lwork) },
         None => panic!(
@@ -10985,7 +10372,7 @@ pub unsafe extern "C" fn cusolverDnZpotrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, Workspace: *mut f32, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Workspace, Lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSpotrf"),
@@ -10993,7 +10380,7 @@ pub unsafe extern "C" fn cusolverDnSpotrf(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, Workspace: *mut f64, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Workspace, Lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDpotrf"),
@@ -11001,7 +10388,7 @@ pub unsafe extern "C" fn cusolverDnDpotrf(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, Workspace: *mut cuComplex, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Workspace, Lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCpotrf"),
@@ -11009,7 +10396,7 @@ pub unsafe extern "C" fn cusolverDnCpotrf(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, Workspace: *mut cuDoubleComplex, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Workspace, Lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZpotrf"),
@@ -11017,7 +10404,7 @@ pub unsafe extern "C" fn cusolverDnZpotrf(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, B: *mut f32, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, B: *mut f32, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrs {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSpotrs"),
@@ -11025,7 +10412,7 @@ pub unsafe extern "C" fn cusolverDnSpotrs(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, B: *mut f64, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, B: *mut f64, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrs {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDpotrs"),
@@ -11033,17 +10420,7 @@ pub unsafe extern "C" fn cusolverDnDpotrs(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotrs(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    B: *mut cuComplex,
-    ldb: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, B: *mut cuComplex, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrs {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCpotrs"),
@@ -11051,17 +10428,7 @@ pub unsafe extern "C" fn cusolverDnCpotrs(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotrs(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
-    A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    B: *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, nrhs: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, B: *mut cuDoubleComplex, ldb: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrs {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZpotrs"),
@@ -11069,7 +10436,7 @@ pub unsafe extern "C" fn cusolverDnZpotrs(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f32, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, Aarray: *mut *mut f32, lda: ::core::ffi::c_int, infoArray: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrfBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, Aarray, lda, infoArray, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSpotrfBatched"),
@@ -11077,7 +10444,7 @@ pub unsafe extern "C" fn cusolverDnSpotrfBatched(handle: cusolverDnHandle_t, upl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f64, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, Aarray: *mut *mut f64, lda: ::core::ffi::c_int, infoArray: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrfBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, Aarray, lda, infoArray, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDpotrfBatched"),
@@ -11085,7 +10452,7 @@ pub unsafe extern "C" fn cusolverDnDpotrfBatched(handle: cusolverDnHandle_t, upl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, Aarray: *mut *mut cuComplex, lda: ::core::ffi::c_int, infoArray: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrfBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, Aarray, lda, infoArray, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCpotrfBatched"),
@@ -11093,7 +10460,7 @@ pub unsafe extern "C" fn cusolverDnCpotrfBatched(handle: cusolverDnHandle_t, upl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuDoubleComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, Aarray: *mut *mut cuDoubleComplex, lda: ::core::ffi::c_int, infoArray: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrfBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, Aarray, lda, infoArray, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZpotrfBatched"),
@@ -11104,14 +10471,14 @@ pub unsafe extern "C" fn cusolverDnZpotrfBatched(handle: cusolverDnHandle_t, upl
 pub unsafe extern "C" fn cusolverDnSpotrsBatched(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     A: *mut *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut *mut f32,
-    ldb: ::std::os::raw::c_int,
-    d_info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    d_info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrsBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
@@ -11123,14 +10490,14 @@ pub unsafe extern "C" fn cusolverDnSpotrsBatched(
 pub unsafe extern "C" fn cusolverDnDpotrsBatched(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     A: *mut *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut *mut f64,
-    ldb: ::std::os::raw::c_int,
-    d_info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    d_info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrsBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
@@ -11142,14 +10509,14 @@ pub unsafe extern "C" fn cusolverDnDpotrsBatched(
 pub unsafe extern "C" fn cusolverDnCpotrsBatched(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     A: *mut *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut *mut cuComplex,
-    ldb: ::std::os::raw::c_int,
-    d_info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    d_info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrsBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
@@ -11161,14 +10528,14 @@ pub unsafe extern "C" fn cusolverDnCpotrsBatched(
 pub unsafe extern "C" fn cusolverDnZpotrsBatched(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     A: *mut *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
-    d_info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    d_info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrsBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
@@ -11177,7 +10544,7 @@ pub unsafe extern "C" fn cusolverDnZpotrsBatched(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
@@ -11188,7 +10555,7 @@ pub unsafe extern "C" fn cusolverDnSpotri_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
@@ -11199,7 +10566,7 @@ pub unsafe extern "C" fn cusolverDnDpotri_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
@@ -11210,7 +10577,7 @@ pub unsafe extern "C" fn cusolverDnCpotri_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
@@ -11221,7 +10588,7 @@ pub unsafe extern "C" fn cusolverDnZpotri_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, work: *mut f32, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSpotri"),
@@ -11229,7 +10596,7 @@ pub unsafe extern "C" fn cusolverDnSpotri(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, work: *mut f64, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDpotri"),
@@ -11237,7 +10604,7 @@ pub unsafe extern "C" fn cusolverDnDpotri(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, work: *mut cuComplex, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCpotri"),
@@ -11245,7 +10612,7 @@ pub unsafe extern "C" fn cusolverDnCpotri(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, work: *mut cuDoubleComplex, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZpotri"),
@@ -11253,7 +10620,7 @@ pub unsafe extern "C" fn cusolverDnZpotri(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXtrtri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, diag: cublasDiagType_t, n: i64, dataTypeA: cudaDataType, A: *mut ::std::os::raw::c_void, lda: i64, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnXtrtri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, diag: cublasDiagType_t, n: i64, dataTypeA: cudaDataType, A: *mut ::core::ffi::c_void, lda: i64, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXtrtri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, diag, n, dataTypeA, A, lda, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
@@ -11270,13 +10637,13 @@ pub unsafe extern "C" fn cusolverDnXtrtri(
     diag: cublasDiagType_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    devInfo: *mut ::std::os::raw::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXtrtri {
         Some(____func) => unsafe { ____func(handle, uplo, diag, n, dataTypeA, A, lda, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, devInfo) },
@@ -11285,7 +10652,7 @@ pub unsafe extern "C" fn cusolverDnXtrtri(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSlauum_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
@@ -11296,7 +10663,7 @@ pub unsafe extern "C" fn cusolverDnSlauum_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDlauum_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
@@ -11307,7 +10674,7 @@ pub unsafe extern "C" fn cusolverDnDlauum_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnClauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnClauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnClauum_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
@@ -11318,7 +10685,7 @@ pub unsafe extern "C" fn cusolverDnClauum_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZlauum_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
@@ -11329,7 +10696,7 @@ pub unsafe extern "C" fn cusolverDnZlauum_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, work: *mut f32, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSlauum {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSlauum"),
@@ -11337,7 +10704,7 @@ pub unsafe extern "C" fn cusolverDnSlauum(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, work: *mut f64, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDlauum {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDlauum"),
@@ -11345,7 +10712,7 @@ pub unsafe extern "C" fn cusolverDnDlauum(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnClauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnClauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, work: *mut cuComplex, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnClauum {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnClauum"),
@@ -11353,7 +10720,7 @@ pub unsafe extern "C" fn cusolverDnClauum(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, work: *mut cuDoubleComplex, lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZlauum {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZlauum"),
@@ -11361,7 +10728,7 @@ pub unsafe extern "C" fn cusolverDnZlauum(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgetrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Lwork) },
         None => panic!(
@@ -11372,7 +10739,7 @@ pub unsafe extern "C" fn cusolverDnSgetrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgetrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Lwork) },
         None => panic!(
@@ -11383,7 +10750,7 @@ pub unsafe extern "C" fn cusolverDnDgetrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgetrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Lwork) },
         None => panic!(
@@ -11394,7 +10761,7 @@ pub unsafe extern "C" fn cusolverDnCgetrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgetrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Lwork) },
         None => panic!(
@@ -11405,7 +10772,7 @@ pub unsafe extern "C" fn cusolverDnZgetrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSgetrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, Workspace: *mut f32, devIpiv: *mut ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgetrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Workspace, devIpiv, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSgetrf"),
@@ -11413,7 +10780,7 @@ pub unsafe extern "C" fn cusolverDnSgetrf(handle: cusolverDnHandle_t, m: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDgetrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, Workspace: *mut f64, devIpiv: *mut ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgetrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Workspace, devIpiv, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDgetrf"),
@@ -11421,7 +10788,7 @@ pub unsafe extern "C" fn cusolverDnDgetrf(handle: cusolverDnHandle_t, m: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCgetrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, Workspace: *mut cuComplex, devIpiv: *mut ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgetrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Workspace, devIpiv, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCgetrf"),
@@ -11429,16 +10796,7 @@ pub unsafe extern "C" fn cusolverDnCgetrf(handle: cusolverDnHandle_t, m: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZgetrf(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    Workspace: *mut cuDoubleComplex,
-    devIpiv: *mut ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZgetrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, Workspace: *mut cuDoubleComplex, devIpiv: *mut ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgetrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Workspace, devIpiv, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZgetrf"),
@@ -11446,7 +10804,7 @@ pub unsafe extern "C" fn cusolverDnZgetrf(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSlaswp(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, k1: ::core::ffi::c_int, k2: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, incx: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSlaswp {
         Some(____func) => unsafe { ____func(handle, n, A, lda, k1, k2, devIpiv, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSlaswp"),
@@ -11454,7 +10812,7 @@ pub unsafe extern "C" fn cusolverDnSlaswp(handle: cusolverDnHandle_t, n: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDlaswp(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, k1: ::core::ffi::c_int, k2: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, incx: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDlaswp {
         Some(____func) => unsafe { ____func(handle, n, A, lda, k1, k2, devIpiv, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDlaswp"),
@@ -11462,7 +10820,7 @@ pub unsafe extern "C" fn cusolverDnDlaswp(handle: cusolverDnHandle_t, n: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnClaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnClaswp(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, k1: ::core::ffi::c_int, k2: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, incx: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnClaswp {
         Some(____func) => unsafe { ____func(handle, n, A, lda, k1, k2, devIpiv, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnClaswp"),
@@ -11470,7 +10828,7 @@ pub unsafe extern "C" fn cusolverDnClaswp(handle: cusolverDnHandle_t, n: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZlaswp(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, k1: ::core::ffi::c_int, k2: ::core::ffi::c_int, devIpiv: *const ::core::ffi::c_int, incx: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZlaswp {
         Some(____func) => unsafe { ____func(handle, n, A, lda, k1, k2, devIpiv, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZlaswp"),
@@ -11481,14 +10839,14 @@ pub unsafe extern "C" fn cusolverDnZlaswp(handle: cusolverDnHandle_t, n: ::std::
 pub unsafe extern "C" fn cusolverDnSgetrs(
     handle: cusolverDnHandle_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    devIpiv: *const ::core::ffi::c_int,
     B: *mut f32,
-    ldb: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgetrs {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
@@ -11500,14 +10858,14 @@ pub unsafe extern "C" fn cusolverDnSgetrs(
 pub unsafe extern "C" fn cusolverDnDgetrs(
     handle: cusolverDnHandle_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    devIpiv: *const ::core::ffi::c_int,
     B: *mut f64,
-    ldb: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgetrs {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
@@ -11519,14 +10877,14 @@ pub unsafe extern "C" fn cusolverDnDgetrs(
 pub unsafe extern "C" fn cusolverDnCgetrs(
     handle: cusolverDnHandle_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    devIpiv: *const ::core::ffi::c_int,
     B: *mut cuComplex,
-    ldb: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgetrs {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
@@ -11538,14 +10896,14 @@ pub unsafe extern "C" fn cusolverDnCgetrs(
 pub unsafe extern "C" fn cusolverDnZgetrs(
     handle: cusolverDnHandle_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    devIpiv: *const ::core::ffi::c_int,
     B: *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgetrs {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
@@ -11554,7 +10912,7 @@ pub unsafe extern "C" fn cusolverDnZgetrs(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgeqrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, lwork) },
         None => panic!(
@@ -11565,7 +10923,7 @@ pub unsafe extern "C" fn cusolverDnSgeqrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgeqrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, lwork) },
         None => panic!(
@@ -11576,7 +10934,7 @@ pub unsafe extern "C" fn cusolverDnDgeqrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgeqrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, lwork) },
         None => panic!(
@@ -11587,7 +10945,7 @@ pub unsafe extern "C" fn cusolverDnCgeqrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgeqrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, lwork) },
         None => panic!(
@@ -11598,7 +10956,7 @@ pub unsafe extern "C" fn cusolverDnZgeqrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, TAU: *mut f32, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSgeqrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, TAU: *mut f32, Workspace: *mut f32, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgeqrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, TAU, Workspace, Lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSgeqrf"),
@@ -11606,7 +10964,7 @@ pub unsafe extern "C" fn cusolverDnSgeqrf(handle: cusolverDnHandle_t, m: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, TAU: *mut f64, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDgeqrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, TAU: *mut f64, Workspace: *mut f64, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgeqrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, TAU, Workspace, Lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDgeqrf"),
@@ -11614,17 +10972,7 @@ pub unsafe extern "C" fn cusolverDnDgeqrf(handle: cusolverDnHandle_t, m: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgeqrf(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    TAU: *mut cuComplex,
-    Workspace: *mut cuComplex,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCgeqrf(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, TAU: *mut cuComplex, Workspace: *mut cuComplex, Lwork: ::core::ffi::c_int, devInfo: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgeqrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, TAU, Workspace, Lwork, devInfo) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCgeqrf"),
@@ -11634,14 +10982,14 @@ pub unsafe extern "C" fn cusolverDnCgeqrf(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnZgeqrf(
     handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     TAU: *mut cuDoubleComplex,
     Workspace: *mut cuDoubleComplex,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    Lwork: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgeqrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, TAU, Workspace, Lwork, devInfo) },
@@ -11650,7 +10998,7 @@ pub unsafe extern "C" fn cusolverDnZgeqrf(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, tau: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, lwork) },
         None => panic!(
@@ -11661,7 +11009,7 @@ pub unsafe extern "C" fn cusolverDnSorgqr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, tau: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, lwork) },
         None => panic!(
@@ -11672,7 +11020,7 @@ pub unsafe extern "C" fn cusolverDnDorgqr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCungqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCungqr_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, tau: *const cuComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, lwork) },
         None => panic!(
@@ -11683,7 +11031,7 @@ pub unsafe extern "C" fn cusolverDnCungqr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZungqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZungqr_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, tau: *const cuDoubleComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, lwork) },
         None => panic!(
@@ -11694,18 +11042,7 @@ pub unsafe extern "C" fn cusolverDnZungqr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSorgqr(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    tau: *const f32,
-    work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSorgqr(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, tau: *const f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgqr {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSorgqr"),
@@ -11713,18 +11050,7 @@ pub unsafe extern "C" fn cusolverDnSorgqr(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDorgqr(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    tau: *const f64,
-    work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDorgqr(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, tau: *const f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgqr {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDorgqr"),
@@ -11734,15 +11060,15 @@ pub unsafe extern "C" fn cusolverDnDorgqr(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnCungqr(
     handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuComplex,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungqr {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, work, lwork, info) },
@@ -11753,15 +11079,15 @@ pub unsafe extern "C" fn cusolverDnCungqr(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnZungqr(
     handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuDoubleComplex,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungqr {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, work, lwork, info) },
@@ -11774,15 +11100,15 @@ pub unsafe extern "C" fn cusolverDnSormqr_bufferSize(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const f32,
     C: *const f32,
-    ldc: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSormqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
@@ -11798,15 +11124,15 @@ pub unsafe extern "C" fn cusolverDnDormqr_bufferSize(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const f64,
     C: *const f64,
-    ldc: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDormqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
@@ -11822,15 +11148,15 @@ pub unsafe extern "C" fn cusolverDnCunmqr_bufferSize(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuComplex,
     C: *const cuComplex,
-    ldc: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCunmqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
@@ -11846,15 +11172,15 @@ pub unsafe extern "C" fn cusolverDnZunmqr_bufferSize(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuDoubleComplex,
     C: *const cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZunmqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
@@ -11870,17 +11196,17 @@ pub unsafe extern "C" fn cusolverDnSormqr(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const f32,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSormqr {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
@@ -11893,17 +11219,17 @@ pub unsafe extern "C" fn cusolverDnDormqr(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const f64,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDormqr {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
@@ -11916,17 +11242,17 @@ pub unsafe extern "C" fn cusolverDnCunmqr(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCunmqr {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
@@ -11939,17 +11265,17 @@ pub unsafe extern "C" fn cusolverDnZunmqr(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZunmqr {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
@@ -11958,7 +11284,7 @@ pub unsafe extern "C" fn cusolverDnZunmqr(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, n, A, lda, lwork) },
         None => panic!(
@@ -11969,7 +11295,7 @@ pub unsafe extern "C" fn cusolverDnSsytrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, n, A, lda, lwork) },
         None => panic!(
@@ -11980,7 +11306,7 @@ pub unsafe extern "C" fn cusolverDnDsytrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCsytrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, n, A, lda, lwork) },
         None => panic!(
@@ -11991,7 +11317,7 @@ pub unsafe extern "C" fn cusolverDnCsytrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZsytrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, n, A, lda, lwork) },
         None => panic!(
@@ -12002,7 +11328,7 @@ pub unsafe extern "C" fn cusolverDnZsytrf_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, ipiv: *mut ::core::ffi::c_int, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsytrf"),
@@ -12010,7 +11336,7 @@ pub unsafe extern "C" fn cusolverDnSsytrf(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, ipiv: *mut ::core::ffi::c_int, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsytrf"),
@@ -12018,17 +11344,7 @@ pub unsafe extern "C" fn cusolverDnDsytrf(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCsytrf(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    ipiv: *mut ::std::os::raw::c_int,
-    work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, ipiv: *mut ::core::ffi::c_int, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCsytrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCsytrf"),
@@ -12039,13 +11355,13 @@ pub unsafe extern "C" fn cusolverDnCsytrf(
 pub unsafe extern "C" fn cusolverDnZsytrf(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    ipiv: *mut ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    ipiv: *mut ::core::ffi::c_int,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZsytrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
@@ -12060,11 +11376,11 @@ pub unsafe extern "C" fn cusolverDnXsytrs_bufferSize(
     n: i64,
     nrhs: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     ipiv: *const i64,
     dataTypeB: cudaDataType,
-    B: *mut ::std::os::raw::c_void,
+    B: *mut ::core::ffi::c_void,
     ldb: i64,
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
@@ -12085,17 +11401,17 @@ pub unsafe extern "C" fn cusolverDnXsytrs(
     n: i64,
     nrhs: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     ipiv: *const i64,
     dataTypeB: cudaDataType,
-    B: *mut ::std::os::raw::c_void,
+    B: *mut ::core::ffi::c_void,
     ldb: i64,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsytrs {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, dataTypeA, A, lda, ipiv, dataTypeB, B, ldb, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
@@ -12104,7 +11420,7 @@ pub unsafe extern "C" fn cusolverDnXsytrs(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, lwork) },
         None => panic!(
@@ -12115,7 +11431,7 @@ pub unsafe extern "C" fn cusolverDnSsytri_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, lwork) },
         None => panic!(
@@ -12126,7 +11442,7 @@ pub unsafe extern "C" fn cusolverDnDsytri_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCsytri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, lwork) },
         None => panic!(
@@ -12137,7 +11453,7 @@ pub unsafe extern "C" fn cusolverDnCsytri_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZsytri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, lwork) },
         None => panic!(
@@ -12148,7 +11464,7 @@ pub unsafe extern "C" fn cusolverDnZsytri_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsytri"),
@@ -12156,7 +11472,7 @@ pub unsafe extern "C" fn cusolverDnSsytri(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsytri"),
@@ -12164,17 +11480,7 @@ pub unsafe extern "C" fn cusolverDnDsytri(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCsytri(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    ipiv: *const ::std::os::raw::c_int,
-    work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, ipiv: *const ::core::ffi::c_int, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCsytri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCsytri"),
@@ -12185,13 +11491,13 @@ pub unsafe extern "C" fn cusolverDnCsytri(
 pub unsafe extern "C" fn cusolverDnZsytri(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    ipiv: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    ipiv: *const ::core::ffi::c_int,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZsytri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
@@ -12200,7 +11506,7 @@ pub unsafe extern "C" fn cusolverDnZsytri(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgebrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, Lwork) },
         None => panic!(
@@ -12211,7 +11517,7 @@ pub unsafe extern "C" fn cusolverDnSgebrd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgebrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, Lwork) },
         None => panic!(
@@ -12222,7 +11528,7 @@ pub unsafe extern "C" fn cusolverDnDgebrd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgebrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, Lwork) },
         None => panic!(
@@ -12233,7 +11539,7 @@ pub unsafe extern "C" fn cusolverDnCgebrd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgebrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, Lwork) },
         None => panic!(
@@ -12246,17 +11552,17 @@ pub unsafe extern "C" fn cusolverDnZgebrd_bufferSize(handle: cusolverDnHandle_t,
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnSgebrd(
     handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     D: *mut f32,
     E: *mut f32,
     TAUQ: *mut f32,
     TAUP: *mut f32,
     Work: *mut f32,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    Lwork: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgebrd {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
@@ -12267,17 +11573,17 @@ pub unsafe extern "C" fn cusolverDnSgebrd(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnDgebrd(
     handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     D: *mut f64,
     E: *mut f64,
     TAUQ: *mut f64,
     TAUP: *mut f64,
     Work: *mut f64,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    Lwork: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgebrd {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
@@ -12288,17 +11594,17 @@ pub unsafe extern "C" fn cusolverDnDgebrd(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnCgebrd(
     handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     D: *mut f32,
     E: *mut f32,
     TAUQ: *mut cuComplex,
     TAUP: *mut cuComplex,
     Work: *mut cuComplex,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    Lwork: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgebrd {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
@@ -12309,17 +11615,17 @@ pub unsafe extern "C" fn cusolverDnCgebrd(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnZgebrd(
     handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     D: *mut f64,
     E: *mut f64,
     TAUQ: *mut cuDoubleComplex,
     TAUP: *mut cuDoubleComplex,
     Work: *mut cuDoubleComplex,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
+    Lwork: ::core::ffi::c_int,
+    devInfo: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgebrd {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
@@ -12328,7 +11634,7 @@ pub unsafe extern "C" fn cusolverDnZgebrd(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, tau: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgbr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, lwork) },
         None => panic!(
@@ -12339,7 +11645,7 @@ pub unsafe extern "C" fn cusolverDnSorgbr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, tau: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgbr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, lwork) },
         None => panic!(
@@ -12350,17 +11656,7 @@ pub unsafe extern "C" fn cusolverDnDorgbr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCungbr_bufferSize(
-    handle: cusolverDnHandle_t,
-    side: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    tau: *const cuComplex,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCungbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, tau: *const cuComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungbr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, lwork) },
         None => panic!(
@@ -12374,13 +11670,13 @@ pub unsafe extern "C" fn cusolverDnCungbr_bufferSize(
 pub unsafe extern "C" fn cusolverDnZungbr_bufferSize(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuDoubleComplex,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungbr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, lwork) },
@@ -12395,15 +11691,15 @@ pub unsafe extern "C" fn cusolverDnZungbr_bufferSize(
 pub unsafe extern "C" fn cusolverDnSorgbr(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const f32,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgbr {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
@@ -12415,15 +11711,15 @@ pub unsafe extern "C" fn cusolverDnSorgbr(
 pub unsafe extern "C" fn cusolverDnDorgbr(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const f64,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgbr {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
@@ -12435,15 +11731,15 @@ pub unsafe extern "C" fn cusolverDnDorgbr(
 pub unsafe extern "C" fn cusolverDnCungbr(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuComplex,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungbr {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
@@ -12455,15 +11751,15 @@ pub unsafe extern "C" fn cusolverDnCungbr(
 pub unsafe extern "C" fn cusolverDnZungbr(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuDoubleComplex,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungbr {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
@@ -12472,7 +11768,7 @@ pub unsafe extern "C" fn cusolverDnZungbr(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, d: *const f32, e: *const f32, tau: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, lwork) },
         None => panic!(
@@ -12483,7 +11779,7 @@ pub unsafe extern "C" fn cusolverDnSsytrd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, d: *const f64, e: *const f64, tau: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, lwork) },
         None => panic!(
@@ -12494,7 +11790,7 @@ pub unsafe extern "C" fn cusolverDnDsytrd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnChetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnChetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, d: *const f32, e: *const f32, tau: *const cuComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChetrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, lwork) },
         None => panic!(
@@ -12505,17 +11801,7 @@ pub unsafe extern "C" fn cusolverDnChetrd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZhetrd_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    d: *const f64,
-    e: *const f64,
-    tau: *const cuDoubleComplex,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZhetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, d: *const f64, e: *const f64, tau: *const cuDoubleComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhetrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, lwork) },
         None => panic!(
@@ -12526,19 +11812,7 @@ pub unsafe extern "C" fn cusolverDnZhetrd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytrd(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    d: *mut f32,
-    e: *mut f32,
-    tau: *mut f32,
-    work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSsytrd(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, d: *mut f32, e: *mut f32, tau: *mut f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytrd {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsytrd"),
@@ -12546,19 +11820,7 @@ pub unsafe extern "C" fn cusolverDnSsytrd(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytrd(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    d: *mut f64,
-    e: *mut f64,
-    tau: *mut f64,
-    work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDsytrd(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, d: *mut f64, e: *mut f64, tau: *mut f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytrd {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsytrd"),
@@ -12569,15 +11831,15 @@ pub unsafe extern "C" fn cusolverDnDsytrd(
 pub unsafe extern "C" fn cusolverDnChetrd(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     d: *mut f32,
     e: *mut f32,
     tau: *mut cuComplex,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChetrd {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
@@ -12589,15 +11851,15 @@ pub unsafe extern "C" fn cusolverDnChetrd(
 pub unsafe extern "C" fn cusolverDnZhetrd(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     d: *mut f64,
     e: *mut f64,
     tau: *mut cuDoubleComplex,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhetrd {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
@@ -12606,7 +11868,7 @@ pub unsafe extern "C" fn cusolverDnZhetrd(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, tau: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, lwork) },
         None => panic!(
@@ -12617,7 +11879,7 @@ pub unsafe extern "C" fn cusolverDnSorgtr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, tau: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, lwork) },
         None => panic!(
@@ -12628,7 +11890,7 @@ pub unsafe extern "C" fn cusolverDnDorgtr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, tau: *const cuComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, lwork) },
         None => panic!(
@@ -12639,7 +11901,7 @@ pub unsafe extern "C" fn cusolverDnCungtr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, tau: *const cuDoubleComplex, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, lwork) },
         None => panic!(
@@ -12650,7 +11912,7 @@ pub unsafe extern "C" fn cusolverDnZungtr_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, tau: *const f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgtr {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSorgtr"),
@@ -12658,7 +11920,7 @@ pub unsafe extern "C" fn cusolverDnSorgtr(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, tau: *const f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgtr {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDorgtr"),
@@ -12666,7 +11928,7 @@ pub unsafe extern "C" fn cusolverDnDorgtr(handle: cusolverDnHandle_t, uplo: cubl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCungtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCungtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, tau: *const cuComplex, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungtr {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCungtr"),
@@ -12677,13 +11939,13 @@ pub unsafe extern "C" fn cusolverDnCungtr(handle: cusolverDnHandle_t, uplo: cubl
 pub unsafe extern "C" fn cusolverDnZungtr(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuDoubleComplex,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungtr {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, work, lwork, info) },
@@ -12697,14 +11959,14 @@ pub unsafe extern "C" fn cusolverDnSormtr_bufferSize(
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const f32,
     C: *const f32,
-    ldc: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSormtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
@@ -12721,14 +11983,14 @@ pub unsafe extern "C" fn cusolverDnDormtr_bufferSize(
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const f64,
     C: *const f64,
-    ldc: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDormtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
@@ -12745,14 +12007,14 @@ pub unsafe extern "C" fn cusolverDnCunmtr_bufferSize(
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuComplex,
     C: *const cuComplex,
-    ldc: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCunmtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
@@ -12769,14 +12031,14 @@ pub unsafe extern "C" fn cusolverDnZunmtr_bufferSize(
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *const cuDoubleComplex,
     C: *const cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZunmtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
@@ -12793,16 +12055,16 @@ pub unsafe extern "C" fn cusolverDnSormtr(
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *mut f32,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSormtr {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
@@ -12816,16 +12078,16 @@ pub unsafe extern "C" fn cusolverDnDormtr(
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *mut f64,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDormtr {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
@@ -12839,16 +12101,16 @@ pub unsafe extern "C" fn cusolverDnCunmtr(
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *mut cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCunmtr {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
@@ -12862,16 +12124,16 @@ pub unsafe extern "C" fn cusolverDnZunmtr(
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     tau: *mut cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZunmtr {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
@@ -12880,7 +12142,7 @@ pub unsafe extern "C" fn cusolverDnZunmtr(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, lwork) },
         None => panic!(
@@ -12891,7 +12153,7 @@ pub unsafe extern "C" fn cusolverDnSgesvd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, lwork) },
         None => panic!(
@@ -12902,7 +12164,7 @@ pub unsafe extern "C" fn cusolverDnDgesvd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, lwork) },
         None => panic!(
@@ -12913,7 +12175,7 @@ pub unsafe extern "C" fn cusolverDnCgesvd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, lwork) },
         None => panic!(
@@ -12926,21 +12188,21 @@ pub unsafe extern "C" fn cusolverDnZgesvd_bufferSize(handle: cusolverDnHandle_t,
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnSgesvd(
     handle: cusolverDnHandle_t,
-    jobu: ::std::os::raw::c_schar,
-    jobvt: ::std::os::raw::c_schar,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    jobu: ::core::ffi::c_schar,
+    jobvt: ::core::ffi::c_schar,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f32,
     U: *mut f32,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     VT: *mut f32,
-    ldvt: ::std::os::raw::c_int,
+    ldvt: ::core::ffi::c_int,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
     rwork: *mut f32,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvd {
         Some(____func) => unsafe { ____func(handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info) },
@@ -12951,21 +12213,21 @@ pub unsafe extern "C" fn cusolverDnSgesvd(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnDgesvd(
     handle: cusolverDnHandle_t,
-    jobu: ::std::os::raw::c_schar,
-    jobvt: ::std::os::raw::c_schar,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    jobu: ::core::ffi::c_schar,
+    jobvt: ::core::ffi::c_schar,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f64,
     U: *mut f64,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     VT: *mut f64,
-    ldvt: ::std::os::raw::c_int,
+    ldvt: ::core::ffi::c_int,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
     rwork: *mut f64,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvd {
         Some(____func) => unsafe { ____func(handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info) },
@@ -12976,21 +12238,21 @@ pub unsafe extern "C" fn cusolverDnDgesvd(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnCgesvd(
     handle: cusolverDnHandle_t,
-    jobu: ::std::os::raw::c_schar,
-    jobvt: ::std::os::raw::c_schar,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    jobu: ::core::ffi::c_schar,
+    jobvt: ::core::ffi::c_schar,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f32,
     U: *mut cuComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     VT: *mut cuComplex,
-    ldvt: ::std::os::raw::c_int,
+    ldvt: ::core::ffi::c_int,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
     rwork: *mut f32,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvd {
         Some(____func) => unsafe { ____func(handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info) },
@@ -13001,21 +12263,21 @@ pub unsafe extern "C" fn cusolverDnCgesvd(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnZgesvd(
     handle: cusolverDnHandle_t,
-    jobu: ::std::os::raw::c_schar,
-    jobvt: ::std::os::raw::c_schar,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    jobu: ::core::ffi::c_schar,
+    jobvt: ::core::ffi::c_schar,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f64,
     U: *mut cuDoubleComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     VT: *mut cuDoubleComplex,
-    ldvt: ::std::os::raw::c_int,
+    ldvt: ::core::ffi::c_int,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
     rwork: *mut f64,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvd {
         Some(____func) => unsafe { ____func(handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info) },
@@ -13024,7 +12286,7 @@ pub unsafe extern "C" fn cusolverDnZgesvd(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, W: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevd_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork) },
         None => panic!(
@@ -13035,7 +12297,7 @@ pub unsafe extern "C" fn cusolverDnSsyevd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, W: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevd_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork) },
         None => panic!(
@@ -13046,7 +12308,7 @@ pub unsafe extern "C" fn cusolverDnDsyevd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, W: *const f32, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevd_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork) },
         None => panic!(
@@ -13057,7 +12319,7 @@ pub unsafe extern "C" fn cusolverDnCheevd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, W: *const f64, lwork: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevd_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork) },
         None => panic!(
@@ -13068,7 +12330,7 @@ pub unsafe extern "C" fn cusolverDnZheevd_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int, W: *mut f32, work: *mut f32, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevd {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsyevd"),
@@ -13076,7 +12338,7 @@ pub unsafe extern "C" fn cusolverDnSsyevd(handle: cusolverDnHandle_t, jobz: cuso
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, W: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int, W: *mut f64, work: *mut f64, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevd {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsyevd"),
@@ -13084,18 +12346,7 @@ pub unsafe extern "C" fn cusolverDnDsyevd(handle: cusolverDnHandle_t, jobz: cuso
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCheevd(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    W: *mut f32,
-    work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCheevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int, W: *mut f32, work: *mut cuComplex, lwork: ::core::ffi::c_int, info: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevd {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCheevd"),
@@ -13107,13 +12358,13 @@ pub unsafe extern "C" fn cusolverDnZheevd(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *mut f64,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevd {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info) },
@@ -13127,16 +12378,16 @@ pub unsafe extern "C" fn cusolverDnSsyevdx_bufferSize(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     vl: f32,
     vu: f32,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
@@ -13153,16 +12404,16 @@ pub unsafe extern "C" fn cusolverDnDsyevdx_bufferSize(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     vl: f64,
     vu: f64,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
@@ -13179,16 +12430,16 @@ pub unsafe extern "C" fn cusolverDnCheevdx_bufferSize(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     vl: f32,
     vu: f32,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
@@ -13205,16 +12456,16 @@ pub unsafe extern "C" fn cusolverDnZheevdx_bufferSize(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     vl: f64,
     vu: f64,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
@@ -13231,18 +12482,18 @@ pub unsafe extern "C" fn cusolverDnSsyevdx(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     vl: f32,
     vu: f32,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *mut f32,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevdx {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info) },
@@ -13256,18 +12507,18 @@ pub unsafe extern "C" fn cusolverDnDsyevdx(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     vl: f64,
     vu: f64,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *mut f64,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevdx {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info) },
@@ -13281,18 +12532,18 @@ pub unsafe extern "C" fn cusolverDnCheevdx(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     vl: f32,
     vu: f32,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *mut f32,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevdx {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info) },
@@ -13306,18 +12557,18 @@ pub unsafe extern "C" fn cusolverDnZheevdx(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     vl: f64,
     vu: f64,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *mut f64,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevdx {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info) },
@@ -13332,18 +12583,18 @@ pub unsafe extern "C" fn cusolverDnSsygvdx_bufferSize(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     vl: f32,
     vu: f32,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork) },
@@ -13361,18 +12612,18 @@ pub unsafe extern "C" fn cusolverDnDsygvdx_bufferSize(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     vl: f64,
     vu: f64,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork) },
@@ -13390,18 +12641,18 @@ pub unsafe extern "C" fn cusolverDnChegvdx_bufferSize(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     vl: f32,
     vu: f32,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork) },
@@ -13419,18 +12670,18 @@ pub unsafe extern "C" fn cusolverDnZhegvdx_bufferSize(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     vl: f64,
     vu: f64,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork) },
@@ -13448,20 +12699,20 @@ pub unsafe extern "C" fn cusolverDnSsygvdx(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     vl: f32,
     vu: f32,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *mut f32,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvdx {
         Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info) },
@@ -13476,20 +12727,20 @@ pub unsafe extern "C" fn cusolverDnDsygvdx(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     vl: f64,
     vu: f64,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *mut f64,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvdx {
         Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info) },
@@ -13504,20 +12755,20 @@ pub unsafe extern "C" fn cusolverDnChegvdx(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     vl: f32,
     vu: f32,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *mut f32,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvdx {
         Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info) },
@@ -13532,20 +12783,20 @@ pub unsafe extern "C" fn cusolverDnZhegvdx(
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     vl: f64,
     vu: f64,
-    il: ::std::os::raw::c_int,
-    iu: ::std::os::raw::c_int,
-    meig: *mut ::std::os::raw::c_int,
+    il: ::core::ffi::c_int,
+    iu: ::core::ffi::c_int,
+    meig: *mut ::core::ffi::c_int,
     W: *mut f64,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvdx {
         Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info) },
@@ -13559,13 +12810,13 @@ pub unsafe extern "C" fn cusolverDnSsygvd_bufferSize(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
@@ -13582,13 +12833,13 @@ pub unsafe extern "C" fn cusolverDnDsygvd_bufferSize(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
@@ -13605,13 +12856,13 @@ pub unsafe extern "C" fn cusolverDnChegvd_bufferSize(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
@@ -13628,13 +12879,13 @@ pub unsafe extern "C" fn cusolverDnZhegvd_bufferSize(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
@@ -13651,15 +12902,15 @@ pub unsafe extern "C" fn cusolverDnSsygvd(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *mut f32,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvd {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
@@ -13673,15 +12924,15 @@ pub unsafe extern "C" fn cusolverDnDsygvd(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *mut f64,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvd {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
@@ -13695,15 +12946,15 @@ pub unsafe extern "C" fn cusolverDnChegvd(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *mut f32,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvd {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
@@ -13717,15 +12968,15 @@ pub unsafe extern "C" fn cusolverDnZhegvd(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *mut f64,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvd {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
@@ -13742,13 +12993,13 @@ pub unsafe extern "C" fn cusolverDnXsygvd_bufferSize(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    d_A: *const ::std::os::raw::c_void,
+    d_A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeB: cudaDataType,
-    d_B: *const ::std::os::raw::c_void,
+    d_B: *const ::core::ffi::c_void,
     ldb: i64,
     dataTypeW: cudaDataType,
-    d_W: *const ::std::os::raw::c_void,
+    d_W: *const ::core::ffi::c_void,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
@@ -13771,19 +13022,19 @@ pub unsafe extern "C" fn cusolverDnXsygvd(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    d_A: *mut ::std::os::raw::c_void,
+    d_A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeB: cudaDataType,
-    d_B: *mut ::std::os::raw::c_void,
+    d_B: *mut ::core::ffi::c_void,
     ldb: i64,
     dataTypeW: cudaDataType,
-    d_W: *mut ::std::os::raw::c_void,
+    d_W: *mut ::core::ffi::c_void,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    d_info: *mut ::std::os::raw::c_int,
+    d_info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsygvd {
         Some(____func) => unsafe {
@@ -13823,18 +13074,18 @@ pub unsafe extern "C" fn cusolverDnXsygvdx_bufferSize(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    d_A: *const ::std::os::raw::c_void,
+    d_A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeB: cudaDataType,
-    d_B: *const ::std::os::raw::c_void,
+    d_B: *const ::core::ffi::c_void,
     ldb: i64,
-    vl: *mut ::std::os::raw::c_void,
-    vu: *mut ::std::os::raw::c_void,
+    vl: *mut ::core::ffi::c_void,
+    vu: *mut ::core::ffi::c_void,
     il: i64,
     iu: i64,
     meig: *mut i64,
     dataTypeW: cudaDataType,
-    d_W: *const ::std::os::raw::c_void,
+    d_W: *const ::core::ffi::c_void,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
@@ -13858,24 +13109,24 @@ pub unsafe extern "C" fn cusolverDnXsygvdx(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    d_A: *mut ::std::os::raw::c_void,
+    d_A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeB: cudaDataType,
-    d_B: *mut ::std::os::raw::c_void,
+    d_B: *mut ::core::ffi::c_void,
     ldb: i64,
-    vl: *mut ::std::os::raw::c_void,
-    vu: *mut ::std::os::raw::c_void,
+    vl: *mut ::core::ffi::c_void,
+    vu: *mut ::core::ffi::c_void,
     il: i64,
     iu: i64,
     meig: *mut i64,
     dataTypeW: cudaDataType,
-    d_W: *mut ::std::os::raw::c_void,
+    d_W: *mut ::core::ffi::c_void,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    d_info: *mut ::std::os::raw::c_int,
+    d_info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsygvdx {
         Some(____func) => unsafe {
@@ -13946,7 +13197,7 @@ pub unsafe extern "C" fn cusolverDnXsyevjSetTolerance(info: syevjInfo_t, toleran
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXsyevjSetMaxSweeps(info: syevjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnXsyevjSetMaxSweeps(info: syevjInfo_t, max_sweeps: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevjSetMaxSweeps {
         Some(____func) => unsafe { ____func(info, max_sweeps) },
         None => panic!(
@@ -13957,7 +13208,7 @@ pub unsafe extern "C" fn cusolverDnXsyevjSetMaxSweeps(info: syevjInfo_t, max_swe
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXsyevjSetSortEig(info: syevjInfo_t, sort_eig: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnXsyevjSetSortEig(info: syevjInfo_t, sort_eig: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevjSetSortEig {
         Some(____func) => unsafe { ____func(info, sort_eig) },
         None => panic!(
@@ -13979,7 +13230,7 @@ pub unsafe extern "C" fn cusolverDnXsyevjGetResidual(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXsyevjGetSweeps(handle: cusolverDnHandle_t, info: syevjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnXsyevjGetSweeps(handle: cusolverDnHandle_t, info: syevjInfo_t, executed_sweeps: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevjGetSweeps {
         Some(____func) => unsafe { ____func(handle, info, executed_sweeps) },
         None => panic!(
@@ -13994,13 +13245,13 @@ pub unsafe extern "C" fn cusolverDnSsyevjBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
@@ -14016,13 +13267,13 @@ pub unsafe extern "C" fn cusolverDnDsyevjBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
@@ -14038,13 +13289,13 @@ pub unsafe extern "C" fn cusolverDnCheevjBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
@@ -14060,13 +13311,13 @@ pub unsafe extern "C" fn cusolverDnZheevjBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
@@ -14082,15 +13333,15 @@ pub unsafe extern "C" fn cusolverDnSsyevjBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *mut f32,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
@@ -14103,15 +13354,15 @@ pub unsafe extern "C" fn cusolverDnDsyevjBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *mut f64,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
@@ -14124,15 +13375,15 @@ pub unsafe extern "C" fn cusolverDnCheevjBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *mut f32,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
@@ -14145,15 +13396,15 @@ pub unsafe extern "C" fn cusolverDnZheevjBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *mut f64,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
@@ -14162,7 +13413,7 @@ pub unsafe extern "C" fn cusolverDnZheevjBatched(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, W: *const f32, lwork: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params) },
         None => panic!(
@@ -14173,7 +13424,7 @@ pub unsafe extern "C" fn cusolverDnSsyevj_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnDsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, W: *const f64, lwork: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params) },
         None => panic!(
@@ -14184,7 +13435,7 @@ pub unsafe extern "C" fn cusolverDnDsyevj_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, W: *const f32, lwork: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params) },
         None => panic!(
@@ -14195,17 +13446,7 @@ pub unsafe extern "C" fn cusolverDnCheevj_bufferSize(handle: cusolverDnHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZheevj_bufferSize(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
-    params: syevjInfo_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnZheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, W: *const f64, lwork: *mut ::core::ffi::c_int, params: syevjInfo_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params) },
         None => panic!(
@@ -14220,13 +13461,13 @@ pub unsafe extern "C" fn cusolverDnSsyevj(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *mut f32,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevj {
@@ -14240,13 +13481,13 @@ pub unsafe extern "C" fn cusolverDnDsyevj(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *mut f64,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevj {
@@ -14260,13 +13501,13 @@ pub unsafe extern "C" fn cusolverDnCheevj(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *mut f32,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevj {
@@ -14280,13 +13521,13 @@ pub unsafe extern "C" fn cusolverDnZheevj(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     W: *mut f64,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevj {
@@ -14301,13 +13542,13 @@ pub unsafe extern "C" fn cusolverDnSsygvj_bufferSize(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvj_bufferSize {
@@ -14325,13 +13566,13 @@ pub unsafe extern "C" fn cusolverDnDsygvj_bufferSize(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvj_bufferSize {
@@ -14349,13 +13590,13 @@ pub unsafe extern "C" fn cusolverDnChegvj_bufferSize(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvj_bufferSize {
@@ -14373,13 +13614,13 @@ pub unsafe extern "C" fn cusolverDnZhegvj_bufferSize(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvj_bufferSize {
@@ -14397,15 +13638,15 @@ pub unsafe extern "C" fn cusolverDnSsygvj(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *mut f32,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvj {
@@ -14420,15 +13661,15 @@ pub unsafe extern "C" fn cusolverDnDsygvj(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *mut f64,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvj {
@@ -14443,15 +13684,15 @@ pub unsafe extern "C" fn cusolverDnChegvj(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *mut f32,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvj {
@@ -14466,15 +13707,15 @@ pub unsafe extern "C" fn cusolverDnZhegvj(
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     W: *mut f64,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvj {
@@ -14517,7 +13758,7 @@ pub unsafe extern "C" fn cusolverDnXgesvdjSetTolerance(info: gesvdjInfo_t, toler
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXgesvdjSetMaxSweeps(info: gesvdjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnXgesvdjSetMaxSweeps(info: gesvdjInfo_t, max_sweeps: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdjSetMaxSweeps {
         Some(____func) => unsafe { ____func(info, max_sweeps) },
         None => panic!(
@@ -14528,7 +13769,7 @@ pub unsafe extern "C" fn cusolverDnXgesvdjSetMaxSweeps(info: gesvdjInfo_t, max_s
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXgesvdjSetSortEig(info: gesvdjInfo_t, sort_svd: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnXgesvdjSetSortEig(info: gesvdjInfo_t, sort_svd: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdjSetSortEig {
         Some(____func) => unsafe { ____func(info, sort_svd) },
         None => panic!(
@@ -14550,7 +13791,7 @@ pub unsafe extern "C" fn cusolverDnXgesvdjGetResidual(handle: cusolverDnHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXgesvdjGetSweeps(handle: cusolverDnHandle_t, info: gesvdjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnXgesvdjGetSweeps(handle: cusolverDnHandle_t, info: gesvdjInfo_t, executed_sweeps: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdjGetSweeps {
         Some(____func) => unsafe { ____func(handle, info, executed_sweeps) },
         None => panic!(
@@ -14564,18 +13805,18 @@ pub unsafe extern "C" fn cusolverDnXgesvdjGetSweeps(handle: cusolverDnHandle_t, 
 pub unsafe extern "C" fn cusolverDnSgesvdjBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *const f32,
     U: *const f32,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *const f32,
-    ldv: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
@@ -14590,18 +13831,18 @@ pub unsafe extern "C" fn cusolverDnSgesvdjBatched_bufferSize(
 pub unsafe extern "C" fn cusolverDnDgesvdjBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *const f64,
     U: *const f64,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *const f64,
-    ldv: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
@@ -14616,18 +13857,18 @@ pub unsafe extern "C" fn cusolverDnDgesvdjBatched_bufferSize(
 pub unsafe extern "C" fn cusolverDnCgesvdjBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *const f32,
     U: *const cuComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *const cuComplex,
-    ldv: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
@@ -14642,18 +13883,18 @@ pub unsafe extern "C" fn cusolverDnCgesvdjBatched_bufferSize(
 pub unsafe extern "C" fn cusolverDnZgesvdjBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *const f64,
     U: *const cuDoubleComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *const cuDoubleComplex,
-    ldv: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
@@ -14668,20 +13909,20 @@ pub unsafe extern "C" fn cusolverDnZgesvdjBatched_bufferSize(
 pub unsafe extern "C" fn cusolverDnSgesvdjBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f32,
     U: *mut f32,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *mut f32,
-    ldv: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize) },
@@ -14693,20 +13934,20 @@ pub unsafe extern "C" fn cusolverDnSgesvdjBatched(
 pub unsafe extern "C" fn cusolverDnDgesvdjBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f64,
     U: *mut f64,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *mut f64,
-    ldv: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize) },
@@ -14718,20 +13959,20 @@ pub unsafe extern "C" fn cusolverDnDgesvdjBatched(
 pub unsafe extern "C" fn cusolverDnCgesvdjBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f32,
     U: *mut cuComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *mut cuComplex,
-    ldv: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize) },
@@ -14743,20 +13984,20 @@ pub unsafe extern "C" fn cusolverDnCgesvdjBatched(
 pub unsafe extern "C" fn cusolverDnZgesvdjBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f64,
     U: *mut cuDoubleComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *mut cuDoubleComplex,
-    ldv: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize) },
@@ -14768,17 +14009,17 @@ pub unsafe extern "C" fn cusolverDnZgesvdjBatched(
 pub unsafe extern "C" fn cusolverDnSgesvdj_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *const f32,
     U: *const f32,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *const f32,
-    ldv: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdj_bufferSize {
@@ -14794,17 +14035,17 @@ pub unsafe extern "C" fn cusolverDnSgesvdj_bufferSize(
 pub unsafe extern "C" fn cusolverDnDgesvdj_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *const f64,
     U: *const f64,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *const f64,
-    ldv: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdj_bufferSize {
@@ -14820,17 +14061,17 @@ pub unsafe extern "C" fn cusolverDnDgesvdj_bufferSize(
 pub unsafe extern "C" fn cusolverDnCgesvdj_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *const f32,
     U: *const cuComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *const cuComplex,
-    ldv: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdj_bufferSize {
@@ -14846,17 +14087,17 @@ pub unsafe extern "C" fn cusolverDnCgesvdj_bufferSize(
 pub unsafe extern "C" fn cusolverDnZgesvdj_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *const f64,
     U: *const cuDoubleComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *const cuDoubleComplex,
-    ldv: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    lwork: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdj_bufferSize {
@@ -14872,19 +14113,19 @@ pub unsafe extern "C" fn cusolverDnZgesvdj_bufferSize(
 pub unsafe extern "C" fn cusolverDnSgesvdj(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f32,
     U: *mut f32,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *mut f32,
-    ldv: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
     work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdj {
@@ -14897,19 +14138,19 @@ pub unsafe extern "C" fn cusolverDnSgesvdj(
 pub unsafe extern "C" fn cusolverDnDgesvdj(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f64,
     U: *mut f64,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *mut f64,
-    ldv: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
     work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdj {
@@ -14922,19 +14163,19 @@ pub unsafe extern "C" fn cusolverDnDgesvdj(
 pub unsafe extern "C" fn cusolverDnCgesvdj(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f32,
     U: *mut cuComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *mut cuComplex,
-    ldv: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
     work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdj {
@@ -14947,19 +14188,19 @@ pub unsafe extern "C" fn cusolverDnCgesvdj(
 pub unsafe extern "C" fn cusolverDnZgesvdj(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     S: *mut f64,
     U: *mut cuDoubleComplex,
-    ldu: ::std::os::raw::c_int,
+    ldu: ::core::ffi::c_int,
     V: *mut cuDoubleComplex,
-    ldv: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
     work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdj {
@@ -14972,22 +14213,22 @@ pub unsafe extern "C" fn cusolverDnZgesvdj(
 pub unsafe extern "C" fn cusolverDnSgesvdaStridedBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    rank: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     d_A: *const f32,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     d_S: *const f32,
-    strideS: ::std::os::raw::c_longlong,
+    strideS: ::core::ffi::c_longlong,
     d_U: *const f32,
-    ldu: ::std::os::raw::c_int,
-    strideU: ::std::os::raw::c_longlong,
+    ldu: ::core::ffi::c_int,
+    strideU: ::core::ffi::c_longlong,
     d_V: *const f32,
-    ldv: ::std::os::raw::c_int,
-    strideV: ::std::os::raw::c_longlong,
-    lwork: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    strideV: ::core::ffi::c_longlong,
+    lwork: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdaStridedBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork, batchSize) },
@@ -15002,22 +14243,22 @@ pub unsafe extern "C" fn cusolverDnSgesvdaStridedBatched_bufferSize(
 pub unsafe extern "C" fn cusolverDnDgesvdaStridedBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    rank: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     d_A: *const f64,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     d_S: *const f64,
-    strideS: ::std::os::raw::c_longlong,
+    strideS: ::core::ffi::c_longlong,
     d_U: *const f64,
-    ldu: ::std::os::raw::c_int,
-    strideU: ::std::os::raw::c_longlong,
+    ldu: ::core::ffi::c_int,
+    strideU: ::core::ffi::c_longlong,
     d_V: *const f64,
-    ldv: ::std::os::raw::c_int,
-    strideV: ::std::os::raw::c_longlong,
-    lwork: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    strideV: ::core::ffi::c_longlong,
+    lwork: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdaStridedBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork, batchSize) },
@@ -15032,22 +14273,22 @@ pub unsafe extern "C" fn cusolverDnDgesvdaStridedBatched_bufferSize(
 pub unsafe extern "C" fn cusolverDnCgesvdaStridedBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    rank: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     d_A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     d_S: *const f32,
-    strideS: ::std::os::raw::c_longlong,
+    strideS: ::core::ffi::c_longlong,
     d_U: *const cuComplex,
-    ldu: ::std::os::raw::c_int,
-    strideU: ::std::os::raw::c_longlong,
+    ldu: ::core::ffi::c_int,
+    strideU: ::core::ffi::c_longlong,
     d_V: *const cuComplex,
-    ldv: ::std::os::raw::c_int,
-    strideV: ::std::os::raw::c_longlong,
-    lwork: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    strideV: ::core::ffi::c_longlong,
+    lwork: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdaStridedBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork, batchSize) },
@@ -15062,22 +14303,22 @@ pub unsafe extern "C" fn cusolverDnCgesvdaStridedBatched_bufferSize(
 pub unsafe extern "C" fn cusolverDnZgesvdaStridedBatched_bufferSize(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    rank: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     d_A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     d_S: *const f64,
-    strideS: ::std::os::raw::c_longlong,
+    strideS: ::core::ffi::c_longlong,
     d_U: *const cuDoubleComplex,
-    ldu: ::std::os::raw::c_int,
-    strideU: ::std::os::raw::c_longlong,
+    ldu: ::core::ffi::c_int,
+    strideU: ::core::ffi::c_longlong,
     d_V: *const cuDoubleComplex,
-    ldv: ::std::os::raw::c_int,
-    strideV: ::std::os::raw::c_longlong,
-    lwork: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldv: ::core::ffi::c_int,
+    strideV: ::core::ffi::c_longlong,
+    lwork: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdaStridedBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork, batchSize) },
@@ -15092,25 +14333,25 @@ pub unsafe extern "C" fn cusolverDnZgesvdaStridedBatched_bufferSize(
 pub unsafe extern "C" fn cusolverDnSgesvdaStridedBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    rank: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     d_A: *const f32,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     d_S: *mut f32,
-    strideS: ::std::os::raw::c_longlong,
+    strideS: ::core::ffi::c_longlong,
     d_U: *mut f32,
-    ldu: ::std::os::raw::c_int,
-    strideU: ::std::os::raw::c_longlong,
+    ldu: ::core::ffi::c_int,
+    strideU: ::core::ffi::c_longlong,
     d_V: *mut f32,
-    ldv: ::std::os::raw::c_int,
-    strideV: ::std::os::raw::c_longlong,
+    ldv: ::core::ffi::c_int,
+    strideV: ::core::ffi::c_longlong,
     d_work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    d_info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    d_info: *mut ::core::ffi::c_int,
     h_R_nrmF: *mut f64,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdaStridedBatched {
         Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize) },
@@ -15125,25 +14366,25 @@ pub unsafe extern "C" fn cusolverDnSgesvdaStridedBatched(
 pub unsafe extern "C" fn cusolverDnDgesvdaStridedBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    rank: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     d_A: *const f64,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     d_S: *mut f64,
-    strideS: ::std::os::raw::c_longlong,
+    strideS: ::core::ffi::c_longlong,
     d_U: *mut f64,
-    ldu: ::std::os::raw::c_int,
-    strideU: ::std::os::raw::c_longlong,
+    ldu: ::core::ffi::c_int,
+    strideU: ::core::ffi::c_longlong,
     d_V: *mut f64,
-    ldv: ::std::os::raw::c_int,
-    strideV: ::std::os::raw::c_longlong,
+    ldv: ::core::ffi::c_int,
+    strideV: ::core::ffi::c_longlong,
     d_work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    d_info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    d_info: *mut ::core::ffi::c_int,
     h_R_nrmF: *mut f64,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdaStridedBatched {
         Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize) },
@@ -15158,25 +14399,25 @@ pub unsafe extern "C" fn cusolverDnDgesvdaStridedBatched(
 pub unsafe extern "C" fn cusolverDnCgesvdaStridedBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    rank: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     d_A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     d_S: *mut f32,
-    strideS: ::std::os::raw::c_longlong,
+    strideS: ::core::ffi::c_longlong,
     d_U: *mut cuComplex,
-    ldu: ::std::os::raw::c_int,
-    strideU: ::std::os::raw::c_longlong,
+    ldu: ::core::ffi::c_int,
+    strideU: ::core::ffi::c_longlong,
     d_V: *mut cuComplex,
-    ldv: ::std::os::raw::c_int,
-    strideV: ::std::os::raw::c_longlong,
+    ldv: ::core::ffi::c_int,
+    strideV: ::core::ffi::c_longlong,
     d_work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    d_info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    d_info: *mut ::core::ffi::c_int,
     h_R_nrmF: *mut f64,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdaStridedBatched {
         Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize) },
@@ -15191,25 +14432,25 @@ pub unsafe extern "C" fn cusolverDnCgesvdaStridedBatched(
 pub unsafe extern "C" fn cusolverDnZgesvdaStridedBatched(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
-    rank: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     d_A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     d_S: *mut f64,
-    strideS: ::std::os::raw::c_longlong,
+    strideS: ::core::ffi::c_longlong,
     d_U: *mut cuDoubleComplex,
-    ldu: ::std::os::raw::c_int,
-    strideU: ::std::os::raw::c_longlong,
+    ldu: ::core::ffi::c_int,
+    strideU: ::core::ffi::c_longlong,
     d_V: *mut cuDoubleComplex,
-    ldv: ::std::os::raw::c_int,
-    strideV: ::std::os::raw::c_longlong,
+    ldv: ::core::ffi::c_int,
+    strideV: ::core::ffi::c_longlong,
     d_work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    d_info: *mut ::std::os::raw::c_int,
+    lwork: ::core::ffi::c_int,
+    d_info: *mut ::core::ffi::c_int,
     h_R_nrmF: *mut f64,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdaStridedBatched {
         Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize) },
@@ -15251,7 +14492,7 @@ pub unsafe extern "C" fn cusolverDnXpotrf_bufferSize(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
@@ -15273,14 +14514,14 @@ pub unsafe extern "C" fn cusolverDnXpotrf(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXpotrf {
         Some(____func) => unsafe { ____func(handle, params, uplo, n, dataTypeA, A, lda, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
@@ -15296,12 +14537,12 @@ pub unsafe extern "C" fn cusolverDnXpotrs(
     n: i64,
     nrhs: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeB: cudaDataType,
-    B: *mut ::std::os::raw::c_void,
+    B: *mut ::core::ffi::c_void,
     ldb: i64,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXpotrs {
         Some(____func) => unsafe { ____func(handle, params, uplo, n, nrhs, dataTypeA, A, lda, dataTypeB, B, ldb, info) },
@@ -15316,10 +14557,10 @@ pub unsafe extern "C" fn cusolverDnXgeqrf_bufferSize(
     m: i64,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeTau: cudaDataType,
-    tau: *const ::std::os::raw::c_void,
+    tau: *const ::core::ffi::c_void,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
@@ -15340,16 +14581,16 @@ pub unsafe extern "C" fn cusolverDnXgeqrf(
     m: i64,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeTau: cudaDataType,
-    tau: *mut ::std::os::raw::c_void,
+    tau: *mut ::core::ffi::c_void,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgeqrf {
         Some(____func) => unsafe { ____func(handle, params, m, n, dataTypeA, A, lda, dataTypeTau, tau, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
@@ -15364,7 +14605,7 @@ pub unsafe extern "C" fn cusolverDnXgetrf_bufferSize(
     m: i64,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
@@ -15386,15 +14627,15 @@ pub unsafe extern "C" fn cusolverDnXgetrf(
     m: i64,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     ipiv: *mut i64,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgetrf {
         Some(____func) => unsafe { ____func(handle, params, m, n, dataTypeA, A, lda, ipiv, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
@@ -15410,13 +14651,13 @@ pub unsafe extern "C" fn cusolverDnXgetrs(
     n: i64,
     nrhs: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     ipiv: *const i64,
     dataTypeB: cudaDataType,
-    B: *mut ::std::os::raw::c_void,
+    B: *mut ::core::ffi::c_void,
     ldb: i64,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgetrs {
         Some(____func) => unsafe { ____func(handle, params, trans, n, nrhs, dataTypeA, A, lda, ipiv, dataTypeB, B, ldb, info) },
@@ -15432,10 +14673,10 @@ pub unsafe extern "C" fn cusolverDnXsyevd_bufferSize(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeW: cudaDataType,
-    W: *const ::std::os::raw::c_void,
+    W: *const ::core::ffi::c_void,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
@@ -15457,16 +14698,16 @@ pub unsafe extern "C" fn cusolverDnXsyevd(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeW: cudaDataType,
-    W: *mut ::std::os::raw::c_void,
+    W: *mut ::core::ffi::c_void,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevd {
         Some(____func) => unsafe { ____func(handle, params, jobz, uplo, n, dataTypeA, A, lda, dataTypeW, W, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
@@ -15481,10 +14722,10 @@ pub unsafe extern "C" fn cusolverDnXstedc_bufferSize(
     compz: cusolverEigComp_t,
     n: i64,
     dataTypeDE: cudaDataType,
-    D: *const ::std::os::raw::c_void,
-    E: *const ::std::os::raw::c_void,
+    D: *const ::core::ffi::c_void,
+    E: *const ::core::ffi::c_void,
     dataTypeZ: cudaDataType,
-    Z: *const ::std::os::raw::c_void,
+    Z: *const ::core::ffi::c_void,
     ldz: i64,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
@@ -15506,17 +14747,17 @@ pub unsafe extern "C" fn cusolverDnXstedc(
     compz: cusolverEigComp_t,
     n: i64,
     dataTypeDE: cudaDataType,
-    D: *mut ::std::os::raw::c_void,
-    E: *mut ::std::os::raw::c_void,
+    D: *mut ::core::ffi::c_void,
+    E: *mut ::core::ffi::c_void,
     dataTypeZ: cudaDataType,
-    Z: *mut ::std::os::raw::c_void,
+    Z: *mut ::core::ffi::c_void,
     ldz: i64,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXstedc {
         Some(____func) => unsafe { ____func(handle, params, compz, n, dataTypeDE, D, E, dataTypeZ, Z, ldz, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
@@ -15532,10 +14773,10 @@ pub unsafe extern "C" fn cusolverDnXsyevBatched_bufferSize(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeW: cudaDataType,
-    W: *const ::std::os::raw::c_void,
+    W: *const ::core::ffi::c_void,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
@@ -15558,16 +14799,16 @@ pub unsafe extern "C" fn cusolverDnXsyevBatched(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeW: cudaDataType,
-    W: *mut ::std::os::raw::c_void,
+    W: *mut ::core::ffi::c_void,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
     batchSize: i64,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevBatched {
@@ -15585,15 +14826,15 @@ pub unsafe extern "C" fn cusolverDnXsyevdx_bufferSize(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
-    vl: *mut ::std::os::raw::c_void,
-    vu: *mut ::std::os::raw::c_void,
+    vl: *mut ::core::ffi::c_void,
+    vu: *mut ::core::ffi::c_void,
     il: i64,
     iu: i64,
     h_meig: *mut i64,
     dataTypeW: cudaDataType,
-    W: *const ::std::os::raw::c_void,
+    W: *const ::core::ffi::c_void,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
@@ -15616,21 +14857,21 @@ pub unsafe extern "C" fn cusolverDnXsyevdx(
     uplo: cublasFillMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
-    vl: *mut ::std::os::raw::c_void,
-    vu: *mut ::std::os::raw::c_void,
+    vl: *mut ::core::ffi::c_void,
+    vu: *mut ::core::ffi::c_void,
     il: i64,
     iu: i64,
     meig64: *mut i64,
     dataTypeW: cudaDataType,
-    W: *mut ::std::os::raw::c_void,
+    W: *mut ::core::ffi::c_void,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevdx {
         Some(____func) => unsafe {
@@ -15671,15 +14912,15 @@ pub unsafe extern "C" fn cusolverDnXgeev_bufferSize(
     jobvr: cusolverEigMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeW: cudaDataType,
-    W: *const ::std::os::raw::c_void,
+    W: *const ::core::ffi::c_void,
     dataTypeVL: cudaDataType,
-    VL: *const ::std::os::raw::c_void,
+    VL: *const ::core::ffi::c_void,
     ldvl: i64,
     dataTypeVR: cudaDataType,
-    VR: *const ::std::os::raw::c_void,
+    VR: *const ::core::ffi::c_void,
     ldvr: i64,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
@@ -15702,22 +14943,22 @@ pub unsafe extern "C" fn cusolverDnXgeev(
     jobvr: cusolverEigMode_t,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeW: cudaDataType,
-    W: *mut ::std::os::raw::c_void,
+    W: *mut ::core::ffi::c_void,
     dataTypeVL: cudaDataType,
-    VL: *mut ::std::os::raw::c_void,
+    VL: *mut ::core::ffi::c_void,
     ldvl: i64,
     dataTypeVR: cudaDataType,
-    VR: *mut ::std::os::raw::c_void,
+    VR: *mut ::core::ffi::c_void,
     ldvr: i64,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgeev {
         Some(____func) => unsafe {
@@ -15754,20 +14995,20 @@ pub unsafe extern "C" fn cusolverDnXgeev(
 pub unsafe extern "C" fn cusolverDnXgesvd_bufferSize(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
-    jobu: ::std::os::raw::c_schar,
-    jobvt: ::std::os::raw::c_schar,
+    jobu: ::core::ffi::c_schar,
+    jobvt: ::core::ffi::c_schar,
     m: i64,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeS: cudaDataType,
-    S: *const ::std::os::raw::c_void,
+    S: *const ::core::ffi::c_void,
     dataTypeU: cudaDataType,
-    U: *const ::std::os::raw::c_void,
+    U: *const ::core::ffi::c_void,
     ldu: i64,
     dataTypeVT: cudaDataType,
-    VT: *const ::std::os::raw::c_void,
+    VT: *const ::core::ffi::c_void,
     ldvt: i64,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
@@ -15786,27 +15027,27 @@ pub unsafe extern "C" fn cusolverDnXgesvd_bufferSize(
 pub unsafe extern "C" fn cusolverDnXgesvd(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
-    jobu: ::std::os::raw::c_schar,
-    jobvt: ::std::os::raw::c_schar,
+    jobu: ::core::ffi::c_schar,
+    jobvt: ::core::ffi::c_schar,
     m: i64,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeS: cudaDataType,
-    S: *mut ::std::os::raw::c_void,
+    S: *mut ::core::ffi::c_void,
     dataTypeU: cudaDataType,
-    U: *mut ::std::os::raw::c_void,
+    U: *mut ::core::ffi::c_void,
     ldu: i64,
     dataTypeVT: cudaDataType,
-    VT: *mut ::std::os::raw::c_void,
+    VT: *mut ::core::ffi::c_void,
     ldvt: i64,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    info: *mut ::std::os::raw::c_int,
+    info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvd {
         Some(____func) => unsafe {
@@ -15845,19 +15086,19 @@ pub unsafe extern "C" fn cusolverDnXgesvdp_bufferSize(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
     m: i64,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeS: cudaDataType,
-    S: *const ::std::os::raw::c_void,
+    S: *const ::core::ffi::c_void,
     dataTypeU: cudaDataType,
-    U: *const ::std::os::raw::c_void,
+    U: *const ::core::ffi::c_void,
     ldu: i64,
     dataTypeV: cudaDataType,
-    V: *const ::std::os::raw::c_void,
+    V: *const ::core::ffi::c_void,
     ldv: i64,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
@@ -15877,26 +15118,26 @@ pub unsafe extern "C" fn cusolverDnXgesvdp(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
-    econ: ::std::os::raw::c_int,
+    econ: ::core::ffi::c_int,
     m: i64,
     n: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeS: cudaDataType,
-    S: *mut ::std::os::raw::c_void,
+    S: *mut ::core::ffi::c_void,
     dataTypeU: cudaDataType,
-    U: *mut ::std::os::raw::c_void,
+    U: *mut ::core::ffi::c_void,
     ldu: i64,
     dataTypeV: cudaDataType,
-    V: *mut ::std::os::raw::c_void,
+    V: *mut ::core::ffi::c_void,
     ldv: i64,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    d_info: *mut ::std::os::raw::c_int,
+    d_info: *mut ::core::ffi::c_int,
     h_err_sigma: *mut f64,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdp {
@@ -15936,23 +15177,23 @@ pub unsafe extern "C" fn cusolverDnXgesvdp(
 pub unsafe extern "C" fn cusolverDnXgesvdr_bufferSize(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
-    jobu: ::std::os::raw::c_schar,
-    jobv: ::std::os::raw::c_schar,
+    jobu: ::core::ffi::c_schar,
+    jobv: ::core::ffi::c_schar,
     m: i64,
     n: i64,
     k: i64,
     p: i64,
     niters: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeSrand: cudaDataType,
-    Srand: *const ::std::os::raw::c_void,
+    Srand: *const ::core::ffi::c_void,
     dataTypeUrand: cudaDataType,
-    Urand: *const ::std::os::raw::c_void,
+    Urand: *const ::core::ffi::c_void,
     ldUrand: i64,
     dataTypeVrand: cudaDataType,
-    Vrand: *const ::std::os::raw::c_void,
+    Vrand: *const ::core::ffi::c_void,
     ldVrand: i64,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
@@ -15997,30 +15238,30 @@ pub unsafe extern "C" fn cusolverDnXgesvdr_bufferSize(
 pub unsafe extern "C" fn cusolverDnXgesvdr(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
-    jobu: ::std::os::raw::c_schar,
-    jobv: ::std::os::raw::c_schar,
+    jobu: ::core::ffi::c_schar,
+    jobv: ::core::ffi::c_schar,
     m: i64,
     n: i64,
     k: i64,
     p: i64,
     niters: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeSrand: cudaDataType,
-    Srand: *mut ::std::os::raw::c_void,
+    Srand: *mut ::core::ffi::c_void,
     dataTypeUrand: cudaDataType,
-    Urand: *mut ::std::os::raw::c_void,
+    Urand: *mut ::core::ffi::c_void,
     ldUrand: i64,
     dataTypeVrand: cudaDataType,
-    Vrand: *mut ::std::os::raw::c_void,
+    Vrand: *mut ::core::ffi::c_void,
     ldVrand: i64,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
-    d_info: *mut ::std::os::raw::c_int,
+    d_info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdr {
         Some(____func) => unsafe {
@@ -16066,12 +15307,12 @@ pub unsafe extern "C" fn cusolverDnXlarft_bufferSize(
     n: i64,
     k: i64,
     dataTypeV: cudaDataType,
-    V: *const ::std::os::raw::c_void,
+    V: *const ::core::ffi::c_void,
     ldv: i64,
     dataTypeTau: cudaDataType,
-    tau: *const ::std::os::raw::c_void,
+    tau: *const ::core::ffi::c_void,
     dataTypeT: cudaDataType,
-    T: *mut ::std::os::raw::c_void,
+    T: *mut ::core::ffi::c_void,
     ldt: i64,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
@@ -16095,17 +15336,17 @@ pub unsafe extern "C" fn cusolverDnXlarft(
     n: i64,
     k: i64,
     dataTypeV: cudaDataType,
-    V: *const ::std::os::raw::c_void,
+    V: *const ::core::ffi::c_void,
     ldv: i64,
     dataTypeTau: cudaDataType,
-    tau: *const ::std::os::raw::c_void,
+    tau: *const ::core::ffi::c_void,
     dataTypeT: cudaDataType,
-    T: *mut ::std::os::raw::c_void,
+    T: *mut ::core::ffi::c_void,
     ldt: i64,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXlarft {
@@ -16156,7 +15397,7 @@ pub unsafe extern "C" fn cusolverDnLoggerSetFile(file: *mut FILE) -> cusolverSta
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnLoggerOpenFile(logFile: *const ::std::os::raw::c_char) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnLoggerOpenFile(logFile: *const ::core::ffi::c_char) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnLoggerOpenFile {
         Some(____func) => unsafe { ____func(logFile) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnLoggerOpenFile"),
@@ -16164,7 +15405,7 @@ pub unsafe extern "C" fn cusolverDnLoggerOpenFile(logFile: *const ::std::os::raw
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnLoggerSetLevel(level: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnLoggerSetLevel(level: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnLoggerSetLevel {
         Some(____func) => unsafe { ____func(level) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnLoggerSetLevel"),
@@ -16172,7 +15413,7 @@ pub unsafe extern "C" fn cusolverDnLoggerSetLevel(level: ::std::os::raw::c_int) 
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnLoggerSetMask(mask: ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnLoggerSetMask(mask: ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnLoggerSetMask {
         Some(____func) => unsafe { ____func(mask) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnLoggerSetMask"),
@@ -16198,10 +15439,10 @@ pub unsafe extern "C" fn cusolverDnXpolar_bufferSize(
     M: i64,
     N: i64,
     dataTypeA: cudaDataType,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     lda: i64,
     dataTypeH: cudaDataType,
-    H: *const ::std::os::raw::c_void,
+    H: *const ::core::ffi::c_void,
     ldh: i64,
     computeType: cudaDataType,
     workspaceInBytesOnDevice: *mut usize,
@@ -16224,20 +15465,20 @@ pub unsafe extern "C" fn cusolverDnXpolar(
     M: i64,
     N: i64,
     dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
+    A: *mut ::core::ffi::c_void,
     lda: i64,
     dataTypeH: cudaDataType,
-    H: *mut ::std::os::raw::c_void,
+    H: *mut ::core::ffi::c_void,
     ldh: i64,
     computeType: cudaDataType,
-    bufferOnDevice: *mut ::std::os::raw::c_void,
+    bufferOnDevice: *mut ::core::ffi::c_void,
     workspaceInBytesOnDevice: usize,
-    bufferOnHost: *mut ::std::os::raw::c_void,
+    bufferOnHost: *mut ::core::ffi::c_void,
     workspaceInBytesOnHost: usize,
     d_res_nrm: *mut f64,
     d_A_nrmF: *mut f64,
     d_rcond: *mut f64,
-    d_info: *mut ::std::os::raw::c_int,
+    d_info: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXpolar {
         Some(____func) => unsafe {
@@ -16303,13 +15544,13 @@ pub unsafe extern "C" fn cusolverSpGetStream(handle: cusolverSpHandle_t, streamI
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpXcsrissymHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrEndPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
-    issym: *mut ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrEndPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
+    issym: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrissymHost {
         Some(____func) => unsafe { ____func(handle, m, nnzA, descrA, csrRowPtrA, csrEndPtrA, csrColIndA, issym) },
@@ -16320,17 +15561,17 @@ pub unsafe extern "C" fn cusolverSpXcsrissymHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsrlsvluHost(
     handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f32,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const f32,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f32,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvluHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
@@ -16341,17 +15582,17 @@ pub unsafe extern "C" fn cusolverSpScsrlsvluHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsrlsvluHost(
     handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f64,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const f64,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f64,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvluHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
@@ -16362,17 +15603,17 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvluHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsrlsvluHost(
     handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const cuComplex,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvluHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
@@ -16383,17 +15624,17 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvluHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsrlsvluHost(
     handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuDoubleComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const cuDoubleComplex,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuDoubleComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvluHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
@@ -16404,17 +15645,17 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvluHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsrlsvqr(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const f32,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const f32,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f32,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvqr {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16425,17 +15666,17 @@ pub unsafe extern "C" fn cusolverSpScsrlsvqr(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsrlsvqr(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const f64,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const f64,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f64,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvqr {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16446,17 +15687,17 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvqr(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsrlsvqr(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const cuComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const cuComplex,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvqr {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16467,17 +15708,17 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvqr(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsrlsvqr(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const cuDoubleComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const cuDoubleComplex,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuDoubleComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvqr {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16488,17 +15729,17 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvqr(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsrlsvqrHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f32,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const f32,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f32,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvqrHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
@@ -16509,17 +15750,17 @@ pub unsafe extern "C" fn cusolverSpScsrlsvqrHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsrlsvqrHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f64,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const f64,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f64,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvqrHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
@@ -16530,17 +15771,17 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvqrHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsrlsvqrHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const cuComplex,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvqrHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
@@ -16551,17 +15792,17 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvqrHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsrlsvqrHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuDoubleComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const cuDoubleComplex,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuDoubleComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvqrHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
@@ -16572,17 +15813,17 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvqrHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsrlsvcholHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const f32,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const f32,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f32,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvcholHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16596,17 +15837,17 @@ pub unsafe extern "C" fn cusolverSpScsrlsvcholHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsrlsvcholHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const f64,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const f64,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f64,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvcholHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16620,17 +15861,17 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvcholHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsrlsvcholHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const cuComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const cuComplex,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvcholHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16644,17 +15885,17 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvcholHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsrlsvcholHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const cuDoubleComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const cuDoubleComplex,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuDoubleComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvcholHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16668,17 +15909,17 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvcholHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsrlsvchol(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const f32,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const f32,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f32,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvchol {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16689,17 +15930,17 @@ pub unsafe extern "C" fn cusolverSpScsrlsvchol(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsrlsvchol(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const f64,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const f64,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut f64,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvchol {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16710,17 +15951,17 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvchol(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsrlsvchol(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const cuComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const cuComplex,
     tol: f32,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvchol {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16731,17 +15972,17 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvchol(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsrlsvchol(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const cuDoubleComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
     b: *const cuDoubleComplex,
     tol: f64,
-    reorder: ::std::os::raw::c_int,
+    reorder: ::core::ffi::c_int,
     x: *mut cuDoubleComplex,
-    singularity: *mut ::std::os::raw::c_int,
+    singularity: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvchol {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
@@ -16752,18 +15993,18 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvchol(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsrlsqvqrHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f32,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const f32,
     tol: f32,
-    rankA: *mut ::std::os::raw::c_int,
+    rankA: *mut ::core::ffi::c_int,
     x: *mut f32,
-    p: *mut ::std::os::raw::c_int,
+    p: *mut ::core::ffi::c_int,
     min_norm: *mut f32,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsqvqrHost {
@@ -16775,18 +16016,18 @@ pub unsafe extern "C" fn cusolverSpScsrlsqvqrHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsrlsqvqrHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f64,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const f64,
     tol: f64,
-    rankA: *mut ::std::os::raw::c_int,
+    rankA: *mut ::core::ffi::c_int,
     x: *mut f64,
-    p: *mut ::std::os::raw::c_int,
+    p: *mut ::core::ffi::c_int,
     min_norm: *mut f64,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsqvqrHost {
@@ -16798,18 +16039,18 @@ pub unsafe extern "C" fn cusolverSpDcsrlsqvqrHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsrlsqvqrHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const cuComplex,
     tol: f32,
-    rankA: *mut ::std::os::raw::c_int,
+    rankA: *mut ::core::ffi::c_int,
     x: *mut cuComplex,
-    p: *mut ::std::os::raw::c_int,
+    p: *mut ::core::ffi::c_int,
     min_norm: *mut f32,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsqvqrHost {
@@ -16821,18 +16062,18 @@ pub unsafe extern "C" fn cusolverSpCcsrlsqvqrHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsrlsqvqrHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuDoubleComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const cuDoubleComplex,
     tol: f64,
-    rankA: *mut ::std::os::raw::c_int,
+    rankA: *mut ::core::ffi::c_int,
     x: *mut cuDoubleComplex,
-    p: *mut ::std::os::raw::c_int,
+    p: *mut ::core::ffi::c_int,
     min_norm: *mut f64,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsqvqrHost {
@@ -16844,15 +16085,15 @@ pub unsafe extern "C" fn cusolverSpZcsrlsqvqrHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsreigvsiHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f32,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     mu0: f32,
     x0: *const f32,
-    maxite: ::std::os::raw::c_int,
+    maxite: ::core::ffi::c_int,
     tol: f32,
     mu: *mut f32,
     x: *mut f32,
@@ -16866,15 +16107,15 @@ pub unsafe extern "C" fn cusolverSpScsreigvsiHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsreigvsiHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f64,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     mu0: f64,
     x0: *const f64,
-    maxite: ::std::os::raw::c_int,
+    maxite: ::core::ffi::c_int,
     tol: f64,
     mu: *mut f64,
     x: *mut f64,
@@ -16888,15 +16129,15 @@ pub unsafe extern "C" fn cusolverSpDcsreigvsiHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsreigvsiHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     mu0: cuComplex,
     x0: *const cuComplex,
-    maxite: ::std::os::raw::c_int,
+    maxite: ::core::ffi::c_int,
     tol: f32,
     mu: *mut cuComplex,
     x: *mut cuComplex,
@@ -16910,15 +16151,15 @@ pub unsafe extern "C" fn cusolverSpCcsreigvsiHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsreigvsiHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuDoubleComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     mu0: cuDoubleComplex,
     x0: *const cuDoubleComplex,
-    maxite: ::std::os::raw::c_int,
+    maxite: ::core::ffi::c_int,
     tol: f64,
     mu: *mut cuDoubleComplex,
     x: *mut cuDoubleComplex,
@@ -16932,15 +16173,15 @@ pub unsafe extern "C" fn cusolverSpZcsreigvsiHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsreigvsi(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f32,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     mu0: f32,
     x0: *const f32,
-    maxite: ::std::os::raw::c_int,
+    maxite: ::core::ffi::c_int,
     eps: f32,
     mu: *mut f32,
     x: *mut f32,
@@ -16954,15 +16195,15 @@ pub unsafe extern "C" fn cusolverSpScsreigvsi(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsreigvsi(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f64,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     mu0: f64,
     x0: *const f64,
-    maxite: ::std::os::raw::c_int,
+    maxite: ::core::ffi::c_int,
     eps: f64,
     mu: *mut f64,
     x: *mut f64,
@@ -16976,15 +16217,15 @@ pub unsafe extern "C" fn cusolverSpDcsreigvsi(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsreigvsi(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     mu0: cuComplex,
     x0: *const cuComplex,
-    maxite: ::std::os::raw::c_int,
+    maxite: ::core::ffi::c_int,
     eps: f32,
     mu: *mut cuComplex,
     x: *mut cuComplex,
@@ -16998,15 +16239,15 @@ pub unsafe extern "C" fn cusolverSpCcsreigvsi(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsreigvsi(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuDoubleComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     mu0: cuDoubleComplex,
     x0: *const cuDoubleComplex,
-    maxite: ::std::os::raw::c_int,
+    maxite: ::core::ffi::c_int,
     eps: f64,
     mu: *mut cuDoubleComplex,
     x: *mut cuDoubleComplex,
@@ -17020,15 +16261,15 @@ pub unsafe extern "C" fn cusolverSpZcsreigvsi(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsreigsHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f32,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     left_bottom_corner: cuComplex,
     right_upper_corner: cuComplex,
-    num_eigs: *mut ::std::os::raw::c_int,
+    num_eigs: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsreigsHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, left_bottom_corner, right_upper_corner, num_eigs) },
@@ -17039,15 +16280,15 @@ pub unsafe extern "C" fn cusolverSpScsreigsHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsreigsHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f64,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     left_bottom_corner: cuDoubleComplex,
     right_upper_corner: cuDoubleComplex,
-    num_eigs: *mut ::std::os::raw::c_int,
+    num_eigs: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsreigsHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, left_bottom_corner, right_upper_corner, num_eigs) },
@@ -17058,15 +16299,15 @@ pub unsafe extern "C" fn cusolverSpDcsreigsHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsreigsHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     left_bottom_corner: cuComplex,
     right_upper_corner: cuComplex,
-    num_eigs: *mut ::std::os::raw::c_int,
+    num_eigs: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsreigsHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, left_bottom_corner, right_upper_corner, num_eigs) },
@@ -17077,15 +16318,15 @@ pub unsafe extern "C" fn cusolverSpCcsreigsHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsreigsHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuDoubleComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     left_bottom_corner: cuDoubleComplex,
     right_upper_corner: cuDoubleComplex,
-    num_eigs: *mut ::std::os::raw::c_int,
+    num_eigs: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsreigsHost {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, left_bottom_corner, right_upper_corner, num_eigs) },
@@ -17094,7 +16335,7 @@ pub unsafe extern "C" fn cusolverSpZcsreigsHost(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverSpXcsrsymrcmHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverSpXcsrsymrcmHost(handle: cusolverSpHandle_t, n: ::core::ffi::c_int, nnzA: ::core::ffi::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, p: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrsymrcmHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, p) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpXcsrsymrcmHost"),
@@ -17102,7 +16343,7 @@ pub unsafe extern "C" fn cusolverSpXcsrsymrcmHost(handle: cusolverSpHandle_t, n:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverSpXcsrsymmdqHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverSpXcsrsymmdqHost(handle: cusolverSpHandle_t, n: ::core::ffi::c_int, nnzA: ::core::ffi::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, p: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrsymmdqHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, p) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpXcsrsymmdqHost"),
@@ -17110,7 +16351,7 @@ pub unsafe extern "C" fn cusolverSpXcsrsymmdqHost(handle: cusolverSpHandle_t, n:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverSpXcsrsymamdHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverSpXcsrsymamdHost(handle: cusolverSpHandle_t, n: ::core::ffi::c_int, nnzA: ::core::ffi::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, p: *mut ::core::ffi::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrsymamdHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, p) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpXcsrsymamdHost"),
@@ -17120,13 +16361,13 @@ pub unsafe extern "C" fn cusolverSpXcsrsymamdHost(handle: cusolverSpHandle_t, n:
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpXcsrmetisndHost(
     handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     options: *const i64,
-    p: *mut ::std::os::raw::c_int,
+    p: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrmetisndHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, options, p) },
@@ -17140,14 +16381,14 @@ pub unsafe extern "C" fn cusolverSpXcsrmetisndHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsrzfdHost(
     handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f32,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
-    P: *mut ::std::os::raw::c_int,
-    numnz: *mut ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
+    P: *mut ::core::ffi::c_int,
+    numnz: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrzfdHost {
         Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
@@ -17158,14 +16399,14 @@ pub unsafe extern "C" fn cusolverSpScsrzfdHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsrzfdHost(
     handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f64,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
-    P: *mut ::std::os::raw::c_int,
-    numnz: *mut ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
+    P: *mut ::core::ffi::c_int,
+    numnz: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrzfdHost {
         Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
@@ -17176,14 +16417,14 @@ pub unsafe extern "C" fn cusolverSpDcsrzfdHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsrzfdHost(
     handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
-    P: *mut ::std::os::raw::c_int,
-    numnz: *mut ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
+    P: *mut ::core::ffi::c_int,
+    numnz: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrzfdHost {
         Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
@@ -17194,14 +16435,14 @@ pub unsafe extern "C" fn cusolverSpCcsrzfdHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsrzfdHost(
     handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuDoubleComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
-    P: *mut ::std::os::raw::c_int,
-    numnz: *mut ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
+    P: *mut ::core::ffi::c_int,
+    numnz: *mut ::core::ffi::c_int,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrzfdHost {
         Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
@@ -17212,14 +16453,14 @@ pub unsafe extern "C" fn cusolverSpZcsrzfdHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpXcsrperm_bufferSizeHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
-    p: *const ::std::os::raw::c_int,
-    q: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
+    p: *const ::core::ffi::c_int,
+    q: *const ::core::ffi::c_int,
     bufferSizeInBytes: *mut usize,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrperm_bufferSizeHost {
@@ -17234,16 +16475,16 @@ pub unsafe extern "C" fn cusolverSpXcsrperm_bufferSizeHost(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpXcsrpermHost(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    csrRowPtrA: *mut ::std::os::raw::c_int,
-    csrColIndA: *mut ::std::os::raw::c_int,
-    p: *const ::std::os::raw::c_int,
-    q: *const ::std::os::raw::c_int,
-    map: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrRowPtrA: *mut ::core::ffi::c_int,
+    csrColIndA: *mut ::core::ffi::c_int,
+    p: *const ::core::ffi::c_int,
+    q: *const ::core::ffi::c_int,
+    map: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrpermHost {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrRowPtrA, csrColIndA, p, q, map, pBuffer) },
@@ -17276,12 +16517,12 @@ pub unsafe extern "C" fn cusolverSpDestroyCsrqrInfo(info: csrqrInfo_t) -> cusolv
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpXcsrqrAnalysisBatched(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     info: csrqrInfo_t,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrqrAnalysisBatched {
@@ -17296,14 +16537,14 @@ pub unsafe extern "C" fn cusolverSpXcsrqrAnalysisBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsrqrBufferInfoBatched(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const f32,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
     info: csrqrInfo_t,
     internalDataInBytes: *mut usize,
     workspaceInBytes: *mut usize,
@@ -17320,14 +16561,14 @@ pub unsafe extern "C" fn cusolverSpScsrqrBufferInfoBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsrqrBufferInfoBatched(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const f64,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
     info: csrqrInfo_t,
     internalDataInBytes: *mut usize,
     workspaceInBytes: *mut usize,
@@ -17344,14 +16585,14 @@ pub unsafe extern "C" fn cusolverSpDcsrqrBufferInfoBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsrqrBufferInfoBatched(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const cuComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
     info: csrqrInfo_t,
     internalDataInBytes: *mut usize,
     workspaceInBytes: *mut usize,
@@ -17368,14 +16609,14 @@ pub unsafe extern "C" fn cusolverSpCcsrqrBufferInfoBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsrqrBufferInfoBatched(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *const cuDoubleComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
     info: csrqrInfo_t,
     internalDataInBytes: *mut usize,
     workspaceInBytes: *mut usize,
@@ -17392,18 +16633,18 @@ pub unsafe extern "C" fn cusolverSpZcsrqrBufferInfoBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpScsrqrsvBatched(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f32,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const f32,
     x: *mut f32,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
     info: csrqrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrqrsvBatched {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer) },
@@ -17417,18 +16658,18 @@ pub unsafe extern "C" fn cusolverSpScsrqrsvBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDcsrqrsvBatched(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const f64,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const f64,
     x: *mut f64,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
     info: csrqrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrqrsvBatched {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer) },
@@ -17442,18 +16683,18 @@ pub unsafe extern "C" fn cusolverSpDcsrqrsvBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCcsrqrsvBatched(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const cuComplex,
     x: *mut cuComplex,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
     info: csrqrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrqrsvBatched {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer) },
@@ -17467,18 +16708,18 @@ pub unsafe extern "C" fn cusolverSpCcsrqrsvBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpZcsrqrsvBatched(
     handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrValA: *const cuDoubleComplex,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *const ::core::ffi::c_int,
     b: *const cuDoubleComplex,
     x: *mut cuDoubleComplex,
-    batchSize: ::std::os::raw::c_int,
+    batchSize: ::core::ffi::c_int,
     info: csrqrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrqrsvBatched {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer) },

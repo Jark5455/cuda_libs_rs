@@ -156,7 +156,7 @@ pub struct cublasContext {
     _unused: [u8; 0],
 }
 pub type cublasHandle_t = *mut cublasContext;
-pub type cublasLogCallback = ::std::option::Option<unsafe extern "C" fn(msg: *const ::std::os::raw::c_char)>;
+pub type cublasLogCallback = ::core::option::Option<unsafe extern "C" fn(msg: *const ::core::ffi::c_char)>;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cublasCreate_v2(handle: *mut cublasHandle_t) -> cublasStatus_t;
@@ -167,11 +167,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetVersion_v2(handle: cublasHandle_t, version: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasGetVersion_v2(handle: cublasHandle_t, version: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasGetProperty(type_: libraryPropertyType, value: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -179,7 +179,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetWorkspace_v2(handle: cublasHandle_t, workspace: *mut ::std::os::raw::c_void, workspaceSizeInBytes: usize) -> cublasStatus_t;
+    pub fn cublasSetWorkspace_v2(handle: cublasHandle_t, workspace: *mut ::core::ffi::c_void, workspaceSizeInBytes: usize) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -215,11 +215,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetSmCountTarget(handle: cublasHandle_t, smCountTarget: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasGetSmCountTarget(handle: cublasHandle_t, smCountTarget: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetSmCountTarget(handle: cublasHandle_t, smCountTarget: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSetSmCountTarget(handle: cublasHandle_t, smCountTarget: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -247,39 +247,39 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasGetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasGetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t, mantissaBitCount: *mut *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasGetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t, mantissaBitCount: *mut *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t, mantissaBitCount: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t, mantissaBitCount: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetStatusName(status: cublasStatus_t) -> *const ::std::os::raw::c_char;
+    pub fn cublasGetStatusName(status: cublasStatus_t) -> *const ::core::ffi::c_char;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetStatusString(status: cublasStatus_t) -> *const ::std::os::raw::c_char;
+    pub fn cublasGetStatusString(status: cublasStatus_t) -> *const ::core::ffi::c_char;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasLoggerConfigure(logIsOn: ::std::os::raw::c_int, logToStdOut: ::std::os::raw::c_int, logToStdErr: ::std::os::raw::c_int, logFileName: *const ::std::os::raw::c_char) -> cublasStatus_t;
+    pub fn cublasLoggerConfigure(logIsOn: ::core::ffi::c_int, logToStdOut: ::core::ffi::c_int, logToStdErr: ::core::ffi::c_int, logFileName: *const ::core::ffi::c_char) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -291,83 +291,83 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetVector(n: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, incx: ::std::os::raw::c_int, devicePtr: *mut ::std::os::raw::c_void, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSetVector(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, x: *const ::core::ffi::c_void, incx: ::core::ffi::c_int, devicePtr: *mut ::core::ffi::c_void, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetVector_64(n: i64, elemSize: i64, x: *const ::std::os::raw::c_void, incx: i64, devicePtr: *mut ::std::os::raw::c_void, incy: i64) -> cublasStatus_t;
+    pub fn cublasSetVector_64(n: i64, elemSize: i64, x: *const ::core::ffi::c_void, incx: i64, devicePtr: *mut ::core::ffi::c_void, incy: i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetVector(n: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, incx: ::std::os::raw::c_int, y: *mut ::std::os::raw::c_void, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasGetVector(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, x: *const ::core::ffi::c_void, incx: ::core::ffi::c_int, y: *mut ::core::ffi::c_void, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetVector_64(n: i64, elemSize: i64, x: *const ::std::os::raw::c_void, incx: i64, y: *mut ::std::os::raw::c_void, incy: i64) -> cublasStatus_t;
+    pub fn cublasGetVector_64(n: i64, elemSize: i64, x: *const ::core::ffi::c_void, incx: i64, y: *mut ::core::ffi::c_void, incy: i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetMatrix(rows: ::std::os::raw::c_int, cols: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, A: *const ::std::os::raw::c_void, lda: ::std::os::raw::c_int, B: *mut ::std::os::raw::c_void, ldb: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSetMatrix(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: *const ::core::ffi::c_void, lda: ::core::ffi::c_int, B: *mut ::core::ffi::c_void, ldb: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetMatrix_64(rows: i64, cols: i64, elemSize: i64, A: *const ::std::os::raw::c_void, lda: i64, B: *mut ::std::os::raw::c_void, ldb: i64) -> cublasStatus_t;
+    pub fn cublasSetMatrix_64(rows: i64, cols: i64, elemSize: i64, A: *const ::core::ffi::c_void, lda: i64, B: *mut ::core::ffi::c_void, ldb: i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetMatrix(rows: ::std::os::raw::c_int, cols: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, A: *const ::std::os::raw::c_void, lda: ::std::os::raw::c_int, B: *mut ::std::os::raw::c_void, ldb: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasGetMatrix(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: *const ::core::ffi::c_void, lda: ::core::ffi::c_int, B: *mut ::core::ffi::c_void, ldb: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetMatrix_64(rows: i64, cols: i64, elemSize: i64, A: *const ::std::os::raw::c_void, lda: i64, B: *mut ::std::os::raw::c_void, ldb: i64) -> cublasStatus_t;
+    pub fn cublasGetMatrix_64(rows: i64, cols: i64, elemSize: i64, A: *const ::core::ffi::c_void, lda: i64, B: *mut ::core::ffi::c_void, ldb: i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetVectorAsync(n: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, hostPtr: *const ::std::os::raw::c_void, incx: ::std::os::raw::c_int, devicePtr: *mut ::std::os::raw::c_void, incy: ::std::os::raw::c_int, stream: cudaStream_t) -> cublasStatus_t;
+    pub fn cublasSetVectorAsync(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, hostPtr: *const ::core::ffi::c_void, incx: ::core::ffi::c_int, devicePtr: *mut ::core::ffi::c_void, incy: ::core::ffi::c_int, stream: cudaStream_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetVectorAsync_64(n: i64, elemSize: i64, hostPtr: *const ::std::os::raw::c_void, incx: i64, devicePtr: *mut ::std::os::raw::c_void, incy: i64, stream: cudaStream_t) -> cublasStatus_t;
+    pub fn cublasSetVectorAsync_64(n: i64, elemSize: i64, hostPtr: *const ::core::ffi::c_void, incx: i64, devicePtr: *mut ::core::ffi::c_void, incy: i64, stream: cudaStream_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetVectorAsync(n: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, devicePtr: *const ::std::os::raw::c_void, incx: ::std::os::raw::c_int, hostPtr: *mut ::std::os::raw::c_void, incy: ::std::os::raw::c_int, stream: cudaStream_t) -> cublasStatus_t;
+    pub fn cublasGetVectorAsync(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, devicePtr: *const ::core::ffi::c_void, incx: ::core::ffi::c_int, hostPtr: *mut ::core::ffi::c_void, incy: ::core::ffi::c_int, stream: cudaStream_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetVectorAsync_64(n: i64, elemSize: i64, devicePtr: *const ::std::os::raw::c_void, incx: i64, hostPtr: *mut ::std::os::raw::c_void, incy: i64, stream: cudaStream_t) -> cublasStatus_t;
+    pub fn cublasGetVectorAsync_64(n: i64, elemSize: i64, devicePtr: *const ::core::ffi::c_void, incx: i64, hostPtr: *mut ::core::ffi::c_void, incy: i64, stream: cudaStream_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetMatrixAsync(rows: ::std::os::raw::c_int, cols: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, A: *const ::std::os::raw::c_void, lda: ::std::os::raw::c_int, B: *mut ::std::os::raw::c_void, ldb: ::std::os::raw::c_int, stream: cudaStream_t) -> cublasStatus_t;
+    pub fn cublasSetMatrixAsync(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: *const ::core::ffi::c_void, lda: ::core::ffi::c_int, B: *mut ::core::ffi::c_void, ldb: ::core::ffi::c_int, stream: cudaStream_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetMatrixAsync_64(rows: i64, cols: i64, elemSize: i64, A: *const ::std::os::raw::c_void, lda: i64, B: *mut ::std::os::raw::c_void, ldb: i64, stream: cudaStream_t) -> cublasStatus_t;
+    pub fn cublasSetMatrixAsync_64(rows: i64, cols: i64, elemSize: i64, A: *const ::core::ffi::c_void, lda: i64, B: *mut ::core::ffi::c_void, ldb: i64, stream: cudaStream_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetMatrixAsync(rows: ::std::os::raw::c_int, cols: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, A: *const ::std::os::raw::c_void, lda: ::std::os::raw::c_int, B: *mut ::std::os::raw::c_void, ldb: ::std::os::raw::c_int, stream: cudaStream_t) -> cublasStatus_t;
+    pub fn cublasGetMatrixAsync(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: *const ::core::ffi::c_void, lda: ::core::ffi::c_int, B: *mut ::core::ffi::c_void, ldb: ::core::ffi::c_int, stream: cudaStream_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetMatrixAsync_64(rows: i64, cols: i64, elemSize: i64, A: *const ::std::os::raw::c_void, lda: i64, B: *mut ::std::os::raw::c_void, ldb: i64, stream: cudaStream_t) -> cublasStatus_t;
+    pub fn cublasGetMatrixAsync_64(rows: i64, cols: i64, elemSize: i64, A: *const ::core::ffi::c_void, lda: i64, B: *mut ::core::ffi::c_void, ldb: i64, stream: cudaStream_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasXerbla(srName: *const ::std::os::raw::c_char, info: ::std::os::raw::c_int);
+    pub fn cublasXerbla(srName: *const ::core::ffi::c_char, info: ::core::ffi::c_int);
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasNrm2Ex(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t;
+    pub fn cublasNrm2Ex(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasNrm2Ex_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, result: *mut ::std::os::raw::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t;
+    pub fn cublasNrm2Ex_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSnrm2_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t;
+    pub fn cublasSnrm2_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -375,7 +375,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDnrm2_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t;
+    pub fn cublasDnrm2_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -383,7 +383,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasScnrm2_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t;
+    pub fn cublasScnrm2_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -391,7 +391,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDznrm2_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t;
+    pub fn cublasDznrm2_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -401,58 +401,45 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cublasDotEx(
         handle: cublasHandle_t,
-        n: ::std::os::raw::c_int,
-        x: *const ::std::os::raw::c_void,
+        n: ::core::ffi::c_int,
+        x: *const ::core::ffi::c_void,
         xType: cudaDataType,
-        incx: ::std::os::raw::c_int,
-        y: *const ::std::os::raw::c_void,
+        incx: ::core::ffi::c_int,
+        y: *const ::core::ffi::c_void,
         yType: cudaDataType,
-        incy: ::std::os::raw::c_int,
-        result: *mut ::std::os::raw::c_void,
+        incy: ::core::ffi::c_int,
+        result: *mut ::core::ffi::c_void,
         resultType: cudaDataType,
         executionType: cudaDataType,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDotEx_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, y: *const ::std::os::raw::c_void, yType: cudaDataType, incy: i64, result: *mut ::std::os::raw::c_void, resultType: cudaDataType, executionType: cudaDataType)
-    -> cublasStatus_t;
+    pub fn cublasDotEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, y: *const ::core::ffi::c_void, yType: cudaDataType, incy: i64, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cublasDotcEx(
         handle: cublasHandle_t,
-        n: ::std::os::raw::c_int,
-        x: *const ::std::os::raw::c_void,
+        n: ::core::ffi::c_int,
+        x: *const ::core::ffi::c_void,
         xType: cudaDataType,
-        incx: ::std::os::raw::c_int,
-        y: *const ::std::os::raw::c_void,
+        incx: ::core::ffi::c_int,
+        y: *const ::core::ffi::c_void,
         yType: cudaDataType,
-        incy: ::std::os::raw::c_int,
-        result: *mut ::std::os::raw::c_void,
+        incy: ::core::ffi::c_int,
+        result: *mut ::core::ffi::c_void,
         resultType: cudaDataType,
         executionType: cudaDataType,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDotcEx_64(
-        handle: cublasHandle_t,
-        n: i64,
-        x: *const ::std::os::raw::c_void,
-        xType: cudaDataType,
-        incx: i64,
-        y: *const ::std::os::raw::c_void,
-        yType: cudaDataType,
-        incy: i64,
-        result: *mut ::std::os::raw::c_void,
-        resultType: cudaDataType,
-        executionType: cudaDataType,
-    ) -> cublasStatus_t;
+    pub fn cublasDotcEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, y: *const ::core::ffi::c_void, yType: cudaDataType, incy: i64, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSdot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, y: *const f32, incy: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t;
+    pub fn cublasSdot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, y: *const f32, incy: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -460,7 +447,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDdot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, y: *const f64, incy: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t;
+    pub fn cublasDdot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, y: *const f64, incy: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -468,7 +455,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCdotu_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, result: *mut cuComplex) -> cublasStatus_t;
+    pub fn cublasCdotu_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, result: *mut cuComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -476,7 +463,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCdotc_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, result: *mut cuComplex) -> cublasStatus_t;
+    pub fn cublasCdotc_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, result: *mut cuComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -484,7 +471,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZdotu_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, y: *const cuDoubleComplex, incy: ::std::os::raw::c_int, result: *mut cuDoubleComplex) -> cublasStatus_t;
+    pub fn cublasZdotu_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *const cuDoubleComplex, incy: ::core::ffi::c_int, result: *mut cuDoubleComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -492,7 +479,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZdotc_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, y: *const cuDoubleComplex, incy: ::std::os::raw::c_int, result: *mut cuDoubleComplex) -> cublasStatus_t;
+    pub fn cublasZdotc_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *const cuDoubleComplex, incy: ::core::ffi::c_int, result: *mut cuDoubleComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -500,15 +487,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasScalEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const ::std::os::raw::c_void, alphaType: cudaDataType, x: *mut ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, executionType: cudaDataType) -> cublasStatus_t;
+    pub fn cublasScalEx(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const ::core::ffi::c_void, alphaType: cudaDataType, x: *mut ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, executionType: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasScalEx_64(handle: cublasHandle_t, n: i64, alpha: *const ::std::os::raw::c_void, alphaType: cudaDataType, x: *mut ::std::os::raw::c_void, xType: cudaDataType, incx: i64, executionType: cudaDataType) -> cublasStatus_t;
+    pub fn cublasScalEx_64(handle: cublasHandle_t, n: i64, alpha: *const ::core::ffi::c_void, alphaType: cudaDataType, x: *mut ::core::ffi::c_void, xType: cudaDataType, incx: i64, executionType: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f32, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -516,7 +503,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f64, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -524,7 +511,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -532,7 +519,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCsscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCsscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f32, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -540,7 +527,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -548,7 +535,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZdscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZdscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f64, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -558,25 +545,25 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cublasAxpyEx(
         handle: cublasHandle_t,
-        n: ::std::os::raw::c_int,
-        alpha: *const ::std::os::raw::c_void,
+        n: ::core::ffi::c_int,
+        alpha: *const ::core::ffi::c_void,
         alphaType: cudaDataType,
-        x: *const ::std::os::raw::c_void,
+        x: *const ::core::ffi::c_void,
         xType: cudaDataType,
-        incx: ::std::os::raw::c_int,
-        y: *mut ::std::os::raw::c_void,
+        incx: ::core::ffi::c_int,
+        y: *mut ::core::ffi::c_void,
         yType: cudaDataType,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
         executiontype: cudaDataType,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasAxpyEx_64(handle: cublasHandle_t, n: i64, alpha: *const ::std::os::raw::c_void, alphaType: cudaDataType, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: i64, executiontype: cudaDataType) -> cublasStatus_t;
+    pub fn cublasAxpyEx_64(handle: cublasHandle_t, n: i64, alpha: *const ::core::ffi::c_void, alphaType: cudaDataType, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: i64, executiontype: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSaxpy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSaxpy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -584,7 +571,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDaxpy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDaxpy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -592,7 +579,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCaxpy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCaxpy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -600,7 +587,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZaxpy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZaxpy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -608,15 +595,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCopyEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCopyEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCopyEx_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: i64) -> cublasStatus_t;
+    pub fn cublasCopyEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasScopy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasScopy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -624,7 +611,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDcopy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDcopy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -632,7 +619,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCcopy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCcopy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -640,7 +627,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZcopy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZcopy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -648,7 +635,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSswap_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSswap_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -656,7 +643,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDswap_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDswap_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -664,7 +651,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCswap_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCswap_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -672,7 +659,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZswap_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZswap_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -680,15 +667,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSwapEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSwapEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSwapEx_64(handle: cublasHandle_t, n: i64, x: *mut ::std::os::raw::c_void, xType: cudaDataType, incx: i64, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: i64) -> cublasStatus_t;
+    pub fn cublasSwapEx_64(handle: cublasHandle_t, n: i64, x: *mut ::core::ffi::c_void, xType: cudaDataType, incx: i64, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIsamax_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIsamax_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -696,7 +683,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIdamax_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIdamax_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -704,7 +691,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIcamax_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIcamax_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -712,7 +699,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIzamax_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIzamax_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -720,15 +707,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIamaxEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIamaxEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIamaxEx_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, result: *mut i64) -> cublasStatus_t;
+    pub fn cublasIamaxEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, result: *mut i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIsamin_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIsamin_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -736,7 +723,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIdamin_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIdamin_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -744,7 +731,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIcamin_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIcamin_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -752,7 +739,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIzamin_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIzamin_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -760,23 +747,23 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIaminEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasIaminEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasIaminEx_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, result: *mut i64) -> cublasStatus_t;
+    pub fn cublasIaminEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, result: *mut i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasAsumEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_void, resultType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t;
+    pub fn cublasAsumEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasAsumEx_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, result: *mut ::std::os::raw::c_void, resultType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t;
+    pub fn cublasAsumEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSasum_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t;
+    pub fn cublasSasum_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -784,7 +771,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDasum_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t;
+    pub fn cublasDasum_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -792,7 +779,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasScasum_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t;
+    pub fn cublasScasum_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -800,7 +787,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDzasum_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t;
+    pub fn cublasDzasum_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -808,7 +795,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int, c: *const f32, s: *const f32) -> cublasStatus_t;
+    pub fn cublasSrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int, c: *const f32, s: *const f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -816,7 +803,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int, c: *const f64, s: *const f64) -> cublasStatus_t;
+    pub fn cublasDrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int, c: *const f64, s: *const f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -824,7 +811,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int, c: *const f32, s: *const cuComplex) -> cublasStatus_t;
+    pub fn cublasCrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int, c: *const f32, s: *const cuComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -832,7 +819,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCsrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int, c: *const f32, s: *const f32) -> cublasStatus_t;
+    pub fn cublasCsrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int, c: *const f32, s: *const f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -840,7 +827,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int, c: *const f64, s: *const cuDoubleComplex) -> cublasStatus_t;
+    pub fn cublasZrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int, c: *const f64, s: *const cuDoubleComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -848,7 +835,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZdrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int, c: *const f64, s: *const f64) -> cublasStatus_t;
+    pub fn cublasZdrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int, c: *const f64, s: *const f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -858,15 +845,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cublasRotEx(
         handle: cublasHandle_t,
-        n: ::std::os::raw::c_int,
-        x: *mut ::std::os::raw::c_void,
+        n: ::core::ffi::c_int,
+        x: *mut ::core::ffi::c_void,
         xType: cudaDataType,
-        incx: ::std::os::raw::c_int,
-        y: *mut ::std::os::raw::c_void,
+        incx: ::core::ffi::c_int,
+        y: *mut ::core::ffi::c_void,
         yType: cudaDataType,
-        incy: ::std::os::raw::c_int,
-        c: *const ::std::os::raw::c_void,
-        s: *const ::std::os::raw::c_void,
+        incy: ::core::ffi::c_int,
+        c: *const ::core::ffi::c_void,
+        s: *const ::core::ffi::c_void,
         csType: cudaDataType,
         executiontype: cudaDataType,
     ) -> cublasStatus_t;
@@ -876,14 +863,14 @@ unsafe extern "C" {
     pub fn cublasRotEx_64(
         handle: cublasHandle_t,
         n: i64,
-        x: *mut ::std::os::raw::c_void,
+        x: *mut ::core::ffi::c_void,
         xType: cudaDataType,
         incx: i64,
-        y: *mut ::std::os::raw::c_void,
+        y: *mut ::core::ffi::c_void,
         yType: cudaDataType,
         incy: i64,
-        c: *const ::std::os::raw::c_void,
-        s: *const ::std::os::raw::c_void,
+        c: *const ::core::ffi::c_void,
+        s: *const ::core::ffi::c_void,
         csType: cudaDataType,
         executiontype: cudaDataType,
     ) -> cublasStatus_t;
@@ -906,11 +893,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasRotgEx(handle: cublasHandle_t, a: *mut ::std::os::raw::c_void, b: *mut ::std::os::raw::c_void, abType: cudaDataType, c: *mut ::std::os::raw::c_void, s: *mut ::std::os::raw::c_void, csType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t;
+    pub fn cublasRotgEx(handle: cublasHandle_t, a: *mut ::core::ffi::c_void, b: *mut ::core::ffi::c_void, abType: cudaDataType, c: *mut ::core::ffi::c_void, s: *mut ::core::ffi::c_void, csType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSrotm_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int, param: *const f32) -> cublasStatus_t;
+    pub fn cublasSrotm_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int, param: *const f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -918,7 +905,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDrotm_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int, param: *const f64) -> cublasStatus_t;
+    pub fn cublasDrotm_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int, param: *const f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -928,21 +915,21 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cublasRotmEx(
         handle: cublasHandle_t,
-        n: ::std::os::raw::c_int,
-        x: *mut ::std::os::raw::c_void,
+        n: ::core::ffi::c_int,
+        x: *mut ::core::ffi::c_void,
         xType: cudaDataType,
-        incx: ::std::os::raw::c_int,
-        y: *mut ::std::os::raw::c_void,
+        incx: ::core::ffi::c_int,
+        y: *mut ::core::ffi::c_void,
         yType: cudaDataType,
-        incy: ::std::os::raw::c_int,
-        param: *const ::std::os::raw::c_void,
+        incy: ::core::ffi::c_int,
+        param: *const ::core::ffi::c_void,
         paramType: cudaDataType,
         executiontype: cudaDataType,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasRotmEx_64(handle: cublasHandle_t, n: i64, x: *mut ::std::os::raw::c_void, xType: cudaDataType, incx: i64, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: i64, param: *const ::std::os::raw::c_void, paramType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t;
+    pub fn cublasRotmEx_64(handle: cublasHandle_t, n: i64, x: *mut ::core::ffi::c_void, xType: cudaDataType, incx: i64, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: i64, param: *const ::core::ffi::c_void, paramType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -956,35 +943,22 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cublasRotmgEx(
         handle: cublasHandle_t,
-        d1: *mut ::std::os::raw::c_void,
+        d1: *mut ::core::ffi::c_void,
         d1Type: cudaDataType,
-        d2: *mut ::std::os::raw::c_void,
+        d2: *mut ::core::ffi::c_void,
         d2Type: cudaDataType,
-        x1: *mut ::std::os::raw::c_void,
+        x1: *mut ::core::ffi::c_void,
         x1Type: cudaDataType,
-        y1: *const ::std::os::raw::c_void,
+        y1: *const ::core::ffi::c_void,
         y1Type: cudaDataType,
-        param: *mut ::std::os::raw::c_void,
+        param: *mut ::core::ffi::c_void,
         paramType: cudaDataType,
         executiontype: cudaDataType,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSgemv_v2(
-        handle: cublasHandle_t,
-        trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        alpha: *const f32,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        x: *const f32,
-        incx: ::std::os::raw::c_int,
-        beta: *const f32,
-        y: *mut f32,
-        incy: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasSgemv_v2(handle: cublasHandle_t, trans: cublasOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const f32, A: *const f32, lda: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, beta: *const f32, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -992,20 +966,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDgemv_v2(
-        handle: cublasHandle_t,
-        trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        alpha: *const f64,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        x: *const f64,
-        incx: ::std::os::raw::c_int,
-        beta: *const f64,
-        y: *mut f64,
-        incy: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasDgemv_v2(handle: cublasHandle_t, trans: cublasOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const f64, A: *const f64, lda: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, beta: *const f64, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1016,16 +977,16 @@ unsafe extern "C" {
     pub fn cublasCgemv_v2(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuComplex,
         y: *mut cuComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1037,16 +998,16 @@ unsafe extern "C" {
     pub fn cublasZgemv_v2(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1058,18 +1019,18 @@ unsafe extern "C" {
     pub fn cublasSgbmv_v2(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        kl: ::std::os::raw::c_int,
-        ku: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        kl: ::core::ffi::c_int,
+        ku: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const f32,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const f32,
         y: *mut f32,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1081,18 +1042,18 @@ unsafe extern "C" {
     pub fn cublasDgbmv_v2(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        kl: ::std::os::raw::c_int,
-        ku: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        kl: ::core::ffi::c_int,
+        ku: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const f64,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const f64,
         y: *mut f64,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1104,18 +1065,18 @@ unsafe extern "C" {
     pub fn cublasCgbmv_v2(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        kl: ::std::os::raw::c_int,
-        ku: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        kl: ::core::ffi::c_int,
+        ku: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuComplex,
         y: *mut cuComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1127,18 +1088,18 @@ unsafe extern "C" {
     pub fn cublasZgbmv_v2(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        kl: ::std::os::raw::c_int,
-        ku: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        kl: ::core::ffi::c_int,
+        ku: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1162,7 +1123,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasStrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasStrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1170,7 +1131,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1178,7 +1139,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1186,7 +1147,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1194,7 +1155,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasStbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasStbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1202,7 +1163,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDtbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDtbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1210,7 +1171,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCtbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCtbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1218,18 +1179,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZtbmv_v2(
-        handle: cublasHandle_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        x: *mut cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasZtbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1237,7 +1187,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasStpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const f32, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasStpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const f32, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1245,7 +1195,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const f64, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const f64, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1253,7 +1203,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const cuComplex, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const cuComplex, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1261,7 +1211,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1269,7 +1219,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasStrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasStrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1277,7 +1227,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1285,7 +1235,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1293,7 +1243,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1301,7 +1251,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasStpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const f32, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasStpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const f32, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1309,7 +1259,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const f64, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const f64, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1317,7 +1267,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const cuComplex, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const cuComplex, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1325,7 +1275,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1333,7 +1283,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasStbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasStbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1341,7 +1291,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDtbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDtbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1349,7 +1299,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCtbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCtbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1357,18 +1307,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZtbsv_v2(
-        handle: cublasHandle_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        x: *mut cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasZtbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1376,7 +1315,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSsymv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, A: *const f32, lda: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, beta: *const f32, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSsymv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, A: *const f32, lda: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, beta: *const f32, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1384,7 +1323,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDsymv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, A: *const f64, lda: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, beta: *const f64, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDsymv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, A: *const f64, lda: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, beta: *const f64, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1395,15 +1334,15 @@ unsafe extern "C" {
     pub fn cublasCsymv_v2(
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuComplex,
         y: *mut cuComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1415,15 +1354,15 @@ unsafe extern "C" {
     pub fn cublasZsymv_v2(
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1435,15 +1374,15 @@ unsafe extern "C" {
     pub fn cublasChemv_v2(
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuComplex,
         y: *mut cuComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1455,15 +1394,15 @@ unsafe extern "C" {
     pub fn cublasZhemv_v2(
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1472,20 +1411,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSsbmv_v2(
-        handle: cublasHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        alpha: *const f32,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        x: *const f32,
-        incx: ::std::os::raw::c_int,
-        beta: *const f32,
-        y: *mut f32,
-        incy: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasSsbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, alpha: *const f32, A: *const f32, lda: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, beta: *const f32, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1493,20 +1419,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDsbmv_v2(
-        handle: cublasHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        alpha: *const f64,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        x: *const f64,
-        incx: ::std::os::raw::c_int,
-        beta: *const f64,
-        y: *mut f64,
-        incy: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasDsbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, alpha: *const f64, A: *const f64, lda: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, beta: *const f64, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1517,16 +1430,16 @@ unsafe extern "C" {
     pub fn cublasChbmv_v2(
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuComplex,
         y: *mut cuComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1538,16 +1451,16 @@ unsafe extern "C" {
     pub fn cublasZhbmv_v2(
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1556,7 +1469,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSspmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, AP: *const f32, x: *const f32, incx: ::std::os::raw::c_int, beta: *const f32, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSspmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, AP: *const f32, x: *const f32, incx: ::core::ffi::c_int, beta: *const f32, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1564,7 +1477,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDspmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, AP: *const f64, x: *const f64, incx: ::std::os::raw::c_int, beta: *const f64, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDspmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, AP: *const f64, x: *const f64, incx: ::core::ffi::c_int, beta: *const f64, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1572,7 +1485,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasChpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, AP: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, beta: *const cuComplex, y: *mut cuComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasChpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, AP: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, beta: *const cuComplex, y: *mut cuComplex, incy: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1583,14 +1496,14 @@ unsafe extern "C" {
     pub fn cublasZhpmv_v2(
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         AP: *const cuDoubleComplex,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1599,7 +1512,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSger_v2(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, y: *const f32, incy: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSger_v2(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, y: *const f32, incy: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1607,7 +1520,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDger_v2(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, y: *const f64, incy: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDger_v2(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, y: *const f64, incy: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1615,7 +1528,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCgeru_v2(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCgeru_v2(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1623,7 +1536,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCgerc_v2(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCgerc_v2(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1633,15 +1546,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cublasZgeru_v2(
         handle: cublasHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         y: *const cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1652,15 +1565,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cublasZgerc_v2(
         handle: cublasHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         y: *const cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1669,7 +1582,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1677,7 +1590,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1685,7 +1598,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1693,7 +1606,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1701,7 +1614,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCher_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const cuComplex, incx: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCher_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const cuComplex, incx: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1709,7 +1622,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZher_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZher_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1717,7 +1630,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSspr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, AP: *mut f32) -> cublasStatus_t;
+    pub fn cublasSspr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, AP: *mut f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1725,7 +1638,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDspr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, AP: *mut f64) -> cublasStatus_t;
+    pub fn cublasDspr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, AP: *mut f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1733,7 +1646,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasChpr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const cuComplex, incx: ::std::os::raw::c_int, AP: *mut cuComplex) -> cublasStatus_t;
+    pub fn cublasChpr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const cuComplex, incx: ::core::ffi::c_int, AP: *mut cuComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1741,7 +1654,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZhpr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t;
+    pub fn cublasZhpr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1749,7 +1662,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, y: *const f32, incy: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, y: *const f32, incy: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1757,7 +1670,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, y: *const f64, incy: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, y: *const f64, incy: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1765,7 +1678,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1776,14 +1689,14 @@ unsafe extern "C" {
     pub fn cublasZsyr2_v2(
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         y: *const cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1792,7 +1705,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCher2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCher2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1803,14 +1716,14 @@ unsafe extern "C" {
     pub fn cublasZher2_v2(
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         y: *const cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
         A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1819,7 +1732,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSspr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, y: *const f32, incy: ::std::os::raw::c_int, AP: *mut f32) -> cublasStatus_t;
+    pub fn cublasSspr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, y: *const f32, incy: ::core::ffi::c_int, AP: *mut f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1827,7 +1740,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDspr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, y: *const f64, incy: ::std::os::raw::c_int, AP: *mut f64) -> cublasStatus_t;
+    pub fn cublasDspr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, y: *const f64, incy: ::core::ffi::c_int, AP: *mut f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1835,7 +1748,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasChpr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, AP: *mut cuComplex) -> cublasStatus_t;
+    pub fn cublasChpr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, AP: *mut cuComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1843,7 +1756,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZhpr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, y: *const cuDoubleComplex, incy: ::std::os::raw::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t;
+    pub fn cublasZhpr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *const cuDoubleComplex, incy: ::core::ffi::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1854,17 +1767,17 @@ unsafe extern "C" {
     pub fn cublasSgemvBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         Aarray: *const *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         xarray: *const *const f32,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const f32,
         yarray: *const *mut f32,
-        incy: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1876,17 +1789,17 @@ unsafe extern "C" {
     pub fn cublasDgemvBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         Aarray: *const *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         xarray: *const *const f64,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const f64,
         yarray: *const *mut f64,
-        incy: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1898,17 +1811,17 @@ unsafe extern "C" {
     pub fn cublasCgemvBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         Aarray: *const *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         xarray: *const *const cuComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuComplex,
         yarray: *const *mut cuComplex,
-        incy: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1934,17 +1847,17 @@ unsafe extern "C" {
     pub fn cublasZgemvBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         Aarray: *const *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         xarray: *const *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
+        incx: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         yarray: *const *mut cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1970,20 +1883,20 @@ unsafe extern "C" {
     pub fn cublasSgemvStridedBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         x: *const f32,
-        incx: ::std::os::raw::c_int,
-        stridex: ::std::os::raw::c_longlong,
+        incx: ::core::ffi::c_int,
+        stridex: ::core::ffi::c_longlong,
         beta: *const f32,
         y: *mut f32,
-        incy: ::std::os::raw::c_int,
-        stridey: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
+        stridey: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1996,14 +1909,14 @@ unsafe extern "C" {
         alpha: *const f32,
         A: *const f32,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
+        strideA: ::core::ffi::c_longlong,
         x: *const f32,
         incx: i64,
-        stridex: ::std::os::raw::c_longlong,
+        stridex: ::core::ffi::c_longlong,
         beta: *const f32,
         y: *mut f32,
         incy: i64,
-        stridey: ::std::os::raw::c_longlong,
+        stridey: ::core::ffi::c_longlong,
         batchCount: i64,
     ) -> cublasStatus_t;
 }
@@ -2012,20 +1925,20 @@ unsafe extern "C" {
     pub fn cublasDgemvStridedBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         x: *const f64,
-        incx: ::std::os::raw::c_int,
-        stridex: ::std::os::raw::c_longlong,
+        incx: ::core::ffi::c_int,
+        stridex: ::core::ffi::c_longlong,
         beta: *const f64,
         y: *mut f64,
-        incy: ::std::os::raw::c_int,
-        stridey: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
+        stridey: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2038,14 +1951,14 @@ unsafe extern "C" {
         alpha: *const f64,
         A: *const f64,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
+        strideA: ::core::ffi::c_longlong,
         x: *const f64,
         incx: i64,
-        stridex: ::std::os::raw::c_longlong,
+        stridex: ::core::ffi::c_longlong,
         beta: *const f64,
         y: *mut f64,
         incy: i64,
-        stridey: ::std::os::raw::c_longlong,
+        stridey: ::core::ffi::c_longlong,
         batchCount: i64,
     ) -> cublasStatus_t;
 }
@@ -2054,20 +1967,20 @@ unsafe extern "C" {
     pub fn cublasCgemvStridedBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         x: *const cuComplex,
-        incx: ::std::os::raw::c_int,
-        stridex: ::std::os::raw::c_longlong,
+        incx: ::core::ffi::c_int,
+        stridex: ::core::ffi::c_longlong,
         beta: *const cuComplex,
         y: *mut cuComplex,
-        incy: ::std::os::raw::c_int,
-        stridey: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
+        stridey: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2080,14 +1993,14 @@ unsafe extern "C" {
         alpha: *const cuComplex,
         A: *const cuComplex,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
+        strideA: ::core::ffi::c_longlong,
         x: *const cuComplex,
         incx: i64,
-        stridex: ::std::os::raw::c_longlong,
+        stridex: ::core::ffi::c_longlong,
         beta: *const cuComplex,
         y: *mut cuComplex,
         incy: i64,
-        stridey: ::std::os::raw::c_longlong,
+        stridey: ::core::ffi::c_longlong,
         batchCount: i64,
     ) -> cublasStatus_t;
 }
@@ -2096,20 +2009,20 @@ unsafe extern "C" {
     pub fn cublasZgemvStridedBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
-        stridex: ::std::os::raw::c_longlong,
+        incx: ::core::ffi::c_int,
+        stridex: ::core::ffi::c_longlong,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
-        incy: ::std::os::raw::c_int,
-        stridey: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        incy: ::core::ffi::c_int,
+        stridey: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2122,14 +2035,14 @@ unsafe extern "C" {
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
+        strideA: ::core::ffi::c_longlong,
         x: *const cuDoubleComplex,
         incx: i64,
-        stridex: ::std::os::raw::c_longlong,
+        stridex: ::core::ffi::c_longlong,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
         incy: i64,
-        stridey: ::std::os::raw::c_longlong,
+        stridey: ::core::ffi::c_longlong,
         batchCount: i64,
     ) -> cublasStatus_t;
 }
@@ -2139,17 +2052,17 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f32,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2162,17 +2075,17 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f64,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2185,17 +2098,17 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2208,17 +2121,17 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2231,20 +2144,20 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
-        B: *const ::std::os::raw::c_void,
+        lda: ::core::ffi::c_int,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2257,14 +2170,14 @@ unsafe extern "C" {
         n: i64,
         k: i64,
         alpha: *const cuComplex,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
         lda: i64,
-        B: *const ::std::os::raw::c_void,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
         ldb: i64,
         beta: *const cuComplex,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
         ldc: i64,
     ) -> cublasStatus_t;
@@ -2275,17 +2188,17 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2313,17 +2226,17 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2351,20 +2264,20 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f32,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
-        B: *const ::std::os::raw::c_void,
+        lda: ::core::ffi::c_int,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f32,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2377,14 +2290,14 @@ unsafe extern "C" {
         n: i64,
         k: i64,
         alpha: *const f32,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
         lda: i64,
-        B: *const ::std::os::raw::c_void,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
         ldb: i64,
         beta: *const f32,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
         ldc: i64,
     ) -> cublasStatus_t;
@@ -2395,20 +2308,20 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        alpha: *const ::std::os::raw::c_void,
-        A: *const ::std::os::raw::c_void,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
+        alpha: *const ::core::ffi::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
-        B: *const ::std::os::raw::c_void,
+        lda: ::core::ffi::c_int,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
-        ldb: ::std::os::raw::c_int,
-        beta: *const ::std::os::raw::c_void,
-        C: *mut ::std::os::raw::c_void,
+        ldb: ::core::ffi::c_int,
+        beta: *const ::core::ffi::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
         computeType: cublasComputeType_t,
         algo: cublasGemmAlgo_t,
     ) -> cublasStatus_t;
@@ -2422,15 +2335,15 @@ unsafe extern "C" {
         m: i64,
         n: i64,
         k: i64,
-        alpha: *const ::std::os::raw::c_void,
-        A: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
         lda: i64,
-        B: *const ::std::os::raw::c_void,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
         ldb: i64,
-        beta: *const ::std::os::raw::c_void,
-        C: *mut ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
         ldc: i64,
         computeType: cublasComputeType_t,
@@ -2443,20 +2356,20 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
-        B: *const ::std::os::raw::c_void,
+        lda: ::core::ffi::c_int,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2469,21 +2382,21 @@ unsafe extern "C" {
         n: i64,
         k: i64,
         alpha: *const cuComplex,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
         lda: i64,
-        B: *const ::std::os::raw::c_void,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
         ldb: i64,
         beta: *const cuComplex,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
         ldc: i64,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSsyrk_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, alpha: *const f32, A: *const f32, lda: ::std::os::raw::c_int, beta: *const f32, C: *mut f32, ldc: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSsyrk_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, alpha: *const f32, A: *const f32, lda: ::core::ffi::c_int, beta: *const f32, C: *mut f32, ldc: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2491,7 +2404,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDsyrk_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, alpha: *const f64, A: *const f64, lda: ::std::os::raw::c_int, beta: *const f64, C: *mut f64, ldc: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDsyrk_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, alpha: *const f64, A: *const f64, lda: ::core::ffi::c_int, beta: *const f64, C: *mut f64, ldc: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2503,14 +2416,14 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2523,14 +2436,14 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2543,16 +2456,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const cuComplex,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2564,11 +2477,11 @@ unsafe extern "C" {
         n: i64,
         k: i64,
         alpha: *const cuComplex,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
         lda: i64,
         beta: *const cuComplex,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
         ldc: i64,
     ) -> cublasStatus_t;
@@ -2579,16 +2492,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const cuComplex,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2600,30 +2513,18 @@ unsafe extern "C" {
         n: i64,
         k: i64,
         alpha: *const cuComplex,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
         lda: i64,
         beta: *const cuComplex,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
         ldc: i64,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCherk_v2(
-        handle: cublasHandle_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        alpha: *const f32,
-        A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        beta: *const f32,
-        C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasCherk_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, alpha: *const f32, A: *const cuComplex, lda: ::core::ffi::c_int, beta: *const f32, C: *mut cuComplex, ldc: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2635,14 +2536,14 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const f64,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2655,35 +2556,21 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f32,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const f32,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCherkEx_64(
-        handle: cublasHandle_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: *const f32,
-        A: *const ::std::os::raw::c_void,
-        Atype: cudaDataType,
-        lda: i64,
-        beta: *const f32,
-        C: *mut ::std::os::raw::c_void,
-        Ctype: cudaDataType,
-        ldc: i64,
-    ) -> cublasStatus_t;
+    pub fn cublasCherkEx_64(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, n: i64, k: i64, alpha: *const f32, A: *const ::core::ffi::c_void, Atype: cudaDataType, lda: i64, beta: *const f32, C: *mut ::core::ffi::c_void, Ctype: cudaDataType, ldc: i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2691,35 +2578,21 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f32,
-        A: *const ::std::os::raw::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const f32,
-        C: *mut ::std::os::raw::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCherk3mEx_64(
-        handle: cublasHandle_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: *const f32,
-        A: *const ::std::os::raw::c_void,
-        Atype: cudaDataType,
-        lda: i64,
-        beta: *const f32,
-        C: *mut ::std::os::raw::c_void,
-        Ctype: cudaDataType,
-        ldc: i64,
-    ) -> cublasStatus_t;
+    pub fn cublasCherk3mEx_64(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, n: i64, k: i64, alpha: *const f32, A: *const ::core::ffi::c_void, Atype: cudaDataType, lda: i64, beta: *const f32, C: *mut ::core::ffi::c_void, Ctype: cudaDataType, ldc: i64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2727,16 +2600,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f32,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2749,16 +2622,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f64,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2771,16 +2644,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2793,16 +2666,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2829,16 +2702,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f32,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2851,16 +2724,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f64,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2873,16 +2746,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f32,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2895,16 +2768,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f64,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2917,16 +2790,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2939,16 +2812,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2975,16 +2848,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f32,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2997,16 +2870,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f64,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3019,16 +2892,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f32,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3041,16 +2914,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f64,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3063,16 +2936,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3085,16 +2958,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3121,16 +2994,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3143,16 +3016,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         side: cublasSideMode_t,
         uplo: cublasFillMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3181,13 +3054,13 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3202,13 +3075,13 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3223,13 +3096,13 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3244,13 +3117,13 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3265,15 +3138,15 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3288,15 +3161,15 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3311,15 +3184,15 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3349,15 +3222,15 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3385,18 +3258,18 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f32,
         Aarray: *const *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         Barray: *const *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f32,
         Carray: *const *mut f32,
-        ldc: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3425,18 +3298,18 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f64,
         Aarray: *const *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         Barray: *const *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f64,
         Carray: *const *mut f64,
-        ldc: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3465,18 +3338,18 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         Aarray: *const *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         Barray: *const *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
         Carray: *const *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3505,18 +3378,18 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         Aarray: *const *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         Barray: *const *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
         Carray: *const *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3545,18 +3418,18 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         Aarray: *const *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         Barray: *const *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         Carray: *const *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3585,21 +3458,21 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
-        strideB: ::std::os::raw::c_longlong,
+        ldb: ::core::ffi::c_int,
+        strideB: ::core::ffi::c_longlong,
         beta: *const f32,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
-        strideC: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        strideC: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3614,14 +3487,14 @@ unsafe extern "C" {
         alpha: *const f32,
         A: *const f32,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
+        strideA: ::core::ffi::c_longlong,
         B: *const f32,
         ldb: i64,
-        strideB: ::std::os::raw::c_longlong,
+        strideB: ::core::ffi::c_longlong,
         beta: *const f32,
         C: *mut f32,
         ldc: i64,
-        strideC: ::std::os::raw::c_longlong,
+        strideC: ::core::ffi::c_longlong,
         batchCount: i64,
     ) -> cublasStatus_t;
 }
@@ -3631,21 +3504,21 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
-        strideB: ::std::os::raw::c_longlong,
+        ldb: ::core::ffi::c_int,
+        strideB: ::core::ffi::c_longlong,
         beta: *const f64,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
-        strideC: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        strideC: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3660,14 +3533,14 @@ unsafe extern "C" {
         alpha: *const f64,
         A: *const f64,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
+        strideA: ::core::ffi::c_longlong,
         B: *const f64,
         ldb: i64,
-        strideB: ::std::os::raw::c_longlong,
+        strideB: ::core::ffi::c_longlong,
         beta: *const f64,
         C: *mut f64,
         ldc: i64,
-        strideC: ::std::os::raw::c_longlong,
+        strideC: ::core::ffi::c_longlong,
         batchCount: i64,
     ) -> cublasStatus_t;
 }
@@ -3677,21 +3550,21 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
-        strideB: ::std::os::raw::c_longlong,
+        ldb: ::core::ffi::c_int,
+        strideB: ::core::ffi::c_longlong,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
-        strideC: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        strideC: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3706,14 +3579,14 @@ unsafe extern "C" {
         alpha: *const cuComplex,
         A: *const cuComplex,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
+        strideA: ::core::ffi::c_longlong,
         B: *const cuComplex,
         ldb: i64,
-        strideB: ::std::os::raw::c_longlong,
+        strideB: ::core::ffi::c_longlong,
         beta: *const cuComplex,
         C: *mut cuComplex,
         ldc: i64,
-        strideC: ::std::os::raw::c_longlong,
+        strideC: ::core::ffi::c_longlong,
         batchCount: i64,
     ) -> cublasStatus_t;
 }
@@ -3723,21 +3596,21 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
-        strideB: ::std::os::raw::c_longlong,
+        ldb: ::core::ffi::c_int,
+        strideB: ::core::ffi::c_longlong,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
-        strideC: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        strideC: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3752,14 +3625,14 @@ unsafe extern "C" {
         alpha: *const cuComplex,
         A: *const cuComplex,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
+        strideA: ::core::ffi::c_longlong,
         B: *const cuComplex,
         ldb: i64,
-        strideB: ::std::os::raw::c_longlong,
+        strideB: ::core::ffi::c_longlong,
         beta: *const cuComplex,
         C: *mut cuComplex,
         ldc: i64,
-        strideC: ::std::os::raw::c_longlong,
+        strideC: ::core::ffi::c_longlong,
         batchCount: i64,
     ) -> cublasStatus_t;
 }
@@ -3769,21 +3642,21 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
-        strideB: ::std::os::raw::c_longlong,
+        ldb: ::core::ffi::c_int,
+        strideB: ::core::ffi::c_longlong,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
-        strideC: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        strideC: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3798,14 +3671,14 @@ unsafe extern "C" {
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
+        strideA: ::core::ffi::c_longlong,
         B: *const cuDoubleComplex,
         ldb: i64,
-        strideB: ::std::os::raw::c_longlong,
+        strideB: ::core::ffi::c_longlong,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
         ldc: i64,
-        strideC: ::std::os::raw::c_longlong,
+        strideC: ::core::ffi::c_longlong,
         batchCount: i64,
     ) -> cublasStatus_t;
 }
@@ -3815,21 +3688,21 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        alpha: *const ::std::os::raw::c_void,
-        Aarray: *const *const ::std::os::raw::c_void,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
+        alpha: *const ::core::ffi::c_void,
+        Aarray: *const *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
-        Barray: *const *const ::std::os::raw::c_void,
+        lda: ::core::ffi::c_int,
+        Barray: *const *const ::core::ffi::c_void,
         Btype: cudaDataType,
-        ldb: ::std::os::raw::c_int,
-        beta: *const ::std::os::raw::c_void,
-        Carray: *const *mut ::std::os::raw::c_void,
+        ldb: ::core::ffi::c_int,
+        beta: *const ::core::ffi::c_void,
+        Carray: *const *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
         computeType: cublasComputeType_t,
         algo: cublasGemmAlgo_t,
     ) -> cublasStatus_t;
@@ -3843,15 +3716,15 @@ unsafe extern "C" {
         m: i64,
         n: i64,
         k: i64,
-        alpha: *const ::std::os::raw::c_void,
-        Aarray: *const *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
+        Aarray: *const *const ::core::ffi::c_void,
         Atype: cudaDataType,
         lda: i64,
-        Barray: *const *const ::std::os::raw::c_void,
+        Barray: *const *const ::core::ffi::c_void,
         Btype: cudaDataType,
         ldb: i64,
-        beta: *const ::std::os::raw::c_void,
-        Carray: *const *mut ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
+        Carray: *const *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
         ldc: i64,
         batchCount: i64,
@@ -3865,24 +3738,24 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        alpha: *const ::std::os::raw::c_void,
-        A: *const ::std::os::raw::c_void,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
+        alpha: *const ::core::ffi::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
-        lda: ::std::os::raw::c_int,
-        strideA: ::std::os::raw::c_longlong,
-        B: *const ::std::os::raw::c_void,
+        lda: ::core::ffi::c_int,
+        strideA: ::core::ffi::c_longlong,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
-        ldb: ::std::os::raw::c_int,
-        strideB: ::std::os::raw::c_longlong,
-        beta: *const ::std::os::raw::c_void,
-        C: *mut ::std::os::raw::c_void,
+        ldb: ::core::ffi::c_int,
+        strideB: ::core::ffi::c_longlong,
+        beta: *const ::core::ffi::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
-        ldc: ::std::os::raw::c_int,
-        strideC: ::std::os::raw::c_longlong,
-        batchCount: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        strideC: ::core::ffi::c_longlong,
+        batchCount: ::core::ffi::c_int,
         computeType: cublasComputeType_t,
         algo: cublasGemmAlgo_t,
     ) -> cublasStatus_t;
@@ -3896,20 +3769,20 @@ unsafe extern "C" {
         m: i64,
         n: i64,
         k: i64,
-        alpha: *const ::std::os::raw::c_void,
-        A: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
+        A: *const ::core::ffi::c_void,
         Atype: cudaDataType,
         lda: i64,
-        strideA: ::std::os::raw::c_longlong,
-        B: *const ::std::os::raw::c_void,
+        strideA: ::core::ffi::c_longlong,
+        B: *const ::core::ffi::c_void,
         Btype: cudaDataType,
         ldb: i64,
-        strideB: ::std::os::raw::c_longlong,
-        beta: *const ::std::os::raw::c_void,
-        C: *mut ::std::os::raw::c_void,
+        strideB: ::core::ffi::c_longlong,
+        beta: *const ::core::ffi::c_void,
+        C: *mut ::core::ffi::c_void,
         Ctype: cudaDataType,
         ldc: i64,
-        strideC: ::std::os::raw::c_longlong,
+        strideC: ::core::ffi::c_longlong,
         batchCount: i64,
         computeType: cublasComputeType_t,
         algo: cublasGemmAlgo_t,
@@ -3921,19 +3794,19 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa_array: *const cublasOperation_t,
         transb_array: *const cublasOperation_t,
-        m_array: *const ::std::os::raw::c_int,
-        n_array: *const ::std::os::raw::c_int,
-        k_array: *const ::std::os::raw::c_int,
+        m_array: *const ::core::ffi::c_int,
+        n_array: *const ::core::ffi::c_int,
+        k_array: *const ::core::ffi::c_int,
         alpha_array: *const f32,
         Aarray: *const *const f32,
-        lda_array: *const ::std::os::raw::c_int,
+        lda_array: *const ::core::ffi::c_int,
         Barray: *const *const f32,
-        ldb_array: *const ::std::os::raw::c_int,
+        ldb_array: *const ::core::ffi::c_int,
         beta_array: *const f32,
         Carray: *const *mut f32,
-        ldc_array: *const ::std::os::raw::c_int,
-        group_count: ::std::os::raw::c_int,
-        group_size: *const ::std::os::raw::c_int,
+        ldc_array: *const ::core::ffi::c_int,
+        group_count: ::core::ffi::c_int,
+        group_size: *const ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3963,19 +3836,19 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa_array: *const cublasOperation_t,
         transb_array: *const cublasOperation_t,
-        m_array: *const ::std::os::raw::c_int,
-        n_array: *const ::std::os::raw::c_int,
-        k_array: *const ::std::os::raw::c_int,
+        m_array: *const ::core::ffi::c_int,
+        n_array: *const ::core::ffi::c_int,
+        k_array: *const ::core::ffi::c_int,
         alpha_array: *const f64,
         Aarray: *const *const f64,
-        lda_array: *const ::std::os::raw::c_int,
+        lda_array: *const ::core::ffi::c_int,
         Barray: *const *const f64,
-        ldb_array: *const ::std::os::raw::c_int,
+        ldb_array: *const ::core::ffi::c_int,
         beta_array: *const f64,
         Carray: *const *mut f64,
-        ldc_array: *const ::std::os::raw::c_int,
-        group_count: ::std::os::raw::c_int,
-        group_size: *const ::std::os::raw::c_int,
+        ldc_array: *const ::core::ffi::c_int,
+        group_count: ::core::ffi::c_int,
+        group_size: *const ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4005,22 +3878,22 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa_array: *const cublasOperation_t,
         transb_array: *const cublasOperation_t,
-        m_array: *const ::std::os::raw::c_int,
-        n_array: *const ::std::os::raw::c_int,
-        k_array: *const ::std::os::raw::c_int,
-        alpha_array: *const ::std::os::raw::c_void,
-        Aarray: *const *const ::std::os::raw::c_void,
+        m_array: *const ::core::ffi::c_int,
+        n_array: *const ::core::ffi::c_int,
+        k_array: *const ::core::ffi::c_int,
+        alpha_array: *const ::core::ffi::c_void,
+        Aarray: *const *const ::core::ffi::c_void,
         Atype: cudaDataType_t,
-        lda_array: *const ::std::os::raw::c_int,
-        Barray: *const *const ::std::os::raw::c_void,
+        lda_array: *const ::core::ffi::c_int,
+        Barray: *const *const ::core::ffi::c_void,
         Btype: cudaDataType_t,
-        ldb_array: *const ::std::os::raw::c_int,
-        beta_array: *const ::std::os::raw::c_void,
-        Carray: *const *mut ::std::os::raw::c_void,
+        ldb_array: *const ::core::ffi::c_int,
+        beta_array: *const ::core::ffi::c_void,
+        Carray: *const *mut ::core::ffi::c_void,
         Ctype: cudaDataType_t,
-        ldc_array: *const ::std::os::raw::c_int,
-        group_count: ::std::os::raw::c_int,
-        group_size: *const ::std::os::raw::c_int,
+        ldc_array: *const ::core::ffi::c_int,
+        group_count: ::core::ffi::c_int,
+        group_size: *const ::core::ffi::c_int,
         computeType: cublasComputeType_t,
     ) -> cublasStatus_t;
 }
@@ -4033,15 +3906,15 @@ unsafe extern "C" {
         m_array: *const i64,
         n_array: *const i64,
         k_array: *const i64,
-        alpha_array: *const ::std::os::raw::c_void,
-        Aarray: *const *const ::std::os::raw::c_void,
+        alpha_array: *const ::core::ffi::c_void,
+        Aarray: *const *const ::core::ffi::c_void,
         Atype: cudaDataType_t,
         lda_array: *const i64,
-        Barray: *const *const ::std::os::raw::c_void,
+        Barray: *const *const ::core::ffi::c_void,
         Btype: cudaDataType_t,
         ldb_array: *const i64,
-        beta_array: *const ::std::os::raw::c_void,
-        Carray: *const *mut ::std::os::raw::c_void,
+        beta_array: *const ::core::ffi::c_void,
+        Carray: *const *mut ::core::ffi::c_void,
         Ctype: cudaDataType_t,
         ldc_array: *const i64,
         group_count: i64,
@@ -4055,16 +3928,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const f32,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4077,16 +3950,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const f64,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4099,16 +3972,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const cuComplex,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4121,16 +3994,16 @@ unsafe extern "C" {
         handle: cublasHandle_t,
         transa: cublasOperation_t,
         transb: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4159,14 +4032,14 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const *mut f32,
-        ldb: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4181,14 +4054,14 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const *mut f64,
-        ldb: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4203,14 +4076,14 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const *const cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const *mut cuComplex,
-        ldb: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4239,14 +4112,14 @@ unsafe extern "C" {
         uplo: cublasFillMode_t,
         trans: cublasOperation_t,
         diag: cublasDiagType_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         B: *const *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
-        batchCount: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        batchCount: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4269,7 +4142,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, C: *mut f32, ldc: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, C: *mut f32, ldc: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -4277,7 +4150,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, C: *mut f64, ldc: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, C: *mut f64, ldc: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -4285,7 +4158,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, C: *mut cuComplex, ldc: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, C: *mut cuComplex, ldc: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -4293,18 +4166,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZdgmm(
-        handle: cublasHandle_t,
-        mode: cublasSideMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        x: *const cuDoubleComplex,
-        incx: ::std::os::raw::c_int,
-        C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasZdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, C: *mut cuDoubleComplex, ldc: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -4312,51 +4174,51 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSmatinvBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *const f32, lda: ::std::os::raw::c_int, Ainv: *const *mut f32, lda_inv: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSmatinvBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const f32, lda: ::core::ffi::c_int, Ainv: *const *mut f32, lda_inv: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDmatinvBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *const f64, lda: ::std::os::raw::c_int, Ainv: *const *mut f64, lda_inv: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDmatinvBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const f64, lda: ::core::ffi::c_int, Ainv: *const *mut f64, lda_inv: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCmatinvBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *const cuComplex, lda: ::std::os::raw::c_int, Ainv: *const *mut cuComplex, lda_inv: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCmatinvBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const cuComplex, lda: ::core::ffi::c_int, Ainv: *const *mut cuComplex, lda_inv: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZmatinvBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *const cuDoubleComplex, lda: ::std::os::raw::c_int, Ainv: *const *mut cuDoubleComplex, lda_inv: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZmatinvBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const cuDoubleComplex, lda: ::core::ffi::c_int, Ainv: *const *mut cuDoubleComplex, lda_inv: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSgeqrfBatched(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Aarray: *const *mut f32, lda: ::std::os::raw::c_int, TauArray: *const *mut f32, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSgeqrfBatched(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Aarray: *const *mut f32, lda: ::core::ffi::c_int, TauArray: *const *mut f32, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDgeqrfBatched(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Aarray: *const *mut f64, lda: ::std::os::raw::c_int, TauArray: *const *mut f64, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDgeqrfBatched(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Aarray: *const *mut f64, lda: ::core::ffi::c_int, TauArray: *const *mut f64, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCgeqrfBatched(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Aarray: *const *mut cuComplex, lda: ::std::os::raw::c_int, TauArray: *const *mut cuComplex, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCgeqrfBatched(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Aarray: *const *mut cuComplex, lda: ::core::ffi::c_int, TauArray: *const *mut cuComplex, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZgeqrfBatched(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Aarray: *const *mut cuDoubleComplex, lda: ::std::os::raw::c_int, TauArray: *const *mut cuDoubleComplex, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZgeqrfBatched(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Aarray: *const *mut cuDoubleComplex, lda: ::core::ffi::c_int, TauArray: *const *mut cuDoubleComplex, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cublasSgelsBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         Aarray: *const *mut f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         Carray: *const *mut f32,
-        ldc: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        devInfoArray: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
+        devInfoArray: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4364,16 +4226,16 @@ unsafe extern "C" {
     pub fn cublasDgelsBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         Aarray: *const *mut f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         Carray: *const *mut f64,
-        ldc: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        devInfoArray: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
+        devInfoArray: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4381,16 +4243,16 @@ unsafe extern "C" {
     pub fn cublasCgelsBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         Aarray: *const *mut cuComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         Carray: *const *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        devInfoArray: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
+        devInfoArray: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4398,100 +4260,90 @@ unsafe extern "C" {
     pub fn cublasZgelsBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         Aarray: *const *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         Carray: *const *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        devInfoArray: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
+        devInfoArray: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasStpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, AP: *const f32, A: *mut f32, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasStpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: *const f32, A: *mut f32, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, AP: *const f64, A: *mut f64, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: *const f64, A: *mut f64, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, AP: *const cuComplex, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: *const cuComplex, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, AP: *const cuDoubleComplex, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: *const cuDoubleComplex, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasStrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, AP: *mut f32) -> cublasStatus_t;
+    pub fn cublasStrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, AP: *mut f32) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, AP: *mut f64) -> cublasStatus_t;
+    pub fn cublasDtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, AP: *mut f64) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, AP: *mut cuComplex) -> cublasStatus_t;
+    pub fn cublasCtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, AP: *mut cuComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t;
+    pub fn cublasZtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSgetrfBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *mut f32, lda: ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSgetrfBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *mut f32, lda: ::core::ffi::c_int, P: *mut ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDgetrfBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *mut f64, lda: ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDgetrfBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *mut f64, lda: ::core::ffi::c_int, P: *mut ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCgetrfBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *mut cuComplex, lda: ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasCgetrfBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *mut cuComplex, lda: ::core::ffi::c_int, P: *mut ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasZgetrfBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *mut cuDoubleComplex, lda: ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasZgetrfBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *mut cuDoubleComplex, lda: ::core::ffi::c_int, P: *mut ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSgetriBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *const f32, lda: ::std::os::raw::c_int, P: *const ::std::os::raw::c_int, C: *const *mut f32, ldc: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasSgetriBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const f32, lda: ::core::ffi::c_int, P: *const ::core::ffi::c_int, C: *const *mut f32, ldc: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDgetriBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *const f64, lda: ::std::os::raw::c_int, P: *const ::std::os::raw::c_int, C: *const *mut f64, ldc: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t;
+    pub fn cublasDgetriBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const f64, lda: ::core::ffi::c_int, P: *const ::core::ffi::c_int, C: *const *mut f64, ldc: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasCgetriBatched(
-        handle: cublasHandle_t,
-        n: ::std::os::raw::c_int,
-        A: *const *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        P: *const ::std::os::raw::c_int,
-        C: *const *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasCgetriBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const cuComplex, lda: ::core::ffi::c_int, P: *const ::core::ffi::c_int, C: *const *mut cuComplex, ldc: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cublasZgetriBatched(
         handle: cublasHandle_t,
-        n: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
         A: *const *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        P: *const ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        P: *const ::core::ffi::c_int,
         C: *const *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4499,15 +4351,15 @@ unsafe extern "C" {
     pub fn cublasSgetrsBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         Aarray: *const *const f32,
-        lda: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        devIpiv: *const ::core::ffi::c_int,
         Barray: *const *mut f32,
-        ldb: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4515,15 +4367,15 @@ unsafe extern "C" {
     pub fn cublasDgetrsBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         Aarray: *const *const f64,
-        lda: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        devIpiv: *const ::core::ffi::c_int,
         Barray: *const *mut f64,
-        ldb: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4531,15 +4383,15 @@ unsafe extern "C" {
     pub fn cublasCgetrsBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         Aarray: *const *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        devIpiv: *const ::core::ffi::c_int,
         Barray: *const *mut cuComplex,
-        ldb: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4547,15 +4399,15 @@ unsafe extern "C" {
     pub fn cublasZgetrsBatched(
         handle: cublasHandle_t,
         trans: cublasOperation_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
+        n: ::core::ffi::c_int,
+        nrhs: ::core::ffi::c_int,
         Aarray: *const *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        devIpiv: *const ::core::ffi::c_int,
         Barray: *const *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
+        info: *mut ::core::ffi::c_int,
+        batchSize: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4565,30 +4417,30 @@ unsafe extern "C" {
         transa: cublasOperation_t,
         transb: cublasOperation_t,
         transc: cublasOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const ::std::os::raw::c_uchar,
-        A_bias: ::std::os::raw::c_int,
-        lda: ::std::os::raw::c_int,
-        B: *const ::std::os::raw::c_uchar,
-        B_bias: ::std::os::raw::c_int,
-        ldb: ::std::os::raw::c_int,
-        C: *mut ::std::os::raw::c_uchar,
-        C_bias: ::std::os::raw::c_int,
-        ldc: ::std::os::raw::c_int,
-        C_mult: ::std::os::raw::c_int,
-        C_shift: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        k: ::core::ffi::c_int,
+        A: *const ::core::ffi::c_uchar,
+        A_bias: ::core::ffi::c_int,
+        lda: ::core::ffi::c_int,
+        B: *const ::core::ffi::c_uchar,
+        B_bias: ::core::ffi::c_int,
+        ldb: ::core::ffi::c_int,
+        C: *mut ::core::ffi::c_uchar,
+        C_bias: ::core::ffi::c_int,
+        ldc: ::core::ffi::c_int,
+        C_mult: ::core::ffi::c_int,
+        C_shift: ::core::ffi::c_int,
     ) -> cublasStatus_t;
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
     pub cublasCreate_v2: Option<unsafe extern "C" fn(*mut cublasHandle_t) -> cublasStatus_t>,
     pub cublasDestroy_v2: Option<unsafe extern "C" fn(cublasHandle_t) -> cublasStatus_t>,
-    pub cublasGetVersion_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasGetVersion_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasGetCudartVersion: Option<unsafe extern "C" fn() -> usize>,
-    pub cublasSetWorkspace_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_void, usize) -> cublasStatus_t>,
+    pub cublasSetWorkspace_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_void, usize) -> cublasStatus_t>,
     pub cublasSetStream_v2: Option<unsafe extern "C" fn(cublasHandle_t, cudaStream_t) -> cublasStatus_t>,
     pub cublasGetStream_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut cudaStream_t) -> cublasStatus_t>,
     pub cublasGetPointerMode_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut cublasPointerMode_t) -> cublasStatus_t>,
@@ -4597,267 +4449,204 @@ pub struct DynamicBindings {
     pub cublasSetAtomicsMode: Option<unsafe extern "C" fn(cublasHandle_t, cublasAtomicsMode_t) -> cublasStatus_t>,
     pub cublasGetMathMode: Option<unsafe extern "C" fn(cublasHandle_t, *mut cublasMath_t) -> cublasStatus_t>,
     pub cublasSetMathMode: Option<unsafe extern "C" fn(cublasHandle_t, cublasMath_t) -> cublasStatus_t>,
-    pub cublasGetSmCountTarget: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSetSmCountTarget: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasGetSmCountTarget: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSetSmCountTarget: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasGetEmulationStrategy: Option<unsafe extern "C" fn(cublasHandle_t, *mut cublasEmulationStrategy_t) -> cublasStatus_t>,
     pub cublasSetEmulationStrategy: Option<unsafe extern "C" fn(cublasHandle_t, cublasEmulationStrategy_t) -> cublasStatus_t>,
     pub cublasGetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(cublasHandle_t, *mut cudaEmulationSpecialValuesSupport) -> cublasStatus_t>,
     pub cublasSetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(cublasHandle_t, cudaEmulationSpecialValuesSupport) -> cublasStatus_t>,
     pub cublasGetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(cublasHandle_t, *mut cudaEmulationMantissaControl) -> cublasStatus_t>,
     pub cublasSetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(cublasHandle_t, cudaEmulationMantissaControl) -> cublasStatus_t>,
-    pub cublasGetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasGetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasGetFixedPointEmulationMantissaBitCountPointer: Option<unsafe extern "C" fn(cublasHandle_t, *mut *mut ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSetFixedPointEmulationMantissaBitCountPointer: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasGetStatusName: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cublasGetStatusString: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cublasLoggerConfigure: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_char) -> cublasStatus_t>,
+    pub cublasGetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasGetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasGetFixedPointEmulationMantissaBitCountPointer: Option<unsafe extern "C" fn(cublasHandle_t, *mut *mut ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSetFixedPointEmulationMantissaBitCountPointer: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasGetStatusName: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::core::ffi::c_char>,
+    pub cublasGetStatusString: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::core::ffi::c_char>,
+    pub cublasLoggerConfigure: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_char) -> cublasStatus_t>,
     pub cublasSetLoggerCallback: Option<unsafe extern "C" fn(cublasLogCallback) -> cublasStatus_t>,
     pub cublasGetLoggerCallback: Option<unsafe extern "C" fn(*mut cublasLogCallback) -> cublasStatus_t>,
-    pub cublasSetVector: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSetVector_64: Option<unsafe extern "C" fn(i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64) -> cublasStatus_t>,
-    pub cublasGetVector: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasGetVector_64: Option<unsafe extern "C" fn(i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64) -> cublasStatus_t>,
-    pub cublasSetMatrix: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSetMatrix_64: Option<unsafe extern "C" fn(i64, i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64) -> cublasStatus_t>,
-    pub cublasGetMatrix: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasGetMatrix_64: Option<unsafe extern "C" fn(i64, i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64) -> cublasStatus_t>,
-    pub cublasSetVectorAsync: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cudaStream_t) -> cublasStatus_t>,
-    pub cublasSetVectorAsync_64: Option<unsafe extern "C" fn(i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64, cudaStream_t) -> cublasStatus_t>,
-    pub cublasGetVectorAsync: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cudaStream_t) -> cublasStatus_t>,
-    pub cublasGetVectorAsync_64: Option<unsafe extern "C" fn(i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64, cudaStream_t) -> cublasStatus_t>,
-    pub cublasSetMatrixAsync: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cudaStream_t) -> cublasStatus_t>,
-    pub cublasSetMatrixAsync_64: Option<unsafe extern "C" fn(i64, i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64, cudaStream_t) -> cublasStatus_t>,
-    pub cublasGetMatrixAsync: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cudaStream_t) -> cublasStatus_t>,
-    pub cublasGetMatrixAsync_64: Option<unsafe extern "C" fn(i64, i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64, cudaStream_t) -> cublasStatus_t>,
-    pub cublasXerbla: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char, ::std::os::raw::c_int)>,
-    pub cublasNrm2Ex: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasNrm2Ex_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasSnrm2_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>,
+    pub cublasSetVector: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSetVector_64: Option<unsafe extern "C" fn(i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64) -> cublasStatus_t>,
+    pub cublasGetVector: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasGetVector_64: Option<unsafe extern "C" fn(i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64) -> cublasStatus_t>,
+    pub cublasSetMatrix: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSetMatrix_64: Option<unsafe extern "C" fn(i64, i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64) -> cublasStatus_t>,
+    pub cublasGetMatrix: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasGetMatrix_64: Option<unsafe extern "C" fn(i64, i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64) -> cublasStatus_t>,
+    pub cublasSetVectorAsync: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int, cudaStream_t) -> cublasStatus_t>,
+    pub cublasSetVectorAsync_64: Option<unsafe extern "C" fn(i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64, cudaStream_t) -> cublasStatus_t>,
+    pub cublasGetVectorAsync: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int, cudaStream_t) -> cublasStatus_t>,
+    pub cublasGetVectorAsync_64: Option<unsafe extern "C" fn(i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64, cudaStream_t) -> cublasStatus_t>,
+    pub cublasSetMatrixAsync: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int, cudaStream_t) -> cublasStatus_t>,
+    pub cublasSetMatrixAsync_64: Option<unsafe extern "C" fn(i64, i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64, cudaStream_t) -> cublasStatus_t>,
+    pub cublasGetMatrixAsync: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int, cudaStream_t) -> cublasStatus_t>,
+    pub cublasGetMatrixAsync_64: Option<unsafe extern "C" fn(i64, i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64, cudaStream_t) -> cublasStatus_t>,
+    pub cublasXerbla: Option<unsafe extern "C" fn(*const ::core::ffi::c_char, ::core::ffi::c_int)>,
+    pub cublasNrm2Ex: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasNrm2Ex_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasSnrm2_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>,
     pub cublasSnrm2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f32, i64, *mut f32) -> cublasStatus_t>,
-    pub cublasDnrm2_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>,
+    pub cublasDnrm2_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>,
     pub cublasDnrm2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f64, i64, *mut f64) -> cublasStatus_t>,
-    pub cublasScnrm2_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>,
+    pub cublasScnrm2_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>,
     pub cublasScnrm2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuComplex, i64, *mut f32) -> cublasStatus_t>,
-    pub cublasDznrm2_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>,
+    pub cublasDznrm2_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>,
     pub cublasDznrm2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuDoubleComplex, i64, *mut f64) -> cublasStatus_t>,
-    pub cublasDotEx: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasDotEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasDotcEx:
-        Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasDotcEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasSdot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>,
+    pub cublasDotEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasDotEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasDotcEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasDotcEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasSdot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>,
     pub cublasSdot_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f32, i64, *const f32, i64, *mut f32) -> cublasStatus_t>,
-    pub cublasDdot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>,
+    pub cublasDdot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>,
     pub cublasDdot_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f64, i64, *const f64, i64, *mut f64) -> cublasStatus_t>,
-    pub cublasCdotu_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>,
+    pub cublasCdotu_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>,
     pub cublasCdotu_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuComplex, i64, *const cuComplex, i64, *mut cuComplex) -> cublasStatus_t>,
-    pub cublasCdotc_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>,
+    pub cublasCdotc_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>,
     pub cublasCdotc_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuComplex, i64, *const cuComplex, i64, *mut cuComplex) -> cublasStatus_t>,
-    pub cublasZdotu_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
+    pub cublasZdotu_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
     pub cublasZdotu_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex) -> cublasStatus_t>,
-    pub cublasZdotc_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
+    pub cublasZdotc_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
     pub cublasZdotc_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex) -> cublasStatus_t>,
-    pub cublasScalEx: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, cudaDataType) -> cublasStatus_t>,
-    pub cublasScalEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, i64, cudaDataType) -> cublasStatus_t>,
-    pub cublasSscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasScalEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, cudaDataType) -> cublasStatus_t>,
+    pub cublasScalEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, i64, cudaDataType) -> cublasStatus_t>,
+    pub cublasSscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSscal_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDscal_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCscal_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasCsscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCsscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCsscal_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f32, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZscal_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasZdscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZdscal_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZdscal_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasAxpyEx:
-        Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, cudaDataType) -> cublasStatus_t>,
-    pub cublasAxpyEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, cudaDataType) -> cublasStatus_t>,
-    pub cublasSaxpy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasAxpyEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, cudaDataType) -> cublasStatus_t>,
+    pub cublasAxpyEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64, cudaDataType) -> cublasStatus_t>,
+    pub cublasSaxpy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSaxpy_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f32, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDaxpy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDaxpy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDaxpy_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCaxpy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCaxpy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCaxpy_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuComplex, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZaxpy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZaxpy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZaxpy_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasCopyEx: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasCopyEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>,
-    pub cublasScopy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCopyEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasCopyEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
+    pub cublasScopy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasScopy_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDcopy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDcopy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDcopy_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCcopy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCcopy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCcopy_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZcopy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZcopy_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZcopy_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSswap_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSswap_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSswap_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDswap_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDswap_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDswap_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCswap_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCswap_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCswap_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZswap_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZswap_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZswap_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSwapEx: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSwapEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>,
-    pub cublasIsamax_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSwapEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSwapEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
+    pub cublasIsamax_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasIsamax_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f32, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasIdamax_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasIdamax_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasIdamax_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f64, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasIcamax_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasIcamax_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasIcamax_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuComplex, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasIzamax_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasIzamax_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasIzamax_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuDoubleComplex, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasIamaxEx: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasIamaxEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasIsamin_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasIamaxEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasIamaxEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut i64) -> cublasStatus_t>,
+    pub cublasIsamin_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasIsamin_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f32, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasIdamin_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasIdamin_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasIdamin_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f64, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasIcamin_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasIcamin_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasIcamin_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuComplex, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasIzamin_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasIzamin_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasIzamin_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuDoubleComplex, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasIaminEx: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasIaminEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut i64) -> cublasStatus_t>,
-    pub cublasAsumEx: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasAsumEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasSasum_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>,
+    pub cublasIaminEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasIaminEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut i64) -> cublasStatus_t>,
+    pub cublasAsumEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasAsumEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasSasum_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>,
     pub cublasSasum_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f32, i64, *mut f32) -> cublasStatus_t>,
-    pub cublasDasum_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>,
+    pub cublasDasum_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>,
     pub cublasDasum_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const f64, i64, *mut f64) -> cublasStatus_t>,
-    pub cublasScasum_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>,
+    pub cublasScasum_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>,
     pub cublasScasum_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuComplex, i64, *mut f32) -> cublasStatus_t>,
-    pub cublasDzasum_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>,
+    pub cublasDzasum_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>,
     pub cublasDzasum_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const cuDoubleComplex, i64, *mut f64) -> cublasStatus_t>,
-    pub cublasSrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32, *const f32) -> cublasStatus_t>,
+    pub cublasSrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *const f32, *const f32) -> cublasStatus_t>,
     pub cublasSrot_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut f32, i64, *mut f32, i64, *const f32, *const f32) -> cublasStatus_t>,
-    pub cublasDrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64, *const f64) -> cublasStatus_t>,
+    pub cublasDrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *const f64, *const f64) -> cublasStatus_t>,
     pub cublasDrot_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut f64, i64, *mut f64, i64, *const f64, *const f64) -> cublasStatus_t>,
-    pub cublasCrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const f32, *const cuComplex) -> cublasStatus_t>,
+    pub cublasCrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *const f32, *const cuComplex) -> cublasStatus_t>,
     pub cublasCrot_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut cuComplex, i64, *mut cuComplex, i64, *const f32, *const cuComplex) -> cublasStatus_t>,
-    pub cublasCsrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const f32, *const f32) -> cublasStatus_t>,
+    pub cublasCsrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *const f32, *const f32) -> cublasStatus_t>,
     pub cublasCsrot_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut cuComplex, i64, *mut cuComplex, i64, *const f32, *const f32) -> cublasStatus_t>,
-    pub cublasZrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const f64, *const cuDoubleComplex) -> cublasStatus_t>,
+    pub cublasZrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *const f64, *const cuDoubleComplex) -> cublasStatus_t>,
     pub cublasZrot_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut cuDoubleComplex, i64, *mut cuDoubleComplex, i64, *const f64, *const cuDoubleComplex) -> cublasStatus_t>,
-    pub cublasZdrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const f64, *const f64) -> cublasStatus_t>,
+    pub cublasZdrot_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *const f64, *const f64) -> cublasStatus_t>,
     pub cublasZdrot_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut cuDoubleComplex, i64, *mut cuDoubleComplex, i64, *const f64, *const f64) -> cublasStatus_t>,
-    pub cublasRotEx: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *const ::std::os::raw::c_void,
-            cudaDataType,
-            cudaDataType,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasRotEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasRotEx:
+        Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasRotEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
     pub cublasSrotg_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut f32, *mut f32, *mut f32, *mut f32) -> cublasStatus_t>,
     pub cublasDrotg_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut f64, *mut f64, *mut f64, *mut f64) -> cublasStatus_t>,
     pub cublasCrotg_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut cuComplex, *mut cuComplex, *mut f32, *mut cuComplex) -> cublasStatus_t>,
     pub cublasZrotg_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut f64, *mut cuDoubleComplex) -> cublasStatus_t>,
-    pub cublasRotgEx: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasSrotm_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32) -> cublasStatus_t>,
+    pub cublasRotgEx: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasSrotm_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *const f32) -> cublasStatus_t>,
     pub cublasSrotm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut f32, i64, *mut f32, i64, *const f32) -> cublasStatus_t>,
-    pub cublasDrotm_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64) -> cublasStatus_t>,
+    pub cublasDrotm_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *const f64) -> cublasStatus_t>,
     pub cublasDrotm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut f64, i64, *mut f64, i64, *const f64) -> cublasStatus_t>,
-    pub cublasRotmEx: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    pub cublasRotmEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasRotmEx: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasRotmEx_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
     pub cublasSrotmg_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut f32, *mut f32, *mut f32, *const f32, *mut f32) -> cublasStatus_t>,
     pub cublasDrotmg_v2: Option<unsafe extern "C" fn(cublasHandle_t, *mut f64, *mut f64, *mut f64, *const f64, *mut f64) -> cublasStatus_t>,
-    pub cublasRotmgEx: Option<
-        unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t,
-    >,
-    pub cublasSgemv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasRotmgEx:
+        Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, *const ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+    pub cublasSgemv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSgemv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f32, *const f32, i64, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDgemv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDgemv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDgemv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f64, *const f64, i64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCgemv_v2:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCgemv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCgemv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZgemv_v2: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuDoubleComplex,
-            *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *const cuDoubleComplex,
-            *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t,
     >,
     pub cublasZgemv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSgbmv_v2: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f32,
-            *const f32,
-            ::std::os::raw::c_int,
-            *const f32,
-            ::std::os::raw::c_int,
-            *const f32,
-            *mut f32,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasSgbmv_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSgbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, i64, i64, *const f32, *const f32, i64, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDgbmv_v2: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f64,
-            *const f64,
-            ::std::os::raw::c_int,
-            *const f64,
-            ::std::os::raw::c_int,
-            *const f64,
-            *mut f64,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasDgbmv_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDgbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, i64, i64, *const f64, *const f64, i64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
     pub cublasCgbmv_v2: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCgbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
@@ -4865,190 +4654,174 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZgbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasStrmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasStrmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasStrmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDtrmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDtrmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDtrmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCtrmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCtrmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCtrmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZtrmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZtrmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZtrmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasStbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasStbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasStbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDtbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDtbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDtbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCtbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCtbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCtbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZtbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZtbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZtbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasStpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasStpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasStpmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDtpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDtpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDtpmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCtpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCtpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCtpmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZtpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZtpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZtpmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasStrsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasStrsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasStrsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDtrsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDtrsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDtrsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCtrsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCtrsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCtrsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZtrsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZtrsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZtrsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasStpsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasStpsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasStpsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDtpsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDtpsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDtpsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCtpsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCtpsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCtpsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZtpsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZtpsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZtpsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasStbsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasStbsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasStbsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDtbsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDtbsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDtbsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCtbsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCtbsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCtbsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZtbsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZtbsv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZtbsv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSsymv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSsymv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSsymv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f32, *const f32, i64, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDsymv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDsymv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDsymv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f64, *const f64, i64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCsymv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCsymv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCsymv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZsymv_v2:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZsymv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasChemv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasChemv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasChemv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZhemv_v2:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZhemv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSsbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSsbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSsbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, i64, *const f32, *const f32, i64, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDsbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDsbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDsbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, i64, *const f64, *const f64, i64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasChbmv_v2:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasChbmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasChbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZhbmv_v2: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasFillMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuDoubleComplex,
-            *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *const cuDoubleComplex,
-            *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t,
     >,
     pub cublasZhbmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSspmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSspmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSspmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f32, *const f32, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDspmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDspmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDspmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f64, *const f64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasChpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasChpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasChpmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuComplex, *const cuComplex, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZhpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZhpmv_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZhpmv_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSger_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSger_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSger_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, i64, *const f32, *const f32, i64, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDger_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDger_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDger_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, i64, *const f64, *const f64, i64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCgeru_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCgeru_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCgeru_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasCgerc_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCgerc_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCgerc_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZgeru_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZgeru_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZgeru_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasZgerc_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZgerc_v2: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZgerc_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSsyr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSsyr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSsyr_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f32, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDsyr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDsyr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDsyr_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCsyr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCsyr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCsyr_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuComplex, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZsyr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZsyr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZsyr_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasCher_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCher_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCher_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f32, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZher_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZher_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZher_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSspr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>,
+    pub cublasSspr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>,
     pub cublasSspr_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f32, *const f32, i64, *mut f32) -> cublasStatus_t>,
-    pub cublasDspr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>,
+    pub cublasDspr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>,
     pub cublasDspr_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f64, *const f64, i64, *mut f64) -> cublasStatus_t>,
-    pub cublasChpr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>,
+    pub cublasChpr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>,
     pub cublasChpr_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f32, *const cuComplex, i64, *mut cuComplex) -> cublasStatus_t>,
-    pub cublasZhpr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
+    pub cublasZhpr_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
     pub cublasZhpr_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f64, *const cuDoubleComplex, i64, *mut cuDoubleComplex) -> cublasStatus_t>,
-    pub cublasSsyr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSsyr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSsyr2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f32, *const f32, i64, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDsyr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDsyr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDsyr2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f64, *const f64, i64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCsyr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCsyr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCsyr2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZsyr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZsyr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZsyr2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasCher2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCher2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCher2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZher2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZher2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZher2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSspr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>,
+    pub cublasSspr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>,
     pub cublasSspr2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f32, *const f32, i64, *const f32, i64, *mut f32) -> cublasStatus_t>,
-    pub cublasDspr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>,
+    pub cublasDspr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>,
     pub cublasDspr2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const f64, *const f64, i64, *const f64, i64, *mut f64) -> cublasStatus_t>,
-    pub cublasChpr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>,
+    pub cublasChpr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>,
     pub cublasChpr2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *mut cuComplex) -> cublasStatus_t>,
-    pub cublasZhpr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
+    pub cublasZhpr2_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
     pub cublasZhpr2_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex) -> cublasStatus_t>,
-    pub cublasSgemvBatched: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const *const f32, ::std::os::raw::c_int, *const *const f32, ::std::os::raw::c_int, *const f32, *const *mut f32, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasSgemvBatched:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const *const f32, ::core::ffi::c_int, *const *const f32, ::core::ffi::c_int, *const f32, *const *mut f32, ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSgemvBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f32, *const *const f32, i64, *const *const f32, i64, *const f32, *const *mut f32, i64, i64) -> cublasStatus_t>,
-    pub cublasDgemvBatched: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const *const f64, ::std::os::raw::c_int, *const *const f64, ::std::os::raw::c_int, *const f64, *const *mut f64, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasDgemvBatched:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const *const f64, ::core::ffi::c_int, *const *const f64, ::core::ffi::c_int, *const f64, *const *mut f64, ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDgemvBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f64, *const *const f64, i64, *const *const f64, i64, *const f64, *const *mut f64, i64, i64) -> cublasStatus_t>,
     pub cublasCgemvBatched: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const *mut cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCgemvBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const cuComplex, *const *const cuComplex, i64, *const *const cuComplex, i64, *const cuComplex, *const *mut cuComplex, i64, i64) -> cublasStatus_t>,
@@ -5056,17 +4829,17 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZgemvBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const cuDoubleComplex, *const *const cuDoubleComplex, i64, *const *const cuDoubleComplex, i64, *const cuDoubleComplex, *const *mut cuDoubleComplex, i64, i64) -> cublasStatus_t>,
@@ -5074,84 +4847,84 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             *const f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f32,
             *mut f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
-    pub cublasSgemvStridedBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f32, *const f32, i64, ::std::os::raw::c_longlong, *const f32, i64, ::std::os::raw::c_longlong, *const f32, *mut f32, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+    pub cublasSgemvStridedBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f32, *const f32, i64, ::core::ffi::c_longlong, *const f32, i64, ::core::ffi::c_longlong, *const f32, *mut f32, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     pub cublasDgemvStridedBatched: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *const f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f64,
             *mut f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
-    pub cublasDgemvStridedBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f64, *const f64, i64, ::std::os::raw::c_longlong, *const f64, i64, ::std::os::raw::c_longlong, *const f64, *mut f64, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+    pub cublasDgemvStridedBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f64, *const f64, i64, ::core::ffi::c_longlong, *const f64, i64, ::core::ffi::c_longlong, *const f64, *mut f64, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     pub cublasCgemvStridedBatched: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCgemvStridedBatched_64:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, ::std::os::raw::c_longlong, *const cuComplex, i64, ::std::os::raw::c_longlong, *const cuComplex, *mut cuComplex, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, ::core::ffi::c_longlong, *const cuComplex, i64, ::core::ffi::c_longlong, *const cuComplex, *mut cuComplex, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     pub cublasZgemvStridedBatched: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZgemvStridedBatched_64: Option<
@@ -5163,41 +4936,39 @@ pub struct DynamicBindings {
             *const cuDoubleComplex,
             *const cuDoubleComplex,
             i64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
             i64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
             i64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             i64,
         ) -> cublasStatus_t,
     >,
-    pub cublasSgemm_v2: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasSgemm_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSgemm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const f32, i64, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDgemm_v2: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasDgemm_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDgemm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f64, *const f64, i64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
     pub cublasCgemm_v2: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCgemm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
@@ -5206,17 +4977,17 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCgemm3m_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
@@ -5225,41 +4996,40 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
-    pub cublasCgemm3mEx_64: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *const cuComplex, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t,
-    >,
+    pub cublasCgemm3mEx_64:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
     pub cublasZgemm_v2: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZgemm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
@@ -5268,17 +5038,17 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZgemm3m_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
@@ -5287,43 +5057,43 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasSgemmEx_64:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *const f32, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>,
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const f32, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
     pub cublasGemmEx: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *const ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             cublasComputeType_t,
             cublasGemmAlgo_t,
         ) -> cublasStatus_t,
@@ -5336,15 +5106,15 @@ pub struct DynamicBindings {
             i64,
             i64,
             i64,
-            *const ::std::os::raw::c_void,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
             i64,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
             i64,
-            *const ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
             i64,
             cublasComputeType_t,
@@ -5356,328 +5126,202 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
-    pub cublasCgemmEx_64: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *const cuComplex, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t,
-    >,
-    pub cublasSsyrk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCgemmEx_64:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
+    pub cublasSsyrk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSsyrk_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDsyrk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDsyrk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDsyrk_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCsyrk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCsyrk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCsyrk_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZsyrk_v2:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZsyrk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZsyrk_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
     pub cublasCsyrkEx: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasFillMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *const ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *mut ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t,
     >,
-    pub cublasCsyrkEx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const ::std::os::raw::c_void, cudaDataType, i64, *const cuComplex, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>,
+    pub cublasCsyrkEx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, i64, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
     pub cublasCsyrk3mEx: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasFillMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *const ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *mut ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t,
     >,
-    pub cublasCsyrk3mEx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const ::std::os::raw::c_void, cudaDataType, i64, *const cuComplex, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>,
-    pub cublasCherk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCsyrk3mEx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, i64, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
+    pub cublasCherk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const cuComplex, ::core::ffi::c_int, *const f32, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCherk_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const cuComplex, i64, *const f32, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZherk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZherk_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const cuDoubleComplex, ::core::ffi::c_int, *const f64, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZherk_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f64, *const cuDoubleComplex, i64, *const f64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasCherkEx: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasFillMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f32,
-            *const ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-            *const f32,
-            *mut ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasCherkEx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const ::std::os::raw::c_void, cudaDataType, i64, *const f32, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>,
-    pub cublasCherk3mEx: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasFillMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f32,
-            *const ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-            *const f32,
-            *mut ::std::os::raw::c_void,
-            cudaDataType,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasCherk3mEx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const ::std::os::raw::c_void, cudaDataType, i64, *const f32, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>,
-    pub cublasSsyr2k_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCherkEx:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasCherkEx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const ::core::ffi::c_void, cudaDataType, i64, *const f32, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
+    pub cublasCherk3mEx:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasCherk3mEx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const ::core::ffi::c_void, cudaDataType, i64, *const f32, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
+    pub cublasSsyr2k_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSsyr2k_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const f32, i64, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDsyr2k_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDsyr2k_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDsyr2k_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f64, *const f64, i64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCsyr2k_v2: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasFillMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *mut cuComplex,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasCsyr2k_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCsyr2k_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZsyr2k_v2: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasFillMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZsyr2k_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasCher2k_v2: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasCher2k_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCher2k_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const f32, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZher2k_v2: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasFillMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZher2k_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const f64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSsyrkx: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSsyrkx: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSsyrkx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const f32, i64, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDsyrkx: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDsyrkx: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDsyrkx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f64, *const f64, i64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCsyrkx: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasFillMode_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *mut cuComplex,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasCsyrkx:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCsyrkx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZsyrkx: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasFillMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZsyrkx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasCherkx: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasCherkx:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCherkx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const f32, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZherkx: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasFillMode_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZherkx_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const f64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSsymm_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSsymm_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSsymm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, i64, i64, *const f32, *const f32, i64, *const f32, i64, *const f32, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDsymm_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDsymm_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDsymm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, i64, i64, *const f64, *const f64, i64, *const f64, i64, *const f64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCsymm_v2: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasSideMode_t,
-            cublasFillMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *mut cuComplex,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasCsymm_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCsymm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZsymm_v2: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasSideMode_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZsymm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasChemm_v2: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasSideMode_t,
-            cublasFillMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *mut cuComplex,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasChemm_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasChemm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *const cuComplex, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZhemm_v2: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasSideMode_t,
             cublasFillMode_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZhemm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasStrsm_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasStrsm_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasStrsm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f32, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDtrsm_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDtrsm_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDtrsm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCtrsm_v2:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCtrsm_v2: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCtrsm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuComplex, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZtrsm_v2: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasZtrsm_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZtrsm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasStrmm_v2: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasStrmm_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasStrmm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f32, *const f32, i64, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDtrmm_v2: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasDtrmm_v2:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDtrmm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f64, *const f64, i64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
     pub cublasCtrmm_v2: Option<
         unsafe extern "C" fn(
@@ -5686,15 +5330,15 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             cublasOperation_t,
             cublasDiagType_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCtrmm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
@@ -5705,15 +5349,15 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             cublasOperation_t,
             cublasDiagType_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZtrmm_v2_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
@@ -5722,18 +5366,18 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             *const *const f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *const f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
             *const *mut f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasSgemmBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const *const f32, i64, *const *const f32, i64, *const f32, *const *mut f32, i64, i64) -> cublasStatus_t>,
@@ -5742,18 +5386,18 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *const *const f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *const f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *const *mut f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasDgemmBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f64, *const *const f64, i64, *const *const f64, i64, *const f64, *const *mut f64, i64, i64) -> cublasStatus_t>,
@@ -5762,18 +5406,18 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const *mut cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCgemmBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const *const cuComplex, i64, *const *const cuComplex, i64, *const cuComplex, *const *mut cuComplex, i64, i64) -> cublasStatus_t>,
@@ -5782,18 +5426,18 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const *mut cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCgemm3mBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const *const cuComplex, i64, *const *const cuComplex, i64, *const cuComplex, *const *mut cuComplex, i64, i64) -> cublasStatus_t>,
@@ -5802,18 +5446,18 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZgemmBatched_64:
@@ -5823,157 +5467,119 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             *const f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f32,
             *mut f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasSgemmStridedBatched_64:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const f32, i64, ::std::os::raw::c_longlong, *const f32, i64, ::std::os::raw::c_longlong, *const f32, *mut f32, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const f32, i64, ::core::ffi::c_longlong, *const f32, i64, ::core::ffi::c_longlong, *const f32, *mut f32, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     pub cublasDgemmStridedBatched: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *const f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const f64,
             *mut f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasDgemmStridedBatched_64:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f64, *const f64, i64, ::std::os::raw::c_longlong, *const f64, i64, ::std::os::raw::c_longlong, *const f64, *mut f64, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f64, *const f64, i64, ::core::ffi::c_longlong, *const f64, i64, ::core::ffi::c_longlong, *const f64, *mut f64, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     pub cublasCgemmStridedBatched: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCgemmStridedBatched_64: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            cublasOperation_t,
-            i64,
-            i64,
-            i64,
-            *const cuComplex,
-            *const cuComplex,
-            i64,
-            ::std::os::raw::c_longlong,
-            *const cuComplex,
-            i64,
-            ::std::os::raw::c_longlong,
-            *const cuComplex,
-            *mut cuComplex,
-            i64,
-            ::std::os::raw::c_longlong,
-            i64,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const cuComplex, i64, ::core::ffi::c_longlong, *const cuComplex, i64, ::core::ffi::c_longlong, *const cuComplex, *mut cuComplex, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t,
     >,
     pub cublasCgemm3mStridedBatched: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCgemm3mStridedBatched_64: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            cublasOperation_t,
-            i64,
-            i64,
-            i64,
-            *const cuComplex,
-            *const cuComplex,
-            i64,
-            ::std::os::raw::c_longlong,
-            *const cuComplex,
-            i64,
-            ::std::os::raw::c_longlong,
-            *const cuComplex,
-            *mut cuComplex,
-            i64,
-            ::std::os::raw::c_longlong,
-            i64,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const cuComplex, i64, ::core::ffi::c_longlong, *const cuComplex, i64, ::core::ffi::c_longlong, *const cuComplex, *mut cuComplex, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t,
     >,
     pub cublasZgemmStridedBatched: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZgemmStridedBatched_64: Option<
@@ -5987,14 +5593,14 @@ pub struct DynamicBindings {
             *const cuDoubleComplex,
             *const cuDoubleComplex,
             i64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
             i64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
             i64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             i64,
         ) -> cublasStatus_t,
     >,
@@ -6003,21 +5609,21 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *const *const ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
+            *const *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            *const *const ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            *const *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *const *mut ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
+            *const *mut ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cublasComputeType_t,
             cublasGemmAlgo_t,
         ) -> cublasStatus_t,
@@ -6030,15 +5636,15 @@ pub struct DynamicBindings {
             i64,
             i64,
             i64,
-            *const ::std::os::raw::c_void,
-            *const *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
+            *const *const ::core::ffi::c_void,
             cudaDataType,
             i64,
-            *const *const ::std::os::raw::c_void,
+            *const *const ::core::ffi::c_void,
             cudaDataType,
             i64,
-            *const ::std::os::raw::c_void,
-            *const *mut ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
+            *const *mut ::core::ffi::c_void,
             cudaDataType,
             i64,
             i64,
@@ -6051,24 +5657,24 @@ pub struct DynamicBindings {
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *const ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            *const ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            *const ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            *const ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_void,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            *const ::core::ffi::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_int,
             cublasComputeType_t,
             cublasGemmAlgo_t,
         ) -> cublasStatus_t,
@@ -6081,20 +5687,20 @@ pub struct DynamicBindings {
             i64,
             i64,
             i64,
-            *const ::std::os::raw::c_void,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
+            *const ::core::ffi::c_void,
             cudaDataType,
             i64,
-            ::std::os::raw::c_longlong,
-            *const ::std::os::raw::c_void,
+            ::core::ffi::c_longlong,
+            *const ::core::ffi::c_void,
             cudaDataType,
             i64,
-            ::std::os::raw::c_longlong,
-            *const ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_void,
+            ::core::ffi::c_longlong,
+            *const ::core::ffi::c_void,
+            *mut ::core::ffi::c_void,
             cudaDataType,
             i64,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             i64,
             cublasComputeType_t,
             cublasGemmAlgo_t,
@@ -6105,19 +5711,19 @@ pub struct DynamicBindings {
             cublasHandle_t,
             *const cublasOperation_t,
             *const cublasOperation_t,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
             *const *const f32,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
             *const *const f32,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
             *const *mut f32,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasSgemmGroupedBatched_64:
@@ -6127,19 +5733,19 @@ pub struct DynamicBindings {
             cublasHandle_t,
             *const cublasOperation_t,
             *const cublasOperation_t,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
             *const *const f64,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
             *const *const f64,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
             *const *mut f64,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasDgemmGroupedBatched_64:
@@ -6149,22 +5755,22 @@ pub struct DynamicBindings {
             cublasHandle_t,
             *const cublasOperation_t,
             *const cublasOperation_t,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *const *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
+            *const *const ::core::ffi::c_void,
             cudaDataType_t,
-            *const ::std::os::raw::c_int,
-            *const *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_int,
+            *const *const ::core::ffi::c_void,
             cudaDataType_t,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *const *mut ::std::os::raw::c_void,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
+            *const *mut ::core::ffi::c_void,
             cudaDataType_t,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cublasComputeType_t,
         ) -> cublasStatus_t,
     >,
@@ -6176,15 +5782,15 @@ pub struct DynamicBindings {
             *const i64,
             *const i64,
             *const i64,
-            *const ::std::os::raw::c_void,
-            *const *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
+            *const *const ::core::ffi::c_void,
             cudaDataType_t,
             *const i64,
-            *const *const ::std::os::raw::c_void,
+            *const *const ::core::ffi::c_void,
             cudaDataType_t,
             *const i64,
-            *const ::std::os::raw::c_void,
-            *const *mut ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
+            *const *mut ::core::ffi::c_void,
             cudaDataType_t,
             *const i64,
             i64,
@@ -6192,53 +5798,36 @@ pub struct DynamicBindings {
             cublasComputeType_t,
         ) -> cublasStatus_t,
     >,
-    pub cublasSgeam: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSgeam: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSgeam_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, *const f32, *const f32, i64, *const f32, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDgeam: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDgeam: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDgeam_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, *const f64, *const f64, i64, *const f64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCgeam: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *const cuComplex,
-            *const cuComplex,
-            ::std::os::raw::c_int,
-            *mut cuComplex,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasCgeam:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCgeam_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, *const cuComplex, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
     pub cublasZgeam: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZgeam_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *const cuDoubleComplex, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasStrsmBatched: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const *const f32, ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasStrsmBatched:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const *const f32, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasStrsmBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f32, *const *const f32, i64, *const *mut f32, i64, i64) -> cublasStatus_t>,
-    pub cublasDtrsmBatched: Option<
-        unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const *const f64, ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t,
-    >,
+    pub cublasDtrsmBatched:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const *const f64, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDtrsmBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const f64, *const *const f64, i64, *const *mut f64, i64, i64) -> cublasStatus_t>,
     pub cublasCtrsmBatched: Option<
         unsafe extern "C" fn(
@@ -6247,14 +5836,14 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             cublasOperation_t,
             cublasDiagType_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *mut cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasCtrsmBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuComplex, *const *const cuComplex, i64, *const *mut cuComplex, i64, i64) -> cublasStatus_t>,
@@ -6265,147 +5854,78 @@ pub struct DynamicBindings {
             cublasFillMode_t,
             cublasOperation_t,
             cublasDiagType_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
     pub cublasZtrsmBatched_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, i64, i64, *const cuDoubleComplex, *const *const cuDoubleComplex, i64, *const *mut cuDoubleComplex, i64, i64) -> cublasStatus_t>,
-    pub cublasSdgmm: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasSdgmm: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasSdgmm_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, i64, i64, *const f32, i64, *const f32, i64, *mut f32, i64) -> cublasStatus_t>,
-    pub cublasDdgmm: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasDdgmm: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasDdgmm_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, i64, i64, *const f64, i64, *const f64, i64, *mut f64, i64) -> cublasStatus_t>,
-    pub cublasCdgmm: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasCdgmm: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCdgmm_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, i64, i64, *const cuComplex, i64, *const cuComplex, i64, *mut cuComplex, i64) -> cublasStatus_t>,
-    pub cublasZdgmm: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasZdgmm: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZdgmm_64: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, i64, i64, *const cuDoubleComplex, i64, *const cuDoubleComplex, i64, *mut cuDoubleComplex, i64) -> cublasStatus_t>,
-    pub cublasSmatinvBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const f32, ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasDmatinvBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const f64, ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasCmatinvBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const cuComplex, ::std::os::raw::c_int, *const *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasZmatinvBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const cuDoubleComplex, ::std::os::raw::c_int, *const *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSgeqrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *const *mut f32, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasDgeqrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *const *mut f64, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasCgeqrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *mut cuComplex, ::std::os::raw::c_int, *const *mut cuComplex, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasZgeqrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *mut cuDoubleComplex, ::std::os::raw::c_int, *const *mut cuDoubleComplex, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSgelsBatched: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const *mut f32,
-            ::std::os::raw::c_int,
-            *const *mut f32,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasDgelsBatched: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const *mut f64,
-            ::std::os::raw::c_int,
-            *const *mut f64,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasSmatinvBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const f32, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasDmatinvBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const f64, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasCmatinvBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const cuComplex, ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasZmatinvBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const cuDoubleComplex, ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSgeqrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *const *mut f32, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasDgeqrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *const *mut f64, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasCgeqrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *const *mut cuComplex, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasZgeqrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *const *mut cuDoubleComplex, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSgelsBatched:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasDgelsBatched:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasCgelsBatched: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const *mut cuComplex,
-            ::std::os::raw::c_int,
-            *const *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t,
     >,
     pub cublasZgelsBatched: Option<
         unsafe extern "C" fn(
             cublasHandle_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
-    pub cublasStpttr: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasDtpttr: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasCtpttr: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasZtpttr: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasStrttp: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>,
-    pub cublasDtrttp: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>,
-    pub cublasCtrttp: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>,
-    pub cublasZtrttp: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
-    pub cublasSgetrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasDgetrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasCgetrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasZgetrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSgetriBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasDgetriBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasCgetriBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const cuComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasZgetriBatched:
-        Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const cuDoubleComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasSgetrsBatched:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *const f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasDgetrsBatched:
-        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *const f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasCgetrsBatched: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const *const cuComplex,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const *mut cuComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasStpttr: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasDtpttr: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasCtpttr: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasZtpttr: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasStrttp: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>,
+    pub cublasDtrttp: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>,
+    pub cublasCtrttp: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>,
+    pub cublasZtrttp: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>,
+    pub cublasSgetrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasDgetrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasCgetrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasZgetrfBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSgetriBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const f32, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasDgetriBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const f64, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasCgetriBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const cuComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasZgetriBatched: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const cuDoubleComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasSgetrsBatched: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *const f32, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasDgetrsBatched: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *const f64, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
+    pub cublasCgetrsBatched:
+        Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *const cuComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     pub cublasZgetrsBatched: Option<
-        unsafe extern "C" fn(
-            cublasHandle_t,
-            cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *const cuDoubleComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t,
     >,
     pub cublasUint8gemmBias: Option<
         unsafe extern "C" fn(
@@ -6413,20 +5933,20 @@ pub struct DynamicBindings {
             cublasOperation_t,
             cublasOperation_t,
             cublasOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_uchar,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_uchar,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_uchar,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_uchar,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_uchar,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_uchar,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
         ) -> cublasStatus_t,
     >,
 }
@@ -6454,7 +5974,7 @@ pub unsafe extern "C" fn cublasDestroy_v2(handle: cublasHandle_t) -> cublasStatu
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetVersion_v2(handle: cublasHandle_t, version: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetVersion_v2(handle: cublasHandle_t, version: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetVersion_v2 {
         Some(____func) => unsafe { ____func(handle, version) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetVersion_v2"),
@@ -6462,7 +5982,7 @@ pub unsafe extern "C" fn cublasGetVersion_v2(handle: cublasHandle_t, version: *m
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetProperty(type_: libraryPropertyType, value: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetProperty {
         Some(____func) => unsafe { ____func(type_, value) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetProperty"),
@@ -6478,7 +5998,7 @@ pub unsafe extern "C" fn cublasGetCudartVersion() -> usize {
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetWorkspace_v2(handle: cublasHandle_t, workspace: *mut ::std::os::raw::c_void, workspaceSizeInBytes: usize) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetWorkspace_v2(handle: cublasHandle_t, workspace: *mut ::core::ffi::c_void, workspaceSizeInBytes: usize) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetWorkspace_v2 {
         Some(____func) => unsafe { ____func(handle, workspace, workspaceSizeInBytes) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetWorkspace_v2"),
@@ -6550,7 +6070,7 @@ pub unsafe extern "C" fn cublasSetMathMode(handle: cublasHandle_t, mode: cublasM
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetSmCountTarget(handle: cublasHandle_t, smCountTarget: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetSmCountTarget(handle: cublasHandle_t, smCountTarget: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetSmCountTarget {
         Some(____func) => unsafe { ____func(handle, smCountTarget) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetSmCountTarget"),
@@ -6558,7 +6078,7 @@ pub unsafe extern "C" fn cublasGetSmCountTarget(handle: cublasHandle_t, smCountT
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetSmCountTarget(handle: cublasHandle_t, smCountTarget: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetSmCountTarget(handle: cublasHandle_t, smCountTarget: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetSmCountTarget {
         Some(____func) => unsafe { ____func(handle, smCountTarget) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetSmCountTarget"),
@@ -6632,7 +6152,7 @@ pub unsafe extern "C" fn cublasSetFixedPointEmulationMantissaControl(handle: cub
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetFixedPointEmulationMaxMantissaBitCount {
         Some(____func) => unsafe { ____func(handle, maxMantissaBitCount) },
         None => panic!(
@@ -6643,7 +6163,7 @@ pub unsafe extern "C" fn cublasGetFixedPointEmulationMaxMantissaBitCount(handle:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetFixedPointEmulationMaxMantissaBitCount {
         Some(____func) => unsafe { ____func(handle, maxMantissaBitCount) },
         None => panic!(
@@ -6654,7 +6174,7 @@ pub unsafe extern "C" fn cublasSetFixedPointEmulationMaxMantissaBitCount(handle:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetFixedPointEmulationMantissaBitOffset {
         Some(____func) => unsafe { ____func(handle, mantissaBitOffset) },
         None => panic!(
@@ -6665,7 +6185,7 @@ pub unsafe extern "C" fn cublasGetFixedPointEmulationMantissaBitOffset(handle: c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetFixedPointEmulationMantissaBitOffset {
         Some(____func) => unsafe { ____func(handle, mantissaBitOffset) },
         None => panic!(
@@ -6676,7 +6196,7 @@ pub unsafe extern "C" fn cublasSetFixedPointEmulationMantissaBitOffset(handle: c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t, mantissaBitCount: *mut *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t, mantissaBitCount: *mut *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetFixedPointEmulationMantissaBitCountPointer {
         Some(____func) => unsafe { ____func(handle, mantissaBitCount) },
         None => panic!(
@@ -6687,7 +6207,7 @@ pub unsafe extern "C" fn cublasGetFixedPointEmulationMantissaBitCountPointer(han
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t, mantissaBitCount: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t, mantissaBitCount: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetFixedPointEmulationMantissaBitCountPointer {
         Some(____func) => unsafe { ____func(handle, mantissaBitCount) },
         None => panic!(
@@ -6698,7 +6218,7 @@ pub unsafe extern "C" fn cublasSetFixedPointEmulationMantissaBitCountPointer(han
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetStatusName(status: cublasStatus_t) -> *const ::std::os::raw::c_char {
+pub unsafe extern "C" fn cublasGetStatusName(status: cublasStatus_t) -> *const ::core::ffi::c_char {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetStatusName {
         Some(____func) => unsafe { ____func(status) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetStatusName"),
@@ -6706,7 +6226,7 @@ pub unsafe extern "C" fn cublasGetStatusName(status: cublasStatus_t) -> *const :
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetStatusString(status: cublasStatus_t) -> *const ::std::os::raw::c_char {
+pub unsafe extern "C" fn cublasGetStatusString(status: cublasStatus_t) -> *const ::core::ffi::c_char {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetStatusString {
         Some(____func) => unsafe { ____func(status) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetStatusString"),
@@ -6714,7 +6234,7 @@ pub unsafe extern "C" fn cublasGetStatusString(status: cublasStatus_t) -> *const
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLoggerConfigure(logIsOn: ::std::os::raw::c_int, logToStdOut: ::std::os::raw::c_int, logToStdErr: ::std::os::raw::c_int, logFileName: *const ::std::os::raw::c_char) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLoggerConfigure(logIsOn: ::core::ffi::c_int, logToStdOut: ::core::ffi::c_int, logToStdErr: ::core::ffi::c_int, logFileName: *const ::core::ffi::c_char) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasLoggerConfigure {
         Some(____func) => unsafe { ____func(logIsOn, logToStdOut, logToStdErr, logFileName) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasLoggerConfigure"),
@@ -6738,7 +6258,7 @@ pub unsafe extern "C" fn cublasGetLoggerCallback(userCallback: *mut cublasLogCal
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetVector(n: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, incx: ::std::os::raw::c_int, devicePtr: *mut ::std::os::raw::c_void, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetVector(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, x: *const ::core::ffi::c_void, incx: ::core::ffi::c_int, devicePtr: *mut ::core::ffi::c_void, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetVector {
         Some(____func) => unsafe { ____func(n, elemSize, x, incx, devicePtr, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetVector"),
@@ -6746,7 +6266,7 @@ pub unsafe extern "C" fn cublasSetVector(n: ::std::os::raw::c_int, elemSize: ::s
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetVector_64(n: i64, elemSize: i64, x: *const ::std::os::raw::c_void, incx: i64, devicePtr: *mut ::std::os::raw::c_void, incy: i64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetVector_64(n: i64, elemSize: i64, x: *const ::core::ffi::c_void, incx: i64, devicePtr: *mut ::core::ffi::c_void, incy: i64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetVector_64 {
         Some(____func) => unsafe { ____func(n, elemSize, x, incx, devicePtr, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetVector_64"),
@@ -6754,7 +6274,7 @@ pub unsafe extern "C" fn cublasSetVector_64(n: i64, elemSize: i64, x: *const ::s
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetVector(n: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, incx: ::std::os::raw::c_int, y: *mut ::std::os::raw::c_void, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetVector(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, x: *const ::core::ffi::c_void, incx: ::core::ffi::c_int, y: *mut ::core::ffi::c_void, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetVector {
         Some(____func) => unsafe { ____func(n, elemSize, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetVector"),
@@ -6762,7 +6282,7 @@ pub unsafe extern "C" fn cublasGetVector(n: ::std::os::raw::c_int, elemSize: ::s
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetVector_64(n: i64, elemSize: i64, x: *const ::std::os::raw::c_void, incx: i64, y: *mut ::std::os::raw::c_void, incy: i64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetVector_64(n: i64, elemSize: i64, x: *const ::core::ffi::c_void, incx: i64, y: *mut ::core::ffi::c_void, incy: i64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetVector_64 {
         Some(____func) => unsafe { ____func(n, elemSize, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetVector_64"),
@@ -6770,7 +6290,7 @@ pub unsafe extern "C" fn cublasGetVector_64(n: i64, elemSize: i64, x: *const ::s
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetMatrix(rows: ::std::os::raw::c_int, cols: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, A: *const ::std::os::raw::c_void, lda: ::std::os::raw::c_int, B: *mut ::std::os::raw::c_void, ldb: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetMatrix(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: *const ::core::ffi::c_void, lda: ::core::ffi::c_int, B: *mut ::core::ffi::c_void, ldb: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetMatrix {
         Some(____func) => unsafe { ____func(rows, cols, elemSize, A, lda, B, ldb) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetMatrix"),
@@ -6778,7 +6298,7 @@ pub unsafe extern "C" fn cublasSetMatrix(rows: ::std::os::raw::c_int, cols: ::st
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetMatrix_64(rows: i64, cols: i64, elemSize: i64, A: *const ::std::os::raw::c_void, lda: i64, B: *mut ::std::os::raw::c_void, ldb: i64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetMatrix_64(rows: i64, cols: i64, elemSize: i64, A: *const ::core::ffi::c_void, lda: i64, B: *mut ::core::ffi::c_void, ldb: i64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetMatrix_64 {
         Some(____func) => unsafe { ____func(rows, cols, elemSize, A, lda, B, ldb) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetMatrix_64"),
@@ -6786,7 +6306,7 @@ pub unsafe extern "C" fn cublasSetMatrix_64(rows: i64, cols: i64, elemSize: i64,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetMatrix(rows: ::std::os::raw::c_int, cols: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, A: *const ::std::os::raw::c_void, lda: ::std::os::raw::c_int, B: *mut ::std::os::raw::c_void, ldb: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetMatrix(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: *const ::core::ffi::c_void, lda: ::core::ffi::c_int, B: *mut ::core::ffi::c_void, ldb: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetMatrix {
         Some(____func) => unsafe { ____func(rows, cols, elemSize, A, lda, B, ldb) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetMatrix"),
@@ -6794,7 +6314,7 @@ pub unsafe extern "C" fn cublasGetMatrix(rows: ::std::os::raw::c_int, cols: ::st
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetMatrix_64(rows: i64, cols: i64, elemSize: i64, A: *const ::std::os::raw::c_void, lda: i64, B: *mut ::std::os::raw::c_void, ldb: i64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetMatrix_64(rows: i64, cols: i64, elemSize: i64, A: *const ::core::ffi::c_void, lda: i64, B: *mut ::core::ffi::c_void, ldb: i64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetMatrix_64 {
         Some(____func) => unsafe { ____func(rows, cols, elemSize, A, lda, B, ldb) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetMatrix_64"),
@@ -6802,7 +6322,7 @@ pub unsafe extern "C" fn cublasGetMatrix_64(rows: i64, cols: i64, elemSize: i64,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetVectorAsync(n: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, hostPtr: *const ::std::os::raw::c_void, incx: ::std::os::raw::c_int, devicePtr: *mut ::std::os::raw::c_void, incy: ::std::os::raw::c_int, stream: cudaStream_t) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetVectorAsync(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, hostPtr: *const ::core::ffi::c_void, incx: ::core::ffi::c_int, devicePtr: *mut ::core::ffi::c_void, incy: ::core::ffi::c_int, stream: cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetVectorAsync {
         Some(____func) => unsafe { ____func(n, elemSize, hostPtr, incx, devicePtr, incy, stream) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetVectorAsync"),
@@ -6810,7 +6330,7 @@ pub unsafe extern "C" fn cublasSetVectorAsync(n: ::std::os::raw::c_int, elemSize
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetVectorAsync_64(n: i64, elemSize: i64, hostPtr: *const ::std::os::raw::c_void, incx: i64, devicePtr: *mut ::std::os::raw::c_void, incy: i64, stream: cudaStream_t) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetVectorAsync_64(n: i64, elemSize: i64, hostPtr: *const ::core::ffi::c_void, incx: i64, devicePtr: *mut ::core::ffi::c_void, incy: i64, stream: cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetVectorAsync_64 {
         Some(____func) => unsafe { ____func(n, elemSize, hostPtr, incx, devicePtr, incy, stream) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetVectorAsync_64"),
@@ -6818,7 +6338,7 @@ pub unsafe extern "C" fn cublasSetVectorAsync_64(n: i64, elemSize: i64, hostPtr:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetVectorAsync(n: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, devicePtr: *const ::std::os::raw::c_void, incx: ::std::os::raw::c_int, hostPtr: *mut ::std::os::raw::c_void, incy: ::std::os::raw::c_int, stream: cudaStream_t) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetVectorAsync(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, devicePtr: *const ::core::ffi::c_void, incx: ::core::ffi::c_int, hostPtr: *mut ::core::ffi::c_void, incy: ::core::ffi::c_int, stream: cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetVectorAsync {
         Some(____func) => unsafe { ____func(n, elemSize, devicePtr, incx, hostPtr, incy, stream) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetVectorAsync"),
@@ -6826,7 +6346,7 @@ pub unsafe extern "C" fn cublasGetVectorAsync(n: ::std::os::raw::c_int, elemSize
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetVectorAsync_64(n: i64, elemSize: i64, devicePtr: *const ::std::os::raw::c_void, incx: i64, hostPtr: *mut ::std::os::raw::c_void, incy: i64, stream: cudaStream_t) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetVectorAsync_64(n: i64, elemSize: i64, devicePtr: *const ::core::ffi::c_void, incx: i64, hostPtr: *mut ::core::ffi::c_void, incy: i64, stream: cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetVectorAsync_64 {
         Some(____func) => unsafe { ____func(n, elemSize, devicePtr, incx, hostPtr, incy, stream) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetVectorAsync_64"),
@@ -6834,7 +6354,7 @@ pub unsafe extern "C" fn cublasGetVectorAsync_64(n: i64, elemSize: i64, devicePt
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetMatrixAsync(rows: ::std::os::raw::c_int, cols: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, A: *const ::std::os::raw::c_void, lda: ::std::os::raw::c_int, B: *mut ::std::os::raw::c_void, ldb: ::std::os::raw::c_int, stream: cudaStream_t) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetMatrixAsync(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: *const ::core::ffi::c_void, lda: ::core::ffi::c_int, B: *mut ::core::ffi::c_void, ldb: ::core::ffi::c_int, stream: cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetMatrixAsync {
         Some(____func) => unsafe { ____func(rows, cols, elemSize, A, lda, B, ldb, stream) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetMatrixAsync"),
@@ -6842,7 +6362,7 @@ pub unsafe extern "C" fn cublasSetMatrixAsync(rows: ::std::os::raw::c_int, cols:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetMatrixAsync_64(rows: i64, cols: i64, elemSize: i64, A: *const ::std::os::raw::c_void, lda: i64, B: *mut ::std::os::raw::c_void, ldb: i64, stream: cudaStream_t) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetMatrixAsync_64(rows: i64, cols: i64, elemSize: i64, A: *const ::core::ffi::c_void, lda: i64, B: *mut ::core::ffi::c_void, ldb: i64, stream: cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSetMatrixAsync_64 {
         Some(____func) => unsafe { ____func(rows, cols, elemSize, A, lda, B, ldb, stream) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSetMatrixAsync_64"),
@@ -6850,7 +6370,7 @@ pub unsafe extern "C" fn cublasSetMatrixAsync_64(rows: i64, cols: i64, elemSize:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetMatrixAsync(rows: ::std::os::raw::c_int, cols: ::std::os::raw::c_int, elemSize: ::std::os::raw::c_int, A: *const ::std::os::raw::c_void, lda: ::std::os::raw::c_int, B: *mut ::std::os::raw::c_void, ldb: ::std::os::raw::c_int, stream: cudaStream_t) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetMatrixAsync(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: *const ::core::ffi::c_void, lda: ::core::ffi::c_int, B: *mut ::core::ffi::c_void, ldb: ::core::ffi::c_int, stream: cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetMatrixAsync {
         Some(____func) => unsafe { ____func(rows, cols, elemSize, A, lda, B, ldb, stream) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetMatrixAsync"),
@@ -6858,7 +6378,7 @@ pub unsafe extern "C" fn cublasGetMatrixAsync(rows: ::std::os::raw::c_int, cols:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetMatrixAsync_64(rows: i64, cols: i64, elemSize: i64, A: *const ::std::os::raw::c_void, lda: i64, B: *mut ::std::os::raw::c_void, ldb: i64, stream: cudaStream_t) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetMatrixAsync_64(rows: i64, cols: i64, elemSize: i64, A: *const ::core::ffi::c_void, lda: i64, B: *mut ::core::ffi::c_void, ldb: i64, stream: cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGetMatrixAsync_64 {
         Some(____func) => unsafe { ____func(rows, cols, elemSize, A, lda, B, ldb, stream) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasGetMatrixAsync_64"),
@@ -6866,7 +6386,7 @@ pub unsafe extern "C" fn cublasGetMatrixAsync_64(rows: i64, cols: i64, elemSize:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasXerbla(srName: *const ::std::os::raw::c_char, info: ::std::os::raw::c_int) {
+pub unsafe extern "C" fn cublasXerbla(srName: *const ::core::ffi::c_char, info: ::core::ffi::c_int) {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasXerbla {
         Some(____func) => unsafe { ____func(srName, info) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasXerbla"),
@@ -6874,7 +6394,7 @@ pub unsafe extern "C" fn cublasXerbla(srName: *const ::std::os::raw::c_char, inf
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasNrm2Ex(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasNrm2Ex(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasNrm2Ex {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result, resultType, executionType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasNrm2Ex"),
@@ -6882,7 +6402,7 @@ pub unsafe extern "C" fn cublasNrm2Ex(handle: cublasHandle_t, n: ::std::os::raw:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasNrm2Ex_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, result: *mut ::std::os::raw::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasNrm2Ex_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executionType: cudaDataType) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasNrm2Ex_64 {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result, resultType, executionType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasNrm2Ex_64"),
@@ -6890,7 +6410,7 @@ pub unsafe extern "C" fn cublasNrm2Ex_64(handle: cublasHandle_t, n: i64, x: *con
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSnrm2_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSnrm2_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSnrm2_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSnrm2_v2"),
@@ -6906,7 +6426,7 @@ pub unsafe extern "C" fn cublasSnrm2_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDnrm2_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDnrm2_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDnrm2_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDnrm2_v2"),
@@ -6922,7 +6442,7 @@ pub unsafe extern "C" fn cublasDnrm2_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasScnrm2_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasScnrm2_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasScnrm2_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasScnrm2_v2"),
@@ -6938,7 +6458,7 @@ pub unsafe extern "C" fn cublasScnrm2_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDznrm2_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDznrm2_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDznrm2_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDznrm2_v2"),
@@ -6956,14 +6476,14 @@ pub unsafe extern "C" fn cublasDznrm2_v2_64(handle: cublasHandle_t, n: i64, x: *
 #[inline(always)]
 pub unsafe extern "C" fn cublasDotEx(
     handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
-    x: *const ::std::os::raw::c_void,
+    n: ::core::ffi::c_int,
+    x: *const ::core::ffi::c_void,
     xType: cudaDataType,
-    incx: ::std::os::raw::c_int,
-    y: *const ::std::os::raw::c_void,
+    incx: ::core::ffi::c_int,
+    y: *const ::core::ffi::c_void,
     yType: cudaDataType,
-    incy: ::std::os::raw::c_int,
-    result: *mut ::std::os::raw::c_void,
+    incy: ::core::ffi::c_int,
+    result: *mut ::core::ffi::c_void,
     resultType: cudaDataType,
     executionType: cudaDataType,
 ) -> cublasStatus_t {
@@ -6977,13 +6497,13 @@ pub unsafe extern "C" fn cublasDotEx(
 pub unsafe extern "C" fn cublasDotEx_64(
     handle: cublasHandle_t,
     n: i64,
-    x: *const ::std::os::raw::c_void,
+    x: *const ::core::ffi::c_void,
     xType: cudaDataType,
     incx: i64,
-    y: *const ::std::os::raw::c_void,
+    y: *const ::core::ffi::c_void,
     yType: cudaDataType,
     incy: i64,
-    result: *mut ::std::os::raw::c_void,
+    result: *mut ::core::ffi::c_void,
     resultType: cudaDataType,
     executionType: cudaDataType,
 ) -> cublasStatus_t {
@@ -6996,14 +6516,14 @@ pub unsafe extern "C" fn cublasDotEx_64(
 #[inline(always)]
 pub unsafe extern "C" fn cublasDotcEx(
     handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
-    x: *const ::std::os::raw::c_void,
+    n: ::core::ffi::c_int,
+    x: *const ::core::ffi::c_void,
     xType: cudaDataType,
-    incx: ::std::os::raw::c_int,
-    y: *const ::std::os::raw::c_void,
+    incx: ::core::ffi::c_int,
+    y: *const ::core::ffi::c_void,
     yType: cudaDataType,
-    incy: ::std::os::raw::c_int,
-    result: *mut ::std::os::raw::c_void,
+    incy: ::core::ffi::c_int,
+    result: *mut ::core::ffi::c_void,
     resultType: cudaDataType,
     executionType: cudaDataType,
 ) -> cublasStatus_t {
@@ -7017,13 +6537,13 @@ pub unsafe extern "C" fn cublasDotcEx(
 pub unsafe extern "C" fn cublasDotcEx_64(
     handle: cublasHandle_t,
     n: i64,
-    x: *const ::std::os::raw::c_void,
+    x: *const ::core::ffi::c_void,
     xType: cudaDataType,
     incx: i64,
-    y: *const ::std::os::raw::c_void,
+    y: *const ::core::ffi::c_void,
     yType: cudaDataType,
     incy: i64,
-    result: *mut ::std::os::raw::c_void,
+    result: *mut ::core::ffi::c_void,
     resultType: cudaDataType,
     executionType: cudaDataType,
 ) -> cublasStatus_t {
@@ -7034,7 +6554,7 @@ pub unsafe extern "C" fn cublasDotcEx_64(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSdot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, y: *const f32, incy: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSdot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, y: *const f32, incy: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSdot_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSdot_v2"),
@@ -7050,7 +6570,7 @@ pub unsafe extern "C" fn cublasSdot_v2_64(handle: cublasHandle_t, n: i64, x: *co
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDdot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, y: *const f64, incy: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDdot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, y: *const f64, incy: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDdot_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDdot_v2"),
@@ -7066,7 +6586,7 @@ pub unsafe extern "C" fn cublasDdot_v2_64(handle: cublasHandle_t, n: i64, x: *co
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCdotu_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, result: *mut cuComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCdotu_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, result: *mut cuComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCdotu_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCdotu_v2"),
@@ -7082,7 +6602,7 @@ pub unsafe extern "C" fn cublasCdotu_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCdotc_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, result: *mut cuComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCdotc_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, result: *mut cuComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCdotc_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCdotc_v2"),
@@ -7098,7 +6618,7 @@ pub unsafe extern "C" fn cublasCdotc_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZdotu_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, y: *const cuDoubleComplex, incy: ::std::os::raw::c_int, result: *mut cuDoubleComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZdotu_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *const cuDoubleComplex, incy: ::core::ffi::c_int, result: *mut cuDoubleComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZdotu_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZdotu_v2"),
@@ -7114,7 +6634,7 @@ pub unsafe extern "C" fn cublasZdotu_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZdotc_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, y: *const cuDoubleComplex, incy: ::std::os::raw::c_int, result: *mut cuDoubleComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZdotc_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *const cuDoubleComplex, incy: ::core::ffi::c_int, result: *mut cuDoubleComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZdotc_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZdotc_v2"),
@@ -7130,7 +6650,7 @@ pub unsafe extern "C" fn cublasZdotc_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasScalEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const ::std::os::raw::c_void, alphaType: cudaDataType, x: *mut ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, executionType: cudaDataType) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasScalEx(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const ::core::ffi::c_void, alphaType: cudaDataType, x: *mut ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, executionType: cudaDataType) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasScalEx {
         Some(____func) => unsafe { ____func(handle, n, alpha, alphaType, x, xType, incx, executionType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasScalEx"),
@@ -7138,7 +6658,7 @@ pub unsafe extern "C" fn cublasScalEx(handle: cublasHandle_t, n: ::std::os::raw:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasScalEx_64(handle: cublasHandle_t, n: i64, alpha: *const ::std::os::raw::c_void, alphaType: cudaDataType, x: *mut ::std::os::raw::c_void, xType: cudaDataType, incx: i64, executionType: cudaDataType) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasScalEx_64(handle: cublasHandle_t, n: i64, alpha: *const ::core::ffi::c_void, alphaType: cudaDataType, x: *mut ::core::ffi::c_void, xType: cudaDataType, incx: i64, executionType: cudaDataType) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasScalEx_64 {
         Some(____func) => unsafe { ____func(handle, n, alpha, alphaType, x, xType, incx, executionType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasScalEx_64"),
@@ -7146,7 +6666,7 @@ pub unsafe extern "C" fn cublasScalEx_64(handle: cublasHandle_t, n: i64, alpha: 
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f32, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSscal_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSscal_v2"),
@@ -7162,7 +6682,7 @@ pub unsafe extern "C" fn cublasSscal_v2_64(handle: cublasHandle_t, n: i64, alpha
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f64, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDscal_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDscal_v2"),
@@ -7178,7 +6698,7 @@ pub unsafe extern "C" fn cublasDscal_v2_64(handle: cublasHandle_t, n: i64, alpha
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCscal_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCscal_v2"),
@@ -7194,7 +6714,7 @@ pub unsafe extern "C" fn cublasCscal_v2_64(handle: cublasHandle_t, n: i64, alpha
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCsscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCsscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f32, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsscal_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCsscal_v2"),
@@ -7210,7 +6730,7 @@ pub unsafe extern "C" fn cublasCsscal_v2_64(handle: cublasHandle_t, n: i64, alph
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZscal_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZscal_v2"),
@@ -7226,7 +6746,7 @@ pub unsafe extern "C" fn cublasZscal_v2_64(handle: cublasHandle_t, n: i64, alpha
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZdscal_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZdscal_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f64, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZdscal_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZdscal_v2"),
@@ -7244,15 +6764,15 @@ pub unsafe extern "C" fn cublasZdscal_v2_64(handle: cublasHandle_t, n: i64, alph
 #[inline(always)]
 pub unsafe extern "C" fn cublasAxpyEx(
     handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
-    alpha: *const ::std::os::raw::c_void,
+    n: ::core::ffi::c_int,
+    alpha: *const ::core::ffi::c_void,
     alphaType: cudaDataType,
-    x: *const ::std::os::raw::c_void,
+    x: *const ::core::ffi::c_void,
     xType: cudaDataType,
-    incx: ::std::os::raw::c_int,
-    y: *mut ::std::os::raw::c_void,
+    incx: ::core::ffi::c_int,
+    y: *mut ::core::ffi::c_void,
     yType: cudaDataType,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
     executiontype: cudaDataType,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasAxpyEx {
@@ -7265,12 +6785,12 @@ pub unsafe extern "C" fn cublasAxpyEx(
 pub unsafe extern "C" fn cublasAxpyEx_64(
     handle: cublasHandle_t,
     n: i64,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     alphaType: cudaDataType,
-    x: *const ::std::os::raw::c_void,
+    x: *const ::core::ffi::c_void,
     xType: cudaDataType,
     incx: i64,
-    y: *mut ::std::os::raw::c_void,
+    y: *mut ::core::ffi::c_void,
     yType: cudaDataType,
     incy: i64,
     executiontype: cudaDataType,
@@ -7282,7 +6802,7 @@ pub unsafe extern "C" fn cublasAxpyEx_64(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSaxpy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSaxpy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSaxpy_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSaxpy_v2"),
@@ -7298,7 +6818,7 @@ pub unsafe extern "C" fn cublasSaxpy_v2_64(handle: cublasHandle_t, n: i64, alpha
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDaxpy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDaxpy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDaxpy_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDaxpy_v2"),
@@ -7314,7 +6834,7 @@ pub unsafe extern "C" fn cublasDaxpy_v2_64(handle: cublasHandle_t, n: i64, alpha
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCaxpy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCaxpy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCaxpy_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCaxpy_v2"),
@@ -7330,7 +6850,7 @@ pub unsafe extern "C" fn cublasCaxpy_v2_64(handle: cublasHandle_t, n: i64, alpha
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZaxpy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZaxpy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZaxpy_v2 {
         Some(____func) => unsafe { ____func(handle, n, alpha, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZaxpy_v2"),
@@ -7346,7 +6866,7 @@ pub unsafe extern "C" fn cublasZaxpy_v2_64(handle: cublasHandle_t, n: i64, alpha
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCopyEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCopyEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCopyEx {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, y, yType, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCopyEx"),
@@ -7354,7 +6874,7 @@ pub unsafe extern "C" fn cublasCopyEx(handle: cublasHandle_t, n: ::std::os::raw:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCopyEx_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: i64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCopyEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: i64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCopyEx_64 {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, y, yType, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCopyEx_64"),
@@ -7362,7 +6882,7 @@ pub unsafe extern "C" fn cublasCopyEx_64(handle: cublasHandle_t, n: i64, x: *con
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasScopy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasScopy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasScopy_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasScopy_v2"),
@@ -7378,7 +6898,7 @@ pub unsafe extern "C" fn cublasScopy_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDcopy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDcopy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDcopy_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDcopy_v2"),
@@ -7394,7 +6914,7 @@ pub unsafe extern "C" fn cublasDcopy_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCcopy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCcopy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCcopy_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCcopy_v2"),
@@ -7410,7 +6930,7 @@ pub unsafe extern "C" fn cublasCcopy_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZcopy_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZcopy_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZcopy_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZcopy_v2"),
@@ -7426,7 +6946,7 @@ pub unsafe extern "C" fn cublasZcopy_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSswap_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSswap_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSswap_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSswap_v2"),
@@ -7442,7 +6962,7 @@ pub unsafe extern "C" fn cublasSswap_v2_64(handle: cublasHandle_t, n: i64, x: *m
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDswap_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDswap_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDswap_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDswap_v2"),
@@ -7458,7 +6978,7 @@ pub unsafe extern "C" fn cublasDswap_v2_64(handle: cublasHandle_t, n: i64, x: *m
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCswap_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCswap_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCswap_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCswap_v2"),
@@ -7474,7 +6994,7 @@ pub unsafe extern "C" fn cublasCswap_v2_64(handle: cublasHandle_t, n: i64, x: *m
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZswap_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZswap_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZswap_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZswap_v2"),
@@ -7490,7 +7010,7 @@ pub unsafe extern "C" fn cublasZswap_v2_64(handle: cublasHandle_t, n: i64, x: *m
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSwapEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSwapEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSwapEx {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, y, yType, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSwapEx"),
@@ -7498,7 +7018,7 @@ pub unsafe extern "C" fn cublasSwapEx(handle: cublasHandle_t, n: ::std::os::raw:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSwapEx_64(handle: cublasHandle_t, n: i64, x: *mut ::std::os::raw::c_void, xType: cudaDataType, incx: i64, y: *mut ::std::os::raw::c_void, yType: cudaDataType, incy: i64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSwapEx_64(handle: cublasHandle_t, n: i64, x: *mut ::core::ffi::c_void, xType: cudaDataType, incx: i64, y: *mut ::core::ffi::c_void, yType: cudaDataType, incy: i64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSwapEx_64 {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, y, yType, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSwapEx_64"),
@@ -7506,7 +7026,7 @@ pub unsafe extern "C" fn cublasSwapEx_64(handle: cublasHandle_t, n: i64, x: *mut
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIsamax_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIsamax_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIsamax_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIsamax_v2"),
@@ -7522,7 +7042,7 @@ pub unsafe extern "C" fn cublasIsamax_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIdamax_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIdamax_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIdamax_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIdamax_v2"),
@@ -7538,7 +7058,7 @@ pub unsafe extern "C" fn cublasIdamax_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIcamax_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIcamax_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIcamax_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIcamax_v2"),
@@ -7554,7 +7074,7 @@ pub unsafe extern "C" fn cublasIcamax_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIzamax_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIzamax_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIzamax_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIzamax_v2"),
@@ -7570,7 +7090,7 @@ pub unsafe extern "C" fn cublasIzamax_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIamaxEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIamaxEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIamaxEx {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIamaxEx"),
@@ -7578,7 +7098,7 @@ pub unsafe extern "C" fn cublasIamaxEx(handle: cublasHandle_t, n: ::std::os::raw
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIamaxEx_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, result: *mut i64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIamaxEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, result: *mut i64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIamaxEx_64 {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIamaxEx_64"),
@@ -7586,7 +7106,7 @@ pub unsafe extern "C" fn cublasIamaxEx_64(handle: cublasHandle_t, n: i64, x: *co
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIsamin_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIsamin_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIsamin_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIsamin_v2"),
@@ -7602,7 +7122,7 @@ pub unsafe extern "C" fn cublasIsamin_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIdamin_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIdamin_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIdamin_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIdamin_v2"),
@@ -7618,7 +7138,7 @@ pub unsafe extern "C" fn cublasIdamin_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIcamin_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIcamin_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIcamin_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIcamin_v2"),
@@ -7634,7 +7154,7 @@ pub unsafe extern "C" fn cublasIcamin_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIzamin_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIzamin_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIzamin_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIzamin_v2"),
@@ -7650,7 +7170,7 @@ pub unsafe extern "C" fn cublasIzamin_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIaminEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIaminEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIaminEx {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIaminEx"),
@@ -7658,7 +7178,7 @@ pub unsafe extern "C" fn cublasIaminEx(handle: cublasHandle_t, n: ::std::os::raw
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasIaminEx_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, result: *mut i64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasIaminEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, result: *mut i64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasIaminEx_64 {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasIaminEx_64"),
@@ -7666,7 +7186,7 @@ pub unsafe extern "C" fn cublasIaminEx_64(handle: cublasHandle_t, n: i64, x: *co
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasAsumEx(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: ::std::os::raw::c_int, result: *mut ::std::os::raw::c_void, resultType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasAsumEx(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: ::core::ffi::c_int, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasAsumEx {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result, resultType, executiontype) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasAsumEx"),
@@ -7674,7 +7194,7 @@ pub unsafe extern "C" fn cublasAsumEx(handle: cublasHandle_t, n: ::std::os::raw:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasAsumEx_64(handle: cublasHandle_t, n: i64, x: *const ::std::os::raw::c_void, xType: cudaDataType, incx: i64, result: *mut ::std::os::raw::c_void, resultType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasAsumEx_64(handle: cublasHandle_t, n: i64, x: *const ::core::ffi::c_void, xType: cudaDataType, incx: i64, result: *mut ::core::ffi::c_void, resultType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasAsumEx_64 {
         Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result, resultType, executiontype) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasAsumEx_64"),
@@ -7682,7 +7202,7 @@ pub unsafe extern "C" fn cublasAsumEx_64(handle: cublasHandle_t, n: i64, x: *con
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSasum_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSasum_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSasum_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSasum_v2"),
@@ -7698,7 +7218,7 @@ pub unsafe extern "C" fn cublasSasum_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDasum_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDasum_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDasum_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDasum_v2"),
@@ -7714,7 +7234,7 @@ pub unsafe extern "C" fn cublasDasum_v2_64(handle: cublasHandle_t, n: i64, x: *c
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasScasum_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuComplex, incx: ::std::os::raw::c_int, result: *mut f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasScasum_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, result: *mut f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasScasum_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasScasum_v2"),
@@ -7730,7 +7250,7 @@ pub unsafe extern "C" fn cublasScasum_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDzasum_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, result: *mut f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDzasum_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, result: *mut f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDzasum_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, result) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDzasum_v2"),
@@ -7746,7 +7266,7 @@ pub unsafe extern "C" fn cublasDzasum_v2_64(handle: cublasHandle_t, n: i64, x: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int, c: *const f32, s: *const f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int, c: *const f32, s: *const f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSrot_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, c, s) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSrot_v2"),
@@ -7762,7 +7282,7 @@ pub unsafe extern "C" fn cublasSrot_v2_64(handle: cublasHandle_t, n: i64, x: *mu
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int, c: *const f64, s: *const f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int, c: *const f64, s: *const f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDrot_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, c, s) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDrot_v2"),
@@ -7778,7 +7298,7 @@ pub unsafe extern "C" fn cublasDrot_v2_64(handle: cublasHandle_t, n: i64, x: *mu
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int, c: *const f32, s: *const cuComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int, c: *const f32, s: *const cuComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCrot_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, c, s) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCrot_v2"),
@@ -7794,7 +7314,7 @@ pub unsafe extern "C" fn cublasCrot_v2_64(handle: cublasHandle_t, n: i64, x: *mu
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCsrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int, y: *mut cuComplex, incy: ::std::os::raw::c_int, c: *const f32, s: *const f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCsrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int, y: *mut cuComplex, incy: ::core::ffi::c_int, c: *const f32, s: *const f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsrot_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, c, s) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCsrot_v2"),
@@ -7810,7 +7330,7 @@ pub unsafe extern "C" fn cublasCsrot_v2_64(handle: cublasHandle_t, n: i64, x: *m
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int, c: *const f64, s: *const cuDoubleComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int, c: *const f64, s: *const cuDoubleComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZrot_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, c, s) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZrot_v2"),
@@ -7826,7 +7346,7 @@ pub unsafe extern "C" fn cublasZrot_v2_64(handle: cublasHandle_t, n: i64, x: *mu
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZdrot_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int, y: *mut cuDoubleComplex, incy: ::std::os::raw::c_int, c: *const f64, s: *const f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZdrot_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int, y: *mut cuDoubleComplex, incy: ::core::ffi::c_int, c: *const f64, s: *const f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZdrot_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, c, s) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZdrot_v2"),
@@ -7844,15 +7364,15 @@ pub unsafe extern "C" fn cublasZdrot_v2_64(handle: cublasHandle_t, n: i64, x: *m
 #[inline(always)]
 pub unsafe extern "C" fn cublasRotEx(
     handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
-    x: *mut ::std::os::raw::c_void,
+    n: ::core::ffi::c_int,
+    x: *mut ::core::ffi::c_void,
     xType: cudaDataType,
-    incx: ::std::os::raw::c_int,
-    y: *mut ::std::os::raw::c_void,
+    incx: ::core::ffi::c_int,
+    y: *mut ::core::ffi::c_void,
     yType: cudaDataType,
-    incy: ::std::os::raw::c_int,
-    c: *const ::std::os::raw::c_void,
-    s: *const ::std::os::raw::c_void,
+    incy: ::core::ffi::c_int,
+    c: *const ::core::ffi::c_void,
+    s: *const ::core::ffi::c_void,
     csType: cudaDataType,
     executiontype: cudaDataType,
 ) -> cublasStatus_t {
@@ -7866,14 +7386,14 @@ pub unsafe extern "C" fn cublasRotEx(
 pub unsafe extern "C" fn cublasRotEx_64(
     handle: cublasHandle_t,
     n: i64,
-    x: *mut ::std::os::raw::c_void,
+    x: *mut ::core::ffi::c_void,
     xType: cudaDataType,
     incx: i64,
-    y: *mut ::std::os::raw::c_void,
+    y: *mut ::core::ffi::c_void,
     yType: cudaDataType,
     incy: i64,
-    c: *const ::std::os::raw::c_void,
-    s: *const ::std::os::raw::c_void,
+    c: *const ::core::ffi::c_void,
+    s: *const ::core::ffi::c_void,
     csType: cudaDataType,
     executiontype: cudaDataType,
 ) -> cublasStatus_t {
@@ -7916,7 +7436,7 @@ pub unsafe extern "C" fn cublasZrotg_v2(handle: cublasHandle_t, a: *mut cuDouble
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasRotgEx(handle: cublasHandle_t, a: *mut ::std::os::raw::c_void, b: *mut ::std::os::raw::c_void, abType: cudaDataType, c: *mut ::std::os::raw::c_void, s: *mut ::std::os::raw::c_void, csType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasRotgEx(handle: cublasHandle_t, a: *mut ::core::ffi::c_void, b: *mut ::core::ffi::c_void, abType: cudaDataType, c: *mut ::core::ffi::c_void, s: *mut ::core::ffi::c_void, csType: cudaDataType, executiontype: cudaDataType) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasRotgEx {
         Some(____func) => unsafe { ____func(handle, a, b, abType, c, s, csType, executiontype) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasRotgEx"),
@@ -7924,7 +7444,7 @@ pub unsafe extern "C" fn cublasRotgEx(handle: cublasHandle_t, a: *mut ::std::os:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSrotm_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int, y: *mut f32, incy: ::std::os::raw::c_int, param: *const f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSrotm_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int, y: *mut f32, incy: ::core::ffi::c_int, param: *const f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSrotm_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, param) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSrotm_v2"),
@@ -7940,7 +7460,7 @@ pub unsafe extern "C" fn cublasSrotm_v2_64(handle: cublasHandle_t, n: i64, x: *m
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDrotm_v2(handle: cublasHandle_t, n: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int, y: *mut f64, incy: ::std::os::raw::c_int, param: *const f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDrotm_v2(handle: cublasHandle_t, n: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int, y: *mut f64, incy: ::core::ffi::c_int, param: *const f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDrotm_v2 {
         Some(____func) => unsafe { ____func(handle, n, x, incx, y, incy, param) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDrotm_v2"),
@@ -7958,14 +7478,14 @@ pub unsafe extern "C" fn cublasDrotm_v2_64(handle: cublasHandle_t, n: i64, x: *m
 #[inline(always)]
 pub unsafe extern "C" fn cublasRotmEx(
     handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
-    x: *mut ::std::os::raw::c_void,
+    n: ::core::ffi::c_int,
+    x: *mut ::core::ffi::c_void,
     xType: cudaDataType,
-    incx: ::std::os::raw::c_int,
-    y: *mut ::std::os::raw::c_void,
+    incx: ::core::ffi::c_int,
+    y: *mut ::core::ffi::c_void,
     yType: cudaDataType,
-    incy: ::std::os::raw::c_int,
-    param: *const ::std::os::raw::c_void,
+    incy: ::core::ffi::c_int,
+    param: *const ::core::ffi::c_void,
     paramType: cudaDataType,
     executiontype: cudaDataType,
 ) -> cublasStatus_t {
@@ -7979,13 +7499,13 @@ pub unsafe extern "C" fn cublasRotmEx(
 pub unsafe extern "C" fn cublasRotmEx_64(
     handle: cublasHandle_t,
     n: i64,
-    x: *mut ::std::os::raw::c_void,
+    x: *mut ::core::ffi::c_void,
     xType: cudaDataType,
     incx: i64,
-    y: *mut ::std::os::raw::c_void,
+    y: *mut ::core::ffi::c_void,
     yType: cudaDataType,
     incy: i64,
-    param: *const ::std::os::raw::c_void,
+    param: *const ::core::ffi::c_void,
     paramType: cudaDataType,
     executiontype: cudaDataType,
 ) -> cublasStatus_t {
@@ -8014,15 +7534,15 @@ pub unsafe extern "C" fn cublasDrotmg_v2(handle: cublasHandle_t, d1: *mut f64, d
 #[inline(always)]
 pub unsafe extern "C" fn cublasRotmgEx(
     handle: cublasHandle_t,
-    d1: *mut ::std::os::raw::c_void,
+    d1: *mut ::core::ffi::c_void,
     d1Type: cudaDataType,
-    d2: *mut ::std::os::raw::c_void,
+    d2: *mut ::core::ffi::c_void,
     d2Type: cudaDataType,
-    x1: *mut ::std::os::raw::c_void,
+    x1: *mut ::core::ffi::c_void,
     x1Type: cudaDataType,
-    y1: *const ::std::os::raw::c_void,
+    y1: *const ::core::ffi::c_void,
     y1Type: cudaDataType,
-    param: *mut ::std::os::raw::c_void,
+    param: *mut ::core::ffi::c_void,
     paramType: cudaDataType,
     executiontype: cudaDataType,
 ) -> cublasStatus_t {
@@ -8036,16 +7556,16 @@ pub unsafe extern "C" fn cublasRotmgEx(
 pub unsafe extern "C" fn cublasSgemv_v2(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const f32,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const f32,
     y: *mut f32,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemv_v2 {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8065,16 +7585,16 @@ pub unsafe extern "C" fn cublasSgemv_v2_64(handle: cublasHandle_t, trans: cublas
 pub unsafe extern "C" fn cublasDgemv_v2(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const f64,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const f64,
     y: *mut f64,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgemv_v2 {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8094,16 +7614,16 @@ pub unsafe extern "C" fn cublasDgemv_v2_64(handle: cublasHandle_t, trans: cublas
 pub unsafe extern "C" fn cublasCgemv_v2(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuComplex,
     y: *mut cuComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemv_v2 {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8123,16 +7643,16 @@ pub unsafe extern "C" fn cublasCgemv_v2_64(handle: cublasHandle_t, trans: cublas
 pub unsafe extern "C" fn cublasZgemv_v2(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgemv_v2 {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8152,18 +7672,18 @@ pub unsafe extern "C" fn cublasZgemv_v2_64(handle: cublasHandle_t, trans: cublas
 pub unsafe extern "C" fn cublasSgbmv_v2(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    kl: ::std::os::raw::c_int,
-    ku: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kl: ::core::ffi::c_int,
+    ku: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const f32,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const f32,
     y: *mut f32,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgbmv_v2 {
         Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8183,18 +7703,18 @@ pub unsafe extern "C" fn cublasSgbmv_v2_64(handle: cublasHandle_t, trans: cublas
 pub unsafe extern "C" fn cublasDgbmv_v2(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    kl: ::std::os::raw::c_int,
-    ku: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kl: ::core::ffi::c_int,
+    ku: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const f64,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const f64,
     y: *mut f64,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgbmv_v2 {
         Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8214,18 +7734,18 @@ pub unsafe extern "C" fn cublasDgbmv_v2_64(handle: cublasHandle_t, trans: cublas
 pub unsafe extern "C" fn cublasCgbmv_v2(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    kl: ::std::os::raw::c_int,
-    ku: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kl: ::core::ffi::c_int,
+    ku: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuComplex,
     y: *mut cuComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgbmv_v2 {
         Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8245,18 +7765,18 @@ pub unsafe extern "C" fn cublasCgbmv_v2_64(handle: cublasHandle_t, trans: cublas
 pub unsafe extern "C" fn cublasZgbmv_v2(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    kl: ::std::os::raw::c_int,
-    ku: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kl: ::core::ffi::c_int,
+    ku: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgbmv_v2 {
         Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8288,7 +7808,7 @@ pub unsafe extern "C" fn cublasZgbmv_v2_64(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasStrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasStrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStrmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasStrmv_v2"),
@@ -8304,7 +7824,7 @@ pub unsafe extern "C" fn cublasStrmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtrmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDtrmv_v2"),
@@ -8320,7 +7840,7 @@ pub unsafe extern "C" fn cublasDtrmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtrmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCtrmv_v2"),
@@ -8336,7 +7856,7 @@ pub unsafe extern "C" fn cublasCtrmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZtrmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtrmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZtrmv_v2"),
@@ -8352,7 +7872,7 @@ pub unsafe extern "C" fn cublasZtrmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasStbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasStbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStbmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, k, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasStbmv_v2"),
@@ -8368,7 +7888,7 @@ pub unsafe extern "C" fn cublasStbmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDtbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDtbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtbmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, k, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDtbmv_v2"),
@@ -8384,18 +7904,7 @@ pub unsafe extern "C" fn cublasDtbmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCtbmv_v2(
-    handle: cublasHandle_t,
-    uplo: cublasFillMode_t,
-    trans: cublasOperation_t,
-    diag: cublasDiagType_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    x: *mut cuComplex,
-    incx: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCtbmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtbmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, k, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCtbmv_v2"),
@@ -8416,12 +7925,12 @@ pub unsafe extern "C" fn cublasZtbmv_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *mut cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtbmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, k, A, lda, x, incx) },
@@ -8438,7 +7947,7 @@ pub unsafe extern "C" fn cublasZtbmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasStpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const f32, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasStpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const f32, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStpmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, AP, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasStpmv_v2"),
@@ -8454,7 +7963,7 @@ pub unsafe extern "C" fn cublasStpmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const f64, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const f64, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtpmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, AP, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDtpmv_v2"),
@@ -8470,7 +7979,7 @@ pub unsafe extern "C" fn cublasDtpmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const cuComplex, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const cuComplex, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtpmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, AP, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCtpmv_v2"),
@@ -8486,7 +7995,7 @@ pub unsafe extern "C" fn cublasCtpmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZtpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtpmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, AP, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZtpmv_v2"),
@@ -8502,7 +8011,7 @@ pub unsafe extern "C" fn cublasZtpmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasStrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasStrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStrsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasStrsv_v2"),
@@ -8518,7 +8027,7 @@ pub unsafe extern "C" fn cublasStrsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtrsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDtrsv_v2"),
@@ -8534,7 +8043,7 @@ pub unsafe extern "C" fn cublasDtrsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtrsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCtrsv_v2"),
@@ -8550,7 +8059,7 @@ pub unsafe extern "C" fn cublasCtrsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZtrsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtrsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZtrsv_v2"),
@@ -8566,7 +8075,7 @@ pub unsafe extern "C" fn cublasZtrsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasStpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const f32, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasStpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const f32, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStpsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, AP, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasStpsv_v2"),
@@ -8582,7 +8091,7 @@ pub unsafe extern "C" fn cublasStpsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const f64, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const f64, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtpsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, AP, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDtpsv_v2"),
@@ -8598,7 +8107,7 @@ pub unsafe extern "C" fn cublasDtpsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const cuComplex, x: *mut cuComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const cuComplex, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtpsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, AP, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCtpsv_v2"),
@@ -8614,7 +8123,7 @@ pub unsafe extern "C" fn cublasCtpsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, AP: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZtpsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: *const cuDoubleComplex, x: *mut cuDoubleComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtpsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, AP, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZtpsv_v2"),
@@ -8630,7 +8139,7 @@ pub unsafe extern "C" fn cublasZtpsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasStbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *mut f32, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasStbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *mut f32, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStbsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, k, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasStbsv_v2"),
@@ -8646,7 +8155,7 @@ pub unsafe extern "C" fn cublasStbsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDtbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *mut f64, incx: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDtbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *mut f64, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtbsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, k, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDtbsv_v2"),
@@ -8662,18 +8171,7 @@ pub unsafe extern "C" fn cublasDtbsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCtbsv_v2(
-    handle: cublasHandle_t,
-    uplo: cublasFillMode_t,
-    trans: cublasOperation_t,
-    diag: cublasDiagType_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    x: *mut cuComplex,
-    incx: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCtbsv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *mut cuComplex, incx: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtbsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, k, A, lda, x, incx) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCtbsv_v2"),
@@ -8694,12 +8192,12 @@ pub unsafe extern "C" fn cublasZtbsv_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *mut cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtbsv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, diag, n, k, A, lda, x, incx) },
@@ -8716,7 +8214,7 @@ pub unsafe extern "C" fn cublasZtbsv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSsymv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, A: *const f32, lda: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, beta: *const f32, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSsymv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, A: *const f32, lda: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, beta: *const f32, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSsymv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSsymv_v2"),
@@ -8732,7 +8230,7 @@ pub unsafe extern "C" fn cublasSsymv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDsymv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, A: *const f64, lda: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, beta: *const f64, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDsymv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, A: *const f64, lda: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, beta: *const f64, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDsymv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDsymv_v2"),
@@ -8751,15 +8249,15 @@ pub unsafe extern "C" fn cublasDsymv_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasCsymv_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuComplex,
     y: *mut cuComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsymv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8779,15 +8277,15 @@ pub unsafe extern "C" fn cublasCsymv_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasZsymv_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZsymv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8807,15 +8305,15 @@ pub unsafe extern "C" fn cublasZsymv_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasChemv_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuComplex,
     y: *mut cuComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasChemv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8835,15 +8333,15 @@ pub unsafe extern "C" fn cublasChemv_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasZhemv_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZhemv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8863,16 +8361,16 @@ pub unsafe extern "C" fn cublasZhemv_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasSsbmv_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const f32,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const f32,
     y: *mut f32,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSsbmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8892,16 +8390,16 @@ pub unsafe extern "C" fn cublasSsbmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasDsbmv_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const f64,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const f64,
     y: *mut f64,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDsbmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8921,16 +8419,16 @@ pub unsafe extern "C" fn cublasDsbmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasChbmv_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuComplex,
     y: *mut cuComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasChbmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8950,16 +8448,16 @@ pub unsafe extern "C" fn cublasChbmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasZhbmv_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZhbmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
@@ -8976,7 +8474,7 @@ pub unsafe extern "C" fn cublasZhbmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSspmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, AP: *const f32, x: *const f32, incx: ::std::os::raw::c_int, beta: *const f32, y: *mut f32, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSspmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, AP: *const f32, x: *const f32, incx: ::core::ffi::c_int, beta: *const f32, y: *mut f32, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSspmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSspmv_v2"),
@@ -8992,7 +8490,7 @@ pub unsafe extern "C" fn cublasSspmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDspmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, AP: *const f64, x: *const f64, incx: ::std::os::raw::c_int, beta: *const f64, y: *mut f64, incy: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDspmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, AP: *const f64, x: *const f64, incx: ::core::ffi::c_int, beta: *const f64, y: *mut f64, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDspmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDspmv_v2"),
@@ -9008,18 +8506,7 @@ pub unsafe extern "C" fn cublasDspmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasChpmv_v2(
-    handle: cublasHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    alpha: *const cuComplex,
-    AP: *const cuComplex,
-    x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
-    beta: *const cuComplex,
-    y: *mut cuComplex,
-    incy: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasChpmv_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, AP: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, beta: *const cuComplex, y: *mut cuComplex, incy: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasChpmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasChpmv_v2"),
@@ -9038,14 +8525,14 @@ pub unsafe extern "C" fn cublasChpmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasZhpmv_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     AP: *const cuDoubleComplex,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZhpmv_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) },
@@ -9062,7 +8549,7 @@ pub unsafe extern "C" fn cublasZhpmv_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSger_v2(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, y: *const f32, incy: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSger_v2(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, y: *const f32, incy: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSger_v2 {
         Some(____func) => unsafe { ____func(handle, m, n, alpha, x, incx, y, incy, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSger_v2"),
@@ -9078,7 +8565,7 @@ pub unsafe extern "C" fn cublasSger_v2_64(handle: cublasHandle_t, m: i64, n: i64
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDger_v2(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, y: *const f64, incy: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDger_v2(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, y: *const f64, incy: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDger_v2 {
         Some(____func) => unsafe { ____func(handle, m, n, alpha, x, incx, y, incy, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDger_v2"),
@@ -9094,18 +8581,7 @@ pub unsafe extern "C" fn cublasDger_v2_64(handle: cublasHandle_t, m: i64, n: i64
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCgeru_v2(
-    handle: cublasHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    alpha: *const cuComplex,
-    x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
-    y: *const cuComplex,
-    incy: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCgeru_v2(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgeru_v2 {
         Some(____func) => unsafe { ____func(handle, m, n, alpha, x, incx, y, incy, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCgeru_v2"),
@@ -9121,18 +8597,7 @@ pub unsafe extern "C" fn cublasCgeru_v2_64(handle: cublasHandle_t, m: i64, n: i6
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCgerc_v2(
-    handle: cublasHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    alpha: *const cuComplex,
-    x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
-    y: *const cuComplex,
-    incy: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCgerc_v2(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgerc_v2 {
         Some(____func) => unsafe { ____func(handle, m, n, alpha, x, incx, y, incy, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCgerc_v2"),
@@ -9150,15 +8615,15 @@ pub unsafe extern "C" fn cublasCgerc_v2_64(handle: cublasHandle_t, m: i64, n: i6
 #[inline(always)]
 pub unsafe extern "C" fn cublasZgeru_v2(
     handle: cublasHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     y: *const cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgeru_v2 {
         Some(____func) => unsafe { ____func(handle, m, n, alpha, x, incx, y, incy, A, lda) },
@@ -9177,15 +8642,15 @@ pub unsafe extern "C" fn cublasZgeru_v2_64(handle: cublasHandle_t, m: i64, n: i6
 #[inline(always)]
 pub unsafe extern "C" fn cublasZgerc_v2(
     handle: cublasHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     y: *const cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgerc_v2 {
         Some(____func) => unsafe { ____func(handle, m, n, alpha, x, incx, y, incy, A, lda) },
@@ -9202,7 +8667,7 @@ pub unsafe extern "C" fn cublasZgerc_v2_64(handle: cublasHandle_t, m: i64, n: i6
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSsyr_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSsyr_v2"),
@@ -9218,7 +8683,7 @@ pub unsafe extern "C" fn cublasSsyr_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDsyr_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDsyr_v2"),
@@ -9234,7 +8699,7 @@ pub unsafe extern "C" fn cublasDsyr_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsyr_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCsyr_v2"),
@@ -9250,7 +8715,7 @@ pub unsafe extern "C" fn cublasCsyr_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZsyr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZsyr_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZsyr_v2"),
@@ -9266,7 +8731,7 @@ pub unsafe extern "C" fn cublasZsyr_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCher_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const cuComplex, incx: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCher_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const cuComplex, incx: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCher_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCher_v2"),
@@ -9282,7 +8747,7 @@ pub unsafe extern "C" fn cublasCher_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZher_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZher_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZher_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZher_v2"),
@@ -9298,7 +8763,7 @@ pub unsafe extern "C" fn cublasZher_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSspr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, AP: *mut f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSspr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, AP: *mut f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSspr_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSspr_v2"),
@@ -9314,7 +8779,7 @@ pub unsafe extern "C" fn cublasSspr_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDspr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, AP: *mut f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDspr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, AP: *mut f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDspr_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDspr_v2"),
@@ -9330,7 +8795,7 @@ pub unsafe extern "C" fn cublasDspr_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasChpr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const cuComplex, incx: ::std::os::raw::c_int, AP: *mut cuComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasChpr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const cuComplex, incx: ::core::ffi::c_int, AP: *mut cuComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasChpr_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasChpr_v2"),
@@ -9346,7 +8811,7 @@ pub unsafe extern "C" fn cublasChpr_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZhpr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const cuDoubleComplex, incx: ::std::os::raw::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZhpr_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZhpr_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZhpr_v2"),
@@ -9362,7 +8827,7 @@ pub unsafe extern "C" fn cublasZhpr_v2_64(handle: cublasHandle_t, uplo: cublasFi
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, y: *const f32, incy: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, y: *const f32, incy: ::core::ffi::c_int, A: *mut f32, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSsyr2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSsyr2_v2"),
@@ -9378,7 +8843,7 @@ pub unsafe extern "C" fn cublasSsyr2_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, y: *const f64, incy: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, y: *const f64, incy: ::core::ffi::c_int, A: *mut f64, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDsyr2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDsyr2_v2"),
@@ -9394,18 +8859,7 @@ pub unsafe extern "C" fn cublasDsyr2_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCsyr2_v2(
-    handle: cublasHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    alpha: *const cuComplex,
-    x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
-    y: *const cuComplex,
-    incy: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCsyr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsyr2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCsyr2_v2"),
@@ -9424,14 +8878,14 @@ pub unsafe extern "C" fn cublasCsyr2_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasZsyr2_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     y: *const cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZsyr2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, A, lda) },
@@ -9448,18 +8902,7 @@ pub unsafe extern "C" fn cublasZsyr2_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCher2_v2(
-    handle: cublasHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    alpha: *const cuComplex,
-    x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
-    y: *const cuComplex,
-    incy: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCher2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCher2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCher2_v2"),
@@ -9478,14 +8921,14 @@ pub unsafe extern "C" fn cublasCher2_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasZher2_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     y: *const cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
     A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZher2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, A, lda) },
@@ -9502,7 +8945,7 @@ pub unsafe extern "C" fn cublasZher2_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSspr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f32, x: *const f32, incx: ::std::os::raw::c_int, y: *const f32, incy: ::std::os::raw::c_int, AP: *mut f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSspr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f32, x: *const f32, incx: ::core::ffi::c_int, y: *const f32, incy: ::core::ffi::c_int, AP: *mut f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSspr2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSspr2_v2"),
@@ -9518,7 +8961,7 @@ pub unsafe extern "C" fn cublasSspr2_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDspr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const f64, x: *const f64, incx: ::std::os::raw::c_int, y: *const f64, incy: ::std::os::raw::c_int, AP: *mut f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDspr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const f64, x: *const f64, incx: ::core::ffi::c_int, y: *const f64, incy: ::core::ffi::c_int, AP: *mut f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDspr2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDspr2_v2"),
@@ -9534,7 +8977,7 @@ pub unsafe extern "C" fn cublasDspr2_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasChpr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::std::os::raw::c_int, y: *const cuComplex, incy: ::std::os::raw::c_int, AP: *mut cuComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasChpr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuComplex, x: *const cuComplex, incx: ::core::ffi::c_int, y: *const cuComplex, incy: ::core::ffi::c_int, AP: *mut cuComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasChpr2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasChpr2_v2"),
@@ -9550,17 +8993,7 @@ pub unsafe extern "C" fn cublasChpr2_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZhpr2_v2(
-    handle: cublasHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    alpha: *const cuDoubleComplex,
-    x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
-    y: *const cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
-    AP: *mut cuDoubleComplex,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZhpr2_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: *const cuDoubleComplex, x: *const cuDoubleComplex, incx: ::core::ffi::c_int, y: *const cuDoubleComplex, incy: ::core::ffi::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZhpr2_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, n, alpha, x, incx, y, incy, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZhpr2_v2"),
@@ -9579,17 +9012,17 @@ pub unsafe extern "C" fn cublasZhpr2_v2_64(handle: cublasHandle_t, uplo: cublasF
 pub unsafe extern "C" fn cublasSgemvBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     Aarray: *const *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     xarray: *const *const f32,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const f32,
     yarray: *const *mut f32,
-    incy: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemvBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount) },
@@ -9609,17 +9042,17 @@ pub unsafe extern "C" fn cublasSgemvBatched_64(handle: cublasHandle_t, trans: cu
 pub unsafe extern "C" fn cublasDgemvBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     Aarray: *const *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     xarray: *const *const f64,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const f64,
     yarray: *const *mut f64,
-    incy: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgemvBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount) },
@@ -9639,17 +9072,17 @@ pub unsafe extern "C" fn cublasDgemvBatched_64(handle: cublasHandle_t, trans: cu
 pub unsafe extern "C" fn cublasCgemvBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     Aarray: *const *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     xarray: *const *const cuComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuComplex,
     yarray: *const *mut cuComplex,
-    incy: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemvBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount) },
@@ -9683,17 +9116,17 @@ pub unsafe extern "C" fn cublasCgemvBatched_64(
 pub unsafe extern "C" fn cublasZgemvBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     Aarray: *const *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     xarray: *const *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     yarray: *const *mut cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgemvBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount) },
@@ -9727,20 +9160,20 @@ pub unsafe extern "C" fn cublasZgemvBatched_64(
 pub unsafe extern "C" fn cublasSgemvStridedBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     x: *const f32,
-    incx: ::std::os::raw::c_int,
-    stridex: ::std::os::raw::c_longlong,
+    incx: ::core::ffi::c_int,
+    stridex: ::core::ffi::c_longlong,
     beta: *const f32,
     y: *mut f32,
-    incy: ::std::os::raw::c_int,
-    stridey: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
+    stridey: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemvStridedBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount) },
@@ -9760,14 +9193,14 @@ pub unsafe extern "C" fn cublasSgemvStridedBatched_64(
     alpha: *const f32,
     A: *const f32,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
+    strideA: ::core::ffi::c_longlong,
     x: *const f32,
     incx: i64,
-    stridex: ::std::os::raw::c_longlong,
+    stridex: ::core::ffi::c_longlong,
     beta: *const f32,
     y: *mut f32,
     incy: i64,
-    stridey: ::std::os::raw::c_longlong,
+    stridey: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemvStridedBatched_64 {
@@ -9783,20 +9216,20 @@ pub unsafe extern "C" fn cublasSgemvStridedBatched_64(
 pub unsafe extern "C" fn cublasDgemvStridedBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     x: *const f64,
-    incx: ::std::os::raw::c_int,
-    stridex: ::std::os::raw::c_longlong,
+    incx: ::core::ffi::c_int,
+    stridex: ::core::ffi::c_longlong,
     beta: *const f64,
     y: *mut f64,
-    incy: ::std::os::raw::c_int,
-    stridey: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
+    stridey: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgemvStridedBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount) },
@@ -9816,14 +9249,14 @@ pub unsafe extern "C" fn cublasDgemvStridedBatched_64(
     alpha: *const f64,
     A: *const f64,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
+    strideA: ::core::ffi::c_longlong,
     x: *const f64,
     incx: i64,
-    stridex: ::std::os::raw::c_longlong,
+    stridex: ::core::ffi::c_longlong,
     beta: *const f64,
     y: *mut f64,
     incy: i64,
-    stridey: ::std::os::raw::c_longlong,
+    stridey: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgemvStridedBatched_64 {
@@ -9839,20 +9272,20 @@ pub unsafe extern "C" fn cublasDgemvStridedBatched_64(
 pub unsafe extern "C" fn cublasCgemvStridedBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
-    stridex: ::std::os::raw::c_longlong,
+    incx: ::core::ffi::c_int,
+    stridex: ::core::ffi::c_longlong,
     beta: *const cuComplex,
     y: *mut cuComplex,
-    incy: ::std::os::raw::c_int,
-    stridey: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
+    stridey: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemvStridedBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount) },
@@ -9872,14 +9305,14 @@ pub unsafe extern "C" fn cublasCgemvStridedBatched_64(
     alpha: *const cuComplex,
     A: *const cuComplex,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
+    strideA: ::core::ffi::c_longlong,
     x: *const cuComplex,
     incx: i64,
-    stridex: ::std::os::raw::c_longlong,
+    stridex: ::core::ffi::c_longlong,
     beta: *const cuComplex,
     y: *mut cuComplex,
     incy: i64,
-    stridey: ::std::os::raw::c_longlong,
+    stridey: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemvStridedBatched_64 {
@@ -9895,20 +9328,20 @@ pub unsafe extern "C" fn cublasCgemvStridedBatched_64(
 pub unsafe extern "C" fn cublasZgemvStridedBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
-    stridex: ::std::os::raw::c_longlong,
+    incx: ::core::ffi::c_int,
+    stridex: ::core::ffi::c_longlong,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
-    incy: ::std::os::raw::c_int,
-    stridey: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    incy: ::core::ffi::c_int,
+    stridey: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgemvStridedBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount) },
@@ -9928,14 +9361,14 @@ pub unsafe extern "C" fn cublasZgemvStridedBatched_64(
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
+    strideA: ::core::ffi::c_longlong,
     x: *const cuDoubleComplex,
     incx: i64,
-    stridex: ::std::os::raw::c_longlong,
+    stridex: ::core::ffi::c_longlong,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
     incy: i64,
-    stridey: ::std::os::raw::c_longlong,
+    stridey: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgemvStridedBatched_64 {
@@ -9952,17 +9385,17 @@ pub unsafe extern "C" fn cublasSgemm_v2(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f32,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemm_v2 {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -9983,17 +9416,17 @@ pub unsafe extern "C" fn cublasDgemm_v2(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f64,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgemm_v2 {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10014,17 +9447,17 @@ pub unsafe extern "C" fn cublasCgemm_v2(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemm_v2 {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10060,17 +9493,17 @@ pub unsafe extern "C" fn cublasCgemm3m(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemm3m {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10106,20 +9539,20 @@ pub unsafe extern "C" fn cublasCgemm3mEx(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
-    B: *const ::std::os::raw::c_void,
+    lda: ::core::ffi::c_int,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemm3mEx {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C, Ctype, ldc) },
@@ -10136,14 +9569,14 @@ pub unsafe extern "C" fn cublasCgemm3mEx_64(
     n: i64,
     k: i64,
     alpha: *const cuComplex,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
-    B: *const ::std::os::raw::c_void,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
     ldb: i64,
     beta: *const cuComplex,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
 ) -> cublasStatus_t {
@@ -10158,17 +9591,17 @@ pub unsafe extern "C" fn cublasZgemm_v2(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgemm_v2 {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10204,17 +9637,17 @@ pub unsafe extern "C" fn cublasZgemm3m(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgemm3m {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10250,20 +9683,20 @@ pub unsafe extern "C" fn cublasSgemmEx(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
-    B: *const ::std::os::raw::c_void,
+    lda: ::core::ffi::c_int,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f32,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemmEx {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C, Ctype, ldc) },
@@ -10280,14 +9713,14 @@ pub unsafe extern "C" fn cublasSgemmEx_64(
     n: i64,
     k: i64,
     alpha: *const f32,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
-    B: *const ::std::os::raw::c_void,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
     ldb: i64,
     beta: *const f32,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
 ) -> cublasStatus_t {
@@ -10302,20 +9735,20 @@ pub unsafe extern "C" fn cublasGemmEx(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    alpha: *const ::std::os::raw::c_void,
-    A: *const ::std::os::raw::c_void,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    alpha: *const ::core::ffi::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
-    B: *const ::std::os::raw::c_void,
+    lda: ::core::ffi::c_int,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
-    ldb: ::std::os::raw::c_int,
-    beta: *const ::std::os::raw::c_void,
-    C: *mut ::std::os::raw::c_void,
+    ldb: ::core::ffi::c_int,
+    beta: *const ::core::ffi::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
     computeType: cublasComputeType_t,
     algo: cublasGemmAlgo_t,
 ) -> cublasStatus_t {
@@ -10333,15 +9766,15 @@ pub unsafe extern "C" fn cublasGemmEx_64(
     m: i64,
     n: i64,
     k: i64,
-    alpha: *const ::std::os::raw::c_void,
-    A: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
-    B: *const ::std::os::raw::c_void,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
     ldb: i64,
-    beta: *const ::std::os::raw::c_void,
-    C: *mut ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
     computeType: cublasComputeType_t,
@@ -10358,20 +9791,20 @@ pub unsafe extern "C" fn cublasCgemmEx(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
-    B: *const ::std::os::raw::c_void,
+    lda: ::core::ffi::c_int,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemmEx {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C, Ctype, ldc) },
@@ -10388,14 +9821,14 @@ pub unsafe extern "C" fn cublasCgemmEx_64(
     n: i64,
     k: i64,
     alpha: *const cuComplex,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
-    B: *const ::std::os::raw::c_void,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
     ldb: i64,
     beta: *const cuComplex,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
 ) -> cublasStatus_t {
@@ -10406,19 +9839,7 @@ pub unsafe extern "C" fn cublasCgemmEx_64(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSsyrk_v2(
-    handle: cublasHandle_t,
-    uplo: cublasFillMode_t,
-    trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    alpha: *const f32,
-    A: *const f32,
-    lda: ::std::os::raw::c_int,
-    beta: *const f32,
-    C: *mut f32,
-    ldc: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSsyrk_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, alpha: *const f32, A: *const f32, lda: ::core::ffi::c_int, beta: *const f32, C: *mut f32, ldc: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSsyrk_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSsyrk_v2"),
@@ -10434,19 +9855,7 @@ pub unsafe extern "C" fn cublasSsyrk_v2_64(handle: cublasHandle_t, uplo: cublasF
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDsyrk_v2(
-    handle: cublasHandle_t,
-    uplo: cublasFillMode_t,
-    trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    alpha: *const f64,
-    A: *const f64,
-    lda: ::std::os::raw::c_int,
-    beta: *const f64,
-    C: *mut f64,
-    ldc: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDsyrk_v2(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, n: ::core::ffi::c_int, k: ::core::ffi::c_int, alpha: *const f64, A: *const f64, lda: ::core::ffi::c_int, beta: *const f64, C: *mut f64, ldc: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDsyrk_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDsyrk_v2"),
@@ -10466,14 +9875,14 @@ pub unsafe extern "C" fn cublasCsyrk_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsyrk_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
@@ -10494,14 +9903,14 @@ pub unsafe extern "C" fn cublasZsyrk_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZsyrk_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
@@ -10522,16 +9931,16 @@ pub unsafe extern "C" fn cublasCsyrkEx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const cuComplex,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsyrkEx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
@@ -10547,11 +9956,11 @@ pub unsafe extern "C" fn cublasCsyrkEx_64(
     n: i64,
     k: i64,
     alpha: *const cuComplex,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
     beta: *const cuComplex,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
 ) -> cublasStatus_t {
@@ -10566,16 +9975,16 @@ pub unsafe extern "C" fn cublasCsyrk3mEx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const cuComplex,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsyrk3mEx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
@@ -10591,11 +10000,11 @@ pub unsafe extern "C" fn cublasCsyrk3mEx_64(
     n: i64,
     k: i64,
     alpha: *const cuComplex,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
     beta: *const cuComplex,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
 ) -> cublasStatus_t {
@@ -10610,14 +10019,14 @@ pub unsafe extern "C" fn cublasCherk_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const f32,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCherk_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
@@ -10638,14 +10047,14 @@ pub unsafe extern "C" fn cublasZherk_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const f64,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZherk_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
@@ -10666,16 +10075,16 @@ pub unsafe extern "C" fn cublasCherkEx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const f32,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCherkEx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
@@ -10691,11 +10100,11 @@ pub unsafe extern "C" fn cublasCherkEx_64(
     n: i64,
     k: i64,
     alpha: *const f32,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
     beta: *const f32,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
 ) -> cublasStatus_t {
@@ -10710,16 +10119,16 @@ pub unsafe extern "C" fn cublasCherk3mEx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const f32,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCherk3mEx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
@@ -10735,11 +10144,11 @@ pub unsafe extern "C" fn cublasCherk3mEx_64(
     n: i64,
     k: i64,
     alpha: *const f32,
-    A: *const ::std::os::raw::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
     beta: *const f32,
-    C: *mut ::std::os::raw::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
 ) -> cublasStatus_t {
@@ -10754,16 +10163,16 @@ pub unsafe extern "C" fn cublasSsyr2k_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f32,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSsyr2k_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10784,16 +10193,16 @@ pub unsafe extern "C" fn cublasDsyr2k_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f64,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDsyr2k_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10814,16 +10223,16 @@ pub unsafe extern "C" fn cublasCsyr2k_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsyr2k_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10844,16 +10253,16 @@ pub unsafe extern "C" fn cublasZsyr2k_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZsyr2k_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10888,16 +10297,16 @@ pub unsafe extern "C" fn cublasCher2k_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f32,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCher2k_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10918,16 +10327,16 @@ pub unsafe extern "C" fn cublasZher2k_v2(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f64,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZher2k_v2 {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10962,16 +10371,16 @@ pub unsafe extern "C" fn cublasSsyrkx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f32,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSsyrkx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -10992,16 +10401,16 @@ pub unsafe extern "C" fn cublasDsyrkx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f64,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDsyrkx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11022,16 +10431,16 @@ pub unsafe extern "C" fn cublasCsyrkx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsyrkx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11052,16 +10461,16 @@ pub unsafe extern "C" fn cublasZsyrkx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZsyrkx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11096,16 +10505,16 @@ pub unsafe extern "C" fn cublasCherkx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f32,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCherkx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11126,16 +10535,16 @@ pub unsafe extern "C" fn cublasZherkx(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f64,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZherkx {
         Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11170,16 +10579,16 @@ pub unsafe extern "C" fn cublasSsymm_v2(
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f32,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSsymm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11200,16 +10609,16 @@ pub unsafe extern "C" fn cublasDsymm_v2(
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f64,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDsymm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11230,16 +10639,16 @@ pub unsafe extern "C" fn cublasCsymm_v2(
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCsymm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11260,16 +10669,16 @@ pub unsafe extern "C" fn cublasZsymm_v2(
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZsymm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11304,16 +10713,16 @@ pub unsafe extern "C" fn cublasChemm_v2(
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasChemm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11334,16 +10743,16 @@ pub unsafe extern "C" fn cublasZhemm_v2(
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZhemm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
@@ -11380,13 +10789,13 @@ pub unsafe extern "C" fn cublasStrsm_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStrsm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
@@ -11409,13 +10818,13 @@ pub unsafe extern "C" fn cublasDtrsm_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtrsm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
@@ -11438,13 +10847,13 @@ pub unsafe extern "C" fn cublasCtrsm_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtrsm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
@@ -11467,13 +10876,13 @@ pub unsafe extern "C" fn cublasZtrsm_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtrsm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
@@ -11509,15 +10918,15 @@ pub unsafe extern "C" fn cublasStrmm_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStrmm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
@@ -11540,15 +10949,15 @@ pub unsafe extern "C" fn cublasDtrmm_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtrmm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
@@ -11571,15 +10980,15 @@ pub unsafe extern "C" fn cublasCtrmm_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtrmm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
@@ -11617,15 +11026,15 @@ pub unsafe extern "C" fn cublasZtrmm_v2(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtrmm_v2 {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
@@ -11661,18 +11070,18 @@ pub unsafe extern "C" fn cublasSgemmBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
     Aarray: *const *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     Barray: *const *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f32,
     Carray: *const *mut f32,
-    ldc: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemmBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount) },
@@ -11709,18 +11118,18 @@ pub unsafe extern "C" fn cublasDgemmBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f64,
     Aarray: *const *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     Barray: *const *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f64,
     Carray: *const *mut f64,
-    ldc: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgemmBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount) },
@@ -11757,18 +11166,18 @@ pub unsafe extern "C" fn cublasCgemmBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     Aarray: *const *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     Barray: *const *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
     Carray: *const *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemmBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount) },
@@ -11805,18 +11214,18 @@ pub unsafe extern "C" fn cublasCgemm3mBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     Aarray: *const *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     Barray: *const *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
     Carray: *const *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemm3mBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount) },
@@ -11853,18 +11262,18 @@ pub unsafe extern "C" fn cublasZgemmBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     Aarray: *const *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     Barray: *const *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     Carray: *const *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgemmBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount) },
@@ -11901,21 +11310,21 @@ pub unsafe extern "C" fn cublasSgemmStridedBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
-    strideB: ::std::os::raw::c_longlong,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: *const f32,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
-    strideC: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemmStridedBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC, batchCount) },
@@ -11937,14 +11346,14 @@ pub unsafe extern "C" fn cublasSgemmStridedBatched_64(
     alpha: *const f32,
     A: *const f32,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
+    strideA: ::core::ffi::c_longlong,
     B: *const f32,
     ldb: i64,
-    strideB: ::std::os::raw::c_longlong,
+    strideB: ::core::ffi::c_longlong,
     beta: *const f32,
     C: *mut f32,
     ldc: i64,
-    strideC: ::std::os::raw::c_longlong,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemmStridedBatched_64 {
@@ -11961,21 +11370,21 @@ pub unsafe extern "C" fn cublasDgemmStridedBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
-    strideB: ::std::os::raw::c_longlong,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: *const f64,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
-    strideC: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgemmStridedBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC, batchCount) },
@@ -11997,14 +11406,14 @@ pub unsafe extern "C" fn cublasDgemmStridedBatched_64(
     alpha: *const f64,
     A: *const f64,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
+    strideA: ::core::ffi::c_longlong,
     B: *const f64,
     ldb: i64,
-    strideB: ::std::os::raw::c_longlong,
+    strideB: ::core::ffi::c_longlong,
     beta: *const f64,
     C: *mut f64,
     ldc: i64,
-    strideC: ::std::os::raw::c_longlong,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgemmStridedBatched_64 {
@@ -12021,21 +11430,21 @@ pub unsafe extern "C" fn cublasCgemmStridedBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
-    strideB: ::std::os::raw::c_longlong,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
-    strideC: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemmStridedBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC, batchCount) },
@@ -12057,14 +11466,14 @@ pub unsafe extern "C" fn cublasCgemmStridedBatched_64(
     alpha: *const cuComplex,
     A: *const cuComplex,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
+    strideA: ::core::ffi::c_longlong,
     B: *const cuComplex,
     ldb: i64,
-    strideB: ::std::os::raw::c_longlong,
+    strideB: ::core::ffi::c_longlong,
     beta: *const cuComplex,
     C: *mut cuComplex,
     ldc: i64,
-    strideC: ::std::os::raw::c_longlong,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemmStridedBatched_64 {
@@ -12081,21 +11490,21 @@ pub unsafe extern "C" fn cublasCgemm3mStridedBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
-    strideB: ::std::os::raw::c_longlong,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
-    strideC: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemm3mStridedBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC, batchCount) },
@@ -12117,14 +11526,14 @@ pub unsafe extern "C" fn cublasCgemm3mStridedBatched_64(
     alpha: *const cuComplex,
     A: *const cuComplex,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
+    strideA: ::core::ffi::c_longlong,
     B: *const cuComplex,
     ldb: i64,
-    strideB: ::std::os::raw::c_longlong,
+    strideB: ::core::ffi::c_longlong,
     beta: *const cuComplex,
     C: *mut cuComplex,
     ldc: i64,
-    strideC: ::std::os::raw::c_longlong,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgemm3mStridedBatched_64 {
@@ -12141,21 +11550,21 @@ pub unsafe extern "C" fn cublasZgemmStridedBatched(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
-    strideB: ::std::os::raw::c_longlong,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
-    strideC: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgemmStridedBatched {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC, batchCount) },
@@ -12177,14 +11586,14 @@ pub unsafe extern "C" fn cublasZgemmStridedBatched_64(
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
+    strideA: ::core::ffi::c_longlong,
     B: *const cuDoubleComplex,
     ldb: i64,
-    strideB: ::std::os::raw::c_longlong,
+    strideB: ::core::ffi::c_longlong,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
     ldc: i64,
-    strideC: ::std::os::raw::c_longlong,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgemmStridedBatched_64 {
@@ -12201,21 +11610,21 @@ pub unsafe extern "C" fn cublasGemmBatchedEx(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    alpha: *const ::std::os::raw::c_void,
-    Aarray: *const *const ::std::os::raw::c_void,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    alpha: *const ::core::ffi::c_void,
+    Aarray: *const *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
-    Barray: *const *const ::std::os::raw::c_void,
+    lda: ::core::ffi::c_int,
+    Barray: *const *const ::core::ffi::c_void,
     Btype: cudaDataType,
-    ldb: ::std::os::raw::c_int,
-    beta: *const ::std::os::raw::c_void,
-    Carray: *const *mut ::std::os::raw::c_void,
+    ldb: ::core::ffi::c_int,
+    beta: *const ::core::ffi::c_void,
+    Carray: *const *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
     computeType: cublasComputeType_t,
     algo: cublasGemmAlgo_t,
 ) -> cublasStatus_t {
@@ -12233,15 +11642,15 @@ pub unsafe extern "C" fn cublasGemmBatchedEx_64(
     m: i64,
     n: i64,
     k: i64,
-    alpha: *const ::std::os::raw::c_void,
-    Aarray: *const *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
+    Aarray: *const *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
-    Barray: *const *const ::std::os::raw::c_void,
+    Barray: *const *const ::core::ffi::c_void,
     Btype: cudaDataType,
     ldb: i64,
-    beta: *const ::std::os::raw::c_void,
-    Carray: *const *mut ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
+    Carray: *const *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
     batchCount: i64,
@@ -12259,24 +11668,24 @@ pub unsafe extern "C" fn cublasGemmStridedBatchedEx(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    alpha: *const ::std::os::raw::c_void,
-    A: *const ::std::os::raw::c_void,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    alpha: *const ::core::ffi::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
-    lda: ::std::os::raw::c_int,
-    strideA: ::std::os::raw::c_longlong,
-    B: *const ::std::os::raw::c_void,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
-    ldb: ::std::os::raw::c_int,
-    strideB: ::std::os::raw::c_longlong,
-    beta: *const ::std::os::raw::c_void,
-    C: *mut ::std::os::raw::c_void,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
+    beta: *const ::core::ffi::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
-    ldc: ::std::os::raw::c_int,
-    strideC: ::std::os::raw::c_longlong,
-    batchCount: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
     computeType: cublasComputeType_t,
     algo: cublasGemmAlgo_t,
 ) -> cublasStatus_t {
@@ -12297,20 +11706,20 @@ pub unsafe extern "C" fn cublasGemmStridedBatchedEx_64(
     m: i64,
     n: i64,
     k: i64,
-    alpha: *const ::std::os::raw::c_void,
-    A: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
+    A: *const ::core::ffi::c_void,
     Atype: cudaDataType,
     lda: i64,
-    strideA: ::std::os::raw::c_longlong,
-    B: *const ::std::os::raw::c_void,
+    strideA: ::core::ffi::c_longlong,
+    B: *const ::core::ffi::c_void,
     Btype: cudaDataType,
     ldb: i64,
-    strideB: ::std::os::raw::c_longlong,
-    beta: *const ::std::os::raw::c_void,
-    C: *mut ::std::os::raw::c_void,
+    strideB: ::core::ffi::c_longlong,
+    beta: *const ::core::ffi::c_void,
+    C: *mut ::core::ffi::c_void,
     Ctype: cudaDataType,
     ldc: i64,
-    strideC: ::std::os::raw::c_longlong,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
     computeType: cublasComputeType_t,
     algo: cublasGemmAlgo_t,
@@ -12329,19 +11738,19 @@ pub unsafe extern "C" fn cublasSgemmGroupedBatched(
     handle: cublasHandle_t,
     transa_array: *const cublasOperation_t,
     transb_array: *const cublasOperation_t,
-    m_array: *const ::std::os::raw::c_int,
-    n_array: *const ::std::os::raw::c_int,
-    k_array: *const ::std::os::raw::c_int,
+    m_array: *const ::core::ffi::c_int,
+    n_array: *const ::core::ffi::c_int,
+    k_array: *const ::core::ffi::c_int,
     alpha_array: *const f32,
     Aarray: *const *const f32,
-    lda_array: *const ::std::os::raw::c_int,
+    lda_array: *const ::core::ffi::c_int,
     Barray: *const *const f32,
-    ldb_array: *const ::std::os::raw::c_int,
+    ldb_array: *const ::core::ffi::c_int,
     beta_array: *const f32,
     Carray: *const *mut f32,
-    ldc_array: *const ::std::os::raw::c_int,
-    group_count: ::std::os::raw::c_int,
-    group_size: *const ::std::os::raw::c_int,
+    ldc_array: *const ::core::ffi::c_int,
+    group_count: ::core::ffi::c_int,
+    group_size: *const ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgemmGroupedBatched {
         Some(____func) => unsafe { ____func(handle, transa_array, transb_array, m_array, n_array, k_array, alpha_array, Aarray, lda_array, Barray, ldb_array, beta_array, Carray, ldc_array, group_count, group_size) },
@@ -12385,19 +11794,19 @@ pub unsafe extern "C" fn cublasDgemmGroupedBatched(
     handle: cublasHandle_t,
     transa_array: *const cublasOperation_t,
     transb_array: *const cublasOperation_t,
-    m_array: *const ::std::os::raw::c_int,
-    n_array: *const ::std::os::raw::c_int,
-    k_array: *const ::std::os::raw::c_int,
+    m_array: *const ::core::ffi::c_int,
+    n_array: *const ::core::ffi::c_int,
+    k_array: *const ::core::ffi::c_int,
     alpha_array: *const f64,
     Aarray: *const *const f64,
-    lda_array: *const ::std::os::raw::c_int,
+    lda_array: *const ::core::ffi::c_int,
     Barray: *const *const f64,
-    ldb_array: *const ::std::os::raw::c_int,
+    ldb_array: *const ::core::ffi::c_int,
     beta_array: *const f64,
     Carray: *const *mut f64,
-    ldc_array: *const ::std::os::raw::c_int,
-    group_count: ::std::os::raw::c_int,
-    group_size: *const ::std::os::raw::c_int,
+    ldc_array: *const ::core::ffi::c_int,
+    group_count: ::core::ffi::c_int,
+    group_size: *const ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgemmGroupedBatched {
         Some(____func) => unsafe { ____func(handle, transa_array, transb_array, m_array, n_array, k_array, alpha_array, Aarray, lda_array, Barray, ldb_array, beta_array, Carray, ldc_array, group_count, group_size) },
@@ -12441,22 +11850,22 @@ pub unsafe extern "C" fn cublasGemmGroupedBatchedEx(
     handle: cublasHandle_t,
     transa_array: *const cublasOperation_t,
     transb_array: *const cublasOperation_t,
-    m_array: *const ::std::os::raw::c_int,
-    n_array: *const ::std::os::raw::c_int,
-    k_array: *const ::std::os::raw::c_int,
-    alpha_array: *const ::std::os::raw::c_void,
-    Aarray: *const *const ::std::os::raw::c_void,
+    m_array: *const ::core::ffi::c_int,
+    n_array: *const ::core::ffi::c_int,
+    k_array: *const ::core::ffi::c_int,
+    alpha_array: *const ::core::ffi::c_void,
+    Aarray: *const *const ::core::ffi::c_void,
     Atype: cudaDataType_t,
-    lda_array: *const ::std::os::raw::c_int,
-    Barray: *const *const ::std::os::raw::c_void,
+    lda_array: *const ::core::ffi::c_int,
+    Barray: *const *const ::core::ffi::c_void,
     Btype: cudaDataType_t,
-    ldb_array: *const ::std::os::raw::c_int,
-    beta_array: *const ::std::os::raw::c_void,
-    Carray: *const *mut ::std::os::raw::c_void,
+    ldb_array: *const ::core::ffi::c_int,
+    beta_array: *const ::core::ffi::c_void,
+    Carray: *const *mut ::core::ffi::c_void,
     Ctype: cudaDataType_t,
-    ldc_array: *const ::std::os::raw::c_int,
-    group_count: ::std::os::raw::c_int,
-    group_size: *const ::std::os::raw::c_int,
+    ldc_array: *const ::core::ffi::c_int,
+    group_count: ::core::ffi::c_int,
+    group_size: *const ::core::ffi::c_int,
     computeType: cublasComputeType_t,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasGemmGroupedBatchedEx {
@@ -12499,15 +11908,15 @@ pub unsafe extern "C" fn cublasGemmGroupedBatchedEx_64(
     m_array: *const i64,
     n_array: *const i64,
     k_array: *const i64,
-    alpha_array: *const ::std::os::raw::c_void,
-    Aarray: *const *const ::std::os::raw::c_void,
+    alpha_array: *const ::core::ffi::c_void,
+    Aarray: *const *const ::core::ffi::c_void,
     Atype: cudaDataType_t,
     lda_array: *const i64,
-    Barray: *const *const ::std::os::raw::c_void,
+    Barray: *const *const ::core::ffi::c_void,
     Btype: cudaDataType_t,
     ldb_array: *const i64,
-    beta_array: *const ::std::os::raw::c_void,
-    Carray: *const *mut ::std::os::raw::c_void,
+    beta_array: *const ::core::ffi::c_void,
+    Carray: *const *mut ::core::ffi::c_void,
     Ctype: cudaDataType_t,
     ldc_array: *const i64,
     group_count: i64,
@@ -12551,16 +11960,16 @@ pub unsafe extern "C" fn cublasSgeam(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const f32,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgeam {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
@@ -12581,16 +11990,16 @@ pub unsafe extern "C" fn cublasDgeam(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const f64,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgeam {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
@@ -12611,16 +12020,16 @@ pub unsafe extern "C" fn cublasCgeam(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const cuComplex,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgeam {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
@@ -12641,16 +12050,16 @@ pub unsafe extern "C" fn cublasZgeam(
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgeam {
         Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
@@ -12687,14 +12096,14 @@ pub unsafe extern "C" fn cublasStrsmBatched(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const *mut f32,
-    ldb: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStrsmBatched {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
@@ -12731,14 +12140,14 @@ pub unsafe extern "C" fn cublasDtrsmBatched(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const *mut f64,
-    ldb: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtrsmBatched {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
@@ -12775,14 +12184,14 @@ pub unsafe extern "C" fn cublasCtrsmBatched(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const *const cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const *mut cuComplex,
-    ldb: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtrsmBatched {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
@@ -12819,14 +12228,14 @@ pub unsafe extern "C" fn cublasZtrsmBatched(
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     B: *const *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
-    batchCount: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtrsmBatched {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
@@ -12857,7 +12266,7 @@ pub unsafe extern "C" fn cublasZtrsmBatched_64(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, x: *const f32, incx: ::std::os::raw::c_int, C: *mut f32, ldc: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, x: *const f32, incx: ::core::ffi::c_int, C: *mut f32, ldc: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSdgmm {
         Some(____func) => unsafe { ____func(handle, mode, m, n, A, lda, x, incx, C, ldc) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSdgmm"),
@@ -12873,7 +12282,7 @@ pub unsafe extern "C" fn cublasSdgmm_64(handle: cublasHandle_t, mode: cublasSide
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, x: *const f64, incx: ::std::os::raw::c_int, C: *mut f64, ldc: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, x: *const f64, incx: ::core::ffi::c_int, C: *mut f64, ldc: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDdgmm {
         Some(____func) => unsafe { ____func(handle, mode, m, n, A, lda, x, incx, C, ldc) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDdgmm"),
@@ -12889,18 +12298,7 @@ pub unsafe extern "C" fn cublasDdgmm_64(handle: cublasHandle_t, mode: cublasSide
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCdgmm(
-    handle: cublasHandle_t,
-    mode: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    x: *const cuComplex,
-    incx: ::std::os::raw::c_int,
-    C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCdgmm(handle: cublasHandle_t, mode: cublasSideMode_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, x: *const cuComplex, incx: ::core::ffi::c_int, C: *mut cuComplex, ldc: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCdgmm {
         Some(____func) => unsafe { ____func(handle, mode, m, n, A, lda, x, incx, C, ldc) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCdgmm"),
@@ -12919,14 +12317,14 @@ pub unsafe extern "C" fn cublasCdgmm_64(handle: cublasHandle_t, mode: cublasSide
 pub unsafe extern "C" fn cublasZdgmm(
     handle: cublasHandle_t,
     mode: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     x: *const cuDoubleComplex,
-    incx: ::std::os::raw::c_int,
+    incx: ::core::ffi::c_int,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZdgmm {
         Some(____func) => unsafe { ____func(handle, mode, m, n, A, lda, x, incx, C, ldc) },
@@ -12943,7 +12341,7 @@ pub unsafe extern "C" fn cublasZdgmm_64(handle: cublasHandle_t, mode: cublasSide
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSmatinvBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *const f32, lda: ::std::os::raw::c_int, Ainv: *const *mut f32, lda_inv: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSmatinvBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const f32, lda: ::core::ffi::c_int, Ainv: *const *mut f32, lda_inv: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSmatinvBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, Ainv, lda_inv, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSmatinvBatched"),
@@ -12951,7 +12349,7 @@ pub unsafe extern "C" fn cublasSmatinvBatched(handle: cublasHandle_t, n: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDmatinvBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *const f64, lda: ::std::os::raw::c_int, Ainv: *const *mut f64, lda_inv: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDmatinvBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const f64, lda: ::core::ffi::c_int, Ainv: *const *mut f64, lda_inv: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDmatinvBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, Ainv, lda_inv, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDmatinvBatched"),
@@ -12959,7 +12357,7 @@ pub unsafe extern "C" fn cublasDmatinvBatched(handle: cublasHandle_t, n: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCmatinvBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *const cuComplex, lda: ::std::os::raw::c_int, Ainv: *const *mut cuComplex, lda_inv: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCmatinvBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const cuComplex, lda: ::core::ffi::c_int, Ainv: *const *mut cuComplex, lda_inv: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCmatinvBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, Ainv, lda_inv, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCmatinvBatched"),
@@ -12967,16 +12365,7 @@ pub unsafe extern "C" fn cublasCmatinvBatched(handle: cublasHandle_t, n: ::std::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZmatinvBatched(
-    handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *const *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    Ainv: *const *mut cuDoubleComplex,
-    lda_inv: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZmatinvBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const cuDoubleComplex, lda: ::core::ffi::c_int, Ainv: *const *mut cuDoubleComplex, lda_inv: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZmatinvBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, Ainv, lda_inv, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZmatinvBatched"),
@@ -12984,7 +12373,7 @@ pub unsafe extern "C" fn cublasZmatinvBatched(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSgeqrfBatched(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Aarray: *const *mut f32, lda: ::std::os::raw::c_int, TauArray: *const *mut f32, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSgeqrfBatched(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Aarray: *const *mut f32, lda: ::core::ffi::c_int, TauArray: *const *mut f32, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgeqrfBatched {
         Some(____func) => unsafe { ____func(handle, m, n, Aarray, lda, TauArray, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSgeqrfBatched"),
@@ -12992,7 +12381,7 @@ pub unsafe extern "C" fn cublasSgeqrfBatched(handle: cublasHandle_t, m: ::std::o
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDgeqrfBatched(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Aarray: *const *mut f64, lda: ::std::os::raw::c_int, TauArray: *const *mut f64, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDgeqrfBatched(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Aarray: *const *mut f64, lda: ::core::ffi::c_int, TauArray: *const *mut f64, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgeqrfBatched {
         Some(____func) => unsafe { ____func(handle, m, n, Aarray, lda, TauArray, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDgeqrfBatched"),
@@ -13000,7 +12389,7 @@ pub unsafe extern "C" fn cublasDgeqrfBatched(handle: cublasHandle_t, m: ::std::o
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCgeqrfBatched(handle: cublasHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Aarray: *const *mut cuComplex, lda: ::std::os::raw::c_int, TauArray: *const *mut cuComplex, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCgeqrfBatched(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Aarray: *const *mut cuComplex, lda: ::core::ffi::c_int, TauArray: *const *mut cuComplex, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgeqrfBatched {
         Some(____func) => unsafe { ____func(handle, m, n, Aarray, lda, TauArray, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCgeqrfBatched"),
@@ -13008,16 +12397,7 @@ pub unsafe extern "C" fn cublasCgeqrfBatched(handle: cublasHandle_t, m: ::std::o
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZgeqrfBatched(
-    handle: cublasHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    Aarray: *const *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    TauArray: *const *mut cuDoubleComplex,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZgeqrfBatched(handle: cublasHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, Aarray: *const *mut cuDoubleComplex, lda: ::core::ffi::c_int, TauArray: *const *mut cuDoubleComplex, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgeqrfBatched {
         Some(____func) => unsafe { ____func(handle, m, n, Aarray, lda, TauArray, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZgeqrfBatched"),
@@ -13028,16 +12408,16 @@ pub unsafe extern "C" fn cublasZgeqrfBatched(
 pub unsafe extern "C" fn cublasSgelsBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: *const *mut f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     Carray: *const *mut f32,
-    ldc: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    devInfoArray: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    devInfoArray: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgelsBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, nrhs, Aarray, lda, Carray, ldc, info, devInfoArray, batchSize) },
@@ -13049,16 +12429,16 @@ pub unsafe extern "C" fn cublasSgelsBatched(
 pub unsafe extern "C" fn cublasDgelsBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: *const *mut f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     Carray: *const *mut f64,
-    ldc: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    devInfoArray: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    devInfoArray: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgelsBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, nrhs, Aarray, lda, Carray, ldc, info, devInfoArray, batchSize) },
@@ -13070,16 +12450,16 @@ pub unsafe extern "C" fn cublasDgelsBatched(
 pub unsafe extern "C" fn cublasCgelsBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: *const *mut cuComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     Carray: *const *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    devInfoArray: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    devInfoArray: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgelsBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, nrhs, Aarray, lda, Carray, ldc, info, devInfoArray, batchSize) },
@@ -13091,16 +12471,16 @@ pub unsafe extern "C" fn cublasCgelsBatched(
 pub unsafe extern "C" fn cublasZgelsBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: *const *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     Carray: *const *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    devInfoArray: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    devInfoArray: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgelsBatched {
         Some(____func) => unsafe { ____func(handle, trans, m, n, nrhs, Aarray, lda, Carray, ldc, info, devInfoArray, batchSize) },
@@ -13109,7 +12489,7 @@ pub unsafe extern "C" fn cublasZgelsBatched(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasStpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, AP: *const f32, A: *mut f32, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasStpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: *const f32, A: *mut f32, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStpttr {
         Some(____func) => unsafe { ____func(handle, uplo, n, AP, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasStpttr"),
@@ -13117,7 +12497,7 @@ pub unsafe extern "C" fn cublasStpttr(handle: cublasHandle_t, uplo: cublasFillMo
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, AP: *const f64, A: *mut f64, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: *const f64, A: *mut f64, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtpttr {
         Some(____func) => unsafe { ____func(handle, uplo, n, AP, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDtpttr"),
@@ -13125,7 +12505,7 @@ pub unsafe extern "C" fn cublasDtpttr(handle: cublasHandle_t, uplo: cublasFillMo
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, AP: *const cuComplex, A: *mut cuComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: *const cuComplex, A: *mut cuComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtpttr {
         Some(____func) => unsafe { ____func(handle, uplo, n, AP, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCtpttr"),
@@ -13133,7 +12513,7 @@ pub unsafe extern "C" fn cublasCtpttr(handle: cublasHandle_t, uplo: cublasFillMo
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, AP: *const cuDoubleComplex, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZtpttr(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: *const cuDoubleComplex, A: *mut cuDoubleComplex, lda: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtpttr {
         Some(____func) => unsafe { ____func(handle, uplo, n, AP, A, lda) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZtpttr"),
@@ -13141,7 +12521,7 @@ pub unsafe extern "C" fn cublasZtpttr(handle: cublasHandle_t, uplo: cublasFillMo
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasStrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, AP: *mut f32) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasStrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f32, lda: ::core::ffi::c_int, AP: *mut f32) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasStrttp {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasStrttp"),
@@ -13149,7 +12529,7 @@ pub unsafe extern "C" fn cublasStrttp(handle: cublasHandle_t, uplo: cublasFillMo
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, AP: *mut f64) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const f64, lda: ::core::ffi::c_int, AP: *mut f64) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDtrttp {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDtrttp"),
@@ -13157,7 +12537,7 @@ pub unsafe extern "C" fn cublasDtrttp(handle: cublasHandle_t, uplo: cublasFillMo
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, AP: *mut cuComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuComplex, lda: ::core::ffi::c_int, AP: *mut cuComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCtrttp {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCtrttp"),
@@ -13165,7 +12545,7 @@ pub unsafe extern "C" fn cublasCtrttp(handle: cublasHandle_t, uplo: cublasFillMo
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZtrttp(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: *const cuDoubleComplex, lda: ::core::ffi::c_int, AP: *mut cuDoubleComplex) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZtrttp {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, AP) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZtrttp"),
@@ -13173,7 +12553,7 @@ pub unsafe extern "C" fn cublasZtrttp(handle: cublasHandle_t, uplo: cublasFillMo
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSgetrfBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *mut f32, lda: ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSgetrfBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *mut f32, lda: ::core::ffi::c_int, P: *mut ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgetrfBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, P, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSgetrfBatched"),
@@ -13181,7 +12561,7 @@ pub unsafe extern "C" fn cublasSgetrfBatched(handle: cublasHandle_t, n: ::std::o
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDgetrfBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *mut f64, lda: ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDgetrfBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *mut f64, lda: ::core::ffi::c_int, P: *mut ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgetrfBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, P, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDgetrfBatched"),
@@ -13189,7 +12569,7 @@ pub unsafe extern "C" fn cublasDgetrfBatched(handle: cublasHandle_t, n: ::std::o
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasCgetrfBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *mut cuComplex, lda: ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasCgetrfBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *mut cuComplex, lda: ::core::ffi::c_int, P: *mut ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgetrfBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, P, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasCgetrfBatched"),
@@ -13197,7 +12577,7 @@ pub unsafe extern "C" fn cublasCgetrfBatched(handle: cublasHandle_t, n: ::std::o
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasZgetrfBatched(handle: cublasHandle_t, n: ::std::os::raw::c_int, A: *const *mut cuDoubleComplex, lda: ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasZgetrfBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *mut cuDoubleComplex, lda: ::core::ffi::c_int, P: *mut ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgetrfBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, P, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasZgetrfBatched"),
@@ -13205,17 +12585,7 @@ pub unsafe extern "C" fn cublasZgetrfBatched(handle: cublasHandle_t, n: ::std::o
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSgetriBatched(
-    handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *const *const f32,
-    lda: ::std::os::raw::c_int,
-    P: *const ::std::os::raw::c_int,
-    C: *const *mut f32,
-    ldc: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSgetriBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const f32, lda: ::core::ffi::c_int, P: *const ::core::ffi::c_int, C: *const *mut f32, ldc: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgetriBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, P, C, ldc, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasSgetriBatched"),
@@ -13223,17 +12593,7 @@ pub unsafe extern "C" fn cublasSgetriBatched(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasDgetriBatched(
-    handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *const *const f64,
-    lda: ::std::os::raw::c_int,
-    P: *const ::std::os::raw::c_int,
-    C: *const *mut f64,
-    ldc: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasDgetriBatched(handle: cublasHandle_t, n: ::core::ffi::c_int, A: *const *const f64, lda: ::core::ffi::c_int, P: *const ::core::ffi::c_int, C: *const *mut f64, ldc: ::core::ffi::c_int, info: *mut ::core::ffi::c_int, batchSize: ::core::ffi::c_int) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgetriBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, P, C, ldc, info, batchSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cublasDgetriBatched"),
@@ -13243,14 +12603,14 @@ pub unsafe extern "C" fn cublasDgetriBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cublasCgetriBatched(
     handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    P: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    P: *const ::core::ffi::c_int,
     C: *const *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgetriBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, P, C, ldc, info, batchSize) },
@@ -13261,14 +12621,14 @@ pub unsafe extern "C" fn cublasCgetriBatched(
 #[inline(always)]
 pub unsafe extern "C" fn cublasZgetriBatched(
     handle: cublasHandle_t,
-    n: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
     A: *const *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    P: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    P: *const ::core::ffi::c_int,
     C: *const *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgetriBatched {
         Some(____func) => unsafe { ____func(handle, n, A, lda, P, C, ldc, info, batchSize) },
@@ -13280,15 +12640,15 @@ pub unsafe extern "C" fn cublasZgetriBatched(
 pub unsafe extern "C" fn cublasSgetrsBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: *const *const f32,
-    lda: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    devIpiv: *const ::core::ffi::c_int,
     Barray: *const *mut f32,
-    ldb: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasSgetrsBatched {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, Aarray, lda, devIpiv, Barray, ldb, info, batchSize) },
@@ -13300,15 +12660,15 @@ pub unsafe extern "C" fn cublasSgetrsBatched(
 pub unsafe extern "C" fn cublasDgetrsBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: *const *const f64,
-    lda: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    devIpiv: *const ::core::ffi::c_int,
     Barray: *const *mut f64,
-    ldb: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasDgetrsBatched {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, Aarray, lda, devIpiv, Barray, ldb, info, batchSize) },
@@ -13320,15 +12680,15 @@ pub unsafe extern "C" fn cublasDgetrsBatched(
 pub unsafe extern "C" fn cublasCgetrsBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: *const *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    devIpiv: *const ::core::ffi::c_int,
     Barray: *const *mut cuComplex,
-    ldb: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasCgetrsBatched {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, Aarray, lda, devIpiv, Barray, ldb, info, batchSize) },
@@ -13340,15 +12700,15 @@ pub unsafe extern "C" fn cublasCgetrsBatched(
 pub unsafe extern "C" fn cublasZgetrsBatched(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: *const *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    devIpiv: *const ::core::ffi::c_int,
     Barray: *const *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
+    info: *mut ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasZgetrsBatched {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, Aarray, lda, devIpiv, Barray, ldb, info, batchSize) },
@@ -13362,20 +12722,20 @@ pub unsafe extern "C" fn cublasUint8gemmBias(
     transa: cublasOperation_t,
     transb: cublasOperation_t,
     transc: cublasOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const ::std::os::raw::c_uchar,
-    A_bias: ::std::os::raw::c_int,
-    lda: ::std::os::raw::c_int,
-    B: *const ::std::os::raw::c_uchar,
-    B_bias: ::std::os::raw::c_int,
-    ldb: ::std::os::raw::c_int,
-    C: *mut ::std::os::raw::c_uchar,
-    C_bias: ::std::os::raw::c_int,
-    ldc: ::std::os::raw::c_int,
-    C_mult: ::std::os::raw::c_int,
-    C_shift: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    A: *const ::core::ffi::c_uchar,
+    A_bias: ::core::ffi::c_int,
+    lda: ::core::ffi::c_int,
+    B: *const ::core::ffi::c_uchar,
+    B_bias: ::core::ffi::c_int,
+    ldb: ::core::ffi::c_int,
+    C: *mut ::core::ffi::c_uchar,
+    C_bias: ::core::ffi::c_int,
+    ldc: ::core::ffi::c_int,
+    C_mult: ::core::ffi::c_int,
+    C_shift: ::core::ffi::c_int,
 ) -> cublasStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cublasUint8gemmBias {
         Some(____func) => unsafe { ____func(handle, transa, transb, transc, m, n, k, A, A_bias, lda, B, B_bias, ldb, C, C_bias, ldc, C_mult, C_shift) },

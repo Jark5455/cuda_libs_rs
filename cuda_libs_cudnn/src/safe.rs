@@ -56,6 +56,7 @@ pub use crate::sys::cudnnBackendLayoutType_t;
 pub use crate::sys::cudnnBackendNormFwdPhase_t;
 pub use crate::sys::cudnnBackendNormMode_t;
 pub use crate::sys::cudnnBackendNumericalNote_t;
+pub use crate::sys::cudnnBackendReshapeMode_t;
 pub use crate::sys::cudnnBackendTensorReordering_t;
 pub use crate::sys::cudnnBatchNormMode_t;
 pub use crate::sys::cudnnBatchNormOps_t;
@@ -65,6 +66,7 @@ pub use crate::sys::cudnnCTCLossAlgo_t;
 pub use crate::sys::cudnnCTCLossDescriptor_t;
 pub use crate::sys::cudnnCTCLossStruct;
 pub use crate::sys::cudnnCallback_t;
+pub use crate::sys::cudnnCausalConv1dActivation_t;
 pub use crate::sys::cudnnContext;
 pub use crate::sys::cudnnConvolutionBwdDataAlgo_t;
 pub use crate::sys::cudnnConvolutionBwdDataAlgoPerf_t;
@@ -170,24 +172,24 @@ use cuda_libs_cudart::sys::*;
 use cuda_libs_cudart::types;
 #[cfg(feature = "runtime-link")]
 impl crate::sys::cudnnDebugStruct {
-    pub fn cudnn_version(mut self, val: u32) -> Self {
-        self.cudnn_version = val as _;
+    pub fn cudnn_version(mut self, val: ::core::ffi::c_uint) -> Self {
+        self.cudnn_version = val;
         self
     }
     pub fn cudnnStatus(mut self, val: cudnnStatus_t) -> Self {
         self.cudnnStatus = val;
         self
     }
-    pub fn time_sec(mut self, val: u32) -> Self {
-        self.time_sec = val as _;
+    pub fn time_sec(mut self, val: ::core::ffi::c_uint) -> Self {
+        self.time_sec = val;
         self
     }
-    pub fn time_usec(mut self, val: u32) -> Self {
-        self.time_usec = val as _;
+    pub fn time_usec(mut self, val: ::core::ffi::c_uint) -> Self {
+        self.time_usec = val;
         self
     }
-    pub fn time_delta(mut self, val: u32) -> Self {
-        self.time_delta = val as _;
+    pub fn time_delta(mut self, val: ::core::ffi::c_uint) -> Self {
+        self.time_delta = val;
         self
     }
     pub fn handle(mut self, val: cudnnHandle_t) -> Self {
@@ -198,19 +200,19 @@ impl crate::sys::cudnnDebugStruct {
         self.stream = val;
         self
     }
-    pub fn pid(mut self, val: u64) -> Self {
-        self.pid = val as _;
+    pub fn pid(mut self, val: ::core::ffi::c_ulonglong) -> Self {
+        self.pid = val;
         self
     }
-    pub fn tid(mut self, val: u64) -> Self {
-        self.tid = val as _;
+    pub fn tid(mut self, val: ::core::ffi::c_ulonglong) -> Self {
+        self.tid = val;
         self
     }
-    pub fn cudaDeviceId(mut self, val: i32) -> Self {
-        self.cudaDeviceId = val as _;
+    pub fn cudaDeviceId(mut self, val: ::core::ffi::c_int) -> Self {
+        self.cudaDeviceId = val;
         self
     }
-    pub fn reserved(mut self, val: [::std::os::raw::c_int; 15usize]) -> Self {
+    pub fn reserved(mut self, val: [::core::ffi::c_int; 15usize]) -> Self {
         self.reserved = val;
         self
     }
@@ -252,7 +254,7 @@ impl crate::sys::cudnnConvolutionFwdAlgoPerfStruct {
         self.mathType = val;
         self
     }
-    pub fn reserved(mut self, val: [::std::os::raw::c_int; 3usize]) -> Self {
+    pub fn reserved(mut self, val: [::core::ffi::c_int; 3usize]) -> Self {
         self.reserved = val;
         self
     }
@@ -283,7 +285,7 @@ impl crate::sys::cudnnConvolutionBwdDataAlgoPerfStruct {
         self.mathType = val;
         self
     }
-    pub fn reserved(mut self, val: [::std::os::raw::c_int; 3usize]) -> Self {
+    pub fn reserved(mut self, val: [::core::ffi::c_int; 3usize]) -> Self {
         self.reserved = val;
         self
     }
@@ -314,7 +316,7 @@ impl crate::sys::cudnnConvolutionBwdFilterAlgoPerfStruct {
         self.mathType = val;
         self
     }
-    pub fn reserved(mut self, val: [::std::os::raw::c_int; 3usize]) -> Self {
+    pub fn reserved(mut self, val: [::core::ffi::c_int; 3usize]) -> Self {
         self.reserved = val;
         self
     }
@@ -333,11 +335,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnGetCudartVersion = val;
         self
     }
-    pub fn cudnnGetErrorString(mut self, val: Option<unsafe extern "C" fn(cudnnStatus_t) -> *const ::std::os::raw::c_char>) -> Self {
+    pub fn cudnnGetErrorString(mut self, val: Option<unsafe extern "C" fn(cudnnStatus_t) -> *const ::core::ffi::c_char>) -> Self {
         self.cudnnGetErrorString = val;
         self
     }
-    pub fn cudnnGetLastErrorString(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, usize)>) -> Self {
+    pub fn cudnnGetLastErrorString(mut self, val: Option<unsafe extern "C" fn(*mut ::core::ffi::c_char, usize)>) -> Self {
         self.cudnnGetLastErrorString = val;
         self
     }
@@ -345,7 +347,7 @@ impl crate::sys::DynamicBindings {
         self.cudnnQueryRuntimeError = val;
         self
     }
-    pub fn cudnnGetProperty(mut self, val: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetProperty(mut self, val: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetProperty = val;
         self
     }
@@ -365,11 +367,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnGetStream = val;
         self
     }
-    pub fn cudnnSetCallback(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut ::std::os::raw::c_void, cudnnCallback_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetCallback(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_uint, *mut ::core::ffi::c_void, cudnnCallback_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetCallback = val;
         self
     }
-    pub fn cudnnGetCallback(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *mut *mut ::std::os::raw::c_void, *mut cudnnCallback_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetCallback(mut self, val: Option<unsafe extern "C" fn(*mut ::core::ffi::c_uint, *mut *mut ::core::ffi::c_void, *mut cudnnCallback_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetCallback = val;
         self
     }
@@ -393,11 +395,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnBackendFinalize = val;
         self
     }
-    pub fn cudnnBackendSetAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t, cudnnBackendAttributeName_t, cudnnBackendAttributeType_t, i64, *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendSetAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t, cudnnBackendAttributeName_t, cudnnBackendAttributeType_t, i64, *const ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendSetAttribute = val;
         self
     }
-    pub fn cudnnBackendGetAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t, cudnnBackendAttributeName_t, cudnnBackendAttributeType_t, i64, *mut i64, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendGetAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t, cudnnBackendAttributeName_t, cudnnBackendAttributeType_t, i64, *mut i64, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendGetAttribute = val;
         self
     }
@@ -417,13 +419,13 @@ impl crate::sys::DynamicBindings {
         self.cudnnCreateTensorDescriptor = val;
         self
     }
-    pub fn cudnnSetTensor4dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnDataType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetTensor4dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnDataType_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetTensor4dDescriptor = val;
         self
     }
     pub fn cudnnSetTensor4dDescriptorEx(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnDataType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnDataType_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSetTensor4dDescriptorEx = val;
         self
@@ -431,32 +433,21 @@ impl crate::sys::DynamicBindings {
     pub fn cudnnGetTensor4dDescriptor(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                cudnnTensorDescriptor_t,
-                *mut cudnnDataType_t,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-            ) -> cudnnStatus_t,
+            unsafe extern "C" fn(cudnnTensorDescriptor_t, *mut cudnnDataType_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnGetTensor4dDescriptor = val;
         self
     }
-    pub fn cudnnSetTensorNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetTensorNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnDataType_t, ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetTensorNdDescriptor = val;
         self
     }
-    pub fn cudnnSetTensorNdDescriptorEx(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetTensorNdDescriptorEx(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnDataType_t, ::core::ffi::c_int, *const ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetTensorNdDescriptorEx = val;
         self
     }
-    pub fn cudnnGetTensorNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut cudnnDataType_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetTensorNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, ::core::ffi::c_int, *mut cudnnDataType_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetTensorNdDescriptor = val;
         self
     }
@@ -488,18 +479,18 @@ impl crate::sys::DynamicBindings {
         self.cudnnDestroyTensorTransformDescriptor = val;
         self
     }
-    pub fn cudnnTransformTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnTransformTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnTransformTensor = val;
         self
     }
     pub fn cudnnTransformTensorEx(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorTransformDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorTransformDescriptor_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnTransformTensorEx = val;
         self
     }
-    pub fn cudnnAddTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnAddTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnAddTensor = val;
         self
     }
@@ -525,15 +516,15 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnOpTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -570,27 +561,27 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnReduceTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnReduceTensor = val;
         self
     }
-    pub fn cudnnSetTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void, *const ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSetTensor = val;
         self
     }
-    pub fn cudnnScaleTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnScaleTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void, *const ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnScaleTensor = val;
         self
     }
@@ -598,19 +589,19 @@ impl crate::sys::DynamicBindings {
         self.cudnnCreateFilterDescriptor = val;
         self
     }
-    pub fn cudnnSetFilter4dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, cudnnDataType_t, cudnnTensorFormat_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetFilter4dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, cudnnDataType_t, cudnnTensorFormat_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetFilter4dDescriptor = val;
         self
     }
-    pub fn cudnnGetFilter4dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, *mut cudnnDataType_t, *mut cudnnTensorFormat_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetFilter4dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, *mut cudnnDataType_t, *mut cudnnTensorFormat_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetFilter4dDescriptor = val;
         self
     }
-    pub fn cudnnSetFilterNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, cudnnDataType_t, cudnnTensorFormat_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetFilterNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, cudnnDataType_t, cudnnTensorFormat_t, ::core::ffi::c_int, *const ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetFilterNdDescriptor = val;
         self
     }
-    pub fn cudnnGetFilterNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut cudnnDataType_t, *mut cudnnTensorFormat_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetFilterNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, ::core::ffi::c_int, *mut cudnnDataType_t, *mut cudnnTensorFormat_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetFilterNdDescriptor = val;
         self
     }
@@ -620,7 +611,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnTransformFilter(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorTransformDescriptor_t, *const ::std::os::raw::c_void, cudnnFilterDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnFilterDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorTransformDescriptor_t, *const ::core::ffi::c_void, cudnnFilterDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnFilterDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnTransformFilter = val;
         self
@@ -631,7 +622,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnSoftmaxForward(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSoftmaxAlgorithm_t, cudnnSoftmaxMode_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSoftmaxAlgorithm_t, cudnnSoftmaxMode_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSoftmaxForward = val;
         self
@@ -640,38 +631,33 @@ impl crate::sys::DynamicBindings {
         self.cudnnCreatePoolingDescriptor = val;
         self
     }
-    pub fn cudnnSetPooling2dDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnNanPropagation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnSetPooling2dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnNanPropagation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetPooling2dDescriptor = val;
         self
     }
     pub fn cudnnGetPooling2dDescriptor(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(cudnnPoolingDescriptor_t, *mut cudnnPoolingMode_t, *mut cudnnNanPropagation_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, *mut cudnnPoolingMode_t, *mut cudnnNanPropagation_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetPooling2dDescriptor = val;
         self
     }
-    pub fn cudnnSetPoolingNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnNanPropagation_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetPoolingNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnNanPropagation_t, ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetPoolingNdDescriptor = val;
         self
     }
     pub fn cudnnGetPoolingNdDescriptor(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, ::std::os::raw::c_int, *mut cudnnPoolingMode_t, *mut cudnnNanPropagation_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, ::core::ffi::c_int, *mut cudnnPoolingMode_t, *mut cudnnNanPropagation_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetPoolingNdDescriptor = val;
         self
     }
-    pub fn cudnnGetPoolingNdForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetPoolingNdForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnTensorDescriptor_t, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetPoolingNdForwardOutputDim = val;
         self
     }
-    pub fn cudnnGetPooling2dForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetPooling2dForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnTensorDescriptor_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetPooling2dForwardOutputDim = val;
         self
     }
@@ -681,7 +667,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnPoolingForward(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnPoolingDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnPoolingDescriptor_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnPoolingForward = val;
         self
@@ -712,7 +698,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnActivationForward(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnActivationDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnActivationDescriptor_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnActivationForward = val;
         self
@@ -721,11 +707,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnCreateLRNDescriptor = val;
         self
     }
-    pub fn cudnnSetLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t, ::std::os::raw::c_uint, f64, f64, f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t, ::core::ffi::c_uint, f64, f64, f64) -> cudnnStatus_t>) -> Self {
         self.cudnnSetLRNDescriptor = val;
         self
     }
-    pub fn cudnnGetLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t, *mut ::std::os::raw::c_uint, *mut f64, *mut f64, *mut f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t, *mut ::core::ffi::c_uint, *mut f64, *mut f64, *mut f64) -> cudnnStatus_t>) -> Self {
         self.cudnnGetLRNDescriptor = val;
         self
     }
@@ -735,7 +721,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnLRNCrossChannelForward(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnLRNDescriptor_t, cudnnLRNMode_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnLRNDescriptor_t, cudnnLRNMode_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnLRNCrossChannelForward = val;
         self
@@ -747,15 +733,15 @@ impl crate::sys::DynamicBindings {
                 cudnnHandle_t,
                 cudnnLRNDescriptor_t,
                 cudnnDivNormMode_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -772,17 +758,17 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnBatchNormMode_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 f64,
             ) -> cudnnStatus_t,
         >,
@@ -790,7 +776,7 @@ impl crate::sys::DynamicBindings {
         self.cudnnBatchNormalizationForwardInference = val;
         self
     }
-    pub fn cudnnDeriveNormTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnNormMode_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDeriveNormTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnNormMode_t, ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnDeriveNormTensorDescriptor = val;
         self
     }
@@ -802,23 +788,23 @@ impl crate::sys::DynamicBindings {
                 cudnnNormMode_t,
                 cudnnNormOps_t,
                 cudnnNormAlgo_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnActivationDescriptor_t,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 f64,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -829,7 +815,7 @@ impl crate::sys::DynamicBindings {
         self.cudnnCreateSpatialTransformerDescriptor = val;
         self
     }
-    pub fn cudnnSetSpatialTransformerNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnSpatialTransformerDescriptor_t, cudnnSamplerType_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetSpatialTransformerNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnSpatialTransformerDescriptor_t, cudnnSamplerType_t, cudnnDataType_t, ::core::ffi::c_int, *const ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetSpatialTransformerNdDescriptor = val;
         self
     }
@@ -837,25 +823,13 @@ impl crate::sys::DynamicBindings {
         self.cudnnDestroySpatialTransformerDescriptor = val;
         self
     }
-    pub fn cudnnSpatialTfGridGeneratorForward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSpatialTransformerDescriptor_t, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSpatialTfGridGeneratorForward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSpatialTransformerDescriptor_t, *const ::core::ffi::c_void, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSpatialTfGridGeneratorForward = val;
         self
     }
     pub fn cudnnSpatialTfSamplerForward(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cudnnHandle_t,
-                cudnnSpatialTransformerDescriptor_t,
-                *const ::std::os::raw::c_void,
-                cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSpatialTransformerDescriptor_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSpatialTfSamplerForward = val;
         self
@@ -876,19 +850,19 @@ impl crate::sys::DynamicBindings {
         self.cudnnDropoutGetReserveSpaceSize = val;
         self
     }
-    pub fn cudnnSetDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, f32, *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_ulonglong) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, f32, *mut ::core::ffi::c_void, usize, ::core::ffi::c_ulonglong) -> cudnnStatus_t>) -> Self {
         self.cudnnSetDropoutDescriptor = val;
         self
     }
-    pub fn cudnnRestoreDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, f32, *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_ulonglong) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnRestoreDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, f32, *mut ::core::ffi::c_void, usize, ::core::ffi::c_ulonglong) -> cudnnStatus_t>) -> Self {
         self.cudnnRestoreDropoutDescriptor = val;
         self
     }
-    pub fn cudnnGetDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, *mut f32, *mut *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_ulonglong) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, *mut f32, *mut *mut ::core::ffi::c_void, *mut ::core::ffi::c_ulonglong) -> cudnnStatus_t>) -> Self {
         self.cudnnGetDropoutDescriptor = val;
         self
     }
-    pub fn cudnnDropoutForward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnDropoutDescriptor_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDropoutForward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnDropoutDescriptor_t, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, usize) -> cudnnStatus_t>) -> Self {
         self.cudnnDropoutForward = val;
         self
     }
@@ -903,14 +877,14 @@ impl crate::sys::DynamicBindings {
                 cudnnHandle_t,
                 cudnnSoftmaxAlgorithm_t,
                 cudnnSoftmaxMode_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -923,16 +897,16 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnPoolingDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -945,16 +919,16 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnActivationDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -968,16 +942,16 @@ impl crate::sys::DynamicBindings {
                 cudnnHandle_t,
                 cudnnLRNDescriptor_t,
                 cudnnLRNMode_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -991,17 +965,17 @@ impl crate::sys::DynamicBindings {
                 cudnnHandle_t,
                 cudnnLRNDescriptor_t,
                 cudnnDivNormMode_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1034,21 +1008,21 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnBatchNormMode_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 f64,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 f64,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1062,27 +1036,27 @@ impl crate::sys::DynamicBindings {
                 cudnnHandle_t,
                 cudnnBatchNormMode_t,
                 cudnnBatchNormOps_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 f64,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 f64,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnActivationDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
             ) -> cudnnStatus_t,
         >,
@@ -1096,23 +1070,23 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnBatchNormMode_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 f64,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1126,32 +1100,32 @@ impl crate::sys::DynamicBindings {
                 cudnnHandle_t,
                 cudnnBatchNormMode_t,
                 cudnnBatchNormOps_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 f64,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnActivationDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
             ) -> cudnnStatus_t,
         >,
@@ -1174,7 +1148,7 @@ impl crate::sys::DynamicBindings {
                 cudnnActivationDescriptor_t,
                 cudnnTensorDescriptor_t,
                 *mut usize,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1198,14 +1172,14 @@ impl crate::sys::DynamicBindings {
                 cudnnActivationDescriptor_t,
                 cudnnTensorDescriptor_t,
                 *mut usize,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnGetNormalizationBackwardWorkspaceSize = val;
         self
     }
-    pub fn cudnnGetNormalizationTrainingReserveSpaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnNormMode_t, cudnnNormOps_t, cudnnNormAlgo_t, cudnnActivationDescriptor_t, cudnnTensorDescriptor_t, *mut usize, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetNormalizationTrainingReserveSpaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnNormMode_t, cudnnNormOps_t, cudnnNormAlgo_t, cudnnActivationDescriptor_t, cudnnTensorDescriptor_t, *mut usize, ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetNormalizationTrainingReserveSpaceSize = val;
         self
     }
@@ -1217,30 +1191,30 @@ impl crate::sys::DynamicBindings {
                 cudnnNormMode_t,
                 cudnnNormOps_t,
                 cudnnNormAlgo_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 f64,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 f64,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnActivationDescriptor_t,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1255,42 +1229,42 @@ impl crate::sys::DynamicBindings {
                 cudnnNormMode_t,
                 cudnnNormOps_t,
                 cudnnNormAlgo_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 f64,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnActivationDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnNormalizationBackward = val;
         self
     }
-    pub fn cudnnSpatialTfGridGeneratorBackward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSpatialTransformerDescriptor_t, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSpatialTfGridGeneratorBackward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSpatialTransformerDescriptor_t, *const ::core::ffi::c_void, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSpatialTfGridGeneratorBackward = val;
         self
     }
@@ -1300,25 +1274,25 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnSpatialTransformerDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnSpatialTfSamplerBackward = val;
         self
     }
-    pub fn cudnnDropoutBackward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnDropoutDescriptor_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDropoutBackward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnDropoutDescriptor_t, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, usize) -> cudnnStatus_t>) -> Self {
         self.cudnnDropoutBackward = val;
         self
     }
@@ -1378,7 +1352,7 @@ impl crate::sys::DynamicBindings {
         self.cudnnRNNGetClip_v9 = val;
         self
     }
-    pub fn cudnnBuildRNNDynamic(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBuildRNNDynamic(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnBuildRNNDynamic = val;
         self
     }
@@ -1390,10 +1364,7 @@ impl crate::sys::DynamicBindings {
         self.cudnnGetRNNWeightSpaceSize = val;
         self
     }
-    pub fn cudnnGetRNNWeightParams(
-        mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, i32, usize, *const ::std::os::raw::c_void, i32, cudnnTensorDescriptor_t, *mut *mut ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetRNNWeightParams(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, i32, usize, *const ::core::ffi::c_void, i32, cudnnTensorDescriptor_t, *mut *mut ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnGetRNNWeightParams = val;
         self
     }
@@ -1405,16 +1376,13 @@ impl crate::sys::DynamicBindings {
         self.cudnnDestroyRNNDataDescriptor = val;
         self
     }
-    pub fn cudnnSetRNNDataDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t, cudnnDataType_t, cudnnRNNDataLayout_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnSetRNNDataDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t, cudnnDataType_t, cudnnRNNDataLayout_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSetRNNDataDescriptor = val;
         self
     }
     pub fn cudnnGetRNNDataDescriptor(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t, *mut cudnnDataType_t, *mut cudnnRNNDataLayout_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t, *mut cudnnDataType_t, *mut cudnnRNNDataLayout_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetRNNDataDescriptor = val;
         self
@@ -1428,21 +1396,21 @@ impl crate::sys::DynamicBindings {
                 cudnnForwardMode_t,
                 *const i32,
                 cudnnRNNDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnRNNDataDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1457,13 +1425,13 @@ impl crate::sys::DynamicBindings {
         self.cudnnDestroySeqDataDescriptor = val;
         self
     }
-    pub fn cudnnSetSeqDataDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const cudnnSeqDataAxis_t, usize, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetSeqDataDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t, cudnnDataType_t, ::core::ffi::c_int, *const ::core::ffi::c_int, *const cudnnSeqDataAxis_t, usize, *const ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSetSeqDataDescriptor = val;
         self
     }
     pub fn cudnnGetSeqDataDescriptor(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t, *mut cudnnDataType_t, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnSeqDataAxis_t, *mut usize, usize, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t, *mut cudnnDataType_t, *mut ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cudnnSeqDataAxis_t, *mut usize, usize, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetSeqDataDescriptor = val;
         self
@@ -1481,25 +1449,25 @@ impl crate::sys::DynamicBindings {
         val: Option<
             unsafe extern "C" fn(
                 cudnnAttnDescriptor_t,
-                ::std::os::raw::c_uint,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_uint,
+                ::core::ffi::c_int,
                 f64,
                 cudnnDataType_t,
                 cudnnDataType_t,
                 cudnnMathType_t,
                 cudnnDropoutDescriptor_t,
                 cudnnDropoutDescriptor_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1511,25 +1479,25 @@ impl crate::sys::DynamicBindings {
         val: Option<
             unsafe extern "C" fn(
                 cudnnAttnDescriptor_t,
-                *mut ::std::os::raw::c_uint,
-                *mut ::std::os::raw::c_int,
+                *mut ::core::ffi::c_uint,
+                *mut ::core::ffi::c_int,
                 *mut f64,
                 *mut cudnnDataType_t,
                 *mut cudnnDataType_t,
                 *mut cudnnMathType_t,
                 *mut cudnnDropoutDescriptor_t,
                 *mut cudnnDropoutDescriptor_t,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1540,7 +1508,7 @@ impl crate::sys::DynamicBindings {
         self.cudnnGetMultiHeadAttnBuffers = val;
         self
     }
-    pub fn cudnnGetMultiHeadAttnWeights(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnAttnDescriptor_t, cudnnMultiHeadAttnWeightKind_t, usize, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetMultiHeadAttnWeights(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnAttnDescriptor_t, cudnnMultiHeadAttnWeightKind_t, usize, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnGetMultiHeadAttnWeights = val;
         self
     }
@@ -1550,26 +1518,26 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnAttnDescriptor_t,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
                 cudnnSeqDataDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnSeqDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnSeqDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnSeqDataDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1588,24 +1556,24 @@ impl crate::sys::DynamicBindings {
                 cudnnRNNDescriptor_t,
                 *const i32,
                 cudnnRNNDataDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnRNNDataDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1621,17 +1589,17 @@ impl crate::sys::DynamicBindings {
                 cudnnWgradMode_t,
                 *const i32,
                 cudnnRNNDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnRNNDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1644,27 +1612,27 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnAttnDescriptor_t,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
                 cudnnSeqDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnSeqDataDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnSeqDataDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudnnSeqDataDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1679,20 +1647,20 @@ impl crate::sys::DynamicBindings {
                 cudnnAttnDescriptor_t,
                 cudnnWgradMode_t,
                 cudnnSeqDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnSeqDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnSeqDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnSeqDataDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1711,11 +1679,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnSetCTCLossDescriptorEx = val;
         self
     }
-    pub fn cudnnSetCTCLossDescriptor_v8(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnNanPropagation_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetCTCLossDescriptor_v8(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnNanPropagation_t, ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetCTCLossDescriptor_v8 = val;
         self
     }
-    pub fn cudnnSetCTCLossDescriptor_v9(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnCTCGradMode_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetCTCLossDescriptor_v9(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnCTCGradMode_t, ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetCTCLossDescriptor_v9 = val;
         self
     }
@@ -1727,11 +1695,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnGetCTCLossDescriptorEx = val;
         self
     }
-    pub fn cudnnGetCTCLossDescriptor_v8(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnNanPropagation_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetCTCLossDescriptor_v8(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnNanPropagation_t, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetCTCLossDescriptor_v8 = val;
         self
     }
-    pub fn cudnnGetCTCLossDescriptor_v9(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnCTCGradMode_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetCTCLossDescriptor_v9(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnCTCGradMode_t, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetCTCLossDescriptor_v9 = val;
         self
     }
@@ -1745,16 +1713,16 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudnnCTCLossAlgo_t,
                 cudnnCTCLossDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
             ) -> cudnnStatus_t,
         >,
@@ -1770,15 +1738,15 @@ impl crate::sys::DynamicBindings {
                 cudnnCTCLossAlgo_t,
                 cudnnCTCLossDescriptor_t,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *mut ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1787,7 +1755,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnGetCTCLossWorkspaceSize(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cudnnCTCLossAlgo_t, cudnnCTCLossDescriptor_t, *mut usize) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, cudnnCTCLossAlgo_t, cudnnCTCLossDescriptor_t, *mut usize) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetCTCLossWorkspaceSize = val;
         self
@@ -1812,11 +1780,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnGetConvolutionMathType = val;
         self
     }
-    pub fn cudnnSetConvolutionGroupCount(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetConvolutionGroupCount(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetConvolutionGroupCount = val;
         self
     }
-    pub fn cudnnGetConvolutionGroupCount(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionGroupCount(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionGroupCount = val;
         self
     }
@@ -1830,56 +1798,51 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnSetConvolution2dDescriptor(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cudnnConvolutionMode_t, cudnnDataType_t) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cudnnConvolutionMode_t, cudnnDataType_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSetConvolution2dDescriptor = val;
         self
     }
     pub fn cudnnGetConvolution2dDescriptor(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionMode_t, *mut cudnnDataType_t) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cudnnConvolutionMode_t, *mut cudnnDataType_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolution2dDescriptor = val;
         self
     }
-    pub fn cudnnSetConvolutionNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cudnnConvolutionMode_t, cudnnDataType_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetConvolutionNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, cudnnConvolutionMode_t, cudnnDataType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetConvolutionNdDescriptor = val;
         self
     }
     pub fn cudnnGetConvolutionNdDescriptor(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionMode_t, *mut cudnnDataType_t) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cudnnConvolutionMode_t, *mut cudnnDataType_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolutionNdDescriptor = val;
         self
     }
-    pub fn cudnnGetConvolution2dForwardOutputDim(
-        mut self,
-        val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetConvolution2dForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolution2dForwardOutputDim = val;
         self
     }
-    pub fn cudnnGetConvolutionNdForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionNdForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionNdForwardOutputDim = val;
         self
     }
-    pub fn cudnnGetConvolutionForwardAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionForwardAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionForwardAlgorithmMaxCount = val;
         self
     }
     pub fn cudnnGetConvolutionForwardAlgorithm_v7(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionFwdAlgoPerf_t) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cudnnConvolutionFwdAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolutionForwardAlgorithm_v7 = val;
         self
     }
     pub fn cudnnFindConvolutionForwardAlgorithm(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionFwdAlgoPerf_t) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cudnnConvolutionFwdAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnFindConvolutionForwardAlgorithm = val;
         self
@@ -1890,16 +1853,16 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnFilterDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnConvolutionDescriptor_t,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
+                *mut ::core::ffi::c_void,
+                ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
                 *mut cudnnConvolutionFwdAlgoPerf_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
             ) -> cudnnStatus_t,
         >,
@@ -1907,14 +1870,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnFindConvolutionForwardAlgorithmEx = val;
         self
     }
-    pub fn cudnnIm2Col(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnIm2Col(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnIm2Col = val;
         self
     }
-    pub fn cudnnReorderFilterAndBias(
-        mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnReorderType_t, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnReorderFilterAndBias(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnReorderType_t, *const ::core::ffi::c_void, *mut ::core::ffi::c_void, ::core::ffi::c_int, *const ::core::ffi::c_void, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnReorderFilterAndBias = val;
         self
     }
@@ -1927,18 +1887,18 @@ impl crate::sys::DynamicBindings {
         val: Option<
             unsafe extern "C" fn(
                 cudnnHandle_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnFilterDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnConvolutionDescriptor_t,
                 cudnnConvolutionFwdAlgo_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1950,36 +1910,36 @@ impl crate::sys::DynamicBindings {
         val: Option<
             unsafe extern "C" fn(
                 cudnnHandle_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnFilterDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnConvolutionDescriptor_t,
                 cudnnConvolutionFwdAlgo_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnActivationDescriptor_t,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnConvolutionBiasActivationForward = val;
         self
     }
-    pub fn cudnnGetConvolutionBackwardDataAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionBackwardDataAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionBackwardDataAlgorithmMaxCount = val;
         self
     }
     pub fn cudnnFindConvolutionBackwardDataAlgorithm(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdDataAlgoPerf_t) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cudnnConvolutionBwdDataAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnFindConvolutionBackwardDataAlgorithm = val;
         self
@@ -1990,16 +1950,16 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnFilterDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnConvolutionDescriptor_t,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
+                *mut ::core::ffi::c_void,
+                ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
                 *mut cudnnConvolutionBwdDataAlgoPerf_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
             ) -> cudnnStatus_t,
         >,
@@ -2009,7 +1969,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnGetConvolutionBackwardDataAlgorithm_v7(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdDataAlgoPerf_t) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cudnnConvolutionBwdDataAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolutionBackwardDataAlgorithm_v7 = val;
         self
@@ -2023,18 +1983,18 @@ impl crate::sys::DynamicBindings {
         val: Option<
             unsafe extern "C" fn(
                 cudnnHandle_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnFilterDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnConvolutionDescriptor_t,
                 cudnnConvolutionBwdDataAlgo_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -2069,13 +2029,13 @@ impl crate::sys::DynamicBindings {
         self.cudnnCnnVersionCheck = val;
         self
     }
-    pub fn cudnnGetConvolutionBackwardFilterAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionBackwardFilterAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionBackwardFilterAlgorithmMaxCount = val;
         self
     }
     pub fn cudnnFindConvolutionBackwardFilterAlgorithm(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdFilterAlgoPerf_t) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cudnnConvolutionBwdFilterAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnFindConvolutionBackwardFilterAlgorithm = val;
         self
@@ -2086,16 +2046,16 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cudnnHandle_t,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnConvolutionDescriptor_t,
                 cudnnFilterDescriptor_t,
-                *mut ::std::os::raw::c_void,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
+                *mut ::core::ffi::c_void,
+                ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
                 *mut cudnnConvolutionBwdFilterAlgoPerf_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
             ) -> cudnnStatus_t,
         >,
@@ -2105,7 +2065,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnGetConvolutionBackwardFilterAlgorithm_v7(
         mut self,
-        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdFilterAlgoPerf_t) -> cudnnStatus_t>,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut cudnnConvolutionBwdFilterAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolutionBackwardFilterAlgorithm_v7 = val;
         self
@@ -2119,25 +2079,25 @@ impl crate::sys::DynamicBindings {
         val: Option<
             unsafe extern "C" fn(
                 cudnnHandle_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnTensorDescriptor_t,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnConvolutionDescriptor_t,
                 cudnnConvolutionBwdFilterAlgo_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 usize,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudnnFilterDescriptor_t,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnConvolutionBackwardFilter = val;
         self
     }
-    pub fn cudnnConvolutionBackwardBias(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnConvolutionBackwardBias(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudnnTensorDescriptor_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnConvolutionBackwardBias = val;
         self
     }
@@ -2149,11 +2109,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnDestroyFusedOpsConstParamPack = val;
         self
     }
-    pub fn cudnnSetFusedOpsConstParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t, cudnnFusedOpsConstParamLabel_t, *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetFusedOpsConstParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t, cudnnFusedOpsConstParamLabel_t, *const ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSetFusedOpsConstParamPackAttribute = val;
         self
     }
-    pub fn cudnnGetFusedOpsConstParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t, cudnnFusedOpsConstParamLabel_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetFusedOpsConstParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t, cudnnFusedOpsConstParamLabel_t, *mut ::core::ffi::c_void, *mut ::core::ffi::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetFusedOpsConstParamPackAttribute = val;
         self
     }
@@ -2165,11 +2125,11 @@ impl crate::sys::DynamicBindings {
         self.cudnnDestroyFusedOpsVariantParamPack = val;
         self
     }
-    pub fn cudnnSetFusedOpsVariantParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t, cudnnFusedOpsVariantParamLabel_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetFusedOpsVariantParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t, cudnnFusedOpsVariantParamLabel_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSetFusedOpsVariantParamPackAttribute = val;
         self
     }
-    pub fn cudnnGetFusedOpsVariantParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t, cudnnFusedOpsVariantParamLabel_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetFusedOpsVariantParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t, cudnnFusedOpsVariantParamLabel_t, *mut ::core::ffi::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnGetFusedOpsVariantParamPackAttribute = val;
         self
     }
@@ -2189,35 +2149,93 @@ impl crate::sys::DynamicBindings {
         self.cudnnFusedOpsExecute = val;
         self
     }
+    pub fn cudnnSubquadraticOpsVersionCheck(mut self, val: Option<unsafe extern "C" fn() -> cudnnStatus_t>) -> Self {
+        self.cudnnSubquadraticOpsVersionCheck = val;
+        self
+    }
+    pub fn cudnnCausalConv1dForward(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                cudaStream_t,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                cudnnDataType_t,
+                cudnnCausalConv1dActivation_t,
+            ) -> cudnnStatus_t,
+        >,
+    ) -> Self {
+        self.cudnnCausalConv1dForward = val;
+        self
+    }
+    pub fn cudnnCausalConv1dBackward(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                cudaStream_t,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                cudnnDataType_t,
+                cudnnDataType_t,
+                cudnnCausalConv1dActivation_t,
+            ) -> cudnnStatus_t,
+        >,
+    ) -> Self {
+        self.cudnnCausalConv1dBackward = val;
+        self
+    }
 }
+#[doc = "Returns cuDNN library version (MAJOR*10000 + MINOR*100 + PATCH).\n\n# Returns\n\nThe cuDNN version as an encoded integer.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetVersion() -> usize {
     unsafe { crate::sys::cudnnGetVersion() }
 }
+#[doc = "Returns max supported GPU compute capability.\n\n# Returns\n\nThe maximum supported device version.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetMaxDeviceVersion() -> usize {
     unsafe { crate::sys::cudnnGetMaxDeviceVersion() }
 }
+#[doc = "Returns CUDA Runtime version linked against cuDNN.\n\n# Returns\n\nThe CUDA Runtime version.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetCudartVersion() -> usize {
     unsafe { crate::sys::cudnnGetCudartVersion() }
 }
-pub unsafe fn cudnnGetErrorString(status: cudnnStatus_t) -> *const ::std::os::raw::c_char {
+#[doc = "Converts status code to human-readable string.\n\n# Arguments\n\n* `status` [in]  - The cuDNN status code to convert.\n\n# Returns\n\nPointer to a static string describing the status code.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetErrorString(status: cudnnStatus_t) -> *const ::core::ffi::c_char {
     unsafe { crate::sys::cudnnGetErrorString(status) }
 }
+#[doc = "Retrieves most recent error message. Thread-safe.\n\n# Arguments\n\n* `message` [out]  -   Buffer to receive the error message string.\n* `max_size` [in]  -  Maximum number of bytes to write into `message.`\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetLastErrorString<T0: types::CudaAsMutPtr>(mut message: T0, max_size: usize) -> () {
     unsafe { crate::sys::cudnnGetLastErrorString(message.as_mut_ptr() as *mut _, max_size) }
 }
+#[doc = "Queries remote kernel error state.\n> **Deprecated** Use cudnnGetLastErrorString instead.\n\n# Arguments\n\n* `handle` [in]  -   cuDNN handle.\n* `rstatus` [out]  -  Pointer to receive the runtime status.\n* `mode` [in]  -     Error query mode.\n* `tag` [out]  -      Runtime tag (unused, may be NULL).\n\n# Returns\n\ncuDNN status code.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnQueryRuntimeError<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cudnnHandle_t, mut rstatus: T0, mode: cudnnErrQueryMode_t, mut tag: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnQueryRuntimeError(handle, rstatus.as_mut_ptr() as *mut _, mode, tag.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetProperty(type_: libraryPropertyType) -> Result<i32, crate::sys::cudnnStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Queries library property (major, minor, or patch version).\n\n# Arguments\n\n* `type` [in]  -   The property type to query (MAJOR_VERSION, MINOR_VERSION, or PATCH_LEVEL).\n* `value` [out]  -  Pointer to receive the property value.\n\n# Returns\n\ncuDNN status code.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetProperty(type_: libraryPropertyType) -> Result<::core::ffi::c_int, crate::sys::cudnnStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetProperty(type_, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Creates cuDNN context. Must precede all other cuDNN library calls.\n\n# Arguments\n\n* `handle` [out]  -  Pointer to receive the newly created cuDNN handle.\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_BAD_PARAM\n@retval CUDNN_STATUS_NOT_INITIALIZED\n@retval CUDNN_STATUS_NOT_SUPPORTED_ARCH_MISMATCH\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCreate() -> Result<cudnnHandle_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnHandle_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreate(out_0.as_mut_ptr() as *mut _) };
@@ -2227,14 +2245,17 @@ pub unsafe fn cudnnCreate() -> Result<cudnnHandle_t, crate::sys::cudnnStatus_t> 
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys cuDNN context. Calls cudaDeviceSynchronize.\n\n# Arguments\n\n* `handle` [in]  -  The cuDNN handle to destroy.\n\n# Returns\n\ncuDNN status code.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnDestroy(handle: cudnnHandle_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroy(handle) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Associates CUDA stream with cuDNN handle.\n\n# Arguments\n\n* `handle` [in]  -    cuDNN handle.\n* `streamId` [in]  -  CUDA stream to associate.\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_BAD_PARAM\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetStream(handle: cudnnHandle_t, streamId: cudaStream_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetStream(handle, streamId) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Retrieves CUDA stream from cuDNN handle.\n\n# Arguments\n\n* `handle` [in]  -    cuDNN handle.\n* `streamId` [out]  -  Pointer to receive the associated CUDA stream.\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_BAD_PARAM\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetStream(handle: cudnnHandle_t) -> Result<cudaStream_t, crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudaStream_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetStream(handle, out_1.as_mut_ptr() as *mut _) };
@@ -2244,45 +2265,54 @@ pub unsafe fn cudnnGetStream(handle: cudnnHandle_t) -> Result<cudaStream_t, crat
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetCallback<T0: types::CudaAsMutPtr>(mask: u32, mut udata: T0, fptr: cudnnCallback_t) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetCallback(mask as _, udata.as_mut_ptr() as *mut _, fptr) };
+#[doc = "Registers debug callback with message mask.\n\n# Arguments\n\n* `mask` [in]  -   Bitmask of severity levels to enable (see CUDNN_SEV_*_EN).\n* `udata` [in]  -  User data pointer passed to callback.\n* `fptr` [in]  -   Callback function pointer.\n\n# Returns\n\ncuDNN status code.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnSetCallback<T0: types::CudaAsMutPtr>(mask: ::core::ffi::c_uint, mut udata: T0, fptr: cudnnCallback_t) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetCallback(mask, udata.as_mut_ptr() as *mut _, fptr) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetCallback(udata: *mut *mut ::std::os::raw::c_void) -> Result<(u32, cudnnCallback_t), crate::sys::cudnnStatus_t> {
-    let mut out_0: std::mem::MaybeUninit<::std::os::raw::c_uint> = std::mem::MaybeUninit::zeroed();
+#[doc = "Retrieves registered debug callback and its configuration.\n\n# Arguments\n\n* `mask` [out]  -   Pointer to receive the current severity mask.\n* `udata` [out]  -  Pointer to receive the user data pointer.\n* `fptr` [out]  -   Pointer to receive the callback function pointer.\n\n# Returns\n\ncuDNN status code.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetCallback(udata: *mut *mut ::core::ffi::c_void) -> Result<(::core::ffi::c_uint, cudnnCallback_t), crate::sys::cudnnStatus_t> {
+    let mut out_0: std::mem::MaybeUninit<::core::ffi::c_uint> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnCallback_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetCallback(out_0.as_mut_ptr() as *mut _, udata, out_2.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_0.assume_init() as u32, out_2.assume_init() as cudnnCallback_t)) }
+        unsafe { Ok((out_0.assume_init() as ::core::ffi::c_uint, out_2.assume_init() as cudnnCallback_t)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Cross-library version checker.\nThis function is implemented differently in each sub-library. Each sublib\nchecks whether its own version matches that of its dependencies.\n@retval CUDNN_STATUS_SUCCESS if the version check passes.\n@retval CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH if the versions are inconsistent.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGraphVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnGraphVersionCheck() };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Allocates memory for a backend descriptor of the specified type.\n\n# Arguments\n\n* `descriptorType` [in]  -  The type of descriptor to create.\n* `descriptor` [out]  -      Pointer to receive the newly created descriptor.\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_NOT_SUPPORTED\n@retval CUDNN_STATUS_ALLOC_FAILED\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnBackendCreateDescriptor<T0: types::CudaAsMutPtr>(descriptorType: cudnnBackendDescriptorType_t, mut descriptor: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendCreateDescriptor(descriptorType, descriptor.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Deallocates a backend descriptor and frees associated memory.\n\n# Arguments\n\n* `descriptor` [in]  -  The descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_ALLOC_FAILED\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnBackendDestroyDescriptor(descriptor: cudnnBackendDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendDestroyDescriptor(descriptor) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Repurposes pre-allocated memory for a backend descriptor.\n> **Deprecated** Since cuDNN 9.2. Use cudnnBackendCreateDescriptor instead.\n\n# Arguments\n\n* `descriptor` [in]  -  The descriptor to initialize.\n\n# Returns\n\ncuDNN status code.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnBackendInitialize(descriptor: cudnnBackendDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendInitialize(descriptor) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Validates and finalizes a descriptor. After finalization, attributes become read-only.\n\n# Arguments\n\n* `descriptor` [in]  -  The descriptor to finalize.\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_BAD_PARAM\n@retval CUDNN_STATUS_NOT_SUPPORTED\n@retval CUDNN_STATUS_INTERNAL_ERROR\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnBackendFinalize(descriptor: cudnnBackendDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendFinalize(descriptor) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Sets an attribute on an unfinalized backend descriptor.\n\n# Arguments\n\n* `descriptor` [in]  -       The target descriptor (must not be finalized).\n* `attributeName` [in]  -    The attribute to set.\n* `attributeType` [in]  -    The data type of the attribute values.\n* `elementCount` [in]  -     Number of elements in `arrayOfElements.`\n* `arrayOfElements` [in]  -  Pointer to the attribute value(s).\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_NOT_INITIALIZED\n@retval CUDNN_STATUS_BAD_PARAM\n@retval CUDNN_STATUS_NOT_SUPPORTED\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnBackendSetAttribute<T0: types::CudaAsPtr>(descriptor: cudnnBackendDescriptor_t, attributeName: cudnnBackendAttributeName_t, attributeType: cudnnBackendAttributeType_t, elementCount: i64, arrayOfElements: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendSetAttribute(descriptor, attributeName, attributeType, elementCount, arrayOfElements.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnBackendGetAttribute(descriptor: cudnnBackendDescriptor_t, attributeName: cudnnBackendAttributeName_t, attributeType: cudnnBackendAttributeType_t, requestedElementCount: i64, arrayOfElements: *mut ::std::os::raw::c_void) -> Result<i64, crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves an attribute from a finalized backend descriptor.\n\n# Arguments\n\n* `descriptor` [in]  -             The source descriptor (must be finalized).\n* `attributeName` [in]  -          The attribute to query.\n* `attributeType` [in]  -          The expected data type of the attribute.\n* `requestedElementCount` [in]  -  Maximum number of elements to retrieve.\n* `elementCount` [out]  -           Pointer to receive the actual element count.\n* `arrayOfElements` [out]  -        Buffer to receive the attribute value(s).\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_BAD_PARAM\n@retval CUDNN_STATUS_NOT_INITIALIZED\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnBackendGetAttribute(descriptor: cudnnBackendDescriptor_t, attributeName: cudnnBackendAttributeName_t, attributeType: cudnnBackendAttributeType_t, requestedElementCount: i64, arrayOfElements: *mut ::core::ffi::c_void) -> Result<i64, crate::sys::cudnnStatus_t> {
     let mut out_4: std::mem::MaybeUninit<i64> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnBackendGetAttribute(descriptor, attributeName, attributeType, requestedElementCount, out_4.as_mut_ptr() as *mut _, arrayOfElements) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
@@ -2291,18 +2321,22 @@ pub unsafe fn cudnnBackendGetAttribute(descriptor: cudnnBackendDescriptor_t, att
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Runs an execution plan with the given variant pack containing data pointers.\n\n# Arguments\n\n* `handle` [in]  -         cuDNN handle.\n* `executionPlan` [in]  -  Finalized execution plan descriptor.\n* `variantPack` [in]  -    Finalized variant pack descriptor with data pointers.\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_BAD_PARAM\n@retval CUDNN_STATUS_INTERNAL_ERROR\n@retval CUDNN_STATUS_EXECUTION_FAILED\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnBackendExecute(handle: cudnnHandle_t, executionPlan: cudnnBackendDescriptor_t, variantPack: cudnnBackendDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendExecute(handle, executionPlan, variantPack) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Populates a CUDA graph with nodes from an execution plan.\n\n# Arguments\n\n* `handle` [in]  -         cuDNN handle.\n* `executionPlan` [in]  -  Finalized execution plan descriptor.\n* `variantPack` [in]  -    Finalized variant pack descriptor.\n* `graph` [inout]  -          CUDA graph to populate.\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_BAD_PARAM\n@retval CUDNN_STATUS_INTERNAL_ERROR\n@retval CUDNN_STATUS_EXECUTION_FAILED\n@retval CUDNN_STATUS_NOT_SUPPORTED\n> **Since** cuDNN 9.5.0"]
 pub unsafe fn cudnnBackendPopulateCudaGraph(handle: cudnnHandle_t, executionPlan: cudnnBackendDescriptor_t, variantPack: cudnnBackendDescriptor_t, graph: cudaGraph_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendPopulateCudaGraph(handle, executionPlan, variantPack, graph) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Updates an existing CUDA graph with new data pointers from a variant pack.\n\n# Arguments\n\n* `handle` [in]  -         cuDNN handle.\n* `executionPlan` [in]  -  Finalized execution plan descriptor.\n* `variantPack` [in]  -    Finalized variant pack with updated data pointers.\n* `graph` [inout]  -          CUDA graph to update.\n@retval CUDNN_STATUS_SUCCESS\n@retval CUDNN_STATUS_BAD_PARAM\n@retval CUDNN_STATUS_INTERNAL_ERROR\n@retval CUDNN_STATUS_EXECUTION_FAILED\n@retval CUDNN_STATUS_NOT_SUPPORTED\n> **Since** cuDNN 9.5.0"]
 pub unsafe fn cudnnBackendUpdateCudaGraph(handle: cudnnHandle_t, executionPlan: cudnnBackendDescriptor_t, variantPack: cudnnBackendDescriptor_t, graph: cudaGraph_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendUpdateCudaGraph(handle, executionPlan, variantPack, graph) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates a tensor descriptor.\nAllocates and initializes a new tensor descriptor object.\n\n# Arguments\n\n* `tensorDesc` [out]  -  Pointer to the newly created tensor descriptor.\n@retval CUDNN_STATUS_SUCCESS           The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED      Memory allocation failed.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDestroyTensorDescriptor,`] cudnnSetTensor4dDescriptor"]
 pub unsafe fn cudnnCreateTensorDescriptor() -> Result<cudnnTensorDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnTensorDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateTensorDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -2312,24 +2346,38 @@ pub unsafe fn cudnnCreateTensorDescriptor() -> Result<cudnnTensorDescriptor_t, c
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetTensor4dDescriptor(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, n: i32, c: i32, h: i32, w: i32) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetTensor4dDescriptor(tensorDesc, format, dataType, n as _, c as _, h as _, w as _) };
+#[doc = "Sets a 4D tensor descriptor.\nInitializes a previously created tensor descriptor with the specified format,\ndata type, and dimensions. Strides are computed automatically based on the format.\n\n# Arguments\n\n* `tensorDesc` [in,out]  -  Tensor descriptor to initialize.\n* `format` [in]  -      Memory layout format (e.g., NCHW or NHWC).\n* `dataType` [in]  -    Data type of the tensor elements.\n* `n` [in]  -           Number of images (batch size).\n* `c` [in]  -           Number of feature maps (channels).\n* `h` [in]  -           Height of each feature map.\n* `w` [in]  -           Width of each feature map.\n@retval CUDNN_STATUS_SUCCESS           The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM         An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetTensor4dDescriptorEx,`] cudnnGetTensor4dDescriptor"]
+pub unsafe fn cudnnSetTensor4dDescriptor(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, n: ::core::ffi::c_int, c: ::core::ffi::c_int, h: ::core::ffi::c_int, w: ::core::ffi::c_int) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetTensor4dDescriptor(tensorDesc, format, dataType, n, c, h, w) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetTensor4dDescriptorEx(tensorDesc: cudnnTensorDescriptor_t, dataType: cudnnDataType_t, n: i32, c: i32, h: i32, w: i32, nStride: i32, cStride: i32, hStride: i32, wStride: i32) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetTensor4dDescriptorEx(tensorDesc, dataType, n as _, c as _, h as _, w as _, nStride as _, cStride as _, hStride as _, wStride as _) };
+#[doc = "Sets a 4D tensor descriptor with explicit strides.\nInitializes a previously created tensor descriptor with the specified data type,\ndimensions, and explicit stride values for each dimension.\n\n# Arguments\n\n* `tensorDesc` [in,out]  -  Tensor descriptor to initialize.\n* `dataType` [in]  -    Data type of the tensor elements.\n* `n` [in]  -           Number of images (batch size).\n* `c` [in]  -           Number of feature maps (channels).\n* `h` [in]  -           Height of each feature map.\n* `w` [in]  -           Width of each feature map.\n* `nStride` [in]  -     Stride between images.\n* `cStride` [in]  -     Stride between feature maps.\n* `hStride` [in]  -     Stride between rows.\n* `wStride` [in]  -     Stride between columns.\n@retval CUDNN_STATUS_SUCCESS           The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM         An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetTensor4dDescriptor,`] cudnnGetTensor4dDescriptor"]
+pub unsafe fn cudnnSetTensor4dDescriptorEx(
+    tensorDesc: cudnnTensorDescriptor_t,
+    dataType: cudnnDataType_t,
+    n: ::core::ffi::c_int,
+    c: ::core::ffi::c_int,
+    h: ::core::ffi::c_int,
+    w: ::core::ffi::c_int,
+    nStride: ::core::ffi::c_int,
+    cStride: ::core::ffi::c_int,
+    hStride: ::core::ffi::c_int,
+    wStride: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetTensor4dDescriptorEx(tensorDesc, dataType, n, c, h, w, nStride, cStride, hStride, wStride) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetTensor4dDescriptor(tensorDesc: cudnnTensorDescriptor_t) -> Result<(cudnnDataType_t, i32, i32, i32, i32, i32, i32, i32, i32), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves the settings of a previously initialized 4D tensor descriptor.\n\n# Arguments\n\n* `tensorDesc` [in]  -  Tensor descriptor to query.\n* `dataType` [out]  -    Data type of the tensor.\n* `n` [out]  -           Number of images (batch size).\n* `c` [out]  -           Number of feature maps (channels).\n* `h` [out]  -           Height of each feature map.\n* `w` [out]  -           Width of each feature map.\n* `nStride` [out]  -     Stride between images.\n* `cStride` [out]  -     Stride between feature maps.\n* `hStride` [out]  -     Stride between rows.\n* `wStride` [out]  -     Stride between columns.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetTensor4dDescriptor`]"]
+pub unsafe fn cudnnGetTensor4dDescriptor(tensorDesc: cudnnTensorDescriptor_t) -> Result<(cudnnDataType_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_2: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_6: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_7: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_8: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_9: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_2: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_6: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_7: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_8: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_9: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe {
         crate::sys::cudnnGetTensor4dDescriptor(
             tensorDesc,
@@ -2348,40 +2396,44 @@ pub unsafe fn cudnnGetTensor4dDescriptor(tensorDesc: cudnnTensorDescriptor_t) ->
         unsafe {
             Ok((
                 out_1.assume_init() as cudnnDataType_t,
-                out_2.assume_init() as i32,
-                out_3.assume_init() as i32,
-                out_4.assume_init() as i32,
-                out_5.assume_init() as i32,
-                out_6.assume_init() as i32,
-                out_7.assume_init() as i32,
-                out_8.assume_init() as i32,
-                out_9.assume_init() as i32,
+                out_2.assume_init() as ::core::ffi::c_int,
+                out_3.assume_init() as ::core::ffi::c_int,
+                out_4.assume_init() as ::core::ffi::c_int,
+                out_5.assume_init() as ::core::ffi::c_int,
+                out_6.assume_init() as ::core::ffi::c_int,
+                out_7.assume_init() as ::core::ffi::c_int,
+                out_8.assume_init() as ::core::ffi::c_int,
+                out_9.assume_init() as ::core::ffi::c_int,
             ))
         }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetTensorNdDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(tensorDesc: cudnnTensorDescriptor_t, dataType: cudnnDataType_t, nbDims: i32, dimA: T0, strideA: T1) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetTensorNdDescriptor(tensorDesc, dataType, nbDims as _, dimA.as_const_ptr() as *const _, strideA.as_const_ptr() as *const _) };
+#[doc = "Sets an N-dimensional tensor descriptor.\nInitializes a tensor descriptor with arbitrary dimensionality, data type, dimensions, and strides.\n\n# Arguments\n\n* `tensorDesc` [in,out]  -  Tensor descriptor to initialize.\n* `dataType` [in]  -    Data type of the tensor elements.\n* `nbDims` [in]  -      Number of dimensions.\n* `dimA` [in]  -        Array of dimension sizes (length nbDims).\n* `strideA` [in]  -     Array of strides (length nbDims).\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnGetTensorNdDescriptor`]"]
+pub unsafe fn cudnnSetTensorNdDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(tensorDesc: cudnnTensorDescriptor_t, dataType: cudnnDataType_t, nbDims: ::core::ffi::c_int, dimA: T0, strideA: T1) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetTensorNdDescriptor(tensorDesc, dataType, nbDims, dimA.as_const_ptr() as *const _, strideA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetTensorNdDescriptorEx<T0: types::CudaAsPtr>(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, nbDims: i32, dimA: T0) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetTensorNdDescriptorEx(tensorDesc, format, dataType, nbDims as _, dimA.as_const_ptr() as *const _) };
+#[doc = "Sets an N-dimensional tensor descriptor with automatic stride computation.\nInitializes a tensor descriptor with the specified format; strides are computed\nautomatically from the format and dimensions.\n\n# Arguments\n\n* `tensorDesc` [in,out]  -  Tensor descriptor to initialize.\n* `format` [in]  -      Memory layout format.\n* `dataType` [in]  -    Data type of the tensor elements.\n* `nbDims` [in]  -      Number of dimensions.\n* `dimA` [in]  -        Array of dimension sizes (length nbDims).\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetTensorNdDescriptor`]"]
+pub unsafe fn cudnnSetTensorNdDescriptorEx<T0: types::CudaAsPtr>(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, nbDims: ::core::ffi::c_int, dimA: T0) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetTensorNdDescriptorEx(tensorDesc, format, dataType, nbDims, dimA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetTensorNdDescriptor(tensorDesc: cudnnTensorDescriptor_t, nbDimsRequested: i32) -> Result<(cudnnDataType_t, i32, i32, i32), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves the settings of a previously initialized N-dimensional tensor descriptor.\n\n# Arguments\n\n* `tensorDesc` [in]  -      Tensor descriptor to query.\n* `nbDimsRequested` [in]  - Number of dimensions to retrieve.\n* `dataType` [out]  -        Data type of the tensor.\n* `nbDims` [out]  -          Actual number of dimensions in the descriptor.\n* `dimA` [out]  -            Array to receive dimension sizes (length nbDimsRequested).\n* `strideA` [out]  -         Array to receive strides (length nbDimsRequested).\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetTensorNdDescriptor`]"]
+pub unsafe fn cudnnGetTensorNdDescriptor(tensorDesc: cudnnTensorDescriptor_t, nbDimsRequested: ::core::ffi::c_int) -> Result<(cudnnDataType_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
     let mut out_2: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetTensorNdDescriptor(tensorDesc, nbDimsRequested as _, out_2.as_mut_ptr() as *mut _, out_3.as_mut_ptr() as *mut _, out_4.as_mut_ptr() as *mut _, out_5.as_mut_ptr() as *mut _) };
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let status = unsafe { crate::sys::cudnnGetTensorNdDescriptor(tensorDesc, nbDimsRequested, out_2.as_mut_ptr() as *mut _, out_3.as_mut_ptr() as *mut _, out_4.as_mut_ptr() as *mut _, out_5.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_2.assume_init() as cudnnDataType_t, out_3.assume_init() as i32, out_4.assume_init() as i32, out_5.assume_init() as i32)) }
+        unsafe { Ok((out_2.assume_init() as cudnnDataType_t, out_3.assume_init() as ::core::ffi::c_int, out_4.assume_init() as ::core::ffi::c_int, out_5.assume_init() as ::core::ffi::c_int)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Returns the memory size in bytes required by a tensor.\n\n# Arguments\n\n* `tensorDesc` [in]  -  Tensor descriptor to query.\n* `size` [out]  -        Memory size in bytes.\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetTensorSizeInBytes(tensorDesc: cudnnTensorDescriptor_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetTensorSizeInBytes(tensorDesc, out_1.as_mut_ptr() as *mut _) };
@@ -2391,16 +2443,17 @@ pub unsafe fn cudnnGetTensorSizeInBytes(tensorDesc: cudnnTensorDescriptor_t) -> 
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys a tensor descriptor.\nReleases the resources associated with a tensor descriptor object.\n\n# Arguments\n\n* `tensorDesc` [in]  -  Tensor descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnCreateTensorDescriptor`]"]
 pub unsafe fn cudnnDestroyTensorDescriptor(tensorDesc: cudnnTensorDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyTensorDescriptor(tensorDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-#[doc = "Create a destination descriptor for cudnnTransformTensor"]
+#[doc = "Initializes the destination tensor descriptor for a tensor transform.\nComputes the destination tensor dimensions and size based on the transform and source descriptors.\n\n# Arguments\n\n* `transformDesc` [in]  -   Transform descriptor specifying the operation.\n* `srcDesc` [in]  -         Source tensor descriptor.\n* `destDesc` [in,out]  -        Destination tensor descriptor to be initialized.\n* `destSizeInBytes` [out]  - Memory size in bytes of the destination tensor.\n@retval CUDNN_STATUS_SUCCESS     The destination descriptor was initialized successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnTransformTensorEx`]"]
 pub unsafe fn cudnnInitTransformDest<T0: types::CudaAsMutPtr>(transformDesc: cudnnTensorTransformDescriptor_t, srcDesc: cudnnTensorDescriptor_t, destDesc: cudnnTensorDescriptor_t, mut destSizeInBytes: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnInitTransformDest(transformDesc, srcDesc, destDesc, destSizeInBytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-#[doc = "Create an empty tensor transform descriptor"]
+#[doc = "Creates a tensor transform descriptor.\nAllocates and initializes a new tensor transform descriptor object.\n\n# Arguments\n\n* `transformDesc` [out]  -  Pointer to the newly created transform descriptor.\n@retval CUDNN_STATUS_SUCCESS       The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED  Memory allocation failed.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnDestroyTensorTransformDescriptor,`] cudnnSetTensorTransformDescriptor"]
 pub unsafe fn cudnnCreateTensorTransformDescriptor() -> Result<cudnnTensorTransformDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnTensorTransformDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateTensorTransformDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -2410,7 +2463,7 @@ pub unsafe fn cudnnCreateTensorTransformDescriptor() -> Result<cudnnTensorTransf
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-#[doc = "Initialize a previously created tensor transform descriptor."]
+#[doc = "Configures a tensor transform descriptor.\nSets the parameters of a previously created tensor transform descriptor including\npadding, folding, and destination format.\n\n# Arguments\n\n* `transformDesc` [in,out]  -  Transform descriptor to configure.\n* `nbDims` [in]  -         Number of dimensions.\n* `destFormat` [in]  -     Destination tensor format.\n* `padBeforeA` [in]  -     Array of padding values before each dimension.\n* `padAfterA` [in]  -      Array of padding values after each dimension.\n* `foldA` [in]  -          Array of fold parameters per dimension.\n* `direction` [in]  -      Folding direction (fold or unfold).\n@retval CUDNN_STATUS_SUCCESS     The descriptor was configured successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetTensorTransformDescriptor`]"]
 pub unsafe fn cudnnSetTensorTransformDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
     transformDesc: cudnnTensorTransformDescriptor_t,
     nbDims: u32,
@@ -2423,7 +2476,7 @@ pub unsafe fn cudnnSetTensorTransformDescriptor<T0: types::CudaAsPtr, T1: types:
     let status = unsafe { crate::sys::cudnnSetTensorTransformDescriptor(transformDesc, nbDims, destFormat, padBeforeA.as_const_ptr() as *const _, padAfterA.as_const_ptr() as *const _, foldA.as_const_ptr() as *const _, direction) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-#[doc = "Retrieves the values stored in a previously initialized tensor transform\ndescriptor."]
+#[doc = "Retrieves the settings of a previously initialized tensor transform descriptor.\n\n# Arguments\n\n* `transformDesc` [in]  -   Transform descriptor to query.\n* `nbDimsRequested` [in]  - Number of dimensions to retrieve.\n* `destFormat` [out]  -      Destination tensor format.\n* `padBeforeA` [out]  -      Array to receive pre-padding values.\n* `padAfterA` [out]  -       Array to receive post-padding values.\n* `foldA` [out]  -           Array to receive fold parameters.\n* `direction` [out]  -       Folding direction.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetTensorTransformDescriptor`]"]
 pub unsafe fn cudnnGetTensorTransformDescriptor(transformDesc: cudnnTensorTransformDescriptor_t, nbDimsRequested: u32) -> Result<(cudnnTensorFormat_t, i32, i32, u32, cudnnFoldingDirection_t), crate::sys::cudnnStatus_t> {
     let mut out_2: std::mem::MaybeUninit<cudnnTensorFormat_t> = std::mem::MaybeUninit::zeroed();
     let mut out_3: std::mem::MaybeUninit<i32> = std::mem::MaybeUninit::zeroed();
@@ -2437,15 +2490,17 @@ pub unsafe fn cudnnGetTensorTransformDescriptor(transformDesc: cudnnTensorTransf
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-#[doc = "Destroys a previously created tensor transform descriptor."]
+#[doc = "Destroys a tensor transform descriptor.\nReleases the resources associated with a tensor transform descriptor.\n\n# Arguments\n\n* `transformDesc` [in]  -  Transform descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnCreateTensorTransformDescriptor`]"]
 pub unsafe fn cudnnDestroyTensorTransformDescriptor(transformDesc: cudnnTensorTransformDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyTensorTransformDescriptor(transformDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Copies and converts tensor data between layouts with alpha/beta blending.\nPerforms y = alpha * x + beta * y, converting between tensor formats as needed.\n\n# Arguments\n\n* `handle` [in]  -  cuDNN library handle.\n* `alpha` [in]  -   Scaling factor for the source tensor.\n* `xDesc` [in]  -   Source tensor descriptor.\n* `x` [in]  -       Pointer to source tensor data.\n* `beta` [in]  -    Scaling factor for the destination tensor.\n* `yDesc` [in]  -   Destination tensor descriptor.\n* `y` [in,out]  -       Pointer to destination tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnTransformTensorEx`]"]
 pub unsafe fn cudnnTransformTensor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T0, xDesc: cudnnTensorDescriptor_t, x: T1, beta: T2, yDesc: cudnnTensorDescriptor_t, mut y: T3) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnTransformTensor(handle, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Extended tensor transform with folding/padding support.\nPerforms dest = alpha * transform(src) + beta * dest, using the specified\ntransform descriptor for padding and folding configuration.\n\n# Arguments\n\n* `handle` [in]  -    cuDNN library handle.\n* `transDesc` [in]  - Transform descriptor specifying the operation.\n* `alpha` [in]  -     Scaling factor for the source tensor.\n* `srcDesc` [in]  -   Source tensor descriptor.\n* `srcData` [in]  -   Pointer to source tensor data.\n* `beta` [in]  -      Scaling factor for the destination tensor.\n* `destDesc` [in]  -  Destination tensor descriptor.\n* `destData` [in,out]  -  Pointer to destination tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnTransformTensor,`] cudnnSetTensorTransformDescriptor"]
 pub unsafe fn cudnnTransformTensorEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     transDesc: cudnnTensorTransformDescriptor_t,
@@ -2459,10 +2514,12 @@ pub unsafe fn cudnnTransformTensorEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr,
     let status = unsafe { crate::sys::cudnnTransformTensorEx(handle, transDesc, alpha.as_const_ptr() as *const _, srcDesc, srcData.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, destDesc, destData.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Adds a scaled bias tensor to a destination tensor with broadcasting.\nPerforms C = alpha * A + beta * C, where A is broadcast to match C dimensions.\n\n# Arguments\n\n* `handle` [in]  -  cuDNN library handle.\n* `alpha` [in]  -   Scaling factor for the bias tensor A.\n* `aDesc` [in]  -   Bias tensor descriptor.\n* `A` [in]  -       Pointer to bias tensor data.\n* `beta` [in]  -    Scaling factor for the destination tensor C.\n* `cDesc` [in]  -   Destination tensor descriptor.\n* `C` [in,out]  -       Pointer to destination tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead."]
 pub unsafe fn cudnnAddTensor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T0, aDesc: cudnnTensorDescriptor_t, A: T1, beta: T2, cDesc: cudnnTensorDescriptor_t, mut C: T3) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnAddTensor(handle, alpha.as_const_ptr() as *const _, aDesc, A.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, cDesc, C.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates an op tensor descriptor.\n\n# Arguments\n\n* `opTensorDesc` [out]  -  Pointer to the newly created op tensor descriptor.\n@retval CUDNN_STATUS_SUCCESS       The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED  Memory allocation failed.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnDestroyOpTensorDescriptor`]"]
 pub unsafe fn cudnnCreateOpTensorDescriptor() -> Result<cudnnOpTensorDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnOpTensorDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateOpTensorDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -2472,10 +2529,12 @@ pub unsafe fn cudnnCreateOpTensorDescriptor() -> Result<cudnnOpTensorDescriptor_
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Configures an op tensor descriptor.\n\n# Arguments\n\n* `opTensorDesc` [in,out]  -     Op tensor descriptor to configure.\n* `opTensorOp` [in]  -       Tensor operation to perform.\n* `opTensorCompType` [in]  - Computation data type.\n* `opTensorNanOpt` [in]  -   NaN propagation policy.\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetOpTensorDescriptor`]"]
 pub unsafe fn cudnnSetOpTensorDescriptor(opTensorDesc: cudnnOpTensorDescriptor_t, opTensorOp: cudnnOpTensorOp_t, opTensorCompType: cudnnDataType_t, opTensorNanOpt: cudnnNanPropagation_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetOpTensorDescriptor(opTensorDesc, opTensorOp, opTensorCompType, opTensorNanOpt) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Retrieves the settings of an op tensor descriptor.\n\n# Arguments\n\n* `opTensorDesc` [in]  -     Op tensor descriptor to query.\n* `opTensorOp` [out]  -       Tensor operation type.\n* `opTensorCompType` [out]  - Computation data type.\n* `opTensorNanOpt` [out]  -   NaN propagation policy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetOpTensorDescriptor`]"]
 pub unsafe fn cudnnGetOpTensorDescriptor(opTensorDesc: cudnnOpTensorDescriptor_t) -> Result<(cudnnOpTensorOp_t, cudnnDataType_t, cudnnNanPropagation_t), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnOpTensorOp_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
@@ -2487,10 +2546,12 @@ pub unsafe fn cudnnGetOpTensorDescriptor(opTensorDesc: cudnnOpTensorDescriptor_t
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys an op tensor descriptor.\n\n# Arguments\n\n* `opTensorDesc` [in]  -  Op tensor descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnCreateOpTensorDescriptor`]"]
 pub unsafe fn cudnnDestroyOpTensorDescriptor(opTensorDesc: cudnnOpTensorDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyOpTensorDescriptor(opTensorDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs element-wise tensor operations.\nComputes C = op(alpha1 * A, alpha2 * B) + beta * C. The B tensor is ignored\nfor CUDNN_OP_TENSOR_SQRT and CUDNN_OP_TENSOR_NOT (unary operations).\n\n# Arguments\n\n* `handle` [in]  -       cuDNN library handle.\n* `opTensorDesc` [in]  - Op tensor descriptor specifying the operation.\n* `alpha1` [in]  -       Scaling factor for tensor A.\n* `aDesc` [in]  -        Descriptor for tensor A.\n* `A` [in]  -            Pointer to tensor A data.\n* `alpha2` [in]  -       Scaling factor for tensor B.\n* `bDesc` [in]  -        Descriptor for tensor B.\n* `B` [in]  -            Pointer to tensor B data.\n* `beta` [in]  -         Scaling factor for tensor C.\n* `cDesc` [in]  -        Descriptor for tensor C.\n* `C` [in,out]  -            Pointer to tensor C data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetOpTensorDescriptor`]"]
 pub unsafe fn cudnnOpTensor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     opTensorDesc: cudnnOpTensorDescriptor_t,
@@ -2521,6 +2582,7 @@ pub unsafe fn cudnnOpTensor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: type
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates a reduce tensor descriptor.\n\n# Arguments\n\n* `reduceTensorDesc` [out]  -  Pointer to the newly created reduce tensor descriptor.\n@retval CUDNN_STATUS_SUCCESS       The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED  Memory allocation failed.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnDestroyReduceTensorDescriptor`]"]
 pub unsafe fn cudnnCreateReduceTensorDescriptor() -> Result<cudnnReduceTensorDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnReduceTensorDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateReduceTensorDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -2530,6 +2592,7 @@ pub unsafe fn cudnnCreateReduceTensorDescriptor() -> Result<cudnnReduceTensorDes
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Configures a reduce tensor descriptor.\n\n# Arguments\n\n* `reduceTensorDesc` [in,out]  -        Reduce tensor descriptor to configure.\n* `reduceTensorOp` [in]  -          Reduction operation to perform.\n* `reduceTensorCompType` [in]  -    Computation data type.\n* `reduceTensorNanOpt` [in]  -      NaN propagation policy (applies to min/max only).\n* `reduceTensorIndices` [in]  -     Whether to compute indices.\n* `reduceTensorIndicesType` [in]  - Data type for computed indices.\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetReduceTensorDescriptor`]"]
 pub unsafe fn cudnnSetReduceTensorDescriptor(
     reduceTensorDesc: cudnnReduceTensorDescriptor_t,
     reduceTensorOp: cudnnReduceTensorOp_t,
@@ -2541,6 +2604,7 @@ pub unsafe fn cudnnSetReduceTensorDescriptor(
     let status = unsafe { crate::sys::cudnnSetReduceTensorDescriptor(reduceTensorDesc, reduceTensorOp, reduceTensorCompType, reduceTensorNanOpt, reduceTensorIndices, reduceTensorIndicesType) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Retrieves the settings of a reduce tensor descriptor.\n\n# Arguments\n\n* `reduceTensorDesc` [in]  -        Reduce tensor descriptor to query.\n* `reduceTensorOp` [out]  -          Reduction operation type.\n* `reduceTensorCompType` [out]  -    Computation data type.\n* `reduceTensorNanOpt` [out]  -      NaN propagation policy.\n* `reduceTensorIndices` [out]  -     Whether indices are computed.\n* `reduceTensorIndicesType` [out]  - Data type for computed indices.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetReduceTensorDescriptor`]"]
 pub unsafe fn cudnnGetReduceTensorDescriptor(reduceTensorDesc: cudnnReduceTensorDescriptor_t) -> Result<(cudnnReduceTensorOp_t, cudnnDataType_t, cudnnNanPropagation_t, cudnnReduceTensorIndices_t, cudnnIndicesType_t), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnReduceTensorOp_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
@@ -2562,10 +2626,12 @@ pub unsafe fn cudnnGetReduceTensorDescriptor(reduceTensorDesc: cudnnReduceTensor
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys a reduce tensor descriptor.\n\n# Arguments\n\n* `reduceTensorDesc` [in]  -  Reduce tensor descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnCreateReduceTensorDescriptor`]"]
 pub unsafe fn cudnnDestroyReduceTensorDescriptor(reduceTensorDesc: cudnnReduceTensorDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyReduceTensorDescriptor(reduceTensorDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Returns the minimum size of the index space for a reduction operation.\n\n# Arguments\n\n* `handle` [in]  -           cuDNN library handle.\n* `reduceTensorDesc` [in]  - Reduce tensor descriptor.\n* `aDesc` [in]  -            Input tensor descriptor.\n* `cDesc` [in]  -            Output tensor descriptor.\n* `sizeInBytes` [out]  -      Minimum index space size in bytes.\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnReduceTensor`]"]
 pub unsafe fn cudnnGetReductionIndicesSize(handle: cudnnHandle_t, reduceTensorDesc: cudnnReduceTensorDescriptor_t, aDesc: cudnnTensorDescriptor_t, cDesc: cudnnTensorDescriptor_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_4: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetReductionIndicesSize(handle, reduceTensorDesc, aDesc, cDesc, out_4.as_mut_ptr() as *mut _) };
@@ -2575,6 +2641,7 @@ pub unsafe fn cudnnGetReductionIndicesSize(handle: cudnnHandle_t, reduceTensorDe
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Returns the minimum workspace size required for a reduction operation.\n\n# Arguments\n\n* `handle` [in]  -           cuDNN library handle.\n* `reduceTensorDesc` [in]  - Reduce tensor descriptor.\n* `aDesc` [in]  -            Input tensor descriptor.\n* `cDesc` [in]  -            Output tensor descriptor.\n* `sizeInBytes` [out]  -      Minimum workspace size in bytes.\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnReduceTensor`]"]
 pub unsafe fn cudnnGetReductionWorkspaceSize(handle: cudnnHandle_t, reduceTensorDesc: cudnnReduceTensorDescriptor_t, aDesc: cudnnTensorDescriptor_t, cDesc: cudnnTensorDescriptor_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_4: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetReductionWorkspaceSize(handle, reduceTensorDesc, aDesc, cDesc, out_4.as_mut_ptr() as *mut _) };
@@ -2584,6 +2651,7 @@ pub unsafe fn cudnnGetReductionWorkspaceSize(handle: cudnnHandle_t, reduceTensor
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Performs a tensor reduction operation.\nComputes C = reduce_op(alpha * A) + beta * C. NaN propagation applies only\nto min and max operations. The indices space is ignored for operations other\nthan min or max.\n\n# Arguments\n\n* `handle` [in]  -              cuDNN library handle.\n* `reduceTensorDesc` [in]  -    Reduce tensor descriptor.\n* `indices` [out]  -             Pointer to index space (for min/max ops).\n* `indicesSizeInBytes` [in]  -  Size of the index space in bytes.\n* `workspace` [out]  -           Pointer to workspace memory.\n* `workspaceSizeInBytes` [in]  - Size of the workspace in bytes.\n* `alpha` [in]  -               Scaling factor for the input tensor.\n* `aDesc` [in]  -               Input tensor descriptor.\n* `A` [in]  -                   Pointer to input tensor data.\n* `beta` [in]  -                Scaling factor for the output tensor.\n* `cDesc` [in]  -               Output tensor descriptor.\n* `C` [in,out]  -                   Pointer to output tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetReductionWorkspaceSize,`] cudnnGetReductionIndicesSize"]
 pub unsafe fn cudnnReduceTensor<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     reduceTensorDesc: cudnnReduceTensorDescriptor_t,
@@ -2616,14 +2684,17 @@ pub unsafe fn cudnnReduceTensor<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Fills a tensor with a constant value.\nSets every element of the tensor to the specified value: y[i] = value[0].\n\n# Arguments\n\n* `handle` [in]  -    cuDNN library handle.\n* `yDesc` [in]  -     Tensor descriptor.\n* `y` [out]  -         Pointer to tensor data.\n* `valuePtr` [in]  -  Pointer to the fill value (type matches tensor data type).\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnScaleTensor`]"]
 pub unsafe fn cudnnSetTensor<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T0, valuePtr: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetTensor(handle, yDesc, y.as_mut_ptr() as *mut _, valuePtr.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Scales all elements of a tensor by a constant factor.\nPerforms y[i] = alpha * y[i] for every element.\n\n# Arguments\n\n* `handle` [in]  -  cuDNN library handle.\n* `yDesc` [in]  -   Tensor descriptor.\n* `y` [in,out]  -       Pointer to tensor data.\n* `alpha` [in]  -   Scaling factor (type matches tensor computation type).\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetTensor`]"]
 pub unsafe fn cudnnScaleTensor<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T0, alpha: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnScaleTensor(handle, yDesc, y.as_mut_ptr() as *mut _, alpha.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates a filter descriptor.\nAllocates and initializes a new filter (convolution kernel) descriptor.\n\n# Arguments\n\n* `filterDesc` [out]  -  Pointer to the newly created filter descriptor.\n@retval CUDNN_STATUS_SUCCESS       The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED  Memory allocation failed.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnDestroyFilterDescriptor`]"]
 pub unsafe fn cudnnCreateFilterDescriptor() -> Result<cudnnFilterDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnFilterDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateFilterDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -2633,17 +2704,19 @@ pub unsafe fn cudnnCreateFilterDescriptor() -> Result<cudnnFilterDescriptor_t, c
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetFilter4dDescriptor(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, k: i32, c: i32, h: i32, w: i32) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetFilter4dDescriptor(filterDesc, dataType, format, k as _, c as _, h as _, w as _) };
+#[doc = "Sets a 4D filter descriptor.\nInitializes a filter descriptor with the specified data type, format, and dimensions.\n\n# Arguments\n\n* `filterDesc` [in,out]  -  Filter descriptor to initialize.\n* `dataType` [in]  -    Data type of the filter elements.\n* `format` [in]  -      Memory layout format.\n* `k` [in]  -           Number of output feature maps.\n* `c` [in]  -           Number of input feature maps.\n* `h` [in]  -           Height of each filter.\n* `w` [in]  -           Width of each filter.\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetFilter4dDescriptor`]"]
+pub unsafe fn cudnnSetFilter4dDescriptor(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, k: ::core::ffi::c_int, c: ::core::ffi::c_int, h: ::core::ffi::c_int, w: ::core::ffi::c_int) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetFilter4dDescriptor(filterDesc, dataType, format, k, c, h, w) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetFilter4dDescriptor(filterDesc: cudnnFilterDescriptor_t) -> Result<(cudnnDataType_t, cudnnTensorFormat_t, i32, i32, i32, i32), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves the settings of a 4D filter descriptor.\n\n# Arguments\n\n* `filterDesc` [in]  -  Filter descriptor to query.\n* `dataType` [out]  -    Data type of the filter.\n* `format` [out]  -      Memory layout format.\n* `k` [out]  -           Number of output feature maps.\n* `c` [out]  -           Number of input feature maps.\n* `h` [out]  -           Height of each filter.\n* `w` [out]  -           Width of each filter.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetFilter4dDescriptor`]"]
+pub unsafe fn cudnnGetFilter4dDescriptor(filterDesc: cudnnFilterDescriptor_t) -> Result<(cudnnDataType_t, cudnnTensorFormat_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnTensorFormat_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_6: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_6: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe {
         crate::sys::cudnnGetFilter4dDescriptor(
             filterDesc,
@@ -2660,32 +2733,35 @@ pub unsafe fn cudnnGetFilter4dDescriptor(filterDesc: cudnnFilterDescriptor_t) ->
             Ok((
                 out_1.assume_init() as cudnnDataType_t,
                 out_2.assume_init() as cudnnTensorFormat_t,
-                out_3.assume_init() as i32,
-                out_4.assume_init() as i32,
-                out_5.assume_init() as i32,
-                out_6.assume_init() as i32,
+                out_3.assume_init() as ::core::ffi::c_int,
+                out_4.assume_init() as ::core::ffi::c_int,
+                out_5.assume_init() as ::core::ffi::c_int,
+                out_6.assume_init() as ::core::ffi::c_int,
             ))
         }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetFilterNdDescriptor<T0: types::CudaAsPtr>(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, nbDims: i32, filterDimA: T0) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetFilterNdDescriptor(filterDesc, dataType, format, nbDims as _, filterDimA.as_const_ptr() as *const _) };
+#[doc = "Sets an N-dimensional filter descriptor.\n\n# Arguments\n\n* `filterDesc` [in,out]  -  Filter descriptor to initialize.\n* `dataType` [in]  -    Data type of the filter elements.\n* `format` [in]  -      Memory layout format.\n* `nbDims` [in]  -      Number of dimensions.\n* `filterDimA` [in]  -  Array of filter dimension sizes (length nbDims).\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetFilterNdDescriptor`]"]
+pub unsafe fn cudnnSetFilterNdDescriptor<T0: types::CudaAsPtr>(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, nbDims: ::core::ffi::c_int, filterDimA: T0) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetFilterNdDescriptor(filterDesc, dataType, format, nbDims, filterDimA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetFilterNdDescriptor(filterDesc: cudnnFilterDescriptor_t, nbDimsRequested: i32) -> Result<(cudnnDataType_t, cudnnTensorFormat_t, i32, i32), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves the settings of an N-dimensional filter descriptor.\n\n# Arguments\n\n* `filterDesc` [in]  -      Filter descriptor to query.\n* `nbDimsRequested` [in]  - Number of dimensions to retrieve.\n* `dataType` [out]  -        Data type of the filter.\n* `format` [out]  -          Memory layout format.\n* `nbDims` [out]  -          Actual number of dimensions.\n* `filterDimA` [out]  -      Array to receive dimension sizes.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetFilterNdDescriptor`]"]
+pub unsafe fn cudnnGetFilterNdDescriptor(filterDesc: cudnnFilterDescriptor_t, nbDimsRequested: ::core::ffi::c_int) -> Result<(cudnnDataType_t, cudnnTensorFormat_t, ::core::ffi::c_int, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
     let mut out_2: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let mut out_3: std::mem::MaybeUninit<cudnnTensorFormat_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetFilterNdDescriptor(filterDesc, nbDimsRequested as _, out_2.as_mut_ptr() as *mut _, out_3.as_mut_ptr() as *mut _, out_4.as_mut_ptr() as *mut _, out_5.as_mut_ptr() as *mut _) };
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let status = unsafe { crate::sys::cudnnGetFilterNdDescriptor(filterDesc, nbDimsRequested, out_2.as_mut_ptr() as *mut _, out_3.as_mut_ptr() as *mut _, out_4.as_mut_ptr() as *mut _, out_5.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_2.assume_init() as cudnnDataType_t, out_3.assume_init() as cudnnTensorFormat_t, out_4.assume_init() as i32, out_5.assume_init() as i32)) }
+        unsafe { Ok((out_2.assume_init() as cudnnDataType_t, out_3.assume_init() as cudnnTensorFormat_t, out_4.assume_init() as ::core::ffi::c_int, out_5.assume_init() as ::core::ffi::c_int)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Returns the memory size in bytes required by a filter.\n\n# Arguments\n\n* `filterDesc` [in]  -  Filter descriptor to query.\n* `size` [out]  -        Memory size in bytes.\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead."]
 pub unsafe fn cudnnGetFilterSizeInBytes(filterDesc: cudnnFilterDescriptor_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetFilterSizeInBytes(filterDesc, out_1.as_mut_ptr() as *mut _) };
@@ -2695,6 +2771,7 @@ pub unsafe fn cudnnGetFilterSizeInBytes(filterDesc: cudnnFilterDescriptor_t) -> 
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Transforms filter data between layouts.\nConverts filter data from one format to another using the specified transform descriptor.\n\n# Arguments\n\n* `handle` [in]  -    cuDNN library handle.\n* `transDesc` [in]  - Transform descriptor specifying the operation.\n* `alpha` [in]  -     Scaling factor for the source filter.\n* `srcDesc` [in]  -   Source filter descriptor.\n* `srcData` [in]  -   Pointer to source filter data.\n* `beta` [in]  -      Scaling factor for the destination filter.\n* `destDesc` [in]  -  Destination filter descriptor.\n* `destData` [in,out]  -  Pointer to destination filter data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnTransformTensorEx`]"]
 pub unsafe fn cudnnTransformFilter<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     transDesc: cudnnTensorTransformDescriptor_t,
@@ -2708,10 +2785,12 @@ pub unsafe fn cudnnTransformFilter<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T
     let status = unsafe { crate::sys::cudnnTransformFilter(handle, transDesc, alpha.as_const_ptr() as *const _, srcDesc, srcData.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, destDesc, destData.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Destroys a filter descriptor.\n\n# Arguments\n\n* `filterDesc` [in]  -  Filter descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnCreateFilterDescriptor`]"]
 pub unsafe fn cudnnDestroyFilterDescriptor(filterDesc: cudnnFilterDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyFilterDescriptor(filterDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs forward softmax computation.\nComputes y = alpha * softmax(x) + beta * y.\n\n# Arguments\n\n* `handle` [in]  -  cuDNN library handle.\n* `algo` [in]  -    Softmax algorithm to use.\n* `mode` [in]  -    Softmax computation scope.\n* `alpha` [in]  -   Scaling factor for the result.\n* `xDesc` [in]  -   Input tensor descriptor.\n* `x` [in]  -       Pointer to input tensor data.\n* `beta` [in]  -    Scaling factor for the destination tensor.\n* `yDesc` [in]  -   Output tensor descriptor.\n* `y` [in,out]  -       Pointer to output tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSoftmaxBackward`]"]
 pub unsafe fn cudnnSoftmaxForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     algo: cudnnSoftmaxAlgorithm_t,
@@ -2726,6 +2805,7 @@ pub unsafe fn cudnnSoftmaxForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2
     let status = unsafe { crate::sys::cudnnSoftmaxForward(handle, algo, mode, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates a pooling descriptor.\n\n# Arguments\n\n* `poolingDesc` [out]  -  Pointer to the newly created pooling descriptor.\n@retval CUDNN_STATUS_SUCCESS       The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED  Memory allocation failed.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnDestroyPoolingDescriptor`]"]
 pub unsafe fn cudnnCreatePoolingDescriptor() -> Result<cudnnPoolingDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnPoolingDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreatePoolingDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -2735,29 +2815,31 @@ pub unsafe fn cudnnCreatePoolingDescriptor() -> Result<cudnnPoolingDescriptor_t,
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Configures a 2D pooling descriptor.\n\n# Arguments\n\n* `poolingDesc` [in,out]  -       Pooling descriptor to configure.\n* `mode` [in]  -              Pooling mode (max, average, etc.).\n* `maxpoolingNanOpt` [in]  -  NaN propagation policy for max pooling.\n* `windowHeight` [in]  -      Height of the pooling window.\n* `windowWidth` [in]  -       Width of the pooling window.\n* `verticalPadding` [in]  -   Vertical padding size.\n* `horizontalPadding` [in]  - Horizontal padding size.\n* `verticalStride` [in]  -    Vertical stride.\n* `horizontalStride` [in]  -  Horizontal stride.\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetPooling2dDescriptor`]"]
 pub unsafe fn cudnnSetPooling2dDescriptor(
     poolingDesc: cudnnPoolingDescriptor_t,
     mode: cudnnPoolingMode_t,
     maxpoolingNanOpt: cudnnNanPropagation_t,
-    windowHeight: i32,
-    windowWidth: i32,
-    verticalPadding: i32,
-    horizontalPadding: i32,
-    verticalStride: i32,
-    horizontalStride: i32,
+    windowHeight: ::core::ffi::c_int,
+    windowWidth: ::core::ffi::c_int,
+    verticalPadding: ::core::ffi::c_int,
+    horizontalPadding: ::core::ffi::c_int,
+    verticalStride: ::core::ffi::c_int,
+    horizontalStride: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetPooling2dDescriptor(poolingDesc, mode, maxpoolingNanOpt, windowHeight as _, windowWidth as _, verticalPadding as _, horizontalPadding as _, verticalStride as _, horizontalStride as _) };
+    let status = unsafe { crate::sys::cudnnSetPooling2dDescriptor(poolingDesc, mode, maxpoolingNanOpt, windowHeight, windowWidth, verticalPadding, horizontalPadding, verticalStride, horizontalStride) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetPooling2dDescriptor(poolingDesc: cudnnPoolingDescriptor_t) -> Result<(cudnnPoolingMode_t, cudnnNanPropagation_t, i32, i32, i32, i32, i32, i32), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves the settings of a 2D pooling descriptor.\n\n# Arguments\n\n* `poolingDesc` [in]  -       Pooling descriptor to query.\n* `mode` [out]  -              Pooling mode.\n* `maxpoolingNanOpt` [out]  -  NaN propagation policy.\n* `windowHeight` [out]  -      Height of the pooling window.\n* `windowWidth` [out]  -       Width of the pooling window.\n* `verticalPadding` [out]  -   Vertical padding size.\n* `horizontalPadding` [out]  - Horizontal padding size.\n* `verticalStride` [out]  -    Vertical stride.\n* `horizontalStride` [out]  -  Horizontal stride.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetPooling2dDescriptor`]"]
+pub unsafe fn cudnnGetPooling2dDescriptor(poolingDesc: cudnnPoolingDescriptor_t) -> Result<(cudnnPoolingMode_t, cudnnNanPropagation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnPoolingMode_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnNanPropagation_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_6: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_7: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_8: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_6: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_7: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_8: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe {
         crate::sys::cudnnGetPooling2dDescriptor(
             poolingDesc,
@@ -2776,41 +2858,43 @@ pub unsafe fn cudnnGetPooling2dDescriptor(poolingDesc: cudnnPoolingDescriptor_t)
             Ok((
                 out_1.assume_init() as cudnnPoolingMode_t,
                 out_2.assume_init() as cudnnNanPropagation_t,
-                out_3.assume_init() as i32,
-                out_4.assume_init() as i32,
-                out_5.assume_init() as i32,
-                out_6.assume_init() as i32,
-                out_7.assume_init() as i32,
-                out_8.assume_init() as i32,
+                out_3.assume_init() as ::core::ffi::c_int,
+                out_4.assume_init() as ::core::ffi::c_int,
+                out_5.assume_init() as ::core::ffi::c_int,
+                out_6.assume_init() as ::core::ffi::c_int,
+                out_7.assume_init() as ::core::ffi::c_int,
+                out_8.assume_init() as ::core::ffi::c_int,
             ))
         }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Configures an N-dimensional pooling descriptor.\n\n# Arguments\n\n* `poolingDesc` [in,out]  -     Pooling descriptor to configure.\n* `mode` [in]  -            Pooling mode.\n* `maxpoolingNanOpt` [in]  - NaN propagation policy for max pooling.\n* `nbDims` [in]  -          Number of dimensions.\n* `windowDimA` [in]  -      Array of pooling window sizes (length nbDims).\n* `paddingA` [in]  -        Array of padding sizes (length nbDims).\n* `strideA` [in]  -         Array of strides (length nbDims).\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetPoolingNdDescriptor`]"]
 pub unsafe fn cudnnSetPoolingNdDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
     poolingDesc: cudnnPoolingDescriptor_t,
     mode: cudnnPoolingMode_t,
     maxpoolingNanOpt: cudnnNanPropagation_t,
-    nbDims: i32,
+    nbDims: ::core::ffi::c_int,
     windowDimA: T0,
     paddingA: T1,
     strideA: T2,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetPoolingNdDescriptor(poolingDesc, mode, maxpoolingNanOpt, nbDims as _, windowDimA.as_const_ptr() as *const _, paddingA.as_const_ptr() as *const _, strideA.as_const_ptr() as *const _) };
+    let status = unsafe { crate::sys::cudnnSetPoolingNdDescriptor(poolingDesc, mode, maxpoolingNanOpt, nbDims, windowDimA.as_const_ptr() as *const _, paddingA.as_const_ptr() as *const _, strideA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetPoolingNdDescriptor(poolingDesc: cudnnPoolingDescriptor_t, nbDimsRequested: i32) -> Result<(cudnnPoolingMode_t, cudnnNanPropagation_t, i32, i32, i32, i32), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves the settings of an N-dimensional pooling descriptor.\n\n# Arguments\n\n* `poolingDesc` [in]  -     Pooling descriptor to query.\n* `nbDimsRequested` [in]  - Number of dimensions to retrieve.\n* `mode` [out]  -            Pooling mode.\n* `maxpoolingNanOpt` [out]  - NaN propagation policy.\n* `nbDims` [out]  -          Actual number of dimensions.\n* `windowDimA` [out]  -      Array to receive window sizes.\n* `paddingA` [out]  -        Array to receive padding sizes.\n* `strideA` [out]  -         Array to receive strides.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetPoolingNdDescriptor`]"]
+pub unsafe fn cudnnGetPoolingNdDescriptor(poolingDesc: cudnnPoolingDescriptor_t, nbDimsRequested: ::core::ffi::c_int) -> Result<(cudnnPoolingMode_t, cudnnNanPropagation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
     let mut out_2: std::mem::MaybeUninit<cudnnPoolingMode_t> = std::mem::MaybeUninit::zeroed();
     let mut out_3: std::mem::MaybeUninit<cudnnNanPropagation_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_6: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_7: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_6: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_7: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe {
         crate::sys::cudnnGetPoolingNdDescriptor(
             poolingDesc,
-            nbDimsRequested as _,
+            nbDimsRequested,
             out_2.as_mut_ptr() as *mut _,
             out_3.as_mut_ptr() as *mut _,
             out_4.as_mut_ptr() as *mut _,
@@ -2824,41 +2908,45 @@ pub unsafe fn cudnnGetPoolingNdDescriptor(poolingDesc: cudnnPoolingDescriptor_t,
             Ok((
                 out_2.assume_init() as cudnnPoolingMode_t,
                 out_3.assume_init() as cudnnNanPropagation_t,
-                out_4.assume_init() as i32,
-                out_5.assume_init() as i32,
-                out_6.assume_init() as i32,
-                out_7.assume_init() as i32,
+                out_4.assume_init() as ::core::ffi::c_int,
+                out_5.assume_init() as ::core::ffi::c_int,
+                out_6.assume_init() as ::core::ffi::c_int,
+                out_7.assume_init() as ::core::ffi::c_int,
             ))
         }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetPoolingNdForwardOutputDim(poolingDesc: cudnnPoolingDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, nbDims: i32) -> Result<i32, crate::sys::cudnnStatus_t> {
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetPoolingNdForwardOutputDim(poolingDesc, inputTensorDesc, nbDims as _, out_3.as_mut_ptr() as *mut _) };
+#[doc = "Computes the output dimensions of an N-dimensional pooling operation.\n\n# Arguments\n\n* `poolingDesc` [in]  -      Pooling descriptor.\n* `inputTensorDesc` [in]  -  Input tensor descriptor.\n* `nbDims` [in]  -           Number of dimensions.\n* `outputTensorDimA` [out]  - Array to receive output dimension sizes.\n@retval CUDNN_STATUS_SUCCESS     The dimensions were computed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead."]
+pub unsafe fn cudnnGetPoolingNdForwardOutputDim(poolingDesc: cudnnPoolingDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, nbDims: ::core::ffi::c_int) -> Result<::core::ffi::c_int, crate::sys::cudnnStatus_t> {
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let status = unsafe { crate::sys::cudnnGetPoolingNdForwardOutputDim(poolingDesc, inputTensorDesc, nbDims, out_3.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_3.assume_init() as i32) }
+        unsafe { Ok(out_3.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetPooling2dForwardOutputDim(poolingDesc: cudnnPoolingDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t) -> Result<(i32, i32, i32, i32), crate::sys::cudnnStatus_t> {
-    let mut out_2: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Computes the output dimensions of a 2D pooling operation.\n\n# Arguments\n\n* `poolingDesc` [in]  -     Pooling descriptor.\n* `inputTensorDesc` [in]  - Input tensor descriptor.\n* `n` [out]  -               Output batch size.\n* `c` [out]  -               Output number of channels.\n* `h` [out]  -               Output height.\n* `w` [out]  -               Output width.\n@retval CUDNN_STATUS_SUCCESS     The dimensions were computed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead."]
+pub unsafe fn cudnnGetPooling2dForwardOutputDim(poolingDesc: cudnnPoolingDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t) -> Result<(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
+    let mut out_2: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetPooling2dForwardOutputDim(poolingDesc, inputTensorDesc, out_2.as_mut_ptr() as *mut _, out_3.as_mut_ptr() as *mut _, out_4.as_mut_ptr() as *mut _, out_5.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_2.assume_init() as i32, out_3.assume_init() as i32, out_4.assume_init() as i32, out_5.assume_init() as i32)) }
+        unsafe { Ok((out_2.assume_init() as ::core::ffi::c_int, out_3.assume_init() as ::core::ffi::c_int, out_4.assume_init() as ::core::ffi::c_int, out_5.assume_init() as ::core::ffi::c_int)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys a pooling descriptor.\n\n# Arguments\n\n* `poolingDesc` [in]  -  Pooling descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnCreatePoolingDescriptor`]"]
 pub unsafe fn cudnnDestroyPoolingDescriptor(poolingDesc: cudnnPoolingDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyPoolingDescriptor(poolingDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs forward pooling.\nComputes y = alpha * pool(x) + beta * y.\n\n# Arguments\n\n* `handle` [in]  -      cuDNN library handle.\n* `poolingDesc` [in]  - Pooling descriptor.\n* `alpha` [in]  -       Scaling factor for the pooling result.\n* `xDesc` [in]  -       Input tensor descriptor.\n* `x` [in]  -           Pointer to input tensor data.\n* `beta` [in]  -        Scaling factor for the destination tensor.\n* `yDesc` [in]  -       Output tensor descriptor.\n* `y` [in,out]  -           Pointer to output tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnPoolingBackward`]"]
 pub unsafe fn cudnnPoolingForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     poolingDesc: cudnnPoolingDescriptor_t,
@@ -2872,6 +2960,7 @@ pub unsafe fn cudnnPoolingForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2
     let status = unsafe { crate::sys::cudnnPoolingForward(handle, poolingDesc, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates an activation descriptor.\n\n# Arguments\n\n* `activationDesc` [out]  -  Pointer to the newly created activation descriptor.\n@retval CUDNN_STATUS_SUCCESS       The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED  Memory allocation failed.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnDestroyActivationDescriptor`]"]
 pub unsafe fn cudnnCreateActivationDescriptor() -> Result<cudnnActivationDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnActivationDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateActivationDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -2881,10 +2970,12 @@ pub unsafe fn cudnnCreateActivationDescriptor() -> Result<cudnnActivationDescrip
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Configures an activation descriptor.\n\n# Arguments\n\n* `activationDesc` [in,out]  -  Activation descriptor to configure.\n* `mode` [in]  -            Activation function type.\n* `reluNanOpt` [in]  -      NaN propagation policy for ReLU.\n* `coef` [in]  -            Ceiling for clipped ReLU, or alpha for ELU.\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetActivationDescriptor`]"]
 pub unsafe fn cudnnSetActivationDescriptor(activationDesc: cudnnActivationDescriptor_t, mode: cudnnActivationMode_t, reluNanOpt: cudnnNanPropagation_t, coef: f64) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetActivationDescriptor(activationDesc, mode, reluNanOpt, coef) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Retrieves the settings of an activation descriptor.\n\n# Arguments\n\n* `activationDesc` [in]  -  Activation descriptor to query.\n* `mode` [out]  -            Activation function type.\n* `reluNanOpt` [out]  -      NaN propagation policy.\n* `coef` [out]  -            Ceiling for clipped ReLU, or alpha for ELU.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetActivationDescriptor`]"]
 pub unsafe fn cudnnGetActivationDescriptor(activationDesc: cudnnActivationDescriptor_t) -> Result<(cudnnActivationMode_t, cudnnNanPropagation_t, f64), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnActivationMode_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnNanPropagation_t> = std::mem::MaybeUninit::zeroed();
@@ -2896,10 +2987,12 @@ pub unsafe fn cudnnGetActivationDescriptor(activationDesc: cudnnActivationDescri
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Sets the beta parameter for Swish activation.\n\n# Arguments\n\n* `activationDesc` [in,out]  -  Activation descriptor to modify.\n* `swish_beta` [in]  -      Beta value for the Swish activation function.\n@retval CUDNN_STATUS_SUCCESS     The parameter was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnGetActivationDescriptorSwishBeta`]"]
 pub unsafe fn cudnnSetActivationDescriptorSwishBeta(activationDesc: cudnnActivationDescriptor_t, swish_beta: f64) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetActivationDescriptorSwishBeta(activationDesc, swish_beta) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Retrieves the beta parameter for Swish activation.\n\n# Arguments\n\n* `activationDesc` [in]  -  Activation descriptor to query.\n* `swish_beta` [out]  -      Beta value for the Swish activation function.\n@retval CUDNN_STATUS_SUCCESS  The parameter was retrieved successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnSetActivationDescriptorSwishBeta`]"]
 pub unsafe fn cudnnGetActivationDescriptorSwishBeta(activationDesc: cudnnActivationDescriptor_t) -> Result<f64, crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<f64> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetActivationDescriptorSwishBeta(activationDesc, out_1.as_mut_ptr() as *mut _) };
@@ -2909,10 +3002,12 @@ pub unsafe fn cudnnGetActivationDescriptorSwishBeta(activationDesc: cudnnActivat
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys an activation descriptor.\n\n# Arguments\n\n* `activationDesc` [in]  -  Activation descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnCreateActivationDescriptor`]"]
 pub unsafe fn cudnnDestroyActivationDescriptor(activationDesc: cudnnActivationDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyActivationDescriptor(activationDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs forward activation.\nComputes y = alpha * activation(x) + beta * y.\n\n# Arguments\n\n* `handle` [in]  -          cuDNN library handle.\n* `activationDesc` [in]  -  Activation descriptor.\n* `alpha` [in]  -           Scaling factor for the activation result.\n* `xDesc` [in]  -           Input tensor descriptor.\n* `x` [in]  -               Pointer to input tensor data.\n* `beta` [in]  -            Scaling factor for the destination tensor.\n* `yDesc` [in]  -           Output tensor descriptor.\n* `y` [in,out]  -               Pointer to output tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnActivationBackward`]"]
 pub unsafe fn cudnnActivationForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     activationDesc: cudnnActivationDescriptor_t,
@@ -2926,6 +3021,7 @@ pub unsafe fn cudnnActivationForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr,
     let status = unsafe { crate::sys::cudnnActivationForward(handle, activationDesc, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates a Local Response Normalization (LRN) descriptor.\nUses lrnN=5, lrnAlpha=1e-4, lrnBeta=0.75, lrnK=2.0 as defaults from\nKrizhevsky'12 ImageNet paper.\n\n# Arguments\n\n* `normDesc` [out]  -  Pointer to the newly created LRN descriptor.\n@retval CUDNN_STATUS_SUCCESS       The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED  Memory allocation failed.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDestroyLRNDescriptor,`] cudnnSetLRNDescriptor"]
 pub unsafe fn cudnnCreateLRNDescriptor() -> Result<cudnnLRNDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnLRNDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateLRNDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -2935,26 +3031,30 @@ pub unsafe fn cudnnCreateLRNDescriptor() -> Result<cudnnLRNDescriptor_t, crate::
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetLRNDescriptor(normDesc: cudnnLRNDescriptor_t, lrnN: u32, lrnAlpha: f64, lrnBeta: f64, lrnK: f64) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetLRNDescriptor(normDesc, lrnN as _, lrnAlpha, lrnBeta, lrnK) };
+#[doc = "Configures an LRN descriptor.\nUses a window [center-lookBehind, center+lookAhead], where\nlookBehind = floor((lrnN-1)/2), lookAhead = lrnN-lookBehind-1.\nValues of double parameters are cast to the tensor data type.\n\n# Arguments\n\n* `normDesc` [in,out]  -  LRN descriptor to configure.\n* `lrnN` [in]  -      Normalization window size (must be in [CUDNN_LRN_MIN_N, CUDNN_LRN_MAX_N]).\n* `lrnAlpha` [in]  -  Alpha parameter (must be >= CUDNN_LRN_MIN_K).\n* `lrnBeta` [in]  -   Beta parameter (must be >= CUDNN_LRN_MIN_BETA).\n* `lrnK` [in]  -      K parameter.\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnGetLRNDescriptor`]"]
+pub unsafe fn cudnnSetLRNDescriptor(normDesc: cudnnLRNDescriptor_t, lrnN: ::core::ffi::c_uint, lrnAlpha: f64, lrnBeta: f64, lrnK: f64) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetLRNDescriptor(normDesc, lrnN, lrnAlpha, lrnBeta, lrnK) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetLRNDescriptor(normDesc: cudnnLRNDescriptor_t) -> Result<(u32, f64, f64, f64), crate::sys::cudnnStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_uint> = std::mem::MaybeUninit::zeroed();
+#[doc = "Retrieves the settings of an LRN descriptor.\nAny of the output pointers can be NULL (the corresponding value will not be returned).\n\n# Arguments\n\n* `normDesc` [in]  -  LRN descriptor to query.\n* `lrnN` [out]  -      Normalization window size.\n* `lrnAlpha` [out]  -  Alpha parameter.\n* `lrnBeta` [out]  -   Beta parameter.\n* `lrnK` [out]  -      K parameter.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetLRNDescriptor`]"]
+pub unsafe fn cudnnGetLRNDescriptor(normDesc: cudnnLRNDescriptor_t) -> Result<(::core::ffi::c_uint, f64, f64, f64), crate::sys::cudnnStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_uint> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<f64> = std::mem::MaybeUninit::zeroed();
     let mut out_3: std::mem::MaybeUninit<f64> = std::mem::MaybeUninit::zeroed();
     let mut out_4: std::mem::MaybeUninit<f64> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetLRNDescriptor(normDesc, out_1.as_mut_ptr() as *mut _, out_2.as_mut_ptr() as *mut _, out_3.as_mut_ptr() as *mut _, out_4.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_1.assume_init() as u32, out_2.assume_init() as f64, out_3.assume_init() as f64, out_4.assume_init() as f64)) }
+        unsafe { Ok((out_1.assume_init() as ::core::ffi::c_uint, out_2.assume_init() as f64, out_3.assume_init() as f64, out_4.assume_init() as f64)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys an LRN descriptor.\n\n# Arguments\n\n* `lrnDesc` [in]  -  LRN descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnCreateLRNDescriptor`]"]
 pub unsafe fn cudnnDestroyLRNDescriptor(lrnDesc: cudnnLRNDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyLRNDescriptor(lrnDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs forward LRN cross-channel normalization.\nComputes y = alpha * normalize(x) + beta * y. Double parameters are cast\nto the tensor data type.\n\n# Arguments\n\n* `handle` [in]  -    cuDNN library handle.\n* `normDesc` [in]  -  LRN descriptor.\n* `lrnMode` [in]  -   LRN mode.\n* `alpha` [in]  -     Scaling factor for the normalization result.\n* `xDesc` [in]  -     Input tensor descriptor.\n* `x` [in]  -         Pointer to input tensor data.\n* `beta` [in]  -      Scaling factor for the destination tensor.\n* `yDesc` [in]  -     Output tensor descriptor.\n* `y` [in,out]  -         Pointer to output tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnLRNCrossChannelBackward`]"]
 pub unsafe fn cudnnLRNCrossChannelForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
@@ -2969,6 +3069,7 @@ pub unsafe fn cudnnLRNCrossChannelForward<T0: types::CudaAsPtr, T1: types::CudaA
     let status = unsafe { crate::sys::cudnnLRNCrossChannelForward(handle, normDesc, lrnMode, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs forward divisive normalization.\nComputes y = alpha * normalize(x) + beta * y. If means is NULL, means are\nassumed to be zero. The xDesc is used for means, temp, and temp2 as well.\n\n# Arguments\n\n* `handle` [in]  -    cuDNN library handle.\n* `normDesc` [in]  -  LRN descriptor (shared with LRN functions).\n* `mode` [in]  -      Divisive normalization mode.\n* `alpha` [in]  -     Scaling factor for the normalization result.\n* `xDesc` [in]  -     Input tensor descriptor (also used for means, temp, temp2).\n* `x` [in]  -         Pointer to input tensor data.\n* `means` [in]  -     Pointer to means tensor data (NULL for zero means).\n* `temp` [out]  -      Temporary workspace tensor.\n* `temp2` [out]  -     Temporary workspace tensor.\n* `beta` [in]  -      Scaling factor for the destination tensor.\n* `yDesc` [in]  -     Output tensor descriptor.\n* `y` [in,out]  -         Pointer to output tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDivisiveNormalizationBackward`]"]
 pub unsafe fn cudnnDivisiveNormalizationForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsPtr, T6: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
@@ -3001,10 +3102,12 @@ pub unsafe fn cudnnDivisiveNormalizationForward<T0: types::CudaAsPtr, T1: types:
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Derives a tensor descriptor for batch normalization parameters.\nComputes the dimensions for bnScale, bnBias, mean, and variance tensors based\non the input tensor descriptor and batch normalization mode. Use this for\nbnScaleBiasMeanVarDesc and bnScaleBiasDiffDesc parameters.\n\n# Arguments\n\n* `derivedBnDesc` [in,out]  -  Tensor descriptor to be derived.\n* `xDesc` [in]  -          Input tensor descriptor.\n* `mode` [in]  -           Batch normalization mode.\n@retval CUDNN_STATUS_SUCCESS     The descriptor was derived successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnBatchNormalizationForwardTraining`]"]
 pub unsafe fn cudnnDeriveBNTensorDescriptor(derivedBnDesc: cudnnTensorDescriptor_t, xDesc: cudnnTensorDescriptor_t, mode: cudnnBatchNormMode_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDeriveBNTensorDescriptor(derivedBnDesc, xDesc, mode) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs batch normalization during inference.\nComputes y[i] = bnScale[k]*(x[i]-estimatedMean[k])/sqrt(epsilon+estimatedVariance[k]) + bnBias[k],\nwith tensors indexed according to spatial or per-activation mode.\n\n# Arguments\n\n* `handle` [in]  -                  cuDNN library handle.\n* `mode` [in]  -                    Batch normalization mode.\n* `alpha` [in]  -                   Result blend factor.\n* `beta` [in]  -                    Destination layer blend factor.\n* `xDesc` [in]  -                   Input tensor descriptor.\n* `x` [in]  -                       Pointer to input tensor data (NxCxHxW).\n* `yDesc` [in]  -                   Output tensor descriptor.\n* `y` [in,out]  -                       Pointer to output tensor data (NxCxHxW).\n* `bnScaleBiasMeanVarDesc` [in]  -  Descriptor for scale, bias, mean, variance tensors.\n* `bnScale` [in]  -                 Pointer to scale (gamma) tensor data.\n* `bnBias` [in]  -                  Pointer to bias (beta) tensor data.\n* `estimatedMean` [in]  -           Pointer to running mean tensor data.\n* `estimatedVariance` [in]  -       Pointer to running variance tensor data.\n* `epsilon` [in]  -                 Epsilon value (must be >= CUDNN_BN_MIN_EPSILON).\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnBatchNormalizationForwardTraining,`] cudnnDeriveBNTensorDescriptor"]
 pub unsafe fn cudnnBatchNormalizationForwardInference<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsPtr, T7: types::CudaAsPtr>(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
@@ -3041,10 +3144,12 @@ pub unsafe fn cudnnBatchNormalizationForwardInference<T0: types::CudaAsPtr, T1: 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnDeriveNormTensorDescriptor(derivedNormScaleBiasDesc: cudnnTensorDescriptor_t, derivedNormMeanVarDesc: cudnnTensorDescriptor_t, xDesc: cudnnTensorDescriptor_t, mode: cudnnNormMode_t, groupCnt: i32) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnDeriveNormTensorDescriptor(derivedNormScaleBiasDesc, derivedNormMeanVarDesc, xDesc, mode, groupCnt as _) };
+#[doc = "Derives tensor descriptors for normalization parameters.\nComputes the dimensions for normScale, normBias, mean, and variance tensors based\non the input tensor descriptor and normalization mode.\n\n# Arguments\n\n* `derivedNormScaleBiasDesc` [in,out]  -  Descriptor to be derived for scale/bias tensors.\n* `derivedNormMeanVarDesc` [in,out]  -    Descriptor to be derived for mean/variance tensors.\n* `xDesc` [in]  -                     Input tensor descriptor.\n* `mode` [in]  -                      Normalization mode.\n* `groupCnt` [in]  -                  Group count (reserved, should be set to 1).\n@retval CUDNN_STATUS_SUCCESS     The descriptors were derived successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnNormalizationForwardTraining`]"]
+pub unsafe fn cudnnDeriveNormTensorDescriptor(derivedNormScaleBiasDesc: cudnnTensorDescriptor_t, derivedNormMeanVarDesc: cudnnTensorDescriptor_t, xDesc: cudnnTensorDescriptor_t, mode: cudnnNormMode_t, groupCnt: ::core::ffi::c_int) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnDeriveNormTensorDescriptor(derivedNormScaleBiasDesc, derivedNormMeanVarDesc, xDesc, mode, groupCnt) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs normalization during inference.\nComputes y[i] = normScale[k]*(x[i]-estimatedMean[k])/sqrt(epsilon+estimatedVariance[k]) + normBias[k],\nwith tensors indexed according to per-channel or per-activation mode.\n\n# Arguments\n\n* `handle` [in]  -             cuDNN library handle.\n* `mode` [in]  -               Normalization mode.\n* `normOps` [in]  -            Extended normalization operation mode.\n* `algo` [in]  -               Normalization algorithm.\n* `alpha` [in]  -              Result blend factor.\n* `beta` [in]  -               Destination layer blend factor.\n* `xDesc` [in]  -              Input tensor descriptor.\n* `x` [in]  -                  Pointer to input tensor data (NxCxHxW).\n* `normScaleBiasDesc` [in]  -  Descriptor for normalization scale/bias tensors.\n* `normScale` [in]  -          Pointer to normalization scale tensor data.\n* `normBias` [in]  -           Pointer to normalization bias tensor data.\n* `normMeanVarDesc` [in]  -    Descriptor for mean/variance tensors.\n* `estimatedMean` [in]  -      Pointer to running mean tensor data.\n* `estimatedVariance` [in]  -  Pointer to running variance tensor data.\n* `zDesc` [in]  -              Descriptor for z tensor (used with add operations).\n* `z` [in]  -                  Pointer to z tensor data.\n* `activationDesc` [in]  -     Activation descriptor (used with activation operations).\n* `yDesc` [in]  -              Output tensor descriptor.\n* `y` [in,out]  -                  Pointer to output tensor data (NxCxHxW).\n* `epsilon` [in]  -            Epsilon value (must be >= 0).\n* `groupCnt` [in]  -           Group count (reserved, should be set to 1).\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnNormalizationForwardTraining,`] cudnnDeriveNormTensorDescriptor"]
 pub unsafe fn cudnnNormalizationForwardInference<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsPtr, T7: types::CudaAsPtr, T8: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     mode: cudnnNormMode_t,
@@ -3066,7 +3171,7 @@ pub unsafe fn cudnnNormalizationForwardInference<T0: types::CudaAsPtr, T1: types
     yDesc: cudnnTensorDescriptor_t,
     mut y: T8,
     epsilon: f64,
-    groupCnt: i32,
+    groupCnt: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnNormalizationForwardInference(
@@ -3090,11 +3195,12 @@ pub unsafe fn cudnnNormalizationForwardInference<T0: types::CudaAsPtr, T1: types
             yDesc,
             y.as_mut_ptr() as *mut _,
             epsilon,
-            groupCnt as _,
+            groupCnt,
         )
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates a spatial transformer descriptor.\n\n# Arguments\n\n* `stDesc` [out]  -  Pointer to the newly created spatial transformer descriptor.\n@retval CUDNN_STATUS_SUCCESS       The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED  Memory allocation failed.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDestroySpatialTransformerDescriptor`]"]
 pub unsafe fn cudnnCreateSpatialTransformerDescriptor() -> Result<cudnnSpatialTransformerDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnSpatialTransformerDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateSpatialTransformerDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -3104,18 +3210,22 @@ pub unsafe fn cudnnCreateSpatialTransformerDescriptor() -> Result<cudnnSpatialTr
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetSpatialTransformerNdDescriptor<T0: types::CudaAsPtr>(stDesc: cudnnSpatialTransformerDescriptor_t, samplerType: cudnnSamplerType_t, dataType: cudnnDataType_t, nbDims: i32, dimA: T0) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetSpatialTransformerNdDescriptor(stDesc, samplerType, dataType, nbDims as _, dimA.as_const_ptr() as *const _) };
+#[doc = "Configures an N-dimensional spatial transformer descriptor.\n\n# Arguments\n\n* `stDesc` [in,out]  -      Spatial transformer descriptor to configure.\n* `samplerType` [in]  - Type of sampler to use.\n* `dataType` [in]  -    Data type of the tensors.\n* `nbDims` [in]  -      Number of dimensions.\n* `dimA` [in]  -        Array of dimension sizes (length nbDims).\n@retval CUDNN_STATUS_SUCCESS     The descriptor was set successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSpatialTfGridGeneratorForward,`] cudnnSpatialTfSamplerForward"]
+pub unsafe fn cudnnSetSpatialTransformerNdDescriptor<T0: types::CudaAsPtr>(stDesc: cudnnSpatialTransformerDescriptor_t, samplerType: cudnnSamplerType_t, dataType: cudnnDataType_t, nbDims: ::core::ffi::c_int, dimA: T0) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetSpatialTransformerNdDescriptor(stDesc, samplerType, dataType, nbDims, dimA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Destroys a spatial transformer descriptor.\n\n# Arguments\n\n* `stDesc` [in]  -  Spatial transformer descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnCreateSpatialTransformerDescriptor`]"]
 pub unsafe fn cudnnDestroySpatialTransformerDescriptor(stDesc: cudnnSpatialTransformerDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroySpatialTransformerDescriptor(stDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Generates a sampling grid for a spatial transformer (forward).\nGenerates a grid of sampling coordinates from the affine transformation matrix theta.\n\n# Arguments\n\n* `handle` [in]  -  cuDNN library handle.\n* `stDesc` [in]  -  Spatial transformer descriptor.\n* `theta` [in]  -   Pointer to affine transformation matrices.\n* `grid` [out]  -    Pointer to output sampling grid data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSpatialTfGridGeneratorBackward`]"]
 pub unsafe fn cudnnSpatialTfGridGeneratorForward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, theta: T0, mut grid: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSpatialTfGridGeneratorForward(handle, stDesc, theta.as_const_ptr() as *const _, grid.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs spatial transformer sampling (forward).\nSamples the input tensor at the grid coordinates to produce the output tensor.\n\n# Arguments\n\n* `handle` [in]  -  cuDNN library handle.\n* `stDesc` [in]  -  Spatial transformer descriptor.\n* `alpha` [in]  -   Scaling factor for the sampled result.\n* `xDesc` [in]  -   Input tensor descriptor.\n* `x` [in]  -       Pointer to input tensor data.\n* `grid` [in]  -    Pointer to sampling grid data.\n* `beta` [in]  -    Scaling factor for the destination tensor.\n* `yDesc` [in]  -   Output tensor descriptor.\n* `y` [in,out]  -       Pointer to output tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSpatialTfSamplerBackward`]"]
 pub unsafe fn cudnnSpatialTfSamplerForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     stDesc: cudnnSpatialTransformerDescriptor_t,
@@ -3142,6 +3252,7 @@ pub unsafe fn cudnnSpatialTfSamplerForward<T0: types::CudaAsPtr, T1: types::Cuda
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates a dropout descriptor.\n\n# Arguments\n\n* `dropoutDesc` [out]  -  Pointer to the newly created dropout descriptor.\n@retval CUDNN_STATUS_SUCCESS       The descriptor was created successfully.\n@retval CUDNN_STATUS_ALLOC_FAILED  Memory allocation failed.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDestroyDropoutDescriptor`]"]
 pub unsafe fn cudnnCreateDropoutDescriptor() -> Result<cudnnDropoutDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnDropoutDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateDropoutDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -3151,10 +3262,12 @@ pub unsafe fn cudnnCreateDropoutDescriptor() -> Result<cudnnDropoutDescriptor_t,
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys a dropout descriptor.\n\n# Arguments\n\n* `dropoutDesc` [in]  -  Dropout descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was destroyed successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnCreateDropoutDescriptor`]"]
 pub unsafe fn cudnnDestroyDropoutDescriptor(dropoutDesc: cudnnDropoutDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyDropoutDescriptor(dropoutDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Returns the size of the states buffer required for dropout.\n\n# Arguments\n\n* `handle` [in]  -      cuDNN library handle.\n* `sizeInBytes` [out]  - Size of the required states buffer in bytes.\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetDropoutDescriptor`]"]
 pub unsafe fn cudnnDropoutGetStatesSize(handle: cudnnHandle_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnDropoutGetStatesSize(handle, out_1.as_mut_ptr() as *mut _) };
@@ -3164,6 +3277,7 @@ pub unsafe fn cudnnDropoutGetStatesSize(handle: cudnnHandle_t) -> Result<usize, 
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Returns the size of the reserve space required for dropout forward/backward.\n\n# Arguments\n\n* `xdesc` [in]  -       Input tensor descriptor.\n* `sizeInBytes` [out]  - Size of the required reserve space in bytes.\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDropoutForward,`] cudnnDropoutBackward"]
 pub unsafe fn cudnnDropoutGetReserveSpaceSize(xdesc: cudnnTensorDescriptor_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnDropoutGetReserveSpaceSize(xdesc, out_1.as_mut_ptr() as *mut _) };
@@ -3173,24 +3287,28 @@ pub unsafe fn cudnnDropoutGetReserveSpaceSize(xdesc: cudnnTensorDescriptor_t) ->
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetDropoutDescriptor<T0: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T0, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetDropoutDescriptor(dropoutDesc, handle, dropout, states.as_mut_ptr() as *mut _, stateSizeInBytes, seed as _) };
+#[doc = "Configures a dropout descriptor and initializes random state.\n\n# Arguments\n\n* `dropoutDesc` [in,out]  -      Dropout descriptor to configure.\n* `handle` [in]  -           cuDNN library handle.\n* `dropout` [in]  -          Probability of dropping (0 = no dropout, 1 = all dropped).\n* `states` [in,out]  -           Pointer to device memory for RNG state storage.\n* `stateSizeInBytes` [in]  - Size of the states buffer in bytes.\n* `seed` [in]  -             Seed for the random number generator.\n@retval CUDNN_STATUS_SUCCESS     The descriptor was configured successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnGetDropoutDescriptor,`] cudnnRestoreDropoutDescriptor"]
+pub unsafe fn cudnnSetDropoutDescriptor<T0: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T0, stateSizeInBytes: usize, seed: ::core::ffi::c_ulonglong) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetDropoutDescriptor(dropoutDesc, handle, dropout, states.as_mut_ptr() as *mut _, stateSizeInBytes, seed) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnRestoreDropoutDescriptor<T0: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T0, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnRestoreDropoutDescriptor(dropoutDesc, handle, dropout, states.as_mut_ptr() as *mut _, stateSizeInBytes, seed as _) };
+#[doc = "Restores a dropout descriptor to a previously saved state.\n\n# Arguments\n\n* `dropoutDesc` [in,out]  -      Dropout descriptor to restore.\n* `handle` [in]  -           cuDNN library handle.\n* `dropout` [in]  -          Dropout probability.\n* `states` [in]  -           Pointer to previously saved RNG state.\n* `stateSizeInBytes` [in]  - Size of the states buffer in bytes.\n* `seed` [in]  -             Seed used to initialize the original state.\n@retval CUDNN_STATUS_SUCCESS     The descriptor was restored successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetDropoutDescriptor`]"]
+pub unsafe fn cudnnRestoreDropoutDescriptor<T0: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T0, stateSizeInBytes: usize, seed: ::core::ffi::c_ulonglong) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnRestoreDropoutDescriptor(dropoutDesc, handle, dropout, states.as_mut_ptr() as *mut _, stateSizeInBytes, seed) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetDropoutDescriptor(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, states: *mut *mut ::std::os::raw::c_void) -> Result<(f32, u64), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves the settings of a dropout descriptor.\n\n# Arguments\n\n* `dropoutDesc` [in]  -  Dropout descriptor to query.\n* `handle` [in]  -       cuDNN library handle.\n* `dropout` [out]  -      Dropout probability.\n* `states` [out]  -       Pointer to RNG state memory.\n* `seed` [out]  -         Seed used for the RNG.\n@retval CUDNN_STATUS_SUCCESS  The descriptor was queried successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetDropoutDescriptor`]"]
+pub unsafe fn cudnnGetDropoutDescriptor(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, states: *mut *mut ::core::ffi::c_void) -> Result<(f32, ::core::ffi::c_ulonglong), crate::sys::cudnnStatus_t> {
     let mut out_2: std::mem::MaybeUninit<f32> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_ulonglong> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_ulonglong> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetDropoutDescriptor(dropoutDesc, handle, out_2.as_mut_ptr() as *mut _, states, out_4.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_2.assume_init() as f32, out_4.assume_init() as u64)) }
+        unsafe { Ok((out_2.assume_init() as f32, out_4.assume_init() as ::core::ffi::c_ulonglong)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Performs forward dropout.\nRandomly sets elements to zero based on the dropout probability. The reserve\nspace stores the mask for use in the backward pass.\n\n# Arguments\n\n* `handle` [in]  -                  cuDNN library handle.\n* `dropoutDesc` [in]  -             Dropout descriptor.\n* `xdesc` [in]  -                   Input tensor descriptor.\n* `x` [in]  -                       Pointer to input tensor data.\n* `ydesc` [in]  -                   Output tensor descriptor.\n* `y` [out]  -                       Pointer to output tensor data.\n* `reserveSpace` [out]  -            Pointer to reserve space for the dropout mask.\n* `reserveSpaceSizeInBytes` [in]  - Size of reserve space in bytes.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDropoutBackward,`] cudnnDropoutGetReserveSpaceSize"]
 pub unsafe fn cudnnDropoutForward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     dropoutDesc: cudnnDropoutDescriptor_t,
@@ -3204,10 +3322,12 @@ pub unsafe fn cudnnDropoutForward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr,
     let status = unsafe { crate::sys::cudnnDropoutForward(handle, dropoutDesc, xdesc, x.as_const_ptr() as *const _, ydesc, y.as_mut_ptr() as *mut _, reserveSpace.as_mut_ptr() as *mut _, reserveSpaceSizeInBytes) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Cross-library version checker for the ops sub-library.\nThis function is implemented differently in each sub-library. Each sub-library\nchecks whether its own version matches that of its dependencies.\n@retval CUDNN_STATUS_SUCCESS                       The version check passed.\n@retval CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH   The versions are inconsistent.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnOpsVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnOpsVersionCheck() };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs backward softmax computation.\nComputes the gradient of the softmax function.\n\n# Arguments\n\n* `handle` [in]  -  cuDNN library handle.\n* `algo` [in]  -    Softmax algorithm used in the forward pass.\n* `mode` [in]  -    Softmax computation scope.\n* `alpha` [in]  -   Scaling factor for the result.\n* `yDesc` [in]  -   Output tensor descriptor (from forward pass).\n* `y` [in]  -       Pointer to output tensor data (from forward pass).\n* `dyDesc` [in]  -  Output gradient tensor descriptor.\n* `dy` [in]  -      Pointer to output gradient tensor data.\n* `beta` [in]  -    Scaling factor for the destination tensor.\n* `dxDesc` [in]  -  Input gradient tensor descriptor.\n* `dx` [in,out]  -      Pointer to input gradient tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSoftmaxForward`]"]
 pub unsafe fn cudnnSoftmaxBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     algo: cudnnSoftmaxAlgorithm_t,
@@ -3238,6 +3358,7 @@ pub unsafe fn cudnnSoftmaxBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs backward pooling.\nComputes the gradient of the pooling operation.\n\n# Arguments\n\n* `handle` [in]  -      cuDNN library handle.\n* `poolingDesc` [in]  - Pooling descriptor.\n* `alpha` [in]  -       Scaling factor for the result.\n* `yDesc` [in]  -       Output tensor descriptor (from forward pass).\n* `y` [in]  -           Pointer to output tensor data (from forward pass).\n* `dyDesc` [in]  -      Output gradient tensor descriptor.\n* `dy` [in]  -          Pointer to output gradient tensor data.\n* `xDesc` [in]  -       Input tensor descriptor (from forward pass).\n* `x` [in]  -           Pointer to input tensor data (from forward pass).\n* `beta` [in]  -        Scaling factor for the destination tensor.\n* `dxDesc` [in]  -      Input gradient tensor descriptor.\n* `dx` [in,out]  -          Pointer to input gradient tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnPoolingForward`]"]
 pub unsafe fn cudnnPoolingBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     poolingDesc: cudnnPoolingDescriptor_t,
@@ -3270,6 +3391,7 @@ pub unsafe fn cudnnPoolingBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs backward activation.\nComputes the gradient of the activation function.\n\n# Arguments\n\n* `handle` [in]  -          cuDNN library handle.\n* `activationDesc` [in]  -  Activation descriptor.\n* `alpha` [in]  -           Scaling factor for the result.\n* `yDesc` [in]  -           Output tensor descriptor (from forward pass).\n* `y` [in]  -               Pointer to output tensor data (from forward pass).\n* `dyDesc` [in]  -          Output gradient tensor descriptor.\n* `dy` [in]  -              Pointer to output gradient tensor data.\n* `xDesc` [in]  -           Input tensor descriptor (from forward pass).\n* `x` [in]  -               Pointer to input tensor data (from forward pass).\n* `beta` [in]  -            Scaling factor for the destination tensor.\n* `dxDesc` [in]  -          Input gradient tensor descriptor.\n* `dx` [in,out]  -              Pointer to input gradient tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnActivationForward`]"]
 pub unsafe fn cudnnActivationBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     activationDesc: cudnnActivationDescriptor_t,
@@ -3302,6 +3424,7 @@ pub unsafe fn cudnnActivationBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs backward LRN cross-channel normalization.\nComputes the gradient of the LRN cross-channel normalization. Double\nparameters are cast to the tensor data type.\n\n# Arguments\n\n* `handle` [in]  -    cuDNN library handle.\n* `normDesc` [in]  -  LRN descriptor.\n* `lrnMode` [in]  -   LRN mode.\n* `alpha` [in]  -     Scaling factor for the result.\n* `yDesc` [in]  -     Output tensor descriptor (from forward pass).\n* `y` [in]  -         Pointer to output tensor data (from forward pass).\n* `dyDesc` [in]  -    Output gradient tensor descriptor.\n* `dy` [in]  -        Pointer to output gradient tensor data.\n* `xDesc` [in]  -     Input tensor descriptor (from forward pass).\n* `x` [in]  -         Pointer to input tensor data (from forward pass).\n* `beta` [in]  -      Scaling factor for the destination tensor.\n* `dxDesc` [in]  -    Input gradient tensor descriptor.\n* `dx` [in,out]  -        Pointer to input gradient tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnLRNCrossChannelForward`]"]
 pub unsafe fn cudnnLRNCrossChannelBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
@@ -3336,6 +3459,7 @@ pub unsafe fn cudnnLRNCrossChannelBackward<T0: types::CudaAsPtr, T1: types::Cuda
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs backward divisive normalization.\nComputes the gradients of the divisive normalization operation. If means is NULL,\nmeans are assumed to be zero.\n\n# Arguments\n\n* `handle` [in]  -       cuDNN library handle.\n* `normDesc` [in]  -     LRN descriptor (shared with LRN functions).\n* `mode` [in]  -         Divisive normalization mode.\n* `alpha` [in]  -        Scaling factor for the result.\n* `xDesc` [in]  -        Input tensor descriptor (also used for means, dy, temp, temp2).\n* `x` [in]  -            Pointer to input tensor data.\n* `means` [in]  -        Pointer to means tensor data (NULL for zero means).\n* `dy` [in]  -           Pointer to output gradient tensor data.\n* `temp` [out]  -         Temporary workspace tensor.\n* `temp2` [out]  -        Temporary workspace tensor.\n* `beta` [in]  -         Scaling factor for the destination tensors.\n* `dXdMeansDesc` [in]  - Descriptor for dx and dMeans tensors.\n* `dx` [in,out]  -           Pointer to input gradient tensor data.\n* `dMeans` [in,out]  -       Pointer to means gradient tensor data (can be NULL).\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDivisiveNormalizationForward`]"]
 pub unsafe fn cudnnDivisiveNormalizationBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsPtr, T7: types::CudaAsMutPtr, T8: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
@@ -3372,6 +3496,7 @@ pub unsafe fn cudnnDivisiveNormalizationBackward<T0: types::CudaAsPtr, T1: types
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Returns the workspace size for extended batch normalization forward training.\n\n# Arguments\n\n* `handle` [in]  -                  cuDNN library handle.\n* `mode` [in]  -                    Batch normalization mode.\n* `bnOps` [in]  -                   Extended batch normalization operation.\n* `xDesc` [in]  -                   Input tensor descriptor.\n* `zDesc` [in]  -                   Z tensor descriptor (for add operations).\n* `yDesc` [in]  -                   Output tensor descriptor.\n* `bnScaleBiasMeanVarDesc` [in]  -  Descriptor for BN parameter tensors.\n* `activationDesc` [in]  -          Activation descriptor.\n* `sizeInBytes` [out]  -             Required workspace size in bytes.\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnBatchNormalizationForwardTrainingEx`]"]
 pub unsafe fn cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
@@ -3390,6 +3515,7 @@ pub unsafe fn cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Returns the workspace size for extended batch normalization backward.\n\n# Arguments\n\n* `handle` [in]  -            cuDNN library handle.\n* `mode` [in]  -              Batch normalization mode.\n* `bnOps` [in]  -             Extended batch normalization operation.\n* `xDesc` [in]  -             Input tensor descriptor.\n* `yDesc` [in]  -             Output tensor descriptor.\n* `dyDesc` [in]  -            Output gradient tensor descriptor.\n* `dzDesc` [in]  -            Z gradient tensor descriptor.\n* `dxDesc` [in]  -            Input gradient tensor descriptor.\n* `dBnScaleBiasDesc` [in]  -  Descriptor for BN parameter gradient tensors.\n* `activationDesc` [in]  -    Activation descriptor.\n* `sizeInBytes` [out]  -       Required workspace size in bytes.\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnBatchNormalizationBackwardEx`]"]
 pub unsafe fn cudnnGetBatchNormalizationBackwardExWorkspaceSize(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
@@ -3410,6 +3536,7 @@ pub unsafe fn cudnnGetBatchNormalizationBackwardExWorkspaceSize(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Returns the reserve space size for extended batch normalization training.\n\n# Arguments\n\n* `handle` [in]  -          cuDNN library handle.\n* `mode` [in]  -            Batch normalization mode.\n* `bnOps` [in]  -           Extended batch normalization operation.\n* `activationDesc` [in]  -  Activation descriptor.\n* `xDesc` [in]  -           Input tensor descriptor.\n* `sizeInBytes` [out]  -     Required reserve space size in bytes.\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnBatchNormalizationForwardTrainingEx`]"]
 pub unsafe fn cudnnGetBatchNormalizationTrainingExReserveSpaceSize(handle: cudnnHandle_t, mode: cudnnBatchNormMode_t, bnOps: cudnnBatchNormOps_t, activationDesc: cudnnActivationDescriptor_t, xDesc: cudnnTensorDescriptor_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_5: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetBatchNormalizationTrainingExReserveSpaceSize(handle, mode, bnOps, activationDesc, xDesc, out_5.as_mut_ptr() as *mut _) };
@@ -3419,6 +3546,7 @@ pub unsafe fn cudnnGetBatchNormalizationTrainingExReserveSpaceSize(handle: cudnn
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Performs batch normalization forward training.\nComputes y = BN(x). Also accumulates moving averages of mean and inverse variances.\n\n# Arguments\n\n* `handle` [in]  -                     cuDNN library handle.\n* `mode` [in]  -                       Batch normalization mode.\n* `alpha` [in]  -                      Result blend factor.\n* `beta` [in]  -                       Destination layer blend factor.\n* `xDesc` [in]  -                      Input tensor descriptor.\n* `x` [in]  -                          Pointer to input tensor data (NxCxHxW).\n* `yDesc` [in]  -                      Output tensor descriptor.\n* `y` [out]  -                          Pointer to output tensor data (NxCxHxW).\n* `bnScaleBiasMeanVarDesc` [in]  -     Descriptor for BN parameter tensors.\n* `bnScale` [in]  -                    Pointer to scale (gamma) tensor data.\n* `bnBias` [in]  -                     Pointer to bias (beta) tensor data.\n* `exponentialAverageFactor` [in]  -   Factor for computing running averages.\n* `resultRunningMean` [in,out]  -          Running mean (updated with exponential average).\n* `resultRunningVariance` [in,out]  -      Running variance (updated with exponential average).\n* `epsilon` [in]  -                    Epsilon value (must be >= CUDNN_BN_MIN_EPSILON).\n* `resultSaveMean` [out]  -             Optionally cached mean for backward pass (NULL if unused).\n* `resultSaveInvVariance` [out]  -      Optionally cached inverse variance for backward pass (NULL if unused).\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnBatchNormalizationBackward,`] cudnnDeriveBNTensorDescriptor"]
 pub unsafe fn cudnnBatchNormalizationForwardTraining<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsMutPtr, T7: types::CudaAsMutPtr, T8: types::CudaAsMutPtr, T9: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
@@ -3461,6 +3589,7 @@ pub unsafe fn cudnnBatchNormalizationForwardTraining<T0: types::CudaAsPtr, T1: t
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs extended batch normalization forward training with optional activation.\nComputes y = relu(BN(x) + z). Also accumulates moving averages of mean and inverse variances.\nSupports fused batch normalization + activation and batch normalization + add + activation.\n\n# Arguments\n\n* `handle` [in]  -                     cuDNN library handle.\n* `mode` [in]  -                       Batch normalization mode.\n* `bnOps` [in]  -                      Extended batch normalization operation.\n* `alpha` [in]  -                      Result blend factor.\n* `beta` [in]  -                       Destination layer blend factor.\n* `xDesc` [in]  -                      Input tensor descriptor.\n* `xData` [in]  -                      Pointer to input tensor data.\n* `zDesc` [in]  -                      Z tensor descriptor (for add operations).\n* `zData` [in]  -                      Pointer to z tensor data.\n* `yDesc` [in]  -                      Output tensor descriptor.\n* `yData` [out]  -                      Pointer to output tensor data.\n* `bnScaleBiasMeanVarDesc` [in]  -     Descriptor for BN parameter tensors.\n* `bnScale` [in]  -                    Pointer to scale tensor data.\n* `bnBias` [in]  -                     Pointer to bias tensor data.\n* `exponentialAverageFactor` [in]  -   Factor for computing running averages.\n* `resultRunningMean` [in,out]  -          Running mean.\n* `resultRunningVariance` [in,out]  -      Running variance.\n* `epsilon` [in]  -                    Epsilon value (must be >= CUDNN_BN_MIN_EPSILON).\n* `resultSaveMean` [out]  -             Cached mean for backward pass (NULL if unused).\n* `resultSaveInvVariance` [out]  -      Cached inverse variance for backward pass (NULL if unused).\n* `activationDesc` [in]  -             Activation descriptor.\n* `workspace` [in,out]  -                  Pointer to workspace memory.\n* `workSpaceSizeInBytes` [in]  -       Size of workspace in bytes.\n* `reserveSpace` [in,out]  -               Pointer to reserve space memory.\n* `reserveSpaceSizeInBytes` [in]  -    Size of reserve space in bytes.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnBatchNormalizationBackwardEx,`] cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize"]
 pub unsafe fn cudnnBatchNormalizationForwardTrainingEx<
     T0: types::CudaAsPtr,
     T1: types::CudaAsPtr,
@@ -3533,6 +3662,7 @@ pub unsafe fn cudnnBatchNormalizationForwardTrainingEx<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs backward batch normalization.\nComputes gradients for x, bnScale, and bnBias.\n\n# Arguments\n\n* `handle` [in]  -              cuDNN library handle.\n* `mode` [in]  -                Batch normalization mode.\n* `alphaDataDiff` [in]  -       Scaling factor for dx result.\n* `betaDataDiff` [in]  -        Scaling factor for dx destination.\n* `alphaParamDiff` [in]  -      Scaling factor for parameter gradient results.\n* `betaParamDiff` [in]  -       Scaling factor for parameter gradient destinations.\n* `xDesc` [in]  -               Input tensor descriptor (same for x, dx, dy).\n* `x` [in]  -                   Pointer to input tensor data.\n* `dyDesc` [in]  -              Output gradient tensor descriptor.\n* `dy` [in]  -                  Pointer to output gradient tensor data.\n* `dxDesc` [in]  -              Input gradient tensor descriptor.\n* `dx` [in,out]  -                  Pointer to input gradient tensor data.\n* `dBnScaleBiasDesc` [in]  -    Shared descriptor for parameter gradient tensors.\n* `bnScale` [in]  -             Pointer to scale tensor data.\n* `dBnScaleResult` [out]  -      Pointer to scale gradient result.\n* `dBnBiasResult` [out]  -       Pointer to bias gradient result.\n* `epsilon` [in]  -             Same epsilon as forward pass.\n* `savedMean` [in]  -           Optionally cached mean from forward pass.\n* `savedInvVariance` [in]  -    Optionally cached inverse variance from forward pass.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnBatchNormalizationForwardTraining`]"]
 pub unsafe fn cudnnBatchNormalizationBackward<
     T0: types::CudaAsPtr,
     T1: types::CudaAsPtr,
@@ -3592,6 +3722,7 @@ pub unsafe fn cudnnBatchNormalizationBackward<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs extended backward batch normalization with optional activation.\nComputes gradients for the fused batch normalization + activation operations.\n\n# Arguments\n\n* `handle` [in]  -                  cuDNN library handle.\n* `mode` [in]  -                    Batch normalization mode.\n* `bnOps` [in]  -                   Extended batch normalization operation.\n* `alphaDataDiff` [in]  -           Scaling factor for data gradient results.\n* `betaDataDiff` [in]  -            Scaling factor for data gradient destinations.\n* `alphaParamDiff` [in]  -          Scaling factor for parameter gradient results.\n* `betaParamDiff` [in]  -           Scaling factor for parameter gradient destinations.\n* `xDesc` [in]  -                   Input tensor descriptor.\n* `xData` [in]  -                   Pointer to input tensor data.\n* `yDesc` [in]  -                   Output tensor descriptor.\n* `yData` [in]  -                   Pointer to output tensor data.\n* `dyDesc` [in]  -                  Output gradient tensor descriptor.\n* `dyData` [in]  -                  Pointer to output gradient tensor data.\n* `dzDesc` [in]  -                  Z gradient tensor descriptor.\n* `dzData` [in,out]  -                  Pointer to z gradient tensor data.\n* `dxDesc` [in]  -                  Input gradient tensor descriptor.\n* `dxData` [in,out]  -                  Pointer to input gradient tensor data.\n* `dBnScaleBiasDesc` [in]  -        Shared descriptor for parameter gradient tensors.\n* `bnScaleData` [in]  -             Pointer to scale tensor data.\n* `bnBiasData` [in]  -              Pointer to bias tensor data (needed for activation).\n* `dBnScaleData` [out]  -            Pointer to scale gradient result.\n* `dBnBiasData` [out]  -             Pointer to bias gradient result.\n* `epsilon` [in]  -                 Same epsilon as forward pass.\n* `savedMean` [in]  -               Optionally cached mean from forward pass.\n* `savedInvVariance` [in]  -        Optionally cached inverse variance from forward pass.\n* `activationDesc` [in]  -          Activation descriptor.\n* `workSpace` [in,out]  -               Pointer to workspace memory.\n* `workSpaceSizeInBytes` [in]  -    Size of workspace in bytes.\n* `reserveSpace` [in,out]  -            Pointer to reserve space memory.\n* `reserveSpaceSizeInBytes` [in]  - Size of reserve space in bytes.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnBatchNormalizationForwardTrainingEx`]"]
 pub unsafe fn cudnnBatchNormalizationBackwardEx<
     T0: types::CudaAsPtr,
     T1: types::CudaAsPtr,
@@ -3678,6 +3809,7 @@ pub unsafe fn cudnnBatchNormalizationBackwardEx<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Returns the workspace size for normalization forward training.\n\n# Arguments\n\n* `handle` [in]  -             cuDNN library handle.\n* `mode` [in]  -               Normalization mode.\n* `normOps` [in]  -            Extended normalization operation.\n* `algo` [in]  -               Normalization algorithm.\n* `xDesc` [in]  -              Input tensor descriptor.\n* `zDesc` [in]  -              Z tensor descriptor (for add operations).\n* `yDesc` [in]  -              Output tensor descriptor.\n* `normScaleBiasDesc` [in]  -  Descriptor for normalization scale/bias tensors.\n* `activationDesc` [in]  -     Activation descriptor.\n* `normMeanVarDesc` [in]  -    Descriptor for mean/variance tensors.\n* `sizeInBytes` [out]  -        Required workspace size in bytes.\n* `groupCnt` [in]  -           Group count (reserved, should be set to 1).\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnNormalizationForwardTraining`]"]
 pub unsafe fn cudnnGetNormalizationForwardTrainingWorkspaceSize(
     handle: cudnnHandle_t,
     mode: cudnnNormMode_t,
@@ -3689,16 +3821,17 @@ pub unsafe fn cudnnGetNormalizationForwardTrainingWorkspaceSize(
     normScaleBiasDesc: cudnnTensorDescriptor_t,
     activationDesc: cudnnActivationDescriptor_t,
     normMeanVarDesc: cudnnTensorDescriptor_t,
-    groupCnt: i32,
+    groupCnt: ::core::ffi::c_int,
 ) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_10: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetNormalizationForwardTrainingWorkspaceSize(handle, mode, normOps, algo, xDesc, zDesc, yDesc, normScaleBiasDesc, activationDesc, normMeanVarDesc, out_10.as_mut_ptr() as *mut _, groupCnt as _) };
+    let status = unsafe { crate::sys::cudnnGetNormalizationForwardTrainingWorkspaceSize(handle, mode, normOps, algo, xDesc, zDesc, yDesc, normScaleBiasDesc, activationDesc, normMeanVarDesc, out_10.as_mut_ptr() as *mut _, groupCnt) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
         unsafe { Ok(out_10.assume_init() as usize) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Returns the workspace size for normalization backward.\n\n# Arguments\n\n* `handle` [in]  -              cuDNN library handle.\n* `mode` [in]  -                Normalization mode.\n* `normOps` [in]  -             Extended normalization operation.\n* `algo` [in]  -                Normalization algorithm.\n* `xDesc` [in]  -               Input tensor descriptor.\n* `yDesc` [in]  -               Output tensor descriptor.\n* `dyDesc` [in]  -              Output gradient tensor descriptor.\n* `dzDesc` [in]  -              Z gradient tensor descriptor.\n* `dxDesc` [in]  -              Input gradient tensor descriptor.\n* `dNormScaleBiasDesc` [in]  -  Descriptor for normalization parameter gradient tensors.\n* `activationDesc` [in]  -      Activation descriptor.\n* `normMeanVarDesc` [in]  -     Descriptor for mean/variance tensors.\n* `sizeInBytes` [out]  -         Required workspace size in bytes.\n* `groupCnt` [in]  -            Group count (reserved, should be set to 1).\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnNormalizationBackward`]"]
 pub unsafe fn cudnnGetNormalizationBackwardWorkspaceSize(
     handle: cudnnHandle_t,
     mode: cudnnNormMode_t,
@@ -3712,25 +3845,35 @@ pub unsafe fn cudnnGetNormalizationBackwardWorkspaceSize(
     dNormScaleBiasDesc: cudnnTensorDescriptor_t,
     activationDesc: cudnnActivationDescriptor_t,
     normMeanVarDesc: cudnnTensorDescriptor_t,
-    groupCnt: i32,
+    groupCnt: ::core::ffi::c_int,
 ) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_12: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetNormalizationBackwardWorkspaceSize(handle, mode, normOps, algo, xDesc, yDesc, dyDesc, dzDesc, dxDesc, dNormScaleBiasDesc, activationDesc, normMeanVarDesc, out_12.as_mut_ptr() as *mut _, groupCnt as _) };
+    let status = unsafe { crate::sys::cudnnGetNormalizationBackwardWorkspaceSize(handle, mode, normOps, algo, xDesc, yDesc, dyDesc, dzDesc, dxDesc, dNormScaleBiasDesc, activationDesc, normMeanVarDesc, out_12.as_mut_ptr() as *mut _, groupCnt) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
         unsafe { Ok(out_12.assume_init() as usize) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetNormalizationTrainingReserveSpaceSize(handle: cudnnHandle_t, mode: cudnnNormMode_t, normOps: cudnnNormOps_t, algo: cudnnNormAlgo_t, activationDesc: cudnnActivationDescriptor_t, xDesc: cudnnTensorDescriptor_t, groupCnt: i32) -> Result<usize, crate::sys::cudnnStatus_t> {
+#[doc = "Returns the reserve space size for normalization training.\n\n# Arguments\n\n* `handle` [in]  -          cuDNN library handle.\n* `mode` [in]  -            Normalization mode.\n* `normOps` [in]  -         Extended normalization operation.\n* `algo` [in]  -            Normalization algorithm.\n* `activationDesc` [in]  -  Activation descriptor.\n* `xDesc` [in]  -           Input tensor descriptor.\n* `sizeInBytes` [out]  -     Required reserve space size in bytes.\n* `groupCnt` [in]  -        Group count (reserved, should be set to 1).\n@retval CUDNN_STATUS_SUCCESS  The size was returned successfully.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnNormalizationForwardTraining`]"]
+pub unsafe fn cudnnGetNormalizationTrainingReserveSpaceSize(
+    handle: cudnnHandle_t,
+    mode: cudnnNormMode_t,
+    normOps: cudnnNormOps_t,
+    algo: cudnnNormAlgo_t,
+    activationDesc: cudnnActivationDescriptor_t,
+    xDesc: cudnnTensorDescriptor_t,
+    groupCnt: ::core::ffi::c_int,
+) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_6: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetNormalizationTrainingReserveSpaceSize(handle, mode, normOps, algo, activationDesc, xDesc, out_6.as_mut_ptr() as *mut _, groupCnt as _) };
+    let status = unsafe { crate::sys::cudnnGetNormalizationTrainingReserveSpaceSize(handle, mode, normOps, algo, activationDesc, xDesc, out_6.as_mut_ptr() as *mut _, groupCnt) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
         unsafe { Ok(out_6.assume_init() as usize) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Performs normalization forward training with optional activation.\nComputes y = relu(Norm(x) + z). Also accumulates moving averages of mean\nand inverse variances.\n\n# Arguments\n\n* `handle` [in]  -                     cuDNN library handle.\n* `mode` [in]  -                       Normalization mode.\n* `normOps` [in]  -                    Extended normalization operation.\n* `algo` [in]  -                       Normalization algorithm.\n* `alpha` [in]  -                      Result blend factor.\n* `beta` [in]  -                       Destination layer blend factor.\n* `xDesc` [in]  -                      Input tensor descriptor.\n* `xData` [in]  -                      Pointer to input tensor data.\n* `normScaleBiasDesc` [in]  -          Descriptor for normalization scale/bias tensors.\n* `normScale` [in]  -                  Pointer to scale tensor data.\n* `normBias` [in]  -                   Pointer to bias tensor data.\n* `exponentialAverageFactor` [in]  -   Factor for computing running averages.\n* `normMeanVarDesc` [in]  -            Descriptor for mean/variance tensors.\n* `resultRunningMean` [in,out]  -          Running mean.\n* `resultRunningVariance` [in,out]  -      Running variance.\n* `epsilon` [in]  -                    Epsilon value (must be >= 0).\n* `resultSaveMean` [out]  -             Cached mean for backward pass (NULL if unused).\n* `resultSaveInvVariance` [out]  -      Cached inverse variance for backward pass (NULL if unused).\n* `activationDesc` [in]  -             Activation descriptor.\n* `zDesc` [in]  -                      Z tensor descriptor (for add operations).\n* `zData` [in]  -                      Pointer to z tensor data.\n* `yDesc` [in]  -                      Output tensor descriptor.\n* `yData` [out]  -                      Pointer to output tensor data.\n* `workspace` [in,out]  -                  Pointer to workspace memory.\n* `workSpaceSizeInBytes` [in]  -       Size of workspace in bytes.\n* `reserveSpace` [in,out]  -               Pointer to reserve space memory.\n* `reserveSpaceSizeInBytes` [in]  -    Size of reserve space in bytes.\n* `groupCnt` [in]  -                   Group count (reserved, should be set to 1).\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnNormalizationBackward,`] cudnnGetNormalizationForwardTrainingWorkspaceSize"]
 pub unsafe fn cudnnNormalizationForwardTraining<
     T0: types::CudaAsPtr,
     T1: types::CudaAsPtr,
@@ -3773,7 +3916,7 @@ pub unsafe fn cudnnNormalizationForwardTraining<
     workSpaceSizeInBytes: usize,
     mut reserveSpace: T12,
     reserveSpaceSizeInBytes: usize,
-    groupCnt: i32,
+    groupCnt: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnNormalizationForwardTraining(
@@ -3804,11 +3947,12 @@ pub unsafe fn cudnnNormalizationForwardTraining<
             workSpaceSizeInBytes,
             reserveSpace.as_mut_ptr() as *mut _,
             reserveSpaceSizeInBytes,
-            groupCnt as _,
+            groupCnt,
         )
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs backward normalization.\nComputes gradients for the normalization operation, including optional activation\nand element-wise add gradients.\n\n# Arguments\n\n* `handle` [in]  -                  cuDNN library handle.\n* `mode` [in]  -                    Normalization mode.\n* `normOps` [in]  -                 Extended normalization operation.\n* `algo` [in]  -                    Normalization algorithm.\n* `alphaDataDiff` [in]  -           Scaling factor for data gradient results.\n* `betaDataDiff` [in]  -            Scaling factor for data gradient destinations.\n* `alphaParamDiff` [in]  -          Scaling factor for parameter gradient results.\n* `betaParamDiff` [in]  -           Scaling factor for parameter gradient destinations.\n* `xDesc` [in]  -                   Input tensor descriptor.\n* `xData` [in]  -                   Pointer to input tensor data.\n* `yDesc` [in]  -                   Output tensor descriptor.\n* `yData` [in]  -                   Pointer to output tensor data.\n* `dyDesc` [in]  -                  Output gradient tensor descriptor.\n* `dyData` [in]  -                  Pointer to output gradient tensor data.\n* `dzDesc` [in]  -                  Z gradient tensor descriptor.\n* `dzData` [in,out]  -                  Pointer to z gradient tensor data.\n* `dxDesc` [in]  -                  Input gradient tensor descriptor.\n* `dxData` [in,out]  -                  Pointer to input gradient tensor data.\n* `dNormScaleBiasDesc` [in]  -      Shared descriptor for parameter gradient tensors.\n* `normScaleData` [in]  -           Pointer to scale tensor data.\n* `normBiasData` [in]  -            Pointer to bias tensor data (needed for activation).\n* `dNormScaleData` [out]  -          Pointer to scale gradient result.\n* `dNormBiasData` [out]  -           Pointer to bias gradient result.\n* `epsilon` [in]  -                 Same epsilon as forward pass.\n* `normMeanVarDesc` [in]  -         Descriptor for mean/variance tensors.\n* `savedMean` [in]  -               Optionally cached mean from forward pass.\n* `savedInvVariance` [in]  -        Optionally cached inverse variance from forward pass.\n* `activationDesc` [in]  -          Activation descriptor.\n* `workSpace` [in,out]  -               Pointer to workspace memory.\n* `workSpaceSizeInBytes` [in]  -    Size of workspace in bytes.\n* `reserveSpace` [in,out]  -            Pointer to reserve space memory.\n* `reserveSpaceSizeInBytes` [in]  - Size of reserve space in bytes.\n* `groupCnt` [in]  -                Group count (reserved, should be set to 1).\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n\n# See also\n\n> [`cudnnNormalizationForwardTraining`]"]
 pub unsafe fn cudnnNormalizationBackward<
     T0: types::CudaAsPtr,
     T1: types::CudaAsPtr,
@@ -3860,7 +4004,7 @@ pub unsafe fn cudnnNormalizationBackward<
     workSpaceSizeInBytes: usize,
     mut reserveSpace: T16,
     reserveSpaceSizeInBytes: usize,
-    groupCnt: i32,
+    groupCnt: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnNormalizationBackward(
@@ -3896,15 +4040,17 @@ pub unsafe fn cudnnNormalizationBackward<
             workSpaceSizeInBytes,
             reserveSpace.as_mut_ptr() as *mut _,
             reserveSpaceSizeInBytes,
-            groupCnt as _,
+            groupCnt,
         )
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Computes the gradient of the spatial transformer grid generator (backward).\n\n# Arguments\n\n* `handle` [in]  -  cuDNN library handle.\n* `stDesc` [in]  -  Spatial transformer descriptor.\n* `dgrid` [in]  -   Pointer to the grid gradient data.\n* `dtheta` [out]  -  Pointer to the theta gradient data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSpatialTfGridGeneratorForward`]"]
 pub unsafe fn cudnnSpatialTfGridGeneratorBackward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, dgrid: T0, mut dtheta: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSpatialTfGridGeneratorBackward(handle, stDesc, dgrid.as_const_ptr() as *const _, dtheta.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs spatial transformer sampling backward.\nComputes the gradients of the spatial transformer sampler.\n\n# Arguments\n\n* `handle` [in]  -     cuDNN library handle.\n* `stDesc` [in]  -     Spatial transformer descriptor.\n* `alpha` [in]  -      Scaling factor for the dx result.\n* `xDesc` [in]  -      Input tensor descriptor.\n* `x` [in]  -          Pointer to input tensor data.\n* `beta` [in]  -       Scaling factor for the dx destination.\n* `dxDesc` [in]  -     Input gradient tensor descriptor.\n* `dx` [in,out]  -         Pointer to input gradient tensor data.\n* `alphaDgrid` [in]  - Scaling factor for the dgrid result.\n* `dyDesc` [in]  -     Output gradient tensor descriptor.\n* `dy` [in]  -         Pointer to output gradient tensor data.\n* `grid` [in]  -       Pointer to sampling grid data.\n* `betaDgrid` [in]  -  Scaling factor for the dgrid destination.\n* `dgrid` [in,out]  -      Pointer to grid gradient tensor data.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSpatialTfSamplerForward`]"]
 pub unsafe fn cudnnSpatialTfSamplerBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsPtr, T7: types::CudaAsPtr, T8: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     stDesc: cudnnSpatialTransformerDescriptor_t,
@@ -3941,6 +4087,7 @@ pub unsafe fn cudnnSpatialTfSamplerBackward<T0: types::CudaAsPtr, T1: types::Cud
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Performs backward dropout.\nApplies the same dropout mask from the forward pass (stored in reserveSpace)\nto the gradient tensor.\n\n# Arguments\n\n* `handle` [in]  -                  cuDNN library handle.\n* `dropoutDesc` [in]  -             Dropout descriptor.\n* `dydesc` [in]  -                  Output gradient tensor descriptor.\n* `dy` [in]  -                      Pointer to output gradient tensor data.\n* `dxdesc` [in]  -                  Input gradient tensor descriptor.\n* `dx` [out]  -                      Pointer to input gradient tensor data.\n* `reserveSpace` [in]  -            Pointer to reserve space from forward pass.\n* `reserveSpaceSizeInBytes` [in]  - Size of reserve space in bytes.\n@retval CUDNN_STATUS_SUCCESS     The operation completed successfully.\n@retval CUDNN_STATUS_BAD_PARAM   An invalid parameter was provided.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDropoutForward`]"]
 pub unsafe fn cudnnDropoutBackward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     dropoutDesc: cudnnDropoutDescriptor_t,
@@ -3954,6 +4101,7 @@ pub unsafe fn cudnnDropoutBackward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr
     let status = unsafe { crate::sys::cudnnDropoutBackward(handle, dropoutDesc, dydesc, dy.as_const_ptr() as *const _, dxdesc, dx.as_mut_ptr() as *mut _, reserveSpace.as_mut_ptr() as *mut _, reserveSpaceSizeInBytes) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates an RNN descriptor.\n\n# Arguments\n\n* `rnnDesc` [out]  -  Pointer to the created RNN descriptor.\n@retval CUDNN_STATUS_SUCCESS  Descriptor created successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnDestroyRNNDescriptor`]"]
 pub unsafe fn cudnnCreateRNNDescriptor() -> Result<cudnnRNNDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnRNNDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateRNNDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -3963,10 +4111,12 @@ pub unsafe fn cudnnCreateRNNDescriptor() -> Result<cudnnRNNDescriptor_t, crate::
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys an RNN descriptor.\n\n# Arguments\n\n* `rnnDesc` [in]  -  RNN descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  Descriptor destroyed successfully.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnCreateRNNDescriptor`]"]
 pub unsafe fn cudnnDestroyRNNDescriptor(rnnDesc: cudnnRNNDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyRNNDescriptor(rnnDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Configures an RNN descriptor with network parameters.\n\n# Arguments\n\n* `rnnDesc` [in,out]  -     RNN descriptor to configure.\n* `algo` [in]  -        RNN computation algorithm.\n* `cellMode` [in]  -    RNN cell type (RELU, TANH, LSTM, GRU).\n* `biasMode` [in]  -    Bias configuration.\n* `dirMode` [in]  -     Unidirectional or bidirectional.\n* `inputMode` [in]  -   First layer input behavior.\n* `dataType` [in]  -    Input/output and weight data type.\n* `mathPrec` [in]  -    Compute precision.\n* `mathType` [in]  -    Tensor Core usage preference.\n* `inputSize` [in]  -   Input vector size.\n* `hiddenSize` [in]  -  Hidden state size.\n* `projSize` [in]  -    Recurrent projection size (0 to disable).\n* `numLayers` [in]  -   Number of stacked RNN layers.\n* `dropoutDesc` [in]  - Dropout descriptor for inter-layer dropout.\n* `auxFlags` [in]  -    Auxiliary flags (e.g., CUDNN_RNN_PADDED_IO_ENABLED).\n@retval CUDNN_STATUS_SUCCESS       Descriptor configured successfully.\n@retval CUDNN_STATUS_BAD_PARAM     Invalid parameter.\n@retval CUDNN_STATUS_NOT_SUPPORTED Unsupported configuration.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnGetRNNDescriptor_v8`]"]
 pub unsafe fn cudnnSetRNNDescriptor_v8(
     rnnDesc: cudnnRNNDescriptor_t,
     algo: cudnnRNNAlgo_t,
@@ -3987,6 +4137,7 @@ pub unsafe fn cudnnSetRNNDescriptor_v8(
     let status = unsafe { crate::sys::cudnnSetRNNDescriptor_v8(rnnDesc, algo, cellMode, biasMode, dirMode, inputMode, dataType, mathPrec, mathType, inputSize, hiddenSize, projSize, numLayers, dropoutDesc, auxFlags) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Retrieves RNN descriptor parameters.\n\n# Arguments\n\n* `rnnDesc` [in]  -     RNN descriptor to query.\n* `algo` [out]  -        RNN algorithm.\n* `cellMode` [out]  -    Cell type.\n* `biasMode` [out]  -    Bias configuration.\n* `dirMode` [out]  -     Direction mode.\n* `inputMode` [out]  -   Input mode.\n* `dataType` [out]  -    Data type.\n* `mathPrec` [out]  -    Math precision.\n* `mathType` [out]  -    Math type.\n* `inputSize` [out]  -   Input size.\n* `hiddenSize` [out]  -  Hidden size.\n* `projSize` [out]  -    Projection size.\n* `numLayers` [out]  -   Number of layers.\n* `dropoutDesc` [out]  - Dropout descriptor.\n* `auxFlags` [out]  -    Auxiliary flags.\n@retval CUDNN_STATUS_SUCCESS  Query succeeded.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnSetRNNDescriptor_v8`]"]
 pub unsafe fn cudnnGetRNNDescriptor_v8(
     rnnDesc: cudnnRNNDescriptor_t,
 ) -> Result<
@@ -4064,14 +4215,17 @@ pub unsafe fn cudnnGetRNNDescriptor_v8(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Configures LSTM cell clipping parameters.\n> **Deprecated** Since cuDNN 9.0.0. Use cudnnRNNSetClip_v9 instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnRNNSetClip_v8(rnnDesc: cudnnRNNDescriptor_t, clipMode: cudnnRNNClipMode_t, clipNanOpt: cudnnNanPropagation_t, lclip: f64, rclip: f64) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnRNNSetClip_v8(rnnDesc, clipMode, clipNanOpt, lclip, rclip) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Configures LSTM cell clipping parameters.\n\n# Arguments\n\n* `rnnDesc` [in,out]  -   RNN descriptor.\n* `clipMode` [in]  -  Clipping mode (NONE or MINMAX).\n* `lclip` [in]  -     Left (minimum) clipping value.\n* `rclip` [in]  -     Right (maximum) clipping value.\n@retval CUDNN_STATUS_SUCCESS  Clipping configured.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnRNNGetClip_v9`]"]
 pub unsafe fn cudnnRNNSetClip_v9(rnnDesc: cudnnRNNDescriptor_t, clipMode: cudnnRNNClipMode_t, lclip: f64, rclip: f64) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnRNNSetClip_v9(rnnDesc, clipMode, lclip, rclip) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Retrieves LSTM cell clipping settings.\n> **Deprecated** Since cuDNN 9.0.0. Use cudnnRNNGetClip_v9 instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnRNNGetClip_v8(rnnDesc: cudnnRNNDescriptor_t) -> Result<(cudnnRNNClipMode_t, cudnnNanPropagation_t, f64, f64), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnRNNClipMode_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnNanPropagation_t> = std::mem::MaybeUninit::zeroed();
@@ -4084,6 +4238,7 @@ pub unsafe fn cudnnRNNGetClip_v8(rnnDesc: cudnnRNNDescriptor_t) -> Result<(cudnn
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Retrieves LSTM cell clipping settings.\n\n# Arguments\n\n* `rnnDesc` [in]  -   RNN descriptor.\n* `clipMode` [out]  -  Clipping mode.\n* `lclip` [out]  -     Left clipping value.\n* `rclip` [out]  -     Right clipping value.\n@retval CUDNN_STATUS_SUCCESS  Query succeeded.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnRNNSetClip_v9`]"]
 pub unsafe fn cudnnRNNGetClip_v9(rnnDesc: cudnnRNNDescriptor_t) -> Result<(cudnnRNNClipMode_t, f64, f64), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnRNNClipMode_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<f64> = std::mem::MaybeUninit::zeroed();
@@ -4095,10 +4250,12 @@ pub unsafe fn cudnnRNNGetClip_v9(rnnDesc: cudnnRNNDescriptor_t) -> Result<(cudnn
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnBuildRNNDynamic(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t, miniBatch: i32) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnBuildRNNDynamic(handle, rnnDesc, miniBatch as _) };
+#[doc = "Compiles persistent RNN code using NVRTC for dynamic algorithm.\n\n# Arguments\n\n* `handle` [in]  -     cuDNN handle.\n* `rnnDesc` [in]  -    RNN descriptor (must use PERSIST_DYNAMIC algorithm).\n* `miniBatch` [in]  -  Exact mini-batch size for compilation.\n@retval CUDNN_STATUS_SUCCESS       Compilation succeeded.\n@retval CUDNN_STATUS_NOT_SUPPORTED Unsupported configuration.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnBuildRNNDynamic(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t, miniBatch: ::core::ffi::c_int) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnBuildRNNDynamic(handle, rnnDesc, miniBatch) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Computes workspace and reserve space buffer sizes for RNN.\n\n# Arguments\n\n* `handle` [in]  -          cuDNN handle.\n* `rnnDesc` [in]  -         RNN descriptor.\n* `fwdMode` [in]  -         Inference or training mode.\n* `xDesc` [in]  -           Input data descriptor.\n* `workSpaceSize` [out]  -   Required workspace size in bytes.\n* `reserveSpaceSize` [out]  - Required reserve space size in bytes (training only).\n@retval CUDNN_STATUS_SUCCESS  Sizes computed successfully.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetRNNTempSpaceSizes(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t, fwdMode: cudnnForwardMode_t, xDesc: cudnnRNNDataDescriptor_t) -> Result<(usize, usize), crate::sys::cudnnStatus_t> {
     let mut out_4: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let mut out_5: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
@@ -4109,6 +4266,7 @@ pub unsafe fn cudnnGetRNNTempSpaceSizes(handle: cudnnHandle_t, rnnDesc: cudnnRNN
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Reports required GPU memory for all RNN weight parameters.\n\n# Arguments\n\n* `handle` [in]  -          cuDNN handle.\n* `rnnDesc` [in]  -         RNN descriptor.\n* `weightSpaceSize` [out]  - Required weight space size in bytes.\n@retval CUDNN_STATUS_SUCCESS  Size computed.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetRNNWeightSpaceSize(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_2: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetRNNWeightSpaceSize(handle, rnnDesc, out_2.as_mut_ptr() as *mut _) };
@@ -4118,6 +4276,7 @@ pub unsafe fn cudnnGetRNNWeightSpaceSize(handle: cudnnHandle_t, rnnDesc: cudnnRN
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Obtains start address and shape of RNN weight matrices and bias vectors.\n\n# Arguments\n\n* `handle` [in]  -          cuDNN handle.\n* `rnnDesc` [in]  -         RNN descriptor.\n* `pseudoLayer` [in]  -     Pseudo-layer index (physical layer and direction).\n* `weightSpaceSize` [in]  - Total weight space size.\n* `weightSpace` [in]  -     Pointer to weight space.\n* `linLayerID` [in]  -      Linear layer ID within the RNN cell.\n* `mDesc` [out]  -           Tensor descriptor for the weight matrix.\n* `mAddr` [out]  -           Start address of the weight matrix.\n* `bDesc` [out]  -           Tensor descriptor for the bias vector.\n* `bAddr` [out]  -           Start address of the bias vector.\n@retval CUDNN_STATUS_SUCCESS  Parameters retrieved.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetRNNWeightParams<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
@@ -4133,6 +4292,7 @@ pub unsafe fn cudnnGetRNNWeightParams<T0: types::CudaAsPtr, T1: types::CudaAsMut
     let status = unsafe { crate::sys::cudnnGetRNNWeightParams(handle, rnnDesc, pseudoLayer, weightSpaceSize, weightSpace.as_const_ptr() as *const _, linLayerID, mDesc, mAddr.as_mut_ptr() as *mut _, bDesc, bAddr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates an RNN data descriptor.\n\n# Arguments\n\n* `rnnDataDesc` [out]  -  Pointer to created descriptor.\n@retval CUDNN_STATUS_SUCCESS  Descriptor created.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCreateRNNDataDescriptor() -> Result<cudnnRNNDataDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnRNNDataDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateRNNDataDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -4142,29 +4302,37 @@ pub unsafe fn cudnnCreateRNNDataDescriptor() -> Result<cudnnRNNDataDescriptor_t,
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys an RNN data descriptor.\n\n# Arguments\n\n* `rnnDataDesc` [in]  -  Descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  Descriptor destroyed.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnDestroyRNNDataDescriptor(rnnDataDesc: cudnnRNNDataDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyRNNDataDescriptor(rnnDataDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Configures an RNN data descriptor with layout and sequence information.\n\n# Arguments\n\n* `rnnDataDesc` [in,out]  -     RNN data descriptor.\n* `dataType` [in]  -        Data type.\n* `layout` [in]  -          Data layout (sequence-major or batch-major).\n* `maxSeqLength` [in]  -    Maximum sequence length.\n* `batchSize` [in]  -       Batch size.\n* `vectorSize` [in]  -      Input vector size.\n* `seqLengthArray` [in]  -  Length of each sequence in the batch.\n* `paddingFill` [in,out]  -     Symbol for filling padding positions.\n@retval CUDNN_STATUS_SUCCESS  Descriptor configured.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetRNNDataDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
     rnnDataDesc: cudnnRNNDataDescriptor_t,
     dataType: cudnnDataType_t,
     layout: cudnnRNNDataLayout_t,
-    maxSeqLength: i32,
-    batchSize: i32,
-    vectorSize: i32,
+    maxSeqLength: ::core::ffi::c_int,
+    batchSize: ::core::ffi::c_int,
+    vectorSize: ::core::ffi::c_int,
     seqLengthArray: T0,
     mut paddingFill: T1,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetRNNDataDescriptor(rnnDataDesc, dataType, layout, maxSeqLength as _, batchSize as _, vectorSize as _, seqLengthArray.as_const_ptr() as *const _, paddingFill.as_mut_ptr() as *mut _) };
+    let status = unsafe { crate::sys::cudnnSetRNNDataDescriptor(rnnDataDesc, dataType, layout, maxSeqLength, batchSize, vectorSize, seqLengthArray.as_const_ptr() as *const _, paddingFill.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetRNNDataDescriptor(rnnDataDesc: cudnnRNNDataDescriptor_t, arrayLengthRequested: i32, seqLengthArray: *mut ::std::os::raw::c_int, paddingFill: *mut ::std::os::raw::c_void) -> Result<(cudnnDataType_t, cudnnRNNDataLayout_t, i32, i32, i32), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves RNN data descriptor parameters.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetRNNDataDescriptor(
+    rnnDataDesc: cudnnRNNDataDescriptor_t,
+    arrayLengthRequested: ::core::ffi::c_int,
+    seqLengthArray: *mut ::core::ffi::c_int,
+    paddingFill: *mut ::core::ffi::c_void,
+) -> Result<(cudnnDataType_t, cudnnRNNDataLayout_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnRNNDataLayout_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe {
         crate::sys::cudnnGetRNNDataDescriptor(
             rnnDataDesc,
@@ -4173,17 +4341,26 @@ pub unsafe fn cudnnGetRNNDataDescriptor(rnnDataDesc: cudnnRNNDataDescriptor_t, a
             out_3.as_mut_ptr() as *mut _,
             out_4.as_mut_ptr() as *mut _,
             out_5.as_mut_ptr() as *mut _,
-            arrayLengthRequested as _,
+            arrayLengthRequested,
             seqLengthArray,
             paddingFill,
         )
     };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_1.assume_init() as cudnnDataType_t, out_2.assume_init() as cudnnRNNDataLayout_t, out_3.assume_init() as i32, out_4.assume_init() as i32, out_5.assume_init() as i32)) }
+        unsafe {
+            Ok((
+                out_1.assume_init() as cudnnDataType_t,
+                out_2.assume_init() as cudnnRNNDataLayout_t,
+                out_3.assume_init() as ::core::ffi::c_int,
+                out_4.assume_init() as ::core::ffi::c_int,
+                out_5.assume_init() as ::core::ffi::c_int,
+            ))
+        }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Computes the forward pass of an RNN network.\n\n# Arguments\n\n* `handle` [in]  -           cuDNN handle.\n* `rnnDesc` [in]  -          RNN descriptor.\n* `fwdMode` [in]  -          Inference or training mode.\n* `devSeqLengths` [in]  -    Per-batch sequence lengths (device memory).\n* `xDesc` [in]  -            Input data descriptor.\n* `x` [in]  -                Input data pointer.\n* `yDesc` [in]  -            Output data descriptor.\n* `y` [out]  -                Output data pointer.\n* `hDesc` [in]  -            Hidden state descriptor.\n* `hx` [in]  -               Initial hidden state (NULL for zero).\n* `hy` [out]  -               Final hidden state (NULL to discard).\n* `cDesc` [in]  -            Cell state descriptor (LSTM only).\n* `cx` [in]  -               Initial cell state (NULL for zero).\n* `cy` [out]  -               Final cell state (NULL to discard).\n* `weightSpaceSize` [in]  -  Weight space size in bytes.\n* `weightSpace` [in]  -      Weight space pointer.\n* `workSpaceSize` [in]  -    Workspace size in bytes.\n* `workSpace` [in,out]  -        Workspace pointer.\n* `reserveSpaceSize` [in]  - Reserve space size (training only).\n* `reserveSpace` [in,out]  -     Reserve space pointer (training only).\n@retval CUDNN_STATUS_SUCCESS        Forward pass completed.\n@retval CUDNN_STATUS_BAD_PARAM      Invalid parameter.\n@retval CUDNN_STATUS_EXECUTION_FAILED  Execution failed.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnRNNBackwardData_v8,`] cudnnRNNBackwardWeights_v8"]
 pub unsafe fn cudnnRNNForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsPtr, T6: types::CudaAsMutPtr, T7: types::CudaAsPtr, T8: types::CudaAsMutPtr, T9: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
@@ -4232,6 +4409,7 @@ pub unsafe fn cudnnRNNForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates a sequence data descriptor.\n> **Deprecated** Since cuDNN 9.0.0. Use RNN data descriptors instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCreateSeqDataDescriptor() -> Result<cudnnSeqDataDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnSeqDataDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateSeqDataDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -4241,14 +4419,16 @@ pub unsafe fn cudnnCreateSeqDataDescriptor() -> Result<cudnnSeqDataDescriptor_t,
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys a sequence data descriptor.\n> **Deprecated** Since cuDNN 9.0.0.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnDestroySeqDataDescriptor(seqDataDesc: cudnnSeqDataDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroySeqDataDescriptor(seqDataDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Configures a sequence data descriptor.\n> **Deprecated** Since cuDNN 9.0.0.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetSeqDataDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     seqDataDesc: cudnnSeqDataDescriptor_t,
     dataType: cudnnDataType_t,
-    nbDims: i32,
+    nbDims: ::core::ffi::c_int,
     dimA: T0,
     axes: T1,
     seqLengthArraySize: usize,
@@ -4259,7 +4439,7 @@ pub unsafe fn cudnnSetSeqDataDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsP
         crate::sys::cudnnSetSeqDataDescriptor(
             seqDataDesc,
             dataType,
-            nbDims as _,
+            nbDims,
             dimA.as_const_ptr() as *const _,
             axes.as_const_ptr() as *const _,
             seqLengthArraySize,
@@ -4269,24 +4449,25 @@ pub unsafe fn cudnnSetSeqDataDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsP
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Retrieves sequence data descriptor parameters.\n> **Deprecated** Since cuDNN 9.0.0.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetSeqDataDescriptor(
     seqDataDesc: cudnnSeqDataDescriptor_t,
-    nbDimsRequested: i32,
+    nbDimsRequested: ::core::ffi::c_int,
     seqLengthArraySize: *mut usize,
     seqLengthSizeRequested: usize,
-    seqLengthArray: *mut ::std::os::raw::c_int,
-    paddingFill: *mut ::std::os::raw::c_void,
-) -> Result<(cudnnDataType_t, i32, i32, cudnnSeqDataAxis_t), crate::sys::cudnnStatus_t> {
+    seqLengthArray: *mut ::core::ffi::c_int,
+    paddingFill: *mut ::core::ffi::c_void,
+) -> Result<(cudnnDataType_t, ::core::ffi::c_int, ::core::ffi::c_int, cudnnSeqDataAxis_t), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_2: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_2: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let mut out_5: std::mem::MaybeUninit<cudnnSeqDataAxis_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe {
         crate::sys::cudnnGetSeqDataDescriptor(
             seqDataDesc,
             out_1.as_mut_ptr() as *mut _,
             out_2.as_mut_ptr() as *mut _,
-            nbDimsRequested as _,
+            nbDimsRequested,
             out_4.as_mut_ptr() as *mut _,
             out_5.as_mut_ptr() as *mut _,
             seqLengthArraySize,
@@ -4296,11 +4477,12 @@ pub unsafe fn cudnnGetSeqDataDescriptor(
         )
     };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_1.assume_init() as cudnnDataType_t, out_2.assume_init() as i32, out_4.assume_init() as i32, out_5.assume_init() as cudnnSeqDataAxis_t)) }
+        unsafe { Ok((out_1.assume_init() as cudnnDataType_t, out_2.assume_init() as ::core::ffi::c_int, out_4.assume_init() as ::core::ffi::c_int, out_5.assume_init() as cudnnSeqDataAxis_t)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Creates a multi-head attention descriptor.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API SDPA operations instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCreateAttnDescriptor() -> Result<cudnnAttnDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnAttnDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateAttnDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -4310,78 +4492,106 @@ pub unsafe fn cudnnCreateAttnDescriptor() -> Result<cudnnAttnDescriptor_t, crate
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys a multi-head attention descriptor.\n> **Deprecated** Since cuDNN 9.0.0.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnDestroyAttnDescriptor(attnDesc: cudnnAttnDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyAttnDescriptor(attnDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Configures a multi-head attention descriptor.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API SDPA operations instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetAttnDescriptor(
     attnDesc: cudnnAttnDescriptor_t,
-    attnMode: u32,
-    nHeads: i32,
+    attnMode: ::core::ffi::c_uint,
+    nHeads: ::core::ffi::c_int,
     smScaler: f64,
     dataType: cudnnDataType_t,
     computePrec: cudnnDataType_t,
     mathType: cudnnMathType_t,
     attnDropoutDesc: cudnnDropoutDescriptor_t,
     postDropoutDesc: cudnnDropoutDescriptor_t,
-    qSize: i32,
-    kSize: i32,
-    vSize: i32,
-    qProjSize: i32,
-    kProjSize: i32,
-    vProjSize: i32,
-    oProjSize: i32,
-    qoMaxSeqLength: i32,
-    kvMaxSeqLength: i32,
-    maxBatchSize: i32,
-    maxBeamSize: i32,
+    qSize: ::core::ffi::c_int,
+    kSize: ::core::ffi::c_int,
+    vSize: ::core::ffi::c_int,
+    qProjSize: ::core::ffi::c_int,
+    kProjSize: ::core::ffi::c_int,
+    vProjSize: ::core::ffi::c_int,
+    oProjSize: ::core::ffi::c_int,
+    qoMaxSeqLength: ::core::ffi::c_int,
+    kvMaxSeqLength: ::core::ffi::c_int,
+    maxBatchSize: ::core::ffi::c_int,
+    maxBeamSize: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnSetAttnDescriptor(
             attnDesc,
-            attnMode as _,
-            nHeads as _,
+            attnMode,
+            nHeads,
             smScaler,
             dataType,
             computePrec,
             mathType,
             attnDropoutDesc,
             postDropoutDesc,
-            qSize as _,
-            kSize as _,
-            vSize as _,
-            qProjSize as _,
-            kProjSize as _,
-            vProjSize as _,
-            oProjSize as _,
-            qoMaxSeqLength as _,
-            kvMaxSeqLength as _,
-            maxBatchSize as _,
-            maxBeamSize as _,
+            qSize,
+            kSize,
+            vSize,
+            qProjSize,
+            kProjSize,
+            vProjSize,
+            oProjSize,
+            qoMaxSeqLength,
+            kvMaxSeqLength,
+            maxBatchSize,
+            maxBeamSize,
         )
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetAttnDescriptor(attnDesc: cudnnAttnDescriptor_t) -> Result<(u32, i32, f64, cudnnDataType_t, cudnnDataType_t, cudnnMathType_t, cudnnDropoutDescriptor_t, cudnnDropoutDescriptor_t, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32), crate::sys::cudnnStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_uint> = std::mem::MaybeUninit::zeroed();
-    let mut out_2: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Retrieves multi-head attention descriptor parameters.\n> **Deprecated** Since cuDNN 9.0.0.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetAttnDescriptor(
+    attnDesc: cudnnAttnDescriptor_t,
+) -> Result<
+    (
+        ::core::ffi::c_uint,
+        ::core::ffi::c_int,
+        f64,
+        cudnnDataType_t,
+        cudnnDataType_t,
+        cudnnMathType_t,
+        cudnnDropoutDescriptor_t,
+        cudnnDropoutDescriptor_t,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+        ::core::ffi::c_int,
+    ),
+    crate::sys::cudnnStatus_t,
+> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_uint> = std::mem::MaybeUninit::zeroed();
+    let mut out_2: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let mut out_3: std::mem::MaybeUninit<f64> = std::mem::MaybeUninit::zeroed();
     let mut out_4: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let mut out_5: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let mut out_6: std::mem::MaybeUninit<cudnnMathType_t> = std::mem::MaybeUninit::zeroed();
     let mut out_7: std::mem::MaybeUninit<cudnnDropoutDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let mut out_8: std::mem::MaybeUninit<cudnnDropoutDescriptor_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_9: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_10: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_11: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_12: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_13: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_14: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_15: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_16: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_17: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_18: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_19: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_9: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_10: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_11: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_12: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_13: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_14: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_15: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_16: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_17: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_18: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_19: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe {
         crate::sys::cudnnGetAttnDescriptor(
             attnDesc,
@@ -4409,31 +4619,32 @@ pub unsafe fn cudnnGetAttnDescriptor(attnDesc: cudnnAttnDescriptor_t) -> Result<
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
         unsafe {
             Ok((
-                out_1.assume_init() as u32,
-                out_2.assume_init() as i32,
+                out_1.assume_init() as ::core::ffi::c_uint,
+                out_2.assume_init() as ::core::ffi::c_int,
                 out_3.assume_init() as f64,
                 out_4.assume_init() as cudnnDataType_t,
                 out_5.assume_init() as cudnnDataType_t,
                 out_6.assume_init() as cudnnMathType_t,
                 out_7.assume_init() as cudnnDropoutDescriptor_t,
                 out_8.assume_init() as cudnnDropoutDescriptor_t,
-                out_9.assume_init() as i32,
-                out_10.assume_init() as i32,
-                out_11.assume_init() as i32,
-                out_12.assume_init() as i32,
-                out_13.assume_init() as i32,
-                out_14.assume_init() as i32,
-                out_15.assume_init() as i32,
-                out_16.assume_init() as i32,
-                out_17.assume_init() as i32,
-                out_18.assume_init() as i32,
-                out_19.assume_init() as i32,
+                out_9.assume_init() as ::core::ffi::c_int,
+                out_10.assume_init() as ::core::ffi::c_int,
+                out_11.assume_init() as ::core::ffi::c_int,
+                out_12.assume_init() as ::core::ffi::c_int,
+                out_13.assume_init() as ::core::ffi::c_int,
+                out_14.assume_init() as ::core::ffi::c_int,
+                out_15.assume_init() as ::core::ffi::c_int,
+                out_16.assume_init() as ::core::ffi::c_int,
+                out_17.assume_init() as ::core::ffi::c_int,
+                out_18.assume_init() as ::core::ffi::c_int,
+                out_19.assume_init() as ::core::ffi::c_int,
             ))
         }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Computes weight, workspace, and reserve space sizes for multi-head attention.\n> **Deprecated** Since cuDNN 9.0.0.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetMultiHeadAttnBuffers(handle: cudnnHandle_t, attnDesc: cudnnAttnDescriptor_t) -> Result<(usize, usize, usize), crate::sys::cudnnStatus_t> {
     let mut out_2: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let mut out_3: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
@@ -4445,6 +4656,7 @@ pub unsafe fn cudnnGetMultiHeadAttnBuffers(handle: cudnnHandle_t, attnDesc: cudn
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Obtains shape and start address of attention weight/bias tensors.\n> **Deprecated** Since cuDNN 9.0.0.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetMultiHeadAttnWeights<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
@@ -4457,6 +4669,7 @@ pub unsafe fn cudnnGetMultiHeadAttnWeights<T0: types::CudaAsPtr, T1: types::Cuda
     let status = unsafe { crate::sys::cudnnGetMultiHeadAttnWeights(handle, attnDesc, wKind, weightSizeInBytes, weights.as_const_ptr() as *const _, wDesc, wAddr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Computes multi-head attention forward pass.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API SDPA operations instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnMultiHeadAttnForward<
     T0: types::CudaAsPtr,
     T1: types::CudaAsPtr,
@@ -4473,7 +4686,7 @@ pub unsafe fn cudnnMultiHeadAttnForward<
 >(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
-    currIdx: i32,
+    currIdx: ::core::ffi::c_int,
     loWinIdx: T0,
     hiWinIdx: T1,
     devSeqLengthsQO: T2,
@@ -4498,7 +4711,7 @@ pub unsafe fn cudnnMultiHeadAttnForward<
         crate::sys::cudnnMultiHeadAttnForward(
             handle,
             attnDesc,
-            currIdx as _,
+            currIdx,
             loWinIdx.as_const_ptr() as *const _,
             hiWinIdx.as_const_ptr() as *const _,
             devSeqLengthsQO.as_const_ptr() as *const _,
@@ -4526,6 +4739,7 @@ pub unsafe fn cudnnAdvVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnAdvVersionCheck() };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Computes RNN data gradients (backward pass with respect to inputs).\n\n# Arguments\n\n* `handle` [in]  -           cuDNN handle.\n* `rnnDesc` [in]  -          RNN descriptor.\n* `devSeqLengths` [in]  -    Per-batch sequence lengths (device memory).\n* `yDesc` [in]  -            Output data descriptor.\n* `y` [in]  -                Forward output data.\n* `dy` [in]  -               Output gradient data.\n* `xDesc` [in]  -            Input data descriptor.\n* `dx` [out]  -               Computed input gradient.\n* `hDesc` [in]  -            Hidden state descriptor.\n* `hx` [in]  -               Initial hidden state from forward pass.\n* `dhy` [in]  -              Hidden state gradient (from upstream).\n* `dhx` [out]  -              Computed initial hidden state gradient.\n* `cDesc` [in]  -            Cell state descriptor (LSTM only).\n* `cx` [in]  -               Initial cell state from forward pass.\n* `dcy` [in]  -              Cell state gradient (from upstream).\n* `dcx` [out]  -              Computed initial cell state gradient.\n* `weightSpaceSize` [in]  -  Weight space size.\n* `weightSpace` [in]  -      Weight space pointer.\n* `workSpaceSize` [in]  -    Workspace size.\n* `workSpace` [in,out]  -        Workspace pointer.\n* `reserveSpaceSize` [in]  - Reserve space size.\n* `reserveSpace` [in,out]  -     Reserve space (from forward training pass).\n@retval CUDNN_STATUS_SUCCESS  Backward data pass completed.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnRNNForward,`] cudnnRNNBackwardWeights_v8"]
 pub unsafe fn cudnnRNNBackwardData_v8<
     T0: types::CudaAsPtr,
     T1: types::CudaAsPtr,
@@ -4592,6 +4806,7 @@ pub unsafe fn cudnnRNNBackwardData_v8<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Computes RNN weight gradients (backward pass with respect to parameters).\n\n# Arguments\n\n* `handle` [in]  -           cuDNN handle.\n* `rnnDesc` [in]  -          RNN descriptor.\n* `addGrad` [in]  -          Accumulate (ADD) or overwrite (SET) gradients.\n* `devSeqLengths` [in]  -    Per-batch sequence lengths (device memory).\n* `xDesc` [in]  -            Input data descriptor.\n* `x` [in]  -                Input data.\n* `hDesc` [in]  -            Hidden state descriptor.\n* `hx` [in]  -               Initial hidden state.\n* `yDesc` [in]  -            Output data descriptor.\n* `y` [in]  -                Forward output data.\n* `weightSpaceSize` [in]  -  Weight space size.\n* `dweightSpace` [in,out]  -     Computed weight gradients.\n* `workSpaceSize` [in]  -    Workspace size.\n* `workSpace` [in,out]  -        Workspace pointer.\n* `reserveSpaceSize` [in]  - Reserve space size.\n* `reserveSpace` [in,out]  -     Reserve space (from forward training pass).\n@retval CUDNN_STATUS_SUCCESS  Weight gradients computed.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnRNNForward,`] cudnnRNNBackwardData_v8"]
 pub unsafe fn cudnnRNNBackwardWeights_v8<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
@@ -4632,6 +4847,7 @@ pub unsafe fn cudnnRNNBackwardWeights_v8<T0: types::CudaAsPtr, T1: types::CudaAs
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Computes multi-head attention data gradients.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API SDPA operations instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnMultiHeadAttnBackwardData<
     T0: types::CudaAsPtr,
     T1: types::CudaAsPtr,
@@ -4701,6 +4917,7 @@ pub unsafe fn cudnnMultiHeadAttnBackwardData<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Computes multi-head attention weight gradients.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API SDPA operations instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnMultiHeadAttnBackwardWeights<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsMutPtr, T7: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
@@ -4745,6 +4962,7 @@ pub unsafe fn cudnnMultiHeadAttnBackwardWeights<T0: types::CudaAsPtr, T1: types:
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Creates a CTC loss descriptor.\n\n# Arguments\n\n* `ctcLossDesc` [out]  -  Pointer to created descriptor.\n@retval CUDNN_STATUS_SUCCESS  Descriptor created.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCreateCTCLossDescriptor() -> Result<cudnnCTCLossDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnCTCLossDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateCTCLossDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -4754,22 +4972,27 @@ pub unsafe fn cudnnCreateCTCLossDescriptor() -> Result<cudnnCTCLossDescriptor_t,
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Configures a CTC loss descriptor with compute type.\n> **Deprecated** Since cuDNN 9.0.0. Use cudnnSetCTCLossDescriptor_v9 instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetCTCLossDescriptor(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetCTCLossDescriptor(ctcLossDesc, compType) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Configures CTC loss with normalization mode.\n> **Deprecated** Since cuDNN 9.0.0. Use cudnnSetCTCLossDescriptor_v9 instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetCTCLossDescriptorEx(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, gradMode: cudnnNanPropagation_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetCTCLossDescriptorEx(ctcLossDesc, compType, normMode, gradMode) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetCTCLossDescriptor_v8(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, gradMode: cudnnNanPropagation_t, maxLabelLength: i32) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetCTCLossDescriptor_v8(ctcLossDesc, compType, normMode, gradMode, maxLabelLength as _) };
+#[doc = "Configures CTC loss with normalization, gradient mode, and max label length.\n> **Deprecated** Since cuDNN 9.0.0. Use cudnnSetCTCLossDescriptor_v9 instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnSetCTCLossDescriptor_v8(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, gradMode: cudnnNanPropagation_t, maxLabelLength: ::core::ffi::c_int) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetCTCLossDescriptor_v8(ctcLossDesc, compType, normMode, gradMode, maxLabelLength) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetCTCLossDescriptor_v9(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, ctcGradMode: cudnnCTCGradMode_t, maxLabelLength: i32) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetCTCLossDescriptor_v9(ctcLossDesc, compType, normMode, ctcGradMode, maxLabelLength as _) };
+#[doc = "Configures CTC loss with normalization, CTC gradient mode, and max label length.\n\n# Arguments\n\n* `ctcLossDesc` [in,out]  -    CTC loss descriptor.\n* `compType` [in]  -       Compute data type.\n* `normMode` [in]  -       Loss normalization mode.\n* `ctcGradMode` [in]  -    Gradient mode for out-of-bounds samples.\n* `maxLabelLength` [in]  - Maximum label length.\n@retval CUDNN_STATUS_SUCCESS  Descriptor configured.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnSetCTCLossDescriptor_v9(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, ctcGradMode: cudnnCTCGradMode_t, maxLabelLength: ::core::ffi::c_int) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetCTCLossDescriptor_v9(ctcLossDesc, compType, normMode, ctcGradMode, maxLabelLength) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Retrieves CTC loss compute type.\n> **Deprecated** Since cuDNN 9.0.0. Use cudnnGetCTCLossDescriptor_v9 instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetCTCLossDescriptor(ctcLossDesc: cudnnCTCLossDescriptor_t) -> Result<cudnnDataType_t, crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetCTCLossDescriptor(ctcLossDesc, out_1.as_mut_ptr() as *mut _) };
@@ -4779,6 +5002,7 @@ pub unsafe fn cudnnGetCTCLossDescriptor(ctcLossDesc: cudnnCTCLossDescriptor_t) -
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Retrieves CTC loss extended parameters.\n> **Deprecated** Since cuDNN 9.0.0. Use cudnnGetCTCLossDescriptor_v9 instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetCTCLossDescriptorEx(ctcLossDesc: cudnnCTCLossDescriptor_t) -> Result<(cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnNanPropagation_t), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnLossNormalizationMode_t> = std::mem::MaybeUninit::zeroed();
@@ -4790,34 +5014,38 @@ pub unsafe fn cudnnGetCTCLossDescriptorEx(ctcLossDesc: cudnnCTCLossDescriptor_t)
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetCTCLossDescriptor_v8(ctcLossDesc: cudnnCTCLossDescriptor_t) -> Result<(cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnNanPropagation_t, i32), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves CTC loss v8 parameters.\n> **Deprecated** Since cuDNN 9.0.0. Use cudnnGetCTCLossDescriptor_v9 instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetCTCLossDescriptor_v8(ctcLossDesc: cudnnCTCLossDescriptor_t) -> Result<(cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnNanPropagation_t, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnLossNormalizationMode_t> = std::mem::MaybeUninit::zeroed();
     let mut out_3: std::mem::MaybeUninit<cudnnNanPropagation_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetCTCLossDescriptor_v8(ctcLossDesc, out_1.as_mut_ptr() as *mut _, out_2.as_mut_ptr() as *mut _, out_3.as_mut_ptr() as *mut _, out_4.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_1.assume_init() as cudnnDataType_t, out_2.assume_init() as cudnnLossNormalizationMode_t, out_3.assume_init() as cudnnNanPropagation_t, out_4.assume_init() as i32)) }
+        unsafe { Ok((out_1.assume_init() as cudnnDataType_t, out_2.assume_init() as cudnnLossNormalizationMode_t, out_3.assume_init() as cudnnNanPropagation_t, out_4.assume_init() as ::core::ffi::c_int)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetCTCLossDescriptor_v9(ctcLossDesc: cudnnCTCLossDescriptor_t) -> Result<(cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnCTCGradMode_t, i32), crate::sys::cudnnStatus_t> {
+#[doc = "Retrieves CTC loss v9 parameters.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetCTCLossDescriptor_v9(ctcLossDesc: cudnnCTCLossDescriptor_t) -> Result<(cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnCTCGradMode_t, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let mut out_2: std::mem::MaybeUninit<cudnnLossNormalizationMode_t> = std::mem::MaybeUninit::zeroed();
     let mut out_3: std::mem::MaybeUninit<cudnnCTCGradMode_t> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetCTCLossDescriptor_v9(ctcLossDesc, out_1.as_mut_ptr() as *mut _, out_2.as_mut_ptr() as *mut _, out_3.as_mut_ptr() as *mut _, out_4.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_1.assume_init() as cudnnDataType_t, out_2.assume_init() as cudnnLossNormalizationMode_t, out_3.assume_init() as cudnnCTCGradMode_t, out_4.assume_init() as i32)) }
+        unsafe { Ok((out_1.assume_init() as cudnnDataType_t, out_2.assume_init() as cudnnLossNormalizationMode_t, out_3.assume_init() as cudnnCTCGradMode_t, out_4.assume_init() as ::core::ffi::c_int)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys a CTC loss descriptor.\n\n# Arguments\n\n* `ctcLossDesc` [in]  -  Descriptor to destroy.\n@retval CUDNN_STATUS_SUCCESS  Descriptor destroyed.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnDestroyCTCLossDescriptor(ctcLossDesc: cudnnCTCLossDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyCTCLossDescriptor(ctcLossDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Computes CTC loss and gradients given probabilities and labels.\nLabels and sequence lengths are in CPU memory. For GPU-memory variant, use cudnnCTCLoss_v8.\n\n# Arguments\n\n* `handle` [in]  -              cuDNN handle.\n* `probsDesc` [in]  -           Tensor descriptor for probabilities (T x N x A).\n* `probs` [in]  -               Probabilities after softmax (GPU memory).\n* `hostLabels` [in]  -           Labels (CPU memory).\n* `hostLabelLengths` [in]  -     Length of each label (CPU memory).\n* `hostInputLengths` [in]  -     Timing step lengths per batch (CPU memory).\n* `costs` [out]  -               CTC costs (GPU memory).\n* `gradientsDesc` [in]  -       Tensor descriptor for gradients (T x N x A).\n* `gradients` [out]  -           CTC gradients (GPU memory, NULL for costs only).\n* `algo` [in]  -                CTC loss algorithm.\n* `ctcLossDesc` [in]  -         CTC loss descriptor.\n* `workspace` [in]  -           Workspace (GPU memory).\n* `workSpaceSizeInBytes` [in]  - Workspace size.\n@retval CUDNN_STATUS_SUCCESS  CTC loss computed.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnCTCLoss_v8,`] cudnnGetCTCLossWorkspaceSize"]
 pub unsafe fn cudnnCTCLoss<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     probsDesc: cudnnTensorDescriptor_t,
@@ -4852,6 +5080,7 @@ pub unsafe fn cudnnCTCLoss<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Computes CTC loss and gradients (v8, supports CUDA graphs with GPU memory labels).\nLabels and sequence lengths are in GPU memory (unlike cudnnCTCLoss which uses CPU memory).\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnCTCLoss,`] cudnnGetCTCLossWorkspaceSize_v8"]
 pub unsafe fn cudnnCTCLoss_v8<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     algo: cudnnCTCLossAlgo_t,
@@ -4886,13 +5115,14 @@ pub unsafe fn cudnnCTCLoss_v8<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Returns the GPU workspace size required for CTC loss computation.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnCTCLoss`]"]
 pub unsafe fn cudnnGetCTCLossWorkspaceSize(
     handle: cudnnHandle_t,
     probsDesc: cudnnTensorDescriptor_t,
     gradientsDesc: cudnnTensorDescriptor_t,
-    labels: *const ::std::os::raw::c_int,
-    labelLengths: *const ::std::os::raw::c_int,
-    inputLengths: *const ::std::os::raw::c_int,
+    labels: *const ::core::ffi::c_int,
+    labelLengths: *const ::core::ffi::c_int,
+    inputLengths: *const ::core::ffi::c_int,
     algo: cudnnCTCLossAlgo_t,
     ctcLossDesc: cudnnCTCLossDescriptor_t,
 ) -> Result<usize, crate::sys::cudnnStatus_t> {
@@ -4904,6 +5134,7 @@ pub unsafe fn cudnnGetCTCLossWorkspaceSize(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Returns the GPU workspace size required for CTC loss v8 computation.\n> **Since** cuDNN 9.0.0\n\n# See also\n\n> [`cudnnCTCLoss_v8`]"]
 pub unsafe fn cudnnGetCTCLossWorkspaceSize_v8(handle: cudnnHandle_t, algo: cudnnCTCLossAlgo_t, ctcLossDesc: cudnnCTCLossDescriptor_t, probsDesc: cudnnTensorDescriptor_t, gradientsDesc: cudnnTensorDescriptor_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_5: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetCTCLossWorkspaceSize_v8(handle, algo, ctcLossDesc, probsDesc, gradientsDesc, out_5.as_mut_ptr() as *mut _) };
@@ -4913,6 +5144,7 @@ pub unsafe fn cudnnGetCTCLossWorkspaceSize_v8(handle: cudnnHandle_t, algo: cudnn
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Create an instance of convolution descriptor.\n\n# Arguments\n\n* `convDesc` [out]  - Pointer to receive the newly created convolution descriptor.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCreateConvolutionDescriptor() -> Result<cudnnConvolutionDescriptor_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnConvolutionDescriptor_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateConvolutionDescriptor(out_0.as_mut_ptr() as *mut _) };
@@ -4922,14 +5154,17 @@ pub unsafe fn cudnnCreateConvolutionDescriptor() -> Result<cudnnConvolutionDescr
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroy an instance of convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in]  - The convolution descriptor to destroy.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnDestroyConvolutionDescriptor(convDesc: cudnnConvolutionDescriptor_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyConvolutionDescriptor(convDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Set the math type for a convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in,out]  - The convolution descriptor.\n* `mathType` [in]  - The math type to set.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetConvolutionMathType(convDesc: cudnnConvolutionDescriptor_t, mathType: cudnnMathType_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetConvolutionMathType(convDesc, mathType) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Get the math type from a convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in]  - The convolution descriptor.\n* `mathType` [out]  - Pointer to receive the math type.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetConvolutionMathType(convDesc: cudnnConvolutionDescriptor_t) -> Result<cudnnMathType_t, crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnMathType_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetConvolutionMathType(convDesc, out_1.as_mut_ptr() as *mut _) };
@@ -4939,23 +5174,27 @@ pub unsafe fn cudnnGetConvolutionMathType(convDesc: cudnnConvolutionDescriptor_t
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetConvolutionGroupCount(convDesc: cudnnConvolutionDescriptor_t, groupCount: i32) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetConvolutionGroupCount(convDesc, groupCount as _) };
+#[doc = "Set the group count for a convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in,out]  -   The convolution descriptor.\n* `groupCount` [in]  - The number of groups for grouped convolution.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnSetConvolutionGroupCount(convDesc: cudnnConvolutionDescriptor_t, groupCount: ::core::ffi::c_int) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetConvolutionGroupCount(convDesc, groupCount) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetConvolutionGroupCount(convDesc: cudnnConvolutionDescriptor_t) -> Result<i32, crate::sys::cudnnStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Get the group count from a convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in]  -   The convolution descriptor.\n* `groupCount` [out]  - Pointer to receive the group count.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetConvolutionGroupCount(convDesc: cudnnConvolutionDescriptor_t) -> Result<::core::ffi::c_int, crate::sys::cudnnStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetConvolutionGroupCount(convDesc, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Set the reorder type for a convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in,out]  -    The convolution descriptor.\n* `reorderType` [in]  - The reorder type to set.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetConvolutionReorderType(convDesc: cudnnConvolutionDescriptor_t, reorderType: cudnnReorderType_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetConvolutionReorderType(convDesc, reorderType) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Get the reorder type from a convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in]  -    The convolution descriptor.\n* `reorderType` [out]  - Pointer to receive the reorder type.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetConvolutionReorderType(convDesc: cudnnConvolutionDescriptor_t) -> Result<cudnnReorderType_t, crate::sys::cudnnStatus_t> {
     let mut out_1: std::mem::MaybeUninit<cudnnReorderType_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetConvolutionReorderType(convDesc, out_1.as_mut_ptr() as *mut _) };
@@ -4965,17 +5204,29 @@ pub unsafe fn cudnnGetConvolutionReorderType(convDesc: cudnnConvolutionDescripto
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetConvolution2dDescriptor(convDesc: cudnnConvolutionDescriptor_t, pad_h: i32, pad_w: i32, u: i32, v: i32, dilation_h: i32, dilation_w: i32, mode: cudnnConvolutionMode_t, computeType: cudnnDataType_t) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetConvolution2dDescriptor(convDesc, pad_h as _, pad_w as _, u as _, v as _, dilation_h as _, dilation_w as _, mode, computeType) };
+#[doc = "Set a 2D convolution descriptor with padding, stride, dilation, mode, and compute type.\n\n# Arguments\n\n* `convDesc` [in,out]  -    The convolution descriptor to initialize.\n* `pad_h` [in]  -       Zero-padding height.\n* `pad_w` [in]  -       Zero-padding width.\n* `u` [in]  -           Vertical filter stride.\n* `v` [in]  -           Horizontal filter stride.\n* `dilation_h` [in]  -  Filter dilation in the vertical dimension.\n* `dilation_w` [in]  -  Filter dilation in the horizontal dimension.\n* `mode` [in]  -        Convolution mode (cross-correlation or convolution).\n* `computeType` [in]  - Data type for convolution computation.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnSetConvolution2dDescriptor(
+    convDesc: cudnnConvolutionDescriptor_t,
+    pad_h: ::core::ffi::c_int,
+    pad_w: ::core::ffi::c_int,
+    u: ::core::ffi::c_int,
+    v: ::core::ffi::c_int,
+    dilation_h: ::core::ffi::c_int,
+    dilation_w: ::core::ffi::c_int,
+    mode: cudnnConvolutionMode_t,
+    computeType: cudnnDataType_t,
+) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSetConvolution2dDescriptor(convDesc, pad_h, pad_w, u, v, dilation_h, dilation_w, mode, computeType) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetConvolution2dDescriptor(convDesc: cudnnConvolutionDescriptor_t) -> Result<(i32, i32, i32, i32, i32, i32, cudnnConvolutionMode_t, cudnnDataType_t), crate::sys::cudnnStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_2: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_6: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Get the parameters of a 2D convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in]  -    The convolution descriptor to query.\n* `pad_h` [out]  -       Pointer to receive zero-padding height.\n* `pad_w` [out]  -       Pointer to receive zero-padding width.\n* `u` [out]  -           Pointer to receive vertical filter stride.\n* `v` [out]  -           Pointer to receive horizontal filter stride.\n* `dilation_h` [out]  -  Pointer to receive filter dilation in the vertical dimension.\n* `dilation_w` [out]  -  Pointer to receive filter dilation in the horizontal dimension.\n* `mode` [out]  -        Pointer to receive convolution mode.\n* `computeType` [out]  - Pointer to receive compute data type.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetConvolution2dDescriptor(convDesc: cudnnConvolutionDescriptor_t) -> Result<(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cudnnConvolutionMode_t, cudnnDataType_t), crate::sys::cudnnStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_2: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_6: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let mut out_7: std::mem::MaybeUninit<cudnnConvolutionMode_t> = std::mem::MaybeUninit::zeroed();
     let mut out_8: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe {
@@ -4994,12 +5245,12 @@ pub unsafe fn cudnnGetConvolution2dDescriptor(convDesc: cudnnConvolutionDescript
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
         unsafe {
             Ok((
-                out_1.assume_init() as i32,
-                out_2.assume_init() as i32,
-                out_3.assume_init() as i32,
-                out_4.assume_init() as i32,
-                out_5.assume_init() as i32,
-                out_6.assume_init() as i32,
+                out_1.assume_init() as ::core::ffi::c_int,
+                out_2.assume_init() as ::core::ffi::c_int,
+                out_3.assume_init() as ::core::ffi::c_int,
+                out_4.assume_init() as ::core::ffi::c_int,
+                out_5.assume_init() as ::core::ffi::c_int,
+                out_6.assume_init() as ::core::ffi::c_int,
                 out_7.assume_init() as cudnnConvolutionMode_t,
                 out_8.assume_init() as cudnnDataType_t,
             ))
@@ -5008,29 +5259,31 @@ pub unsafe fn cudnnGetConvolution2dDescriptor(convDesc: cudnnConvolutionDescript
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Set an N-dimensional convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in,out]  -      The convolution descriptor to initialize.\n* `arrayLength` [in]  -   Number of dimensions (nbDims-2 size).\n* `padA` [in]  -          Array of zero-padding values per dimension.\n* `filterStrideA` [in]  - Array of filter strides per dimension.\n* `dilationA` [in]  -     Array of dilation values per dimension.\n* `mode` [in]  -          Convolution mode.\n* `computeType` [in]  -   Data type for convolution computation.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetConvolutionNdDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
     convDesc: cudnnConvolutionDescriptor_t,
-    arrayLength: i32,
+    arrayLength: ::core::ffi::c_int,
     padA: T0,
     filterStrideA: T1,
     dilationA: T2,
     mode: cudnnConvolutionMode_t,
     computeType: cudnnDataType_t,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnSetConvolutionNdDescriptor(convDesc, arrayLength as _, padA.as_const_ptr() as *const _, filterStrideA.as_const_ptr() as *const _, dilationA.as_const_ptr() as *const _, mode, computeType) };
+    let status = unsafe { crate::sys::cudnnSetConvolutionNdDescriptor(convDesc, arrayLength, padA.as_const_ptr() as *const _, filterStrideA.as_const_ptr() as *const _, dilationA.as_const_ptr() as *const _, mode, computeType) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetConvolutionNdDescriptor(convDesc: cudnnConvolutionDescriptor_t, arrayLengthRequested: i32) -> Result<(i32, i32, i32, i32, cudnnConvolutionMode_t, cudnnDataType_t), crate::sys::cudnnStatus_t> {
-    let mut out_2: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Get the parameters of an N-dimensional convolution descriptor.\n\n# Arguments\n\n* `convDesc` [in]  -             The convolution descriptor to query.\n* `arrayLengthRequested` [in]  - Maximum number of dimensions to retrieve.\n* `arrayLength` [out]  -          Pointer to receive the actual number of dimensions.\n* `padA` [out]  -                 Array to receive zero-padding values.\n* `strideA` [out]  -              Array to receive stride values.\n* `dilationA` [out]  -            Array to receive dilation values.\n* `mode` [out]  -                 Pointer to receive convolution mode.\n* `computeType` [out]  -          Pointer to receive compute data type.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetConvolutionNdDescriptor(convDesc: cudnnConvolutionDescriptor_t, arrayLengthRequested: ::core::ffi::c_int) -> Result<(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cudnnConvolutionMode_t, cudnnDataType_t), crate::sys::cudnnStatus_t> {
+    let mut out_2: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let mut out_6: std::mem::MaybeUninit<cudnnConvolutionMode_t> = std::mem::MaybeUninit::zeroed();
     let mut out_7: std::mem::MaybeUninit<cudnnDataType_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe {
         crate::sys::cudnnGetConvolutionNdDescriptor(
             convDesc,
-            arrayLengthRequested as _,
+            arrayLengthRequested,
             out_2.as_mut_ptr() as *mut _,
             out_3.as_mut_ptr() as *mut _,
             out_4.as_mut_ptr() as *mut _,
@@ -5042,10 +5295,10 @@ pub unsafe fn cudnnGetConvolutionNdDescriptor(convDesc: cudnnConvolutionDescript
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
         unsafe {
             Ok((
-                out_2.assume_init() as i32,
-                out_3.assume_init() as i32,
-                out_4.assume_init() as i32,
-                out_5.assume_init() as i32,
+                out_2.assume_init() as ::core::ffi::c_int,
+                out_3.assume_init() as ::core::ffi::c_int,
+                out_4.assume_init() as ::core::ffi::c_int,
+                out_5.assume_init() as ::core::ffi::c_int,
                 out_6.assume_init() as cudnnConvolutionMode_t,
                 out_7.assume_init() as cudnnDataType_t,
             ))
@@ -5054,66 +5307,72 @@ pub unsafe fn cudnnGetConvolutionNdDescriptor(convDesc: cudnnConvolutionDescript
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetConvolution2dForwardOutputDim(convDesc: cudnnConvolutionDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, filterDesc: cudnnFilterDescriptor_t) -> Result<(i32, i32, i32, i32), crate::sys::cudnnStatus_t> {
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_5: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let mut out_6: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Compute the output dimensions of a 2D convolution.\n\n# Arguments\n\n* `convDesc` [in]  -        The convolution descriptor.\n* `inputTensorDesc` [in]  - Descriptor for the input tensor.\n* `filterDesc` [in]  -      Descriptor for the filter.\n* `n` [out]  -               Pointer to receive the output batch size.\n* `c` [out]  -               Pointer to receive the output channels.\n* `h` [out]  -               Pointer to receive the output height.\n* `w` [out]  -               Pointer to receive the output width.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetConvolution2dForwardOutputDim(convDesc: cudnnConvolutionDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, filterDesc: cudnnFilterDescriptor_t) -> Result<(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int), crate::sys::cudnnStatus_t> {
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_5: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let mut out_6: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetConvolution2dForwardOutputDim(convDesc, inputTensorDesc, filterDesc, out_3.as_mut_ptr() as *mut _, out_4.as_mut_ptr() as *mut _, out_5.as_mut_ptr() as *mut _, out_6.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_3.assume_init() as i32, out_4.assume_init() as i32, out_5.assume_init() as i32, out_6.assume_init() as i32)) }
+        unsafe { Ok((out_3.assume_init() as ::core::ffi::c_int, out_4.assume_init() as ::core::ffi::c_int, out_5.assume_init() as ::core::ffi::c_int, out_6.assume_init() as ::core::ffi::c_int)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetConvolutionNdForwardOutputDim(convDesc: cudnnConvolutionDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, filterDesc: cudnnFilterDescriptor_t, nbDims: i32) -> Result<i32, crate::sys::cudnnStatus_t> {
-    let mut out_4: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetConvolutionNdForwardOutputDim(convDesc, inputTensorDesc, filterDesc, nbDims as _, out_4.as_mut_ptr() as *mut _) };
+#[doc = "Compute the output dimensions of an N-dimensional convolution.\n\n# Arguments\n\n* `convDesc` [in]  -         The convolution descriptor.\n* `inputTensorDesc` [in]  -  Descriptor for the input tensor.\n* `filterDesc` [in]  -       Descriptor for the filter.\n* `nbDims` [in]  -           Number of dimensions.\n* `tensorOuputDimA` [out]  -  Array to receive the output dimensions.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetConvolutionNdForwardOutputDim(convDesc: cudnnConvolutionDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, filterDesc: cudnnFilterDescriptor_t, nbDims: ::core::ffi::c_int) -> Result<::core::ffi::c_int, crate::sys::cudnnStatus_t> {
+    let mut out_4: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
+    let status = unsafe { crate::sys::cudnnGetConvolutionNdForwardOutputDim(convDesc, inputTensorDesc, filterDesc, nbDims, out_4.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_4.assume_init() as i32) }
+        unsafe { Ok(out_4.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetConvolutionForwardAlgorithmMaxCount(handle: cudnnHandle_t) -> Result<i32, crate::sys::cudnnStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Get the maximum number of forward convolution algorithms available.\n\n# Arguments\n\n* `handle` [in]  - The cuDNN handle.\n* `count` [out]  -  Pointer to receive the maximum algorithm count.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetConvolutionForwardAlgorithmMaxCount(handle: cudnnHandle_t) -> Result<::core::ffi::c_int, crate::sys::cudnnStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetConvolutionForwardAlgorithmMaxCount(handle, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Get forward convolution algorithm recommendations without executing them.\nReturns a list of algorithms sorted by expected performance. Does not\nrequire a workspace or run actual convolutions.\n\n# Arguments\n\n* `handle` [in]  -              The cuDNN handle.\n* `srcDesc` [in]  -             Descriptor for the input tensor.\n* `filterDesc` [in]  -          Descriptor for the filter.\n* `convDesc` [in]  -            The convolution descriptor.\n* `destDesc` [in]  -            Descriptor for the output tensor.\n* `requestedAlgoCount` [in]  -  Maximum number of algorithms to return.\n* `returnedAlgoCount` [out]  -   Pointer to receive the actual number returned.\n* `perfResults` [out]  -         Array to receive the algorithm performance results.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetConvolutionForwardAlgorithm_v7(
     handle: cudnnHandle_t,
     srcDesc: cudnnTensorDescriptor_t,
     filterDesc: cudnnFilterDescriptor_t,
     convDesc: cudnnConvolutionDescriptor_t,
     destDesc: cudnnTensorDescriptor_t,
-    requestedAlgoCount: i32,
-) -> Result<(i32, cudnnConvolutionFwdAlgoPerf_t), crate::sys::cudnnStatus_t> {
-    let mut out_6: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    requestedAlgoCount: ::core::ffi::c_int,
+) -> Result<(::core::ffi::c_int, cudnnConvolutionFwdAlgoPerf_t), crate::sys::cudnnStatus_t> {
+    let mut out_6: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let mut out_7: std::mem::MaybeUninit<cudnnConvolutionFwdAlgoPerf_t> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetConvolutionForwardAlgorithm_v7(handle, srcDesc, filterDesc, convDesc, destDesc, requestedAlgoCount as _, out_6.as_mut_ptr() as *mut _, out_7.as_mut_ptr() as *mut _) };
+    let status = unsafe { crate::sys::cudnnGetConvolutionForwardAlgorithm_v7(handle, srcDesc, filterDesc, convDesc, destDesc, requestedAlgoCount, out_6.as_mut_ptr() as *mut _, out_7.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_6.assume_init() as i32, out_7.assume_init() as cudnnConvolutionFwdAlgoPerf_t)) }
+        unsafe { Ok((out_6.assume_init() as ::core::ffi::c_int, out_7.assume_init() as cudnnConvolutionFwdAlgoPerf_t)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Find the best forward convolution algorithm by running benchmarks.\nExecutes all applicable algorithms and returns performance results\nsorted by execution time. Does not require user-allocated workspace.\n\n# Arguments\n\n* `handle` [in]  -              The cuDNN handle.\n* `xDesc` [in]  -               Descriptor for the input tensor.\n* `wDesc` [in]  -               Descriptor for the filter.\n* `convDesc` [in]  -            The convolution descriptor.\n* `yDesc` [in]  -               Descriptor for the output tensor.\n* `requestedAlgoCount` [in]  -  Maximum number of algorithms to test.\n* `returnedAlgoCount` [out]  -   Pointer to receive the actual number returned.\n* `perfResults` [out]  -         Array to receive the algorithm performance results.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnFindConvolutionForwardAlgorithm<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
     wDesc: cudnnFilterDescriptor_t,
     convDesc: cudnnConvolutionDescriptor_t,
     yDesc: cudnnTensorDescriptor_t,
-    requestedAlgoCount: i32,
+    requestedAlgoCount: ::core::ffi::c_int,
     mut returnedAlgoCount: T0,
     mut perfResults: T1,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnFindConvolutionForwardAlgorithm(handle, xDesc, wDesc, convDesc, yDesc, requestedAlgoCount as _, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
+    let status = unsafe { crate::sys::cudnnFindConvolutionForwardAlgorithm(handle, xDesc, wDesc, convDesc, yDesc, requestedAlgoCount, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Find the best forward convolution algorithm by running benchmarks with user-provided buffers.\nSimilar to cudnnFindConvolutionForwardAlgorithm but uses caller-provided\ndata buffers and workspace.\n\n# Arguments\n\n* `handle` [in]  -                The cuDNN handle.\n* `xDesc` [in]  -                 Descriptor for the input tensor.\n* `x` [in]  -                     Pointer to input data in device memory.\n* `wDesc` [in]  -                 Descriptor for the filter.\n* `w` [in]  -                     Pointer to filter data in device memory.\n* `convDesc` [in]  -              The convolution descriptor.\n* `yDesc` [in]  -                 Descriptor for the output tensor.\n* `y` [out]  -                     Pointer to output data in device memory.\n* `requestedAlgoCount` [in]  -    Maximum number of algorithms to test.\n* `returnedAlgoCount` [out]  -     Pointer to receive the actual number returned.\n* `perfResults` [out]  -           Array to receive the algorithm performance results.\n* `workSpace` [in]  -             Pointer to workspace in device memory.\n* `workSpaceSizeInBytes` [in]  -  Size of the workspace in bytes.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
@@ -5123,7 +5382,7 @@ pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T0: types::CudaAsPtr, T1: t
     convDesc: cudnnConvolutionDescriptor_t,
     yDesc: cudnnTensorDescriptor_t,
     mut y: T2,
-    requestedAlgoCount: i32,
+    requestedAlgoCount: ::core::ffi::c_int,
     mut returnedAlgoCount: T3,
     mut perfResults: T4,
     mut workSpace: T5,
@@ -5139,7 +5398,7 @@ pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T0: types::CudaAsPtr, T1: t
             convDesc,
             yDesc,
             y.as_mut_ptr() as *mut _,
-            requestedAlgoCount as _,
+            requestedAlgoCount,
             returnedAlgoCount.as_mut_ptr() as *mut _,
             perfResults.as_mut_ptr() as *mut _,
             workSpace.as_mut_ptr() as *mut _,
@@ -5148,17 +5407,19 @@ pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T0: types::CudaAsPtr, T1: t
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Perform the Im2Col transform for convolution.\nRearranges image data into a column matrix suitable for matrix multiplication\nbased convolution.\n\n# Arguments\n\n* `handle` [in]  -   The cuDNN handle.\n* `xDesc` [in]  -    Descriptor for the input tensor.\n* `x` [in]  -        Pointer to input data in device memory.\n* `wDesc` [in]  -    Descriptor for the filter.\n* `convDesc` [in]  - The convolution descriptor.\n* `colBuffer` [out]  - Pointer to the output column buffer in device memory.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnIm2Col<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, x: T0, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, mut colBuffer: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnIm2Col(handle, xDesc, x.as_const_ptr() as *const _, wDesc, convDesc, colBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Reorder filter and bias data for optimized convolution execution.\nRearranges filter and optionally bias data into a layout optimized for\nthe specified reorder type.\n\n# Arguments\n\n* `handle` [in]  -              The cuDNN handle.\n* `filterDesc` [in]  -          Descriptor for the filter.\n* `reorderType` [in]  -         The reorder type to apply.\n* `filterData` [in]  -          Pointer to source filter data in device memory.\n* `reorderedFilterData` [out]  - Pointer to destination filter data in device memory.\n* `reorderBias` [in]  -         Non-zero to also reorder bias data.\n* `biasData` [in]  -            Pointer to source bias data in device memory (may be NULL).\n* `reorderedBiasData` [out]  -   Pointer to destination bias data in device memory (may be NULL).\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnReorderFilterAndBias<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     filterDesc: cudnnFilterDescriptor_t,
     reorderType: cudnnReorderType_t,
     filterData: T0,
     mut reorderedFilterData: T1,
-    reorderBias: i32,
+    reorderBias: ::core::ffi::c_int,
     biasData: T2,
     mut reorderedBiasData: T3,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
@@ -5169,13 +5430,14 @@ pub unsafe fn cudnnReorderFilterAndBias<T0: types::CudaAsPtr, T1: types::CudaAsM
             reorderType,
             filterData.as_const_ptr() as *const _,
             reorderedFilterData.as_mut_ptr() as *mut _,
-            reorderBias as _,
+            reorderBias,
             biasData.as_const_ptr() as *const _,
             reorderedBiasData.as_mut_ptr() as *mut _,
         )
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Get the minimum workspace size required for a forward convolution algorithm.\n\n# Arguments\n\n* `handle` [in]  -       The cuDNN handle.\n* `xDesc` [in]  -        Descriptor for the input tensor.\n* `wDesc` [in]  -        Descriptor for the filter.\n* `convDesc` [in]  -     The convolution descriptor.\n* `yDesc` [in]  -        Descriptor for the output tensor.\n* `algo` [in]  -         The forward convolution algorithm.\n* `sizeInBytes` [out]  -  Pointer to receive the required workspace size.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetConvolutionForwardWorkspaceSize(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, yDesc: cudnnTensorDescriptor_t, algo: cudnnConvolutionFwdAlgo_t) -> Result<usize, crate::sys::cudnnStatus_t> {
     let mut out_6: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetConvolutionForwardWorkspaceSize(handle, xDesc, wDesc, convDesc, yDesc, algo, out_6.as_mut_ptr() as *mut _) };
@@ -5185,6 +5447,7 @@ pub unsafe fn cudnnGetConvolutionForwardWorkspaceSize(handle: cudnnHandle_t, xDe
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Execute a forward convolution.\nComputes: y = alpha * conv(x, w) + beta * y\n\n# Arguments\n\n* `handle` [in]  -                The cuDNN handle.\n* `alpha` [in]  -                 Pointer to scaling factor for the convolution result.\n* `xDesc` [in]  -                 Descriptor for the input tensor.\n* `x` [in]  -                     Pointer to input data in device memory.\n* `wDesc` [in]  -                 Descriptor for the filter.\n* `w` [in]  -                     Pointer to filter data in device memory.\n* `convDesc` [in]  -              The convolution descriptor.\n* `algo` [in]  -                  The forward convolution algorithm to use.\n* `workSpace` [in]  -             Pointer to workspace in device memory.\n* `workSpaceSizeInBytes` [in]  -  Size of the workspace in bytes.\n* `beta` [in]  -                  Pointer to scaling factor for the prior output.\n* `yDesc` [in]  -                 Descriptor for the output tensor.\n* `y` [in,out]  -                     Pointer to output data in device memory.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnConvolutionForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     alpha: T0,
@@ -5219,6 +5482,7 @@ pub unsafe fn cudnnConvolutionForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Execute a fused convolution with bias and activation.\nComputes: y = Act( alpha1 * conv(x) + alpha2 * z + bias )\n\n# Arguments\n\n* `handle` [in]  -                The cuDNN handle.\n* `alpha1` [in]  -                Pointer to scaling factor for the convolution result.\n* `xDesc` [in]  -                 Descriptor for the input tensor.\n* `x` [in]  -                     Pointer to input data in device memory.\n* `wDesc` [in]  -                 Descriptor for the filter.\n* `w` [in]  -                     Pointer to filter data in device memory.\n* `convDesc` [in]  -              The convolution descriptor.\n* `algo` [in]  -                  The forward convolution algorithm to use.\n* `workSpace` [in]  -             Pointer to workspace in device memory.\n* `workSpaceSizeInBytes` [in]  -  Size of the workspace in bytes.\n* `alpha2` [in]  -                Pointer to scaling factor for the residual input z.\n* `zDesc` [in]  -                 Descriptor for the residual input tensor.\n* `z` [in]  -                     Pointer to residual data in device memory.\n* `biasDesc` [in]  -              Descriptor for the bias tensor.\n* `bias` [in]  -                  Pointer to bias data in device memory.\n* `activationDesc` [in]  -        Descriptor for the activation operation.\n* `yDesc` [in]  -                 Descriptor for the output tensor.\n* `y` [in,out]  -                     Pointer to output data in device memory.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnConvolutionBiasActivationForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsPtr, T7: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     alpha1: T0,
@@ -5263,28 +5527,31 @@ pub unsafe fn cudnnConvolutionBiasActivationForward<T0: types::CudaAsPtr, T1: ty
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetConvolutionBackwardDataAlgorithmMaxCount(handle: cudnnHandle_t) -> Result<i32, crate::sys::cudnnStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Get the maximum number of backward data convolution algorithms available.\n\n# Arguments\n\n* `handle` [in]  - The cuDNN handle.\n* `count` [out]  -  Pointer to receive the maximum algorithm count.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetConvolutionBackwardDataAlgorithmMaxCount(handle: cudnnHandle_t) -> Result<::core::ffi::c_int, crate::sys::cudnnStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetConvolutionBackwardDataAlgorithmMaxCount(handle, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Find the best backward data convolution algorithm by running benchmarks.\n\n# Arguments\n\n* `handle` [in]  -              The cuDNN handle.\n* `wDesc` [in]  -               Descriptor for the filter.\n* `dyDesc` [in]  -              Descriptor for the gradient output tensor.\n* `convDesc` [in]  -            The convolution descriptor.\n* `dxDesc` [in]  -              Descriptor for the gradient input tensor.\n* `requestedAlgoCount` [in]  -  Maximum number of algorithms to test.\n* `returnedAlgoCount` [out]  -   Pointer to receive the actual number returned.\n* `perfResults` [out]  -         Array to receive the algorithm performance results.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithm<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     wDesc: cudnnFilterDescriptor_t,
     dyDesc: cudnnTensorDescriptor_t,
     convDesc: cudnnConvolutionDescriptor_t,
     dxDesc: cudnnTensorDescriptor_t,
-    requestedAlgoCount: i32,
+    requestedAlgoCount: ::core::ffi::c_int,
     mut returnedAlgoCount: T0,
     mut perfResults: T1,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnFindConvolutionBackwardDataAlgorithm(handle, wDesc, dyDesc, convDesc, dxDesc, requestedAlgoCount as _, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
+    let status = unsafe { crate::sys::cudnnFindConvolutionBackwardDataAlgorithm(handle, wDesc, dyDesc, convDesc, dxDesc, requestedAlgoCount, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Find the best backward data convolution algorithm with user-provided buffers.\n\n# Arguments\n\n* `handle` [in]  -                The cuDNN handle.\n* `wDesc` [in]  -                 Descriptor for the filter.\n* `w` [in]  -                     Pointer to filter data in device memory.\n* `dyDesc` [in]  -                Descriptor for the gradient output tensor.\n* `dy` [in]  -                    Pointer to gradient output data in device memory.\n* `convDesc` [in]  -              The convolution descriptor.\n* `dxDesc` [in]  -                Descriptor for the gradient input tensor.\n* `dx` [out]  -                    Pointer to gradient input data in device memory.\n* `requestedAlgoCount` [in]  -    Maximum number of algorithms to test.\n* `returnedAlgoCount` [out]  -     Pointer to receive the actual number returned.\n* `perfResults` [out]  -           Array to receive the algorithm performance results.\n* `workSpace` [in]  -             Pointer to workspace in device memory.\n* `workSpaceSizeInBytes` [in]  -  Size of the workspace in bytes.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     wDesc: cudnnFilterDescriptor_t,
@@ -5294,7 +5561,7 @@ pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithmEx<T0: types::CudaAsPtr, 
     convDesc: cudnnConvolutionDescriptor_t,
     dxDesc: cudnnTensorDescriptor_t,
     mut dx: T2,
-    requestedAlgoCount: i32,
+    requestedAlgoCount: ::core::ffi::c_int,
     mut returnedAlgoCount: T3,
     mut perfResults: T4,
     mut workSpace: T5,
@@ -5310,7 +5577,7 @@ pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithmEx<T0: types::CudaAsPtr, 
             convDesc,
             dxDesc,
             dx.as_mut_ptr() as *mut _,
-            requestedAlgoCount as _,
+            requestedAlgoCount,
             returnedAlgoCount.as_mut_ptr() as *mut _,
             perfResults.as_mut_ptr() as *mut _,
             workSpace.as_mut_ptr() as *mut _,
@@ -5319,23 +5586,25 @@ pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithmEx<T0: types::CudaAsPtr, 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Get backward data convolution algorithm recommendations without executing them.\n\n# Arguments\n\n* `handle` [in]  -              The cuDNN handle.\n* `filterDesc` [in]  -          Descriptor for the filter.\n* `diffDesc` [in]  -            Descriptor for the gradient output tensor.\n* `convDesc` [in]  -            The convolution descriptor.\n* `gradDesc` [in]  -            Descriptor for the gradient input tensor.\n* `requestedAlgoCount` [in]  -  Maximum number of algorithms to return.\n* `returnedAlgoCount` [out]  -   Pointer to receive the actual number returned.\n* `perfResults` [out]  -         Array to receive the algorithm performance results.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetConvolutionBackwardDataAlgorithm_v7(
     handle: cudnnHandle_t,
     filterDesc: cudnnFilterDescriptor_t,
     diffDesc: cudnnTensorDescriptor_t,
     convDesc: cudnnConvolutionDescriptor_t,
     gradDesc: cudnnTensorDescriptor_t,
-    requestedAlgoCount: i32,
-) -> Result<(i32, cudnnConvolutionBwdDataAlgoPerf_t), crate::sys::cudnnStatus_t> {
-    let mut out_6: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    requestedAlgoCount: ::core::ffi::c_int,
+) -> Result<(::core::ffi::c_int, cudnnConvolutionBwdDataAlgoPerf_t), crate::sys::cudnnStatus_t> {
+    let mut out_6: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let mut out_7: std::mem::MaybeUninit<cudnnConvolutionBwdDataAlgoPerf_t> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetConvolutionBackwardDataAlgorithm_v7(handle, filterDesc, diffDesc, convDesc, gradDesc, requestedAlgoCount as _, out_6.as_mut_ptr() as *mut _, out_7.as_mut_ptr() as *mut _) };
+    let status = unsafe { crate::sys::cudnnGetConvolutionBackwardDataAlgorithm_v7(handle, filterDesc, diffDesc, convDesc, gradDesc, requestedAlgoCount, out_6.as_mut_ptr() as *mut _, out_7.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_6.assume_init() as i32, out_7.assume_init() as cudnnConvolutionBwdDataAlgoPerf_t)) }
+        unsafe { Ok((out_6.assume_init() as ::core::ffi::c_int, out_7.assume_init() as cudnnConvolutionBwdDataAlgoPerf_t)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Get the minimum workspace size required for a backward data convolution algorithm.\n\n# Arguments\n\n* `handle` [in]  -       The cuDNN handle.\n* `wDesc` [in]  -        Descriptor for the filter.\n* `dyDesc` [in]  -       Descriptor for the gradient output tensor.\n* `convDesc` [in]  -     The convolution descriptor.\n* `dxDesc` [in]  -       Descriptor for the gradient input tensor.\n* `algo` [in]  -         The backward data convolution algorithm.\n* `sizeInBytes` [out]  -  Pointer to receive the required workspace size.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetConvolutionBackwardDataWorkspaceSize(
     handle: cudnnHandle_t,
     wDesc: cudnnFilterDescriptor_t,
@@ -5352,6 +5621,7 @@ pub unsafe fn cudnnGetConvolutionBackwardDataWorkspaceSize(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Execute a backward data convolution (compute gradient with respect to input data).\nComputes: dx = alpha * dconv(w, dy) + beta * dx\n\n# Arguments\n\n* `handle` [in]  -                The cuDNN handle.\n* `alpha` [in]  -                 Pointer to scaling factor for the convolution result.\n* `wDesc` [in]  -                 Descriptor for the filter.\n* `w` [in]  -                     Pointer to filter data in device memory.\n* `dyDesc` [in]  -                Descriptor for the gradient output tensor.\n* `dy` [in]  -                    Pointer to gradient output data in device memory.\n* `convDesc` [in]  -              The convolution descriptor.\n* `algo` [in]  -                  The backward data convolution algorithm.\n* `workSpace` [in]  -             Pointer to workspace in device memory.\n* `workSpaceSizeInBytes` [in]  -  Size of the workspace in bytes.\n* `beta` [in]  -                  Pointer to scaling factor for the prior gradient input.\n* `dxDesc` [in]  -                Descriptor for the gradient input tensor.\n* `dx` [in,out]  -                    Pointer to gradient input data in device memory.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnConvolutionBackwardData<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     alpha: T0,
@@ -5386,6 +5656,7 @@ pub unsafe fn cudnnConvolutionBackwardData<T0: types::CudaAsPtr, T1: types::Cuda
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Calculate folding descriptors for backward data convolution (dgrad).\nComputes the folded descriptors needed for tensor transform operations\nused in backward data gradient computation.\n\n# Arguments\n\n* `handle` [in]  -                 The cuDNN handle.\n* `filterDesc` [in]  -             Descriptor for the filter.\n* `diffDesc` [in]  -               Descriptor for the gradient output tensor.\n* `convDesc` [in]  -               The convolution descriptor.\n* `gradDesc` [in]  -               Descriptor for the gradient input tensor.\n* `transformFormat` [in]  -         The tensor format for the transform.\n* `foldedFilterDesc` [out]  -       Descriptor for the folded filter.\n* `paddedDiffDesc` [out]  -         Descriptor for the padded gradient output.\n* `foldedConvDesc` [out]  -         Descriptor for the folded convolution.\n* `foldedGradDesc` [out]  -         Descriptor for the folded gradient input.\n* `filterFoldTransDesc` [out]  -    Transform descriptor for filter folding.\n* `diffPadTransDesc` [out]  -       Transform descriptor for diff padding.\n* `gradFoldTransDesc` [out]  -      Transform descriptor for gradient folding.\n* `gradUnfoldTransDesc` [out]  -    Transform descriptor for gradient unfolding.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetFoldedConvBackwardDataDescriptors(
     handle: cudnnHandle_t,
     filterDesc: cudnnFilterDescriptor_t,
@@ -5422,32 +5693,36 @@ pub unsafe fn cudnnGetFoldedConvBackwardDataDescriptors(
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Check the version of the cuDNN CNN library.\nVerifies that the CNN sub-library version matches the core cuDNN version.\n\n# Returns\n\ncudnnStatus_t indicating success or version mismatch.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCnnVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnCnnVersionCheck() };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetConvolutionBackwardFilterAlgorithmMaxCount(handle: cudnnHandle_t) -> Result<i32, crate::sys::cudnnStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Get the maximum number of backward filter convolution algorithms available.\n\n# Arguments\n\n* `handle` [in]  - The cuDNN handle.\n* `count` [out]  -  Pointer to receive the maximum algorithm count.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetConvolutionBackwardFilterAlgorithmMaxCount(handle: cudnnHandle_t) -> Result<::core::ffi::c_int, crate::sys::cudnnStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetConvolutionBackwardFilterAlgorithmMaxCount(handle, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Find the best backward filter convolution algorithm by running benchmarks.\n\n# Arguments\n\n* `handle` [in]  -              The cuDNN handle.\n* `xDesc` [in]  -               Descriptor for the input tensor.\n* `dyDesc` [in]  -              Descriptor for the gradient output tensor.\n* `convDesc` [in]  -            The convolution descriptor.\n* `dwDesc` [in]  -              Descriptor for the filter gradient.\n* `requestedAlgoCount` [in]  -  Maximum number of algorithms to test.\n* `returnedAlgoCount` [out]  -   Pointer to receive the actual number returned.\n* `perfResults` [out]  -         Array to receive the algorithm performance results.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithm<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
     dyDesc: cudnnTensorDescriptor_t,
     convDesc: cudnnConvolutionDescriptor_t,
     dwDesc: cudnnFilterDescriptor_t,
-    requestedAlgoCount: i32,
+    requestedAlgoCount: ::core::ffi::c_int,
     mut returnedAlgoCount: T0,
     mut perfResults: T1,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
-    let status = unsafe { crate::sys::cudnnFindConvolutionBackwardFilterAlgorithm(handle, xDesc, dyDesc, convDesc, dwDesc, requestedAlgoCount as _, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
+    let status = unsafe { crate::sys::cudnnFindConvolutionBackwardFilterAlgorithm(handle, xDesc, dyDesc, convDesc, dwDesc, requestedAlgoCount, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Find the best backward filter convolution algorithm with user-provided buffers.\n\n# Arguments\n\n* `handle` [in]  -                The cuDNN handle.\n* `xDesc` [in]  -                 Descriptor for the input tensor.\n* `x` [in]  -                     Pointer to input data in device memory.\n* `dyDesc` [in]  -                Descriptor for the gradient output tensor.\n* `y` [in]  -                     Pointer to gradient output data in device memory.\n* `convDesc` [in]  -              The convolution descriptor.\n* `dwDesc` [in]  -                Descriptor for the filter gradient.\n* `dw` [out]  -                    Pointer to filter gradient data in device memory.\n* `requestedAlgoCount` [in]  -    Maximum number of algorithms to test.\n* `returnedAlgoCount` [out]  -     Pointer to receive the actual number returned.\n* `perfResults` [out]  -           Array to receive the algorithm performance results.\n* `workSpace` [in]  -             Pointer to workspace in device memory.\n* `workSpaceSizeInBytes` [in]  -  Size of the workspace in bytes.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
@@ -5457,7 +5732,7 @@ pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithmEx<T0: types::CudaAsPtr
     convDesc: cudnnConvolutionDescriptor_t,
     dwDesc: cudnnFilterDescriptor_t,
     mut dw: T2,
-    requestedAlgoCount: i32,
+    requestedAlgoCount: ::core::ffi::c_int,
     mut returnedAlgoCount: T3,
     mut perfResults: T4,
     mut workSpace: T5,
@@ -5473,7 +5748,7 @@ pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithmEx<T0: types::CudaAsPtr
             convDesc,
             dwDesc,
             dw.as_mut_ptr() as *mut _,
-            requestedAlgoCount as _,
+            requestedAlgoCount,
             returnedAlgoCount.as_mut_ptr() as *mut _,
             perfResults.as_mut_ptr() as *mut _,
             workSpace.as_mut_ptr() as *mut _,
@@ -5482,23 +5757,25 @@ pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithmEx<T0: types::CudaAsPtr
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Get backward filter convolution algorithm recommendations without executing them.\n\n# Arguments\n\n* `handle` [in]  -              The cuDNN handle.\n* `srcDesc` [in]  -             Descriptor for the input tensor.\n* `diffDesc` [in]  -            Descriptor for the gradient output tensor.\n* `convDesc` [in]  -            The convolution descriptor.\n* `gradDesc` [in]  -            Descriptor for the filter gradient.\n* `requestedAlgoCount` [in]  -  Maximum number of algorithms to return.\n* `returnedAlgoCount` [out]  -   Pointer to receive the actual number returned.\n* `perfResults` [out]  -         Array to receive the algorithm performance results.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetConvolutionBackwardFilterAlgorithm_v7(
     handle: cudnnHandle_t,
     srcDesc: cudnnTensorDescriptor_t,
     diffDesc: cudnnTensorDescriptor_t,
     convDesc: cudnnConvolutionDescriptor_t,
     gradDesc: cudnnFilterDescriptor_t,
-    requestedAlgoCount: i32,
-) -> Result<(i32, cudnnConvolutionBwdFilterAlgoPerf_t), crate::sys::cudnnStatus_t> {
-    let mut out_6: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+    requestedAlgoCount: ::core::ffi::c_int,
+) -> Result<(::core::ffi::c_int, cudnnConvolutionBwdFilterAlgoPerf_t), crate::sys::cudnnStatus_t> {
+    let mut out_6: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let mut out_7: std::mem::MaybeUninit<cudnnConvolutionBwdFilterAlgoPerf_t> = std::mem::MaybeUninit::zeroed();
-    let status = unsafe { crate::sys::cudnnGetConvolutionBackwardFilterAlgorithm_v7(handle, srcDesc, diffDesc, convDesc, gradDesc, requestedAlgoCount as _, out_6.as_mut_ptr() as *mut _, out_7.as_mut_ptr() as *mut _) };
+    let status = unsafe { crate::sys::cudnnGetConvolutionBackwardFilterAlgorithm_v7(handle, srcDesc, diffDesc, convDesc, gradDesc, requestedAlgoCount, out_6.as_mut_ptr() as *mut _, out_7.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok((out_6.assume_init() as i32, out_7.assume_init() as cudnnConvolutionBwdFilterAlgoPerf_t)) }
+        unsafe { Ok((out_6.assume_init() as ::core::ffi::c_int, out_7.assume_init() as cudnnConvolutionBwdFilterAlgoPerf_t)) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Get the minimum workspace size required for a backward filter convolution algorithm.\n\n# Arguments\n\n* `handle` [in]  -       The cuDNN handle.\n* `xDesc` [in]  -        Descriptor for the input tensor.\n* `dyDesc` [in]  -       Descriptor for the gradient output tensor.\n* `convDesc` [in]  -     The convolution descriptor.\n* `gradDesc` [in]  -     Descriptor for the filter gradient.\n* `algo` [in]  -         The backward filter convolution algorithm.\n* `sizeInBytes` [out]  -  Pointer to receive the required workspace size.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetConvolutionBackwardFilterWorkspaceSize(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
@@ -5515,6 +5792,7 @@ pub unsafe fn cudnnGetConvolutionBackwardFilterWorkspaceSize(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Execute a backward filter convolution (compute gradient with respect to filter weights).\nComputes: dw = alpha * dconv(x, dy) + beta * dw\n\n# Arguments\n\n* `handle` [in]  -                The cuDNN handle.\n* `alpha` [in]  -                 Pointer to scaling factor for the convolution result.\n* `xDesc` [in]  -                 Descriptor for the input tensor.\n* `x` [in]  -                     Pointer to input data in device memory.\n* `dyDesc` [in]  -                Descriptor for the gradient output tensor.\n* `dy` [in]  -                    Pointer to gradient output data in device memory.\n* `convDesc` [in]  -              The convolution descriptor.\n* `algo` [in]  -                  The backward filter convolution algorithm.\n* `workSpace` [in]  -             Pointer to workspace in device memory.\n* `workSpaceSizeInBytes` [in]  -  Size of the workspace in bytes.\n* `beta` [in]  -                  Pointer to scaling factor for the prior filter gradient.\n* `dwDesc` [in]  -                Descriptor for the filter gradient.\n* `dw` [in,out]  -                    Pointer to filter gradient data in device memory.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnConvolutionBackwardFilter<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     alpha: T0,
@@ -5549,6 +5827,7 @@ pub unsafe fn cudnnConvolutionBackwardFilter<T0: types::CudaAsPtr, T1: types::Cu
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Compute the bias gradient for batch convolution.\nComputes: db = alpha * sum(dy) + beta * db, where the sum is over spatial dimensions and batch.\n\n# Arguments\n\n* `handle` [in]  - The cuDNN handle.\n* `alpha` [in]  -  Pointer to scaling factor for the bias gradient result.\n* `dyDesc` [in]  - Descriptor for the gradient output tensor.\n* `dy` [in]  -     Pointer to gradient output data in device memory.\n* `beta` [in]  -   Pointer to scaling factor for the prior bias gradient.\n* `dbDesc` [in]  - Descriptor for the bias gradient tensor.\n* `db` [in,out]  -     Pointer to bias gradient data in device memory.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnConvolutionBackwardBias<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     alpha: T0,
@@ -5561,6 +5840,7 @@ pub unsafe fn cudnnConvolutionBackwardBias<T0: types::CudaAsPtr, T1: types::Cuda
     let status = unsafe { crate::sys::cudnnConvolutionBackwardBias(handle, alpha.as_const_ptr() as *const _, dyDesc, dy.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, dbDesc, db.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Create a fused operations constant parameter pack.\n\n# Arguments\n\n* `constPack` [out]  - Pointer to receive the newly created constant parameter pack.\n* `ops` [in]  -       The fused operation type.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCreateFusedOpsConstParamPack(ops: cudnnFusedOps_t) -> Result<cudnnFusedOpsConstParamPack_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnFusedOpsConstParamPack_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateFusedOpsConstParamPack(out_0.as_mut_ptr() as *mut _, ops) };
@@ -5570,23 +5850,27 @@ pub unsafe fn cudnnCreateFusedOpsConstParamPack(ops: cudnnFusedOps_t) -> Result<
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroy a fused operations constant parameter pack.\n\n# Arguments\n\n* `constPack` [in]  - The constant parameter pack to destroy.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnDestroyFusedOpsConstParamPack(constPack: cudnnFusedOpsConstParamPack_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyFusedOpsConstParamPack(constPack) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Set an attribute on a fused operations constant parameter pack.\n\n# Arguments\n\n* `constPack` [in,out]  -  The constant parameter pack.\n* `paramLabel` [in]  - The label identifying which parameter to set.\n* `param` [in]  -      Pointer to the parameter value.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetFusedOpsConstParamPackAttribute<T0: types::CudaAsPtr>(constPack: cudnnFusedOpsConstParamPack_t, paramLabel: cudnnFusedOpsConstParamLabel_t, param: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetFusedOpsConstParamPackAttribute(constPack, paramLabel, param.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetFusedOpsConstParamPackAttribute(constPack: cudnnFusedOpsConstParamPack_t, paramLabel: cudnnFusedOpsConstParamLabel_t, param: *mut ::std::os::raw::c_void) -> Result<i32, crate::sys::cudnnStatus_t> {
-    let mut out_3: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+#[doc = "Get an attribute from a fused operations constant parameter pack.\n\n# Arguments\n\n* `constPack` [in]  -  The constant parameter pack.\n* `paramLabel` [in]  - The label identifying which parameter to get.\n* `param` [out]  -      Pointer to receive the parameter value.\n* `isNULL` [out]  -     Pointer to receive whether the parameter is NULL.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
+pub unsafe fn cudnnGetFusedOpsConstParamPackAttribute(constPack: cudnnFusedOpsConstParamPack_t, paramLabel: cudnnFusedOpsConstParamLabel_t, param: *mut ::core::ffi::c_void) -> Result<::core::ffi::c_int, crate::sys::cudnnStatus_t> {
+    let mut out_3: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnGetFusedOpsConstParamPackAttribute(constPack, paramLabel, param, out_3.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_3.assume_init() as i32) }
+        unsafe { Ok(out_3.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Create a fused operations variant parameter pack.\n\n# Arguments\n\n* `varPack` [out]  - Pointer to receive the newly created variant parameter pack.\n* `ops` [in]  -     The fused operation type.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCreateFusedOpsVariantParamPack(ops: cudnnFusedOps_t) -> Result<cudnnFusedOpsVariantParamPack_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnFusedOpsVariantParamPack_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateFusedOpsVariantParamPack(out_0.as_mut_ptr() as *mut _, ops) };
@@ -5596,18 +5880,22 @@ pub unsafe fn cudnnCreateFusedOpsVariantParamPack(ops: cudnnFusedOps_t) -> Resul
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroy a fused operations variant parameter pack.\n\n# Arguments\n\n* `varPack` [in]  - The variant parameter pack to destroy.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnDestroyFusedOpsVariantParamPack(varPack: cudnnFusedOpsVariantParamPack_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyFusedOpsVariantParamPack(varPack) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Set an attribute on a fused operations variant parameter pack.\n\n# Arguments\n\n* `varPack` [in,out]  -    The variant parameter pack.\n* `paramLabel` [in]  - The label identifying which parameter to set.\n* `ptr` [in]  -        Pointer to the parameter value.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnSetFusedOpsVariantParamPackAttribute<T0: types::CudaAsMutPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetFusedOpsVariantParamPackAttribute(varPack, paramLabel, ptr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Get an attribute from a fused operations variant parameter pack.\n\n# Arguments\n\n* `varPack` [in]  -    The variant parameter pack.\n* `paramLabel` [in]  - The label identifying which parameter to get.\n* `ptr` [out]  -        Pointer to receive the parameter value.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnGetFusedOpsVariantParamPackAttribute<T0: types::CudaAsMutPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnGetFusedOpsVariantParamPackAttribute(varPack, paramLabel, ptr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Create a fused operations execution plan.\n\n# Arguments\n\n* `plan` [out]  - Pointer to receive the newly created fused operations plan.\n* `ops` [in]  -  The fused operation type.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnCreateFusedOpsPlan(ops: cudnnFusedOps_t) -> Result<cudnnFusedOpsPlan_t, crate::sys::cudnnStatus_t> {
     let mut out_0: std::mem::MaybeUninit<cudnnFusedOpsPlan_t> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cudnnCreateFusedOpsPlan(out_0.as_mut_ptr() as *mut _, ops) };
@@ -5617,15 +5905,93 @@ pub unsafe fn cudnnCreateFusedOpsPlan(ops: cudnnFusedOps_t) -> Result<cudnnFused
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroy a fused operations execution plan.\n\n# Arguments\n\n* `plan` [in]  - The fused operations plan to destroy.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnDestroyFusedOpsPlan(plan: cudnnFusedOpsPlan_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDestroyFusedOpsPlan(plan) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Build a fused operations execution plan from constant parameters.\nCompiles the plan and returns the required workspace size.\n\n# Arguments\n\n* `handle` [in]  -               The cuDNN handle.\n* `plan` [in,out]  -                 The fused operations plan to build.\n* `constPack` [in]  -            The constant parameter pack with descriptors.\n* `workspaceSizeInBytes` [out]  - Pointer to receive the required workspace size.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnMakeFusedOpsPlan<T0: types::CudaAsMutPtr>(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, constPack: cudnnFusedOpsConstParamPack_t, mut workspaceSizeInBytes: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnMakeFusedOpsPlan(handle, plan, constPack, workspaceSizeInBytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
+#[doc = "Execute a fused operations plan.\n\n# Arguments\n\n* `handle` [in]  -  The cuDNN handle.\n* `plan` [in]  -    The fused operations plan to execute.\n* `varPack` [in]  - The variant parameter pack with data pointers and scalar values.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Deprecated** Since cuDNN 9.0.0. Use graph API instead.\n> **Since** cuDNN 9.0.0"]
 pub unsafe fn cudnnFusedOpsExecute(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, varPack: cudnnFusedOpsVariantParamPack_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnFusedOpsExecute(handle, plan, varPack) };
+    if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
+}
+#[doc = "Check the version of the cuDNN SubquadraticOps library.\nVerifies that the SubquadraticOps sub-library version matches the core cuDNN version.\n\n# Returns\n\ncudnnStatus_t indicating success or version mismatch.\n> **Since** cuDNN 9.22.0"]
+pub unsafe fn cudnnSubquadraticOpsVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe { crate::sys::cudnnSubquadraticOpsVersionCheck() };
+    if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
+}
+#[doc = "Compute a causal (left-padded) depthwise 1D convolution with optional SiLU activation.\nComputes: y = Act( conv1d_causal(x, weight) + bias )\nCausal padding inserts (kernel_size - 1) zeros on the left and 0 on the right.\nThe convolution is depthwise: each channel is convolved independently with its\nown 1D filter.\n\n# Arguments\n\n* `stream` [in]  -      CUDA stream for kernel launch.\n* `x` [in]  -           Input tensor in device memory, layout (batch, dim, seq_len), contiguous.\n* `weight` [in]  -      Filter tensor in device memory, layout (dim, kernel_size), contiguous.\n* `bias` [in]  -        Bias tensor in device memory, layout (dim,), contiguous. Must be non-NULL.\n* `y` [out]  -           Output tensor in device memory, layout (batch, dim, seq_len), contiguous.\n* `batch` [in]  -       Batch size.\n* `dim` [in]  -         Number of channels (feature dimension).\n* `seqLen` [in]  -      Sequence length.\n* `kernelSize` [in]  -  Convolution kernel width. Supported: 2-8, 16, 32, 64, 128, 256.\n* `dataType` [in]  -    Element type for x, weight, bias, y. Supported: FLOAT, HALF, BFLOAT16.\n* `activation` [in]  -  Activation to apply after convolution + bias.\n> **Note** Not supported on Windows.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Since** cuDNN 9.22.0"]
+pub unsafe fn cudnnCausalConv1dForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    stream: cudaStream_t,
+    x: T0,
+    weight: T1,
+    bias: T2,
+    mut y: T3,
+    batch: ::core::ffi::c_int,
+    dim: ::core::ffi::c_int,
+    seqLen: ::core::ffi::c_int,
+    kernelSize: ::core::ffi::c_int,
+    dataType: cudnnDataType_t,
+    activation: cudnnCausalConv1dActivation_t,
+) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe {
+        crate::sys::cudnnCausalConv1dForward(
+            stream,
+            x.as_const_ptr() as *const _,
+            weight.as_const_ptr() as *const _,
+            bias.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            batch,
+            dim,
+            seqLen,
+            kernelSize,
+            dataType,
+            activation,
+        )
+    };
+    if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
+}
+#[doc = "Compute gradients for causal depthwise 1D convolution.\nComputes:\n- dx      = dL/dx       (batch, dim, seq_len)\n- dweight = dL/dweight   (dim, kernel_size) — accumulated via atomicAdd\n- dbias   = dL/dbias     (dim,)             — accumulated via atomicAdd\nThe caller must zero-initialize dweight and dbias before calling this function\nif accumulation across multiple calls is not desired.\n\n# Arguments\n\n* `stream` [in]  -      CUDA stream for kernel launch.\n* `x` [in]  -           Original input tensor (needed for activation backward), device memory.\n* `weight` [in]  -      Original filter tensor in device memory.\n* `bias` [in]  -        Original bias tensor in device memory. Must be non-NULL.\n* `dy` [in]  -          Output gradient tensor in device memory, layout (batch, dim, seq_len).\n* `dx` [out]  -          Input gradient tensor in device memory, layout (batch, dim, seq_len).\n* `dweight` [in,out]  -     Filter gradient tensor (accumulated) in device memory, layout (dim, kernel_size).\n* `dbias` [in,out]  -       Bias gradient tensor (accumulated) in device memory, layout (dim,). Must be non-NULL.\n* `batch` [in]  -       Batch size.\n* `dim` [in]  -         Number of channels.\n* `seqLen` [in]  -      Sequence length.\n* `kernelSize` [in]  -  Convolution kernel width.\n* `dataType` [in]  -    Element type for x, weight, bias, dy, dx. Supported: FLOAT, HALF, BFLOAT16.\n* `dwDataType` [in]  -  Element type for dweight, dbias. Currently only FLOAT is supported.\n* `activation` [in]  -  Activation that was applied in forward (needed for backward recompute).\n> **Note** Not supported on Windows.\n\n# Returns\n\ncudnnStatus_t indicating success or failure.\n> **Since** cuDNN 9.22.0"]
+pub unsafe fn cudnnCausalConv1dBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsMutPtr>(
+    stream: cudaStream_t,
+    x: T0,
+    weight: T1,
+    bias: T2,
+    dy: T3,
+    mut dx: T4,
+    mut dweight: T5,
+    mut dbias: T6,
+    batch: ::core::ffi::c_int,
+    dim: ::core::ffi::c_int,
+    seqLen: ::core::ffi::c_int,
+    kernelSize: ::core::ffi::c_int,
+    dataType: cudnnDataType_t,
+    dwDataType: cudnnDataType_t,
+    activation: cudnnCausalConv1dActivation_t,
+) -> Result<(), crate::sys::cudnnStatus_t> {
+    let status = unsafe {
+        crate::sys::cudnnCausalConv1dBackward(
+            stream,
+            x.as_const_ptr() as *const _,
+            weight.as_const_ptr() as *const _,
+            bias.as_const_ptr() as *const _,
+            dy.as_const_ptr() as *const _,
+            dx.as_mut_ptr() as *mut _,
+            dweight.as_mut_ptr() as *mut _,
+            dbias.as_mut_ptr() as *mut _,
+            batch,
+            dim,
+            seqLen,
+            kernelSize,
+            dataType,
+            dwDataType,
+            activation,
+        )
+    };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }

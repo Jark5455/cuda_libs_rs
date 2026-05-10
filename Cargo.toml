@@ -15,8 +15,8 @@ members = [
     "cuda_libs_curand",
     "cuda_libs_cusolver",
     "cuda_libs_cusparse",
-    "cuda_libs_macros",
-    "cuda_libs_test",
+    "cuda_rustc",
+    "cuda_rustc_runtime",
 ]
 
 [dependencies]
@@ -29,11 +29,10 @@ cuda_libs_cufft = { path = "cuda_libs_cufft", optional = true }
 cuda_libs_curand = { path = "cuda_libs_curand", optional = true }
 cuda_libs_cusolver = { path = "cuda_libs_cusolver", optional = true }
 cuda_libs_cusparse = { path = "cuda_libs_cusparse", optional = true }
-cuda_libs_macros = { path = "cuda_libs_macros", optional = true }
 libc = { version = "0.2.153", optional = true }
 
 [features]
-driver = ["dep:cuda_libs_driver", "dep:cuda_libs_macros"]
+driver = ["dep:cuda_libs_driver"]
 cudart = ["dep:cuda_libs_cudart"]
 cublas = ["dep:cuda_libs_cublas"]
 cublas_lt = ["dep:cuda_libs_cublas_lt"]
@@ -45,7 +44,7 @@ cusparse = ["dep:cuda_libs_cusparse"]
 
 dynamic-link = []
 runtime-link = [
-    "dep:cuda_libs_macros", "dep:libc",
+    "dep:libc",
     "cuda_libs_driver?/runtime-link",
     "cuda_libs_cudart?/runtime-link",
     "cuda_libs_cublas?/runtime-link",
@@ -56,6 +55,4 @@ runtime-link = [
     "cuda_libs_cusolver?/runtime-link",
     "cuda_libs_cusparse?/runtime-link"
 ]
-
-nvptx = ["dep:cuda_libs_macros"]
 

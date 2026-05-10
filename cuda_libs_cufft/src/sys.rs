@@ -52,61 +52,61 @@ pub enum cufftCompatibility_t {
     CUFFT_COMPATIBILITY_FFTW_PADDING = 1,
 }
 pub use self::cufftCompatibility_t as cufftCompatibility;
-pub type cufftHandle = ::std::os::raw::c_int;
+pub type cufftHandle = ::core::ffi::c_int;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftPlan1d(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int) -> cufftResult;
+    pub fn cufftPlan1d(plan: *mut cufftHandle, nx: ::core::ffi::c_int, type_: cufftType, batch: ::core::ffi::c_int) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftPlan2d(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType) -> cufftResult;
+    pub fn cufftPlan2d(plan: *mut cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, type_: cufftType) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftPlan3d(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType) -> cufftResult;
+    pub fn cufftPlan3d(plan: *mut cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, nz: ::core::ffi::c_int, type_: cufftType) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cufftPlanMany(
         plan: *mut cufftHandle,
-        rank: ::std::os::raw::c_int,
-        n: *mut ::std::os::raw::c_int,
-        inembed: *mut ::std::os::raw::c_int,
-        istride: ::std::os::raw::c_int,
-        idist: ::std::os::raw::c_int,
-        onembed: *mut ::std::os::raw::c_int,
-        ostride: ::std::os::raw::c_int,
-        odist: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        n: *mut ::core::ffi::c_int,
+        inembed: *mut ::core::ffi::c_int,
+        istride: ::core::ffi::c_int,
+        idist: ::core::ffi::c_int,
+        onembed: *mut ::core::ffi::c_int,
+        ostride: ::core::ffi::c_int,
+        odist: ::core::ffi::c_int,
         type_: cufftType,
-        batch: ::std::os::raw::c_int,
+        batch: ::core::ffi::c_int,
     ) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftMakePlan1d(plan: cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult;
+    pub fn cufftMakePlan1d(plan: cufftHandle, nx: ::core::ffi::c_int, type_: cufftType, batch: ::core::ffi::c_int, workSize: *mut usize) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftMakePlan2d(plan: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
+    pub fn cufftMakePlan2d(plan: cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftMakePlan3d(plan: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
+    pub fn cufftMakePlan3d(plan: cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, nz: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cufftMakePlanMany(
         plan: cufftHandle,
-        rank: ::std::os::raw::c_int,
-        n: *mut ::std::os::raw::c_int,
-        inembed: *mut ::std::os::raw::c_int,
-        istride: ::std::os::raw::c_int,
-        idist: ::std::os::raw::c_int,
-        onembed: *mut ::std::os::raw::c_int,
-        ostride: ::std::os::raw::c_int,
-        odist: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        n: *mut ::core::ffi::c_int,
+        inembed: *mut ::core::ffi::c_int,
+        istride: ::core::ffi::c_int,
+        idist: ::core::ffi::c_int,
+        onembed: *mut ::core::ffi::c_int,
+        ostride: ::core::ffi::c_int,
+        odist: ::core::ffi::c_int,
         type_: cufftType,
-        batch: ::std::os::raw::c_int,
+        batch: ::core::ffi::c_int,
         workSize: *mut usize,
     ) -> cufftResult;
 }
@@ -114,16 +114,16 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cufftMakePlanMany64(
         plan: cufftHandle,
-        rank: ::std::os::raw::c_int,
-        n: *mut ::std::os::raw::c_longlong,
-        inembed: *mut ::std::os::raw::c_longlong,
-        istride: ::std::os::raw::c_longlong,
-        idist: ::std::os::raw::c_longlong,
-        onembed: *mut ::std::os::raw::c_longlong,
-        ostride: ::std::os::raw::c_longlong,
-        odist: ::std::os::raw::c_longlong,
+        rank: ::core::ffi::c_int,
+        n: *mut ::core::ffi::c_longlong,
+        inembed: *mut ::core::ffi::c_longlong,
+        istride: ::core::ffi::c_longlong,
+        idist: ::core::ffi::c_longlong,
+        onembed: *mut ::core::ffi::c_longlong,
+        ostride: ::core::ffi::c_longlong,
+        odist: ::core::ffi::c_longlong,
         type_: cufftType,
-        batch: ::std::os::raw::c_longlong,
+        batch: ::core::ffi::c_longlong,
         workSize: *mut usize,
     ) -> cufftResult;
 }
@@ -131,44 +131,44 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cufftGetSizeMany64(
         plan: cufftHandle,
-        rank: ::std::os::raw::c_int,
-        n: *mut ::std::os::raw::c_longlong,
-        inembed: *mut ::std::os::raw::c_longlong,
-        istride: ::std::os::raw::c_longlong,
-        idist: ::std::os::raw::c_longlong,
-        onembed: *mut ::std::os::raw::c_longlong,
-        ostride: ::std::os::raw::c_longlong,
-        odist: ::std::os::raw::c_longlong,
+        rank: ::core::ffi::c_int,
+        n: *mut ::core::ffi::c_longlong,
+        inembed: *mut ::core::ffi::c_longlong,
+        istride: ::core::ffi::c_longlong,
+        idist: ::core::ffi::c_longlong,
+        onembed: *mut ::core::ffi::c_longlong,
+        ostride: ::core::ffi::c_longlong,
+        odist: ::core::ffi::c_longlong,
         type_: cufftType,
-        batch: ::std::os::raw::c_longlong,
+        batch: ::core::ffi::c_longlong,
         workSize: *mut usize,
     ) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftEstimate1d(nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult;
+    pub fn cufftEstimate1d(nx: ::core::ffi::c_int, type_: cufftType, batch: ::core::ffi::c_int, workSize: *mut usize) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftEstimate2d(nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
+    pub fn cufftEstimate2d(nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftEstimate3d(nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
+    pub fn cufftEstimate3d(nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, nz: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cufftEstimateMany(
-        rank: ::std::os::raw::c_int,
-        n: *mut ::std::os::raw::c_int,
-        inembed: *mut ::std::os::raw::c_int,
-        istride: ::std::os::raw::c_int,
-        idist: ::std::os::raw::c_int,
-        onembed: *mut ::std::os::raw::c_int,
-        ostride: ::std::os::raw::c_int,
-        odist: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        n: *mut ::core::ffi::c_int,
+        inembed: *mut ::core::ffi::c_int,
+        istride: ::core::ffi::c_int,
+        idist: ::core::ffi::c_int,
+        onembed: *mut ::core::ffi::c_int,
+        ostride: ::core::ffi::c_int,
+        odist: ::core::ffi::c_int,
         type_: cufftType,
-        batch: ::std::os::raw::c_int,
+        batch: ::core::ffi::c_int,
         workSize: *mut usize,
     ) -> cufftResult;
 }
@@ -178,30 +178,30 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftGetSize1d(handle: cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult;
+    pub fn cufftGetSize1d(handle: cufftHandle, nx: ::core::ffi::c_int, type_: cufftType, batch: ::core::ffi::c_int, workSize: *mut usize) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftGetSize2d(handle: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
+    pub fn cufftGetSize2d(handle: cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftGetSize3d(handle: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
+    pub fn cufftGetSize3d(handle: cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, nz: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cufftGetSizeMany(
         handle: cufftHandle,
-        rank: ::std::os::raw::c_int,
-        n: *mut ::std::os::raw::c_int,
-        inembed: *mut ::std::os::raw::c_int,
-        istride: ::std::os::raw::c_int,
-        idist: ::std::os::raw::c_int,
-        onembed: *mut ::std::os::raw::c_int,
-        ostride: ::std::os::raw::c_int,
-        odist: ::std::os::raw::c_int,
+        rank: ::core::ffi::c_int,
+        n: *mut ::core::ffi::c_int,
+        inembed: *mut ::core::ffi::c_int,
+        istride: ::core::ffi::c_int,
+        idist: ::core::ffi::c_int,
+        onembed: *mut ::core::ffi::c_int,
+        ostride: ::core::ffi::c_int,
+        odist: ::core::ffi::c_int,
         type_: cufftType,
-        batch: ::std::os::raw::c_int,
+        batch: ::core::ffi::c_int,
         workArea: *mut usize,
     ) -> cufftResult;
 }
@@ -211,15 +211,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftSetWorkArea(plan: cufftHandle, workArea: *mut ::std::os::raw::c_void) -> cufftResult;
+    pub fn cufftSetWorkArea(plan: cufftHandle, workArea: *mut ::core::ffi::c_void) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftSetAutoAllocation(plan: cufftHandle, autoAllocate: ::std::os::raw::c_int) -> cufftResult;
+    pub fn cufftSetAutoAllocation(plan: cufftHandle, autoAllocate: ::core::ffi::c_int) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftExecC2C(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftComplex, direction: ::std::os::raw::c_int) -> cufftResult;
+    pub fn cufftExecC2C(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftComplex, direction: ::core::ffi::c_int) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -231,7 +231,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftExecZ2Z(plan: cufftHandle, idata: *mut cufftDoubleComplex, odata: *mut cufftDoubleComplex, direction: ::std::os::raw::c_int) -> cufftResult;
+    pub fn cufftExecZ2Z(plan: cufftHandle, idata: *mut cufftDoubleComplex, odata: *mut cufftDoubleComplex, direction: ::core::ffi::c_int) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -251,11 +251,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftGetVersion(version: *mut ::std::os::raw::c_int) -> cufftResult;
+    pub fn cufftGetVersion(version: *mut ::core::ffi::c_int) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cufftResult;
+    pub fn cufftGetProperty(type_: libraryPropertyType, value: *mut ::core::ffi::c_int) -> cufftResult;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -266,11 +266,11 @@ pub enum cufftProperty_t {
 pub use self::cufftProperty_t as cufftProperty;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftSetPlanPropertyInt64(plan: cufftHandle, property: cufftProperty, inputValueInt: ::std::os::raw::c_longlong) -> cufftResult;
+    pub fn cufftSetPlanPropertyInt64(plan: cufftHandle, property: cufftProperty, inputValueInt: ::core::ffi::c_longlong) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftGetPlanPropertyInt64(plan: cufftHandle, property: cufftProperty, returnPtrValue: *mut ::std::os::raw::c_longlong) -> cufftResult;
+    pub fn cufftGetPlanPropertyInt64(plan: cufftHandle, property: cufftProperty, returnPtrValue: *mut ::core::ffi::c_longlong) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -278,103 +278,72 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cufftPlan1d: Option<unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftPlan2d: Option<unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType) -> cufftResult>,
-    pub cufftPlan3d: Option<unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType) -> cufftResult>,
-    pub cufftPlanMany: Option<
-        unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int) -> cufftResult,
-    >,
-    pub cufftMakePlan1d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>,
-    pub cufftMakePlan2d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
-    pub cufftMakePlan3d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
-    pub cufftMakePlanMany: Option<
-        unsafe extern "C" fn(
-            cufftHandle,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cufftType,
-            ::std::os::raw::c_int,
-            *mut usize,
-        ) -> cufftResult,
-    >,
+    pub cufftPlan1d: Option<unsafe extern "C" fn(*mut cufftHandle, ::core::ffi::c_int, cufftType, ::core::ffi::c_int) -> cufftResult>,
+    pub cufftPlan2d: Option<unsafe extern "C" fn(*mut cufftHandle, ::core::ffi::c_int, ::core::ffi::c_int, cufftType) -> cufftResult>,
+    pub cufftPlan3d: Option<unsafe extern "C" fn(*mut cufftHandle, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cufftType) -> cufftResult>,
+    pub cufftPlanMany: Option<unsafe extern "C" fn(*mut cufftHandle, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cufftType, ::core::ffi::c_int) -> cufftResult>,
+    pub cufftMakePlan1d: Option<unsafe extern "C" fn(cufftHandle, ::core::ffi::c_int, cufftType, ::core::ffi::c_int, *mut usize) -> cufftResult>,
+    pub cufftMakePlan2d: Option<unsafe extern "C" fn(cufftHandle, ::core::ffi::c_int, ::core::ffi::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftMakePlan3d: Option<unsafe extern "C" fn(cufftHandle, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftMakePlanMany:
+        Option<unsafe extern "C" fn(cufftHandle, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cufftType, ::core::ffi::c_int, *mut usize) -> cufftResult>,
     pub cufftMakePlanMany64: Option<
         unsafe extern "C" fn(
             cufftHandle,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_longlong,
-            *mut ::std::os::raw::c_longlong,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_longlong,
-            *mut ::std::os::raw::c_longlong,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_longlong,
+            *mut ::core::ffi::c_longlong,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_longlong,
+            *mut ::core::ffi::c_longlong,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_longlong,
             cufftType,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *mut usize,
         ) -> cufftResult,
     >,
     pub cufftGetSizeMany64: Option<
         unsafe extern "C" fn(
             cufftHandle,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_longlong,
-            *mut ::std::os::raw::c_longlong,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_longlong,
-            *mut ::std::os::raw::c_longlong,
-            ::std::os::raw::c_longlong,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_longlong,
+            *mut ::core::ffi::c_longlong,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_longlong,
+            *mut ::core::ffi::c_longlong,
+            ::core::ffi::c_longlong,
+            ::core::ffi::c_longlong,
             cufftType,
-            ::std::os::raw::c_longlong,
+            ::core::ffi::c_longlong,
             *mut usize,
         ) -> cufftResult,
     >,
-    pub cufftEstimate1d: Option<unsafe extern "C" fn(::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>,
-    pub cufftEstimate2d: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
-    pub cufftEstimate3d: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
-    pub cufftEstimateMany:
-        Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>,
+    pub cufftEstimate1d: Option<unsafe extern "C" fn(::core::ffi::c_int, cufftType, ::core::ffi::c_int, *mut usize) -> cufftResult>,
+    pub cufftEstimate2d: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftEstimate3d: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftEstimateMany: Option<unsafe extern "C" fn(::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cufftType, ::core::ffi::c_int, *mut usize) -> cufftResult>,
     pub cufftCreate: Option<unsafe extern "C" fn(*mut cufftHandle) -> cufftResult>,
-    pub cufftGetSize1d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>,
-    pub cufftGetSize2d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
-    pub cufftGetSize3d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
-    pub cufftGetSizeMany: Option<
-        unsafe extern "C" fn(
-            cufftHandle,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cufftType,
-            ::std::os::raw::c_int,
-            *mut usize,
-        ) -> cufftResult,
-    >,
+    pub cufftGetSize1d: Option<unsafe extern "C" fn(cufftHandle, ::core::ffi::c_int, cufftType, ::core::ffi::c_int, *mut usize) -> cufftResult>,
+    pub cufftGetSize2d: Option<unsafe extern "C" fn(cufftHandle, ::core::ffi::c_int, ::core::ffi::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftGetSize3d: Option<unsafe extern "C" fn(cufftHandle, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftGetSizeMany:
+        Option<unsafe extern "C" fn(cufftHandle, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cufftType, ::core::ffi::c_int, *mut usize) -> cufftResult>,
     pub cufftGetSize: Option<unsafe extern "C" fn(cufftHandle, *mut usize) -> cufftResult>,
-    pub cufftSetWorkArea: Option<unsafe extern "C" fn(cufftHandle, *mut ::std::os::raw::c_void) -> cufftResult>,
-    pub cufftSetAutoAllocation: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftExecC2C: Option<unsafe extern "C" fn(cufftHandle, *mut cufftComplex, *mut cufftComplex, ::std::os::raw::c_int) -> cufftResult>,
+    pub cufftSetWorkArea: Option<unsafe extern "C" fn(cufftHandle, *mut ::core::ffi::c_void) -> cufftResult>,
+    pub cufftSetAutoAllocation: Option<unsafe extern "C" fn(cufftHandle, ::core::ffi::c_int) -> cufftResult>,
+    pub cufftExecC2C: Option<unsafe extern "C" fn(cufftHandle, *mut cufftComplex, *mut cufftComplex, ::core::ffi::c_int) -> cufftResult>,
     pub cufftExecR2C: Option<unsafe extern "C" fn(cufftHandle, *mut cufftReal, *mut cufftComplex) -> cufftResult>,
     pub cufftExecC2R: Option<unsafe extern "C" fn(cufftHandle, *mut cufftComplex, *mut cufftReal) -> cufftResult>,
-    pub cufftExecZ2Z: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleComplex, *mut cufftDoubleComplex, ::std::os::raw::c_int) -> cufftResult>,
+    pub cufftExecZ2Z: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleComplex, *mut cufftDoubleComplex, ::core::ffi::c_int) -> cufftResult>,
     pub cufftExecD2Z: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleReal, *mut cufftDoubleComplex) -> cufftResult>,
     pub cufftExecZ2D: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleComplex, *mut cufftDoubleReal) -> cufftResult>,
     pub cufftSetStream: Option<unsafe extern "C" fn(cufftHandle, cudaStream_t) -> cufftResult>,
     pub cufftDestroy: Option<unsafe extern "C" fn(cufftHandle) -> cufftResult>,
-    pub cufftGetVersion: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftSetPlanPropertyInt64: Option<unsafe extern "C" fn(cufftHandle, cufftProperty, ::std::os::raw::c_longlong) -> cufftResult>,
-    pub cufftGetPlanPropertyInt64: Option<unsafe extern "C" fn(cufftHandle, cufftProperty, *mut ::std::os::raw::c_longlong) -> cufftResult>,
+    pub cufftGetVersion: Option<unsafe extern "C" fn(*mut ::core::ffi::c_int) -> cufftResult>,
+    pub cufftGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::core::ffi::c_int) -> cufftResult>,
+    pub cufftSetPlanPropertyInt64: Option<unsafe extern "C" fn(cufftHandle, cufftProperty, ::core::ffi::c_longlong) -> cufftResult>,
+    pub cufftGetPlanPropertyInt64: Option<unsafe extern "C" fn(cufftHandle, cufftProperty, *mut ::core::ffi::c_longlong) -> cufftResult>,
     pub cufftResetPlanProperty: Option<unsafe extern "C" fn(cufftHandle, cufftProperty) -> cufftResult>,
 }
 #[cfg(feature = "runtime-link")]
@@ -385,7 +354,7 @@ unsafe impl Sync for DynamicBindings {}
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftPlan1d(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int) -> cufftResult {
+pub unsafe extern "C" fn cufftPlan1d(plan: *mut cufftHandle, nx: ::core::ffi::c_int, type_: cufftType, batch: ::core::ffi::c_int) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftPlan1d {
         Some(____func) => unsafe { ____func(plan, nx, type_, batch) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftPlan1d"),
@@ -393,7 +362,7 @@ pub unsafe extern "C" fn cufftPlan1d(plan: *mut cufftHandle, nx: ::std::os::raw:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftPlan2d(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType) -> cufftResult {
+pub unsafe extern "C" fn cufftPlan2d(plan: *mut cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, type_: cufftType) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftPlan2d {
         Some(____func) => unsafe { ____func(plan, nx, ny, type_) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftPlan2d"),
@@ -401,7 +370,7 @@ pub unsafe extern "C" fn cufftPlan2d(plan: *mut cufftHandle, nx: ::std::os::raw:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftPlan3d(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType) -> cufftResult {
+pub unsafe extern "C" fn cufftPlan3d(plan: *mut cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, nz: ::core::ffi::c_int, type_: cufftType) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftPlan3d {
         Some(____func) => unsafe { ____func(plan, nx, ny, nz, type_) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftPlan3d"),
@@ -411,16 +380,16 @@ pub unsafe extern "C" fn cufftPlan3d(plan: *mut cufftHandle, nx: ::std::os::raw:
 #[inline(always)]
 pub unsafe extern "C" fn cufftPlanMany(
     plan: *mut cufftHandle,
-    rank: ::std::os::raw::c_int,
-    n: *mut ::std::os::raw::c_int,
-    inembed: *mut ::std::os::raw::c_int,
-    istride: ::std::os::raw::c_int,
-    idist: ::std::os::raw::c_int,
-    onembed: *mut ::std::os::raw::c_int,
-    ostride: ::std::os::raw::c_int,
-    odist: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    n: *mut ::core::ffi::c_int,
+    inembed: *mut ::core::ffi::c_int,
+    istride: ::core::ffi::c_int,
+    idist: ::core::ffi::c_int,
+    onembed: *mut ::core::ffi::c_int,
+    ostride: ::core::ffi::c_int,
+    odist: ::core::ffi::c_int,
     type_: cufftType,
-    batch: ::std::os::raw::c_int,
+    batch: ::core::ffi::c_int,
 ) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftPlanMany {
         Some(____func) => unsafe { ____func(plan, rank, n, inembed, istride, idist, onembed, ostride, odist, type_, batch) },
@@ -429,7 +398,7 @@ pub unsafe extern "C" fn cufftPlanMany(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftMakePlan1d(plan: cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult {
+pub unsafe extern "C" fn cufftMakePlan1d(plan: cufftHandle, nx: ::core::ffi::c_int, type_: cufftType, batch: ::core::ffi::c_int, workSize: *mut usize) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftMakePlan1d {
         Some(____func) => unsafe { ____func(plan, nx, type_, batch, workSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftMakePlan1d"),
@@ -437,7 +406,7 @@ pub unsafe extern "C" fn cufftMakePlan1d(plan: cufftHandle, nx: ::std::os::raw::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftMakePlan2d(plan: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
+pub unsafe extern "C" fn cufftMakePlan2d(plan: cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftMakePlan2d {
         Some(____func) => unsafe { ____func(plan, nx, ny, type_, workSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftMakePlan2d"),
@@ -445,7 +414,7 @@ pub unsafe extern "C" fn cufftMakePlan2d(plan: cufftHandle, nx: ::std::os::raw::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftMakePlan3d(plan: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
+pub unsafe extern "C" fn cufftMakePlan3d(plan: cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, nz: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftMakePlan3d {
         Some(____func) => unsafe { ____func(plan, nx, ny, nz, type_, workSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftMakePlan3d"),
@@ -455,16 +424,16 @@ pub unsafe extern "C" fn cufftMakePlan3d(plan: cufftHandle, nx: ::std::os::raw::
 #[inline(always)]
 pub unsafe extern "C" fn cufftMakePlanMany(
     plan: cufftHandle,
-    rank: ::std::os::raw::c_int,
-    n: *mut ::std::os::raw::c_int,
-    inembed: *mut ::std::os::raw::c_int,
-    istride: ::std::os::raw::c_int,
-    idist: ::std::os::raw::c_int,
-    onembed: *mut ::std::os::raw::c_int,
-    ostride: ::std::os::raw::c_int,
-    odist: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    n: *mut ::core::ffi::c_int,
+    inembed: *mut ::core::ffi::c_int,
+    istride: ::core::ffi::c_int,
+    idist: ::core::ffi::c_int,
+    onembed: *mut ::core::ffi::c_int,
+    ostride: ::core::ffi::c_int,
+    odist: ::core::ffi::c_int,
     type_: cufftType,
-    batch: ::std::os::raw::c_int,
+    batch: ::core::ffi::c_int,
     workSize: *mut usize,
 ) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftMakePlanMany {
@@ -476,16 +445,16 @@ pub unsafe extern "C" fn cufftMakePlanMany(
 #[inline(always)]
 pub unsafe extern "C" fn cufftMakePlanMany64(
     plan: cufftHandle,
-    rank: ::std::os::raw::c_int,
-    n: *mut ::std::os::raw::c_longlong,
-    inembed: *mut ::std::os::raw::c_longlong,
-    istride: ::std::os::raw::c_longlong,
-    idist: ::std::os::raw::c_longlong,
-    onembed: *mut ::std::os::raw::c_longlong,
-    ostride: ::std::os::raw::c_longlong,
-    odist: ::std::os::raw::c_longlong,
+    rank: ::core::ffi::c_int,
+    n: *mut ::core::ffi::c_longlong,
+    inembed: *mut ::core::ffi::c_longlong,
+    istride: ::core::ffi::c_longlong,
+    idist: ::core::ffi::c_longlong,
+    onembed: *mut ::core::ffi::c_longlong,
+    ostride: ::core::ffi::c_longlong,
+    odist: ::core::ffi::c_longlong,
     type_: cufftType,
-    batch: ::std::os::raw::c_longlong,
+    batch: ::core::ffi::c_longlong,
     workSize: *mut usize,
 ) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftMakePlanMany64 {
@@ -497,16 +466,16 @@ pub unsafe extern "C" fn cufftMakePlanMany64(
 #[inline(always)]
 pub unsafe extern "C" fn cufftGetSizeMany64(
     plan: cufftHandle,
-    rank: ::std::os::raw::c_int,
-    n: *mut ::std::os::raw::c_longlong,
-    inembed: *mut ::std::os::raw::c_longlong,
-    istride: ::std::os::raw::c_longlong,
-    idist: ::std::os::raw::c_longlong,
-    onembed: *mut ::std::os::raw::c_longlong,
-    ostride: ::std::os::raw::c_longlong,
-    odist: ::std::os::raw::c_longlong,
+    rank: ::core::ffi::c_int,
+    n: *mut ::core::ffi::c_longlong,
+    inembed: *mut ::core::ffi::c_longlong,
+    istride: ::core::ffi::c_longlong,
+    idist: ::core::ffi::c_longlong,
+    onembed: *mut ::core::ffi::c_longlong,
+    ostride: ::core::ffi::c_longlong,
+    odist: ::core::ffi::c_longlong,
     type_: cufftType,
-    batch: ::std::os::raw::c_longlong,
+    batch: ::core::ffi::c_longlong,
     workSize: *mut usize,
 ) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftGetSizeMany64 {
@@ -516,7 +485,7 @@ pub unsafe extern "C" fn cufftGetSizeMany64(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftEstimate1d(nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult {
+pub unsafe extern "C" fn cufftEstimate1d(nx: ::core::ffi::c_int, type_: cufftType, batch: ::core::ffi::c_int, workSize: *mut usize) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftEstimate1d {
         Some(____func) => unsafe { ____func(nx, type_, batch, workSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftEstimate1d"),
@@ -524,7 +493,7 @@ pub unsafe extern "C" fn cufftEstimate1d(nx: ::std::os::raw::c_int, type_: cufft
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftEstimate2d(nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
+pub unsafe extern "C" fn cufftEstimate2d(nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftEstimate2d {
         Some(____func) => unsafe { ____func(nx, ny, type_, workSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftEstimate2d"),
@@ -532,7 +501,7 @@ pub unsafe extern "C" fn cufftEstimate2d(nx: ::std::os::raw::c_int, ny: ::std::o
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftEstimate3d(nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
+pub unsafe extern "C" fn cufftEstimate3d(nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, nz: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftEstimate3d {
         Some(____func) => unsafe { ____func(nx, ny, nz, type_, workSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftEstimate3d"),
@@ -541,16 +510,16 @@ pub unsafe extern "C" fn cufftEstimate3d(nx: ::std::os::raw::c_int, ny: ::std::o
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cufftEstimateMany(
-    rank: ::std::os::raw::c_int,
-    n: *mut ::std::os::raw::c_int,
-    inembed: *mut ::std::os::raw::c_int,
-    istride: ::std::os::raw::c_int,
-    idist: ::std::os::raw::c_int,
-    onembed: *mut ::std::os::raw::c_int,
-    ostride: ::std::os::raw::c_int,
-    odist: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    n: *mut ::core::ffi::c_int,
+    inembed: *mut ::core::ffi::c_int,
+    istride: ::core::ffi::c_int,
+    idist: ::core::ffi::c_int,
+    onembed: *mut ::core::ffi::c_int,
+    ostride: ::core::ffi::c_int,
+    odist: ::core::ffi::c_int,
     type_: cufftType,
-    batch: ::std::os::raw::c_int,
+    batch: ::core::ffi::c_int,
     workSize: *mut usize,
 ) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftEstimateMany {
@@ -568,7 +537,7 @@ pub unsafe extern "C" fn cufftCreate(handle: *mut cufftHandle) -> cufftResult {
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftGetSize1d(handle: cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult {
+pub unsafe extern "C" fn cufftGetSize1d(handle: cufftHandle, nx: ::core::ffi::c_int, type_: cufftType, batch: ::core::ffi::c_int, workSize: *mut usize) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftGetSize1d {
         Some(____func) => unsafe { ____func(handle, nx, type_, batch, workSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftGetSize1d"),
@@ -576,7 +545,7 @@ pub unsafe extern "C" fn cufftGetSize1d(handle: cufftHandle, nx: ::std::os::raw:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftGetSize2d(handle: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
+pub unsafe extern "C" fn cufftGetSize2d(handle: cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftGetSize2d {
         Some(____func) => unsafe { ____func(handle, nx, ny, type_, workSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftGetSize2d"),
@@ -584,7 +553,7 @@ pub unsafe extern "C" fn cufftGetSize2d(handle: cufftHandle, nx: ::std::os::raw:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftGetSize3d(handle: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
+pub unsafe extern "C" fn cufftGetSize3d(handle: cufftHandle, nx: ::core::ffi::c_int, ny: ::core::ffi::c_int, nz: ::core::ffi::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftGetSize3d {
         Some(____func) => unsafe { ____func(handle, nx, ny, nz, type_, workSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftGetSize3d"),
@@ -594,16 +563,16 @@ pub unsafe extern "C" fn cufftGetSize3d(handle: cufftHandle, nx: ::std::os::raw:
 #[inline(always)]
 pub unsafe extern "C" fn cufftGetSizeMany(
     handle: cufftHandle,
-    rank: ::std::os::raw::c_int,
-    n: *mut ::std::os::raw::c_int,
-    inembed: *mut ::std::os::raw::c_int,
-    istride: ::std::os::raw::c_int,
-    idist: ::std::os::raw::c_int,
-    onembed: *mut ::std::os::raw::c_int,
-    ostride: ::std::os::raw::c_int,
-    odist: ::std::os::raw::c_int,
+    rank: ::core::ffi::c_int,
+    n: *mut ::core::ffi::c_int,
+    inembed: *mut ::core::ffi::c_int,
+    istride: ::core::ffi::c_int,
+    idist: ::core::ffi::c_int,
+    onembed: *mut ::core::ffi::c_int,
+    ostride: ::core::ffi::c_int,
+    odist: ::core::ffi::c_int,
     type_: cufftType,
-    batch: ::std::os::raw::c_int,
+    batch: ::core::ffi::c_int,
     workArea: *mut usize,
 ) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftGetSizeMany {
@@ -621,7 +590,7 @@ pub unsafe extern "C" fn cufftGetSize(handle: cufftHandle, workSize: *mut usize)
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftSetWorkArea(plan: cufftHandle, workArea: *mut ::std::os::raw::c_void) -> cufftResult {
+pub unsafe extern "C" fn cufftSetWorkArea(plan: cufftHandle, workArea: *mut ::core::ffi::c_void) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftSetWorkArea {
         Some(____func) => unsafe { ____func(plan, workArea) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftSetWorkArea"),
@@ -629,7 +598,7 @@ pub unsafe extern "C" fn cufftSetWorkArea(plan: cufftHandle, workArea: *mut ::st
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftSetAutoAllocation(plan: cufftHandle, autoAllocate: ::std::os::raw::c_int) -> cufftResult {
+pub unsafe extern "C" fn cufftSetAutoAllocation(plan: cufftHandle, autoAllocate: ::core::ffi::c_int) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftSetAutoAllocation {
         Some(____func) => unsafe { ____func(plan, autoAllocate) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftSetAutoAllocation"),
@@ -637,7 +606,7 @@ pub unsafe extern "C" fn cufftSetAutoAllocation(plan: cufftHandle, autoAllocate:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftExecC2C(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftComplex, direction: ::std::os::raw::c_int) -> cufftResult {
+pub unsafe extern "C" fn cufftExecC2C(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftComplex, direction: ::core::ffi::c_int) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftExecC2C {
         Some(____func) => unsafe { ____func(plan, idata, odata, direction) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftExecC2C"),
@@ -661,7 +630,7 @@ pub unsafe extern "C" fn cufftExecC2R(plan: cufftHandle, idata: *mut cufftComple
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftExecZ2Z(plan: cufftHandle, idata: *mut cufftDoubleComplex, odata: *mut cufftDoubleComplex, direction: ::std::os::raw::c_int) -> cufftResult {
+pub unsafe extern "C" fn cufftExecZ2Z(plan: cufftHandle, idata: *mut cufftDoubleComplex, odata: *mut cufftDoubleComplex, direction: ::core::ffi::c_int) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftExecZ2Z {
         Some(____func) => unsafe { ____func(plan, idata, odata, direction) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftExecZ2Z"),
@@ -701,7 +670,7 @@ pub unsafe extern "C" fn cufftDestroy(plan: cufftHandle) -> cufftResult {
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftGetVersion(version: *mut ::std::os::raw::c_int) -> cufftResult {
+pub unsafe extern "C" fn cufftGetVersion(version: *mut ::core::ffi::c_int) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftGetVersion {
         Some(____func) => unsafe { ____func(version) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftGetVersion"),
@@ -709,7 +678,7 @@ pub unsafe extern "C" fn cufftGetVersion(version: *mut ::std::os::raw::c_int) ->
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cufftResult {
+pub unsafe extern "C" fn cufftGetProperty(type_: libraryPropertyType, value: *mut ::core::ffi::c_int) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftGetProperty {
         Some(____func) => unsafe { ____func(type_, value) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cufftGetProperty"),
@@ -717,7 +686,7 @@ pub unsafe extern "C" fn cufftGetProperty(type_: libraryPropertyType, value: *mu
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftSetPlanPropertyInt64(plan: cufftHandle, property: cufftProperty, inputValueInt: ::std::os::raw::c_longlong) -> cufftResult {
+pub unsafe extern "C" fn cufftSetPlanPropertyInt64(plan: cufftHandle, property: cufftProperty, inputValueInt: ::core::ffi::c_longlong) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftSetPlanPropertyInt64 {
         Some(____func) => unsafe { ____func(plan, property, inputValueInt) },
         None => panic!(
@@ -728,7 +697,7 @@ pub unsafe extern "C" fn cufftSetPlanPropertyInt64(plan: cufftHandle, property: 
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftGetPlanPropertyInt64(plan: cufftHandle, property: cufftProperty, returnPtrValue: *mut ::std::os::raw::c_longlong) -> cufftResult {
+pub unsafe extern "C" fn cufftGetPlanPropertyInt64(plan: cufftHandle, property: cufftProperty, returnPtrValue: *mut ::core::ffi::c_longlong) -> cufftResult {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cufftGetPlanPropertyInt64 {
         Some(____func) => unsafe { ____func(plan, property, returnPtrValue) },
         None => panic!(

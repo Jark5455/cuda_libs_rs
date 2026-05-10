@@ -113,9 +113,9 @@ pub const CUSPARSE_VER_MINOR: u32 = 7;
 pub const CUSPARSE_VER_PATCH: u32 = 10;
 pub const CUSPARSE_VER_BUILD: u32 = 1;
 pub const CUSPARSE_VERSION: u32 = 12710;
-pub type __uint64_t = ::std::os::raw::c_ulong;
-pub type __off_t = ::std::os::raw::c_long;
-pub type __off64_t = ::std::os::raw::c_long;
+pub type __uint64_t = ::core::ffi::c_ulong;
+pub type __off_t = ::core::ffi::c_long;
+pub type __off64_t = ::core::ffi::c_long;
 pub type FILE = _IO_FILE;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -132,81 +132,81 @@ pub struct _IO_codecvt {
 pub struct _IO_wide_data {
     _unused: [u8; 0],
 }
-pub type _IO_lock_t = ::std::os::raw::c_void;
+pub type _IO_lock_t = ::core::ffi::c_void;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _IO_FILE {
-    pub _flags: ::std::os::raw::c_int,
-    pub _IO_read_ptr: *mut ::std::os::raw::c_char,
-    pub _IO_read_end: *mut ::std::os::raw::c_char,
-    pub _IO_read_base: *mut ::std::os::raw::c_char,
-    pub _IO_write_base: *mut ::std::os::raw::c_char,
-    pub _IO_write_ptr: *mut ::std::os::raw::c_char,
-    pub _IO_write_end: *mut ::std::os::raw::c_char,
-    pub _IO_buf_base: *mut ::std::os::raw::c_char,
-    pub _IO_buf_end: *mut ::std::os::raw::c_char,
-    pub _IO_save_base: *mut ::std::os::raw::c_char,
-    pub _IO_backup_base: *mut ::std::os::raw::c_char,
-    pub _IO_save_end: *mut ::std::os::raw::c_char,
+    pub _flags: ::core::ffi::c_int,
+    pub _IO_read_ptr: *mut ::core::ffi::c_char,
+    pub _IO_read_end: *mut ::core::ffi::c_char,
+    pub _IO_read_base: *mut ::core::ffi::c_char,
+    pub _IO_write_base: *mut ::core::ffi::c_char,
+    pub _IO_write_ptr: *mut ::core::ffi::c_char,
+    pub _IO_write_end: *mut ::core::ffi::c_char,
+    pub _IO_buf_base: *mut ::core::ffi::c_char,
+    pub _IO_buf_end: *mut ::core::ffi::c_char,
+    pub _IO_save_base: *mut ::core::ffi::c_char,
+    pub _IO_backup_base: *mut ::core::ffi::c_char,
+    pub _IO_save_end: *mut ::core::ffi::c_char,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: ::std::os::raw::c_int,
+    pub _fileno: ::core::ffi::c_int,
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
-    pub _short_backupbuf: [::std::os::raw::c_char; 1usize],
+    pub _short_backupbuf: [::core::ffi::c_char; 1usize],
     pub _old_offset: __off_t,
-    pub _cur_column: ::std::os::raw::c_ushort,
-    pub _vtable_offset: ::std::os::raw::c_schar,
-    pub _shortbuf: [::std::os::raw::c_char; 1usize],
+    pub _cur_column: ::core::ffi::c_ushort,
+    pub _vtable_offset: ::core::ffi::c_schar,
+    pub _shortbuf: [::core::ffi::c_char; 1usize],
     pub _lock: *mut _IO_lock_t,
     pub _offset: __off64_t,
     pub _codecvt: *mut _IO_codecvt,
     pub _wide_data: *mut _IO_wide_data,
     pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut ::std::os::raw::c_void,
+    pub _freeres_buf: *mut ::core::ffi::c_void,
     pub _prevchain: *mut *mut _IO_FILE,
-    pub _mode: ::std::os::raw::c_int,
-    pub _unused3: ::std::os::raw::c_int,
+    pub _mode: ::core::ffi::c_int,
+    pub _unused3: ::core::ffi::c_int,
     pub _total_written: __uint64_t,
-    pub _unused2: [::std::os::raw::c_char; 8usize],
+    pub _unused2: [::core::ffi::c_char; 8usize],
 }
 impl Default for _IO_FILE {
     fn default() -> Self {
-        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
         unsafe {
-            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
             s.assume_init()
         }
     }
 }
 impl _IO_FILE {
     #[inline]
-    pub fn _flags2(&self) -> ::std::os::raw::c_int {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(0usize, 24u8) as u32) }
+    pub fn _flags2(&self) -> ::core::ffi::c_int {
+        unsafe { ::core::mem::transmute(self._bitfield_1.get(0usize, 24u8) as u32) }
     }
     #[inline]
-    pub fn set__flags2(&mut self, val: ::std::os::raw::c_int) {
+    pub fn set__flags2(&mut self, val: ::core::ffi::c_int) {
         unsafe {
-            let val: u32 = ::std::mem::transmute(val);
+            let val: u32 = ::core::mem::transmute(val);
             self._bitfield_1.set(0usize, 24u8, val as u64)
         }
     }
     #[inline]
-    pub unsafe fn _flags2_raw(this: *const Self) -> ::std::os::raw::c_int {
-        unsafe { ::std::mem::transmute(<__BindgenBitfieldUnit<[u8; 3usize]>>::raw_get(::std::ptr::addr_of!((*this)._bitfield_1), 0usize, 24u8) as u32) }
+    pub unsafe fn _flags2_raw(this: *const Self) -> ::core::ffi::c_int {
+        unsafe { ::core::mem::transmute(<__BindgenBitfieldUnit<[u8; 3usize]>>::raw_get(::core::ptr::addr_of!((*this)._bitfield_1), 0usize, 24u8) as u32) }
     }
     #[inline]
-    pub unsafe fn set__flags2_raw(this: *mut Self, val: ::std::os::raw::c_int) {
+    pub unsafe fn set__flags2_raw(this: *mut Self, val: ::core::ffi::c_int) {
         unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            <__BindgenBitfieldUnit<[u8; 3usize]>>::raw_set(::std::ptr::addr_of_mut!((*this)._bitfield_1), 0usize, 24u8, val as u64)
+            let val: u32 = ::core::mem::transmute(val);
+            <__BindgenBitfieldUnit<[u8; 3usize]>>::raw_set(::core::ptr::addr_of_mut!((*this)._bitfield_1), 0usize, 24u8, val as u64)
         }
     }
     #[inline]
-    pub fn new_bitfield_1(_flags2: ::std::os::raw::c_int) -> __BindgenBitfieldUnit<[u8; 3usize]> {
+    pub fn new_bitfield_1(_flags2: ::core::ffi::c_int) -> __BindgenBitfieldUnit<[u8; 3usize]> {
         let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 3usize]> = Default::default();
         __bindgen_bitfield_unit.set(0usize, 24u8, {
-            let _flags2: u32 = unsafe { ::std::mem::transmute(_flags2) };
+            let _flags2: u32 = unsafe { ::core::mem::transmute(_flags2) };
             _flags2 as u64
         });
         __bindgen_bitfield_unit
@@ -367,19 +367,19 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseGetVersion(handle: cusparseHandle_t, version: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseGetVersion(handle: cusparseHandle_t, version: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseGetProperty(type_: libraryPropertyType, value: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseGetErrorName(status: cusparseStatus_t) -> *const ::std::os::raw::c_char;
+    pub fn cusparseGetErrorName(status: cusparseStatus_t) -> *const ::core::ffi::c_char;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseGetErrorString(status: cusparseStatus_t) -> *const ::std::os::raw::c_char;
+    pub fn cusparseGetErrorString(status: cusparseStatus_t) -> *const ::core::ffi::c_char;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -397,7 +397,7 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseSetPointerMode(handle: cusparseHandle_t, mode: cusparsePointerMode_t) -> cusparseStatus_t;
 }
-pub type cusparseLoggerCallback_t = ::std::option::Option<unsafe extern "C" fn(logLevel: ::std::os::raw::c_int, functionName: *const ::std::os::raw::c_char, message: *const ::std::os::raw::c_char)>;
+pub type cusparseLoggerCallback_t = ::core::option::Option<unsafe extern "C" fn(logLevel: ::core::ffi::c_int, functionName: *const ::core::ffi::c_char, message: *const ::core::ffi::c_char)>;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseLoggerSetCallback(callback: cusparseLoggerCallback_t) -> cusparseStatus_t;
@@ -408,15 +408,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseLoggerOpenFile(logFile: *const ::std::os::raw::c_char) -> cusparseStatus_t;
+    pub fn cusparseLoggerOpenFile(logFile: *const ::core::ffi::c_char) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseLoggerSetLevel(level: ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseLoggerSetLevel(level: ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseLoggerSetMask(mask: ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseLoggerSetMask(mask: ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -539,92 +539,92 @@ unsafe extern "C" {
     pub fn cusparseSgemvi(
         handle: cusparseHandle_t,
         transA: cusparseOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         xVal: *const f32,
-        xInd: *const ::std::os::raw::c_int,
+        xInd: *const ::core::ffi::c_int,
         beta: *const f32,
         y: *mut f32,
         idxBase: cusparseIndexBase_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseSgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, pBufferSize: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDgemvi(
         handle: cusparseHandle_t,
         transA: cusparseOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         xVal: *const f64,
-        xInd: *const ::std::os::raw::c_int,
+        xInd: *const ::core::ffi::c_int,
         beta: *const f64,
         y: *mut f64,
         idxBase: cusparseIndexBase_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseDgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, pBufferSize: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCgemvi(
         handle: cusparseHandle_t,
         transA: cusparseOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         xVal: *const cuComplex,
-        xInd: *const ::std::os::raw::c_int,
+        xInd: *const ::core::ffi::c_int,
         beta: *const cuComplex,
         y: *mut cuComplex,
         idxBase: cusparseIndexBase_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseCgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, pBufferSize: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZgemvi(
         handle: cusparseHandle_t,
         transA: cusparseOperation_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         xVal: *const cuDoubleComplex,
-        xInd: *const ::std::os::raw::c_int,
+        xInd: *const ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
         idxBase: cusparseIndexBase_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseZgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseZgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, pBufferSize: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -632,15 +632,15 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f32,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         x: *const f32,
         beta: *const f32,
         y: *mut f32,
@@ -652,15 +652,15 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f64,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         x: *const f64,
         beta: *const f64,
         y: *mut f64,
@@ -672,15 +672,15 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         x: *const cuComplex,
         beta: *const cuComplex,
         y: *mut cuComplex,
@@ -692,15 +692,15 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         x: *const cuDoubleComplex,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
@@ -712,18 +712,18 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        sizeOfMask: ::std::os::raw::c_int,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        sizeOfMask: ::core::ffi::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f32,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedMaskPtrA: *const ::core::ffi::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedEndPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         x: *const f32,
         beta: *const f32,
         y: *mut f32,
@@ -735,18 +735,18 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        sizeOfMask: ::std::os::raw::c_int,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        sizeOfMask: ::core::ffi::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f64,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedMaskPtrA: *const ::core::ffi::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedEndPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         x: *const f64,
         beta: *const f64,
         y: *mut f64,
@@ -758,18 +758,18 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        sizeOfMask: ::std::os::raw::c_int,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        sizeOfMask: ::core::ffi::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedMaskPtrA: *const ::core::ffi::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedEndPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         x: *const cuComplex,
         beta: *const cuComplex,
         y: *mut cuComplex,
@@ -781,18 +781,18 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        sizeOfMask: ::std::os::raw::c_int,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        sizeOfMask: ::core::ffi::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedMaskPtrA: *const ::core::ffi::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedEndPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         x: *const cuDoubleComplex,
         beta: *const cuDoubleComplex,
         y: *mut cuDoubleComplex,
@@ -800,7 +800,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXbsrsv2_zeroPivot(handle: cusparseHandle_t, info: bsrsv2Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseXbsrsv2_zeroPivot(handle: cusparseHandle_t, info: bsrsv2Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -808,15 +808,15 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *mut f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -825,15 +825,15 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *mut f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -842,15 +842,15 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *mut cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -859,15 +859,15 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *mut cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -876,13 +876,13 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *mut f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -893,13 +893,13 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *mut f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -910,13 +910,13 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *mut cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -927,13 +927,13 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *mut cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -944,16 +944,16 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -962,16 +962,16 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -980,16 +980,16 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -998,16 +998,16 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1016,19 +1016,19 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f32,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         f: *const f32,
         x: *mut f32,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1037,19 +1037,19 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f64,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         f: *const f64,
         x: *mut f64,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1058,19 +1058,19 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         f: *const cuComplex,
         x: *mut cuComplex,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1079,19 +1079,19 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrsv2Info_t,
         f: *const cuDoubleComplex,
         x: *mut cuDoubleComplex,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1101,21 +1101,21 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transB: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        kb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        kb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f32,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f32,
         C: *mut f32,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1125,21 +1125,21 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transB: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        kb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        kb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f64,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const f64,
         C: *mut f64,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1149,21 +1149,21 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transB: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        kb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        kb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuComplex,
         C: *mut cuComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1173,26 +1173,26 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transB: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        kb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        kb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         C: *mut cuDoubleComplex,
-        ldc: ::std::os::raw::c_int,
+        ldc: ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXbsrsm2_zeroPivot(handle: cusparseHandle_t, info: bsrsm2Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseXbsrsm2_zeroPivot(handle: cusparseHandle_t, info: bsrsm2Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1201,16 +1201,16 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1220,16 +1220,16 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1239,16 +1239,16 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1258,16 +1258,16 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1277,14 +1277,14 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transB: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1296,14 +1296,14 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transB: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1315,14 +1315,14 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transB: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1334,14 +1334,14 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transB: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1353,17 +1353,17 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1373,17 +1373,17 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1393,17 +1393,17 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1413,17 +1413,17 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1433,22 +1433,22 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f32,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         B: *const f32,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         X: *mut f32,
-        ldx: ::std::os::raw::c_int,
+        ldx: ::core::ffi::c_int,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1458,22 +1458,22 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const f64,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         B: *const f64,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         X: *mut f64,
-        ldx: ::std::os::raw::c_int,
+        ldx: ::core::ffi::c_int,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1483,22 +1483,22 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         B: *const cuComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         X: *mut cuComplex,
-        ldx: ::std::os::raw::c_int,
+        ldx: ::core::ffi::c_int,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1508,110 +1508,110 @@ unsafe extern "C" {
         dirA: cusparseDirection_t,
         transA: cusparseOperation_t,
         transXY: cusparseOperation_t,
-        mb: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrsm2Info_t,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         X: *mut cuDoubleComplex,
-        ldx: ::std::os::raw::c_int,
+        ldx: ::core::ffi::c_int,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseScsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t;
+    pub fn cusparseScsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t;
+    pub fn cusparseDcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t;
+    pub fn cusparseCcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseZcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t;
+    pub fn cusparseZcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXcsrilu02_zeroPivot(handle: cusparseHandle_t, info: csrilu02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseXcsrilu02_zeroPivot(handle: cusparseHandle_t, info: csrilu02Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsrilu02_bufferSize(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *mut f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDcsrilu02_bufferSize(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *mut f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCcsrilu02_bufferSize(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *mut cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZcsrilu02_bufferSize(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *mut cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsrilu02_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedVal: *mut f32,
-        csrSortedRowPtr: *const ::std::os::raw::c_int,
-        csrSortedColInd: *const ::std::os::raw::c_int,
+        csrSortedRowPtr: *const ::core::ffi::c_int,
+        csrSortedColInd: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1620,12 +1620,12 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDcsrilu02_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedVal: *mut f64,
-        csrSortedRowPtr: *const ::std::os::raw::c_int,
-        csrSortedColInd: *const ::std::os::raw::c_int,
+        csrSortedRowPtr: *const ::core::ffi::c_int,
+        csrSortedColInd: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1634,12 +1634,12 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseCcsrilu02_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedVal: *mut cuComplex,
-        csrSortedRowPtr: *const ::std::os::raw::c_int,
-        csrSortedColInd: *const ::std::os::raw::c_int,
+        csrSortedRowPtr: *const ::core::ffi::c_int,
+        csrSortedColInd: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1648,12 +1648,12 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseZcsrilu02_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedVal: *mut cuDoubleComplex,
-        csrSortedRowPtr: *const ::std::os::raw::c_int,
-        csrSortedColInd: *const ::std::os::raw::c_int,
+        csrSortedRowPtr: *const ::core::ffi::c_int,
+        csrSortedColInd: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1662,156 +1662,156 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseScsrilu02_analysis(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDcsrilu02_analysis(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCcsrilu02_analysis(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZcsrilu02_analysis(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsrilu02(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA_valM: *mut f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDcsrilu02(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA_valM: *mut f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCcsrilu02(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA_valM: *mut cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZcsrilu02(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA_valM: *mut cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t;
+    pub fn cusparseSbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t;
+    pub fn cusparseDbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t;
+    pub fn cusparseCbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseZbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t;
+    pub fn cusparseZbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXbsrilu02_zeroPivot(handle: cusparseHandle_t, info: bsrilu02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseXbsrilu02_zeroPivot(handle: cusparseHandle_t, info: bsrilu02Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSbsrilu02_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1819,15 +1819,15 @@ unsafe extern "C" {
     pub fn cusparseDbsrilu02_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1835,15 +1835,15 @@ unsafe extern "C" {
     pub fn cusparseCbsrilu02_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1851,15 +1851,15 @@ unsafe extern "C" {
     pub fn cusparseZbsrilu02_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1867,13 +1867,13 @@ unsafe extern "C" {
     pub fn cusparseSbsrilu02_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1883,13 +1883,13 @@ unsafe extern "C" {
     pub fn cusparseDbsrilu02_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1899,13 +1899,13 @@ unsafe extern "C" {
     pub fn cusparseCbsrilu02_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1915,13 +1915,13 @@ unsafe extern "C" {
     pub fn cusparseZbsrilu02_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -1931,16 +1931,16 @@ unsafe extern "C" {
     pub fn cusparseSbsrilu02_analysis(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1948,16 +1948,16 @@ unsafe extern "C" {
     pub fn cusparseDbsrilu02_analysis(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1965,16 +1965,16 @@ unsafe extern "C" {
     pub fn cusparseCbsrilu02_analysis(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1982,16 +1982,16 @@ unsafe extern "C" {
     pub fn cusparseZbsrilu02_analysis(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -1999,16 +1999,16 @@ unsafe extern "C" {
     pub fn cusparseSbsrilu02(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2016,16 +2016,16 @@ unsafe extern "C" {
     pub fn cusparseDbsrilu02(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2033,16 +2033,16 @@ unsafe extern "C" {
     pub fn cusparseCbsrilu02(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2050,88 +2050,88 @@ unsafe extern "C" {
     pub fn cusparseZbsrilu02(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsrilu02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXcsric02_zeroPivot(handle: cusparseHandle_t, info: csric02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseXcsric02_zeroPivot(handle: cusparseHandle_t, info: csric02Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsric02_bufferSize(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *mut f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDcsric02_bufferSize(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *mut f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCcsric02_bufferSize(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *mut cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZcsric02_bufferSize(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *mut cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsric02_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedVal: *mut f32,
-        csrSortedRowPtr: *const ::std::os::raw::c_int,
-        csrSortedColInd: *const ::std::os::raw::c_int,
+        csrSortedRowPtr: *const ::core::ffi::c_int,
+        csrSortedColInd: *const ::core::ffi::c_int,
         info: csric02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -2140,12 +2140,12 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDcsric02_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedVal: *mut f64,
-        csrSortedRowPtr: *const ::std::os::raw::c_int,
-        csrSortedColInd: *const ::std::os::raw::c_int,
+        csrSortedRowPtr: *const ::core::ffi::c_int,
+        csrSortedColInd: *const ::core::ffi::c_int,
         info: csric02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -2154,12 +2154,12 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseCcsric02_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedVal: *mut cuComplex,
-        csrSortedRowPtr: *const ::std::os::raw::c_int,
-        csrSortedColInd: *const ::std::os::raw::c_int,
+        csrSortedRowPtr: *const ::core::ffi::c_int,
+        csrSortedColInd: *const ::core::ffi::c_int,
         info: csric02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -2168,12 +2168,12 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseZcsric02_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedVal: *mut cuDoubleComplex,
-        csrSortedRowPtr: *const ::std::os::raw::c_int,
-        csrSortedColInd: *const ::std::os::raw::c_int,
+        csrSortedRowPtr: *const ::core::ffi::c_int,
+        csrSortedColInd: *const ::core::ffi::c_int,
         info: csric02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -2182,140 +2182,140 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseScsric02_analysis(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDcsric02_analysis(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCcsric02_analysis(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZcsric02_analysis(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsric02(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA_valM: *mut f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDcsric02(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA_valM: *mut f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCcsric02(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA_valM: *mut cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZcsric02(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA_valM: *mut cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         info: csric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXbsric02_zeroPivot(handle: cusparseHandle_t, info: bsric02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseXbsric02_zeroPivot(handle: cusparseHandle_t, info: bsric02Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSbsric02_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2323,15 +2323,15 @@ unsafe extern "C" {
     pub fn cusparseDbsric02_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2339,15 +2339,15 @@ unsafe extern "C" {
     pub fn cusparseCbsric02_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2355,15 +2355,15 @@ unsafe extern "C" {
     pub fn cusparseZbsric02_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2371,13 +2371,13 @@ unsafe extern "C" {
     pub fn cusparseSbsric02_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsric02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -2387,13 +2387,13 @@ unsafe extern "C" {
     pub fn cusparseDbsric02_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsric02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -2403,13 +2403,13 @@ unsafe extern "C" {
     pub fn cusparseCbsric02_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsric02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -2419,13 +2419,13 @@ unsafe extern "C" {
     pub fn cusparseZbsric02_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockSize: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockSize: ::core::ffi::c_int,
         info: bsric02Info_t,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
@@ -2435,16 +2435,16 @@ unsafe extern "C" {
     pub fn cusparseSbsric02_analysis(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pInputBuffer: *mut ::std::os::raw::c_void,
+        pInputBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2452,16 +2452,16 @@ unsafe extern "C" {
     pub fn cusparseDbsric02_analysis(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pInputBuffer: *mut ::std::os::raw::c_void,
+        pInputBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2469,16 +2469,16 @@ unsafe extern "C" {
     pub fn cusparseCbsric02_analysis(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pInputBuffer: *mut ::std::os::raw::c_void,
+        pInputBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2486,16 +2486,16 @@ unsafe extern "C" {
     pub fn cusparseZbsric02_analysis(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *const cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pInputBuffer: *mut ::std::os::raw::c_void,
+        pInputBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2503,16 +2503,16 @@ unsafe extern "C" {
     pub fn cusparseSbsric02(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2520,16 +2520,16 @@ unsafe extern "C" {
     pub fn cusparseDbsric02(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2537,16 +2537,16 @@ unsafe extern "C" {
     pub fn cusparseCbsric02(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -2554,131 +2554,111 @@ unsafe extern "C" {
     pub fn cusparseZbsric02(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedVal: *mut cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         info: bsric02Info_t,
         policy: cusparseSolvePolicy_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseSgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseDgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *const cuComplex, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseCgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *const cuComplex, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseZgtsv2_bufferSizeExt(
-        handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        dl: *const cuDoubleComplex,
-        d: *const cuDoubleComplex,
-        du: *const cuDoubleComplex,
-        B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
-        bufferSizeInBytes: *mut usize,
-    ) -> cusparseStatus_t;
+    pub fn cusparseZgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuDoubleComplex, d: *const cuDoubleComplex, du: *const cuDoubleComplex, B: *const cuDoubleComplex, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgtsv2(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSgtsv2(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgtsv2(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDgtsv2(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCgtsv2(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseCgtsv2(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseZgtsv2(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuDoubleComplex, d: *const cuDoubleComplex, du: *const cuDoubleComplex, B: *mut cuDoubleComplex, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseZgtsv2(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuDoubleComplex, d: *const cuDoubleComplex, du: *const cuDoubleComplex, B: *mut cuDoubleComplex, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseSgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseDgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *const cuComplex, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseCgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *const cuComplex, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZgtsv2_nopivot_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         dl: *const cuDoubleComplex,
         d: *const cuDoubleComplex,
         du: *const cuDoubleComplex,
         B: *const cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
+        ldb: ::core::ffi::c_int,
         bufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgtsv2_nopivot(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSgtsv2_nopivot(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgtsv2_nopivot(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDgtsv2_nopivot(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCgtsv2_nopivot(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseCgtsv2_nopivot(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseZgtsv2_nopivot(
-        handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        dl: *const cuDoubleComplex,
-        d: *const cuDoubleComplex,
-        du: *const cuDoubleComplex,
-        B: *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
-    ) -> cusparseStatus_t;
+    pub fn cusparseZgtsv2_nopivot(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuDoubleComplex, d: *const cuDoubleComplex, du: *const cuDoubleComplex, B: *mut cuDoubleComplex, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgtsv2StridedBatch_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *const f32, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseSgtsv2StridedBatch_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *const f32, batchCount: ::core::ffi::c_int, batchStride: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgtsv2StridedBatch_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *const f64, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseDgtsv2StridedBatch_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *const f64, batchCount: ::core::ffi::c_int, batchStride: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCgtsv2StridedBatch_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
         dl: *const cuComplex,
         d: *const cuComplex,
         du: *const cuComplex,
         x: *const cuComplex,
-        batchCount: ::std::os::raw::c_int,
-        batchStride: ::std::os::raw::c_int,
+        batchCount: ::core::ffi::c_int,
+        batchStride: ::core::ffi::c_int,
         bufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -2686,127 +2666,108 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseZgtsv2StridedBatch_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
         dl: *const cuDoubleComplex,
         d: *const cuDoubleComplex,
         du: *const cuDoubleComplex,
         x: *const cuDoubleComplex,
-        batchCount: ::std::os::raw::c_int,
-        batchStride: ::std::os::raw::c_int,
+        batchCount: ::core::ffi::c_int,
+        batchStride: ::core::ffi::c_int,
         bufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgtsv2StridedBatch(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *mut f32, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSgtsv2StridedBatch(handle: cusparseHandle_t, m: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *mut f32, batchCount: ::core::ffi::c_int, batchStride: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgtsv2StridedBatch(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *mut f64, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDgtsv2StridedBatch(handle: cusparseHandle_t, m: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *mut f64, batchCount: ::core::ffi::c_int, batchStride: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCgtsv2StridedBatch(
-        handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        dl: *const cuComplex,
-        d: *const cuComplex,
-        du: *const cuComplex,
-        x: *mut cuComplex,
-        batchCount: ::std::os::raw::c_int,
-        batchStride: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
-    ) -> cusparseStatus_t;
+    pub fn cusparseCgtsv2StridedBatch(handle: cusparseHandle_t, m: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, x: *mut cuComplex, batchCount: ::core::ffi::c_int, batchStride: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZgtsv2StridedBatch(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
         dl: *const cuDoubleComplex,
         d: *const cuDoubleComplex,
         du: *const cuDoubleComplex,
         x: *mut cuDoubleComplex,
-        batchCount: ::std::os::raw::c_int,
-        batchStride: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        batchCount: ::core::ffi::c_int,
+        batchStride: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgtsvInterleavedBatch_bufferSizeExt(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *const f32, batchCount: ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseSgtsvInterleavedBatch_bufferSizeExt(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *const f32, batchCount: ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgtsvInterleavedBatch_bufferSizeExt(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *const f64, batchCount: ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseDgtsvInterleavedBatch_bufferSizeExt(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *const f64, batchCount: ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCgtsvInterleavedBatch_bufferSizeExt(
-        handle: cusparseHandle_t,
-        algo: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
-        dl: *const cuComplex,
-        d: *const cuComplex,
-        du: *const cuComplex,
-        x: *const cuComplex,
-        batchCount: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut usize,
-    ) -> cusparseStatus_t;
+    pub fn cusparseCgtsvInterleavedBatch_bufferSizeExt(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, x: *const cuComplex, batchCount: ::core::ffi::c_int, pBufferSizeInBytes: *mut usize)
+    -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZgtsvInterleavedBatch_bufferSizeExt(
         handle: cusparseHandle_t,
-        algo: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
+        algo: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
         dl: *const cuDoubleComplex,
         d: *const cuDoubleComplex,
         du: *const cuDoubleComplex,
         x: *const cuDoubleComplex,
-        batchCount: ::std::os::raw::c_int,
+        batchCount: ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *mut f32, d: *mut f32, du: *mut f32, x: *mut f32, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *mut f32, d: *mut f32, du: *mut f32, x: *mut f32, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *mut f64, d: *mut f64, du: *mut f64, x: *mut f64, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *mut f64, d: *mut f64, du: *mut f64, x: *mut f64, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *mut cuComplex, d: *mut cuComplex, du: *mut cuComplex, x: *mut cuComplex, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseCgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *mut cuComplex, d: *mut cuComplex, du: *mut cuComplex, x: *mut cuComplex, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZgtsvInterleavedBatch(
         handle: cusparseHandle_t,
-        algo: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
+        algo: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
         dl: *mut cuDoubleComplex,
         d: *mut cuDoubleComplex,
         du: *mut cuDoubleComplex,
         x: *mut cuDoubleComplex,
-        batchCount: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        batchCount: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSgpsvInterleavedBatch_bufferSizeExt(
         handle: cusparseHandle_t,
-        algo: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
+        algo: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
         ds: *const f32,
         dl: *const f32,
         d: *const f32,
         du: *const f32,
         dw: *const f32,
         x: *const f32,
-        batchCount: ::std::os::raw::c_int,
+        batchCount: ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -2814,15 +2775,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDgpsvInterleavedBatch_bufferSizeExt(
         handle: cusparseHandle_t,
-        algo: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
+        algo: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
         ds: *const f64,
         dl: *const f64,
         d: *const f64,
         du: *const f64,
         dw: *const f64,
         x: *const f64,
-        batchCount: ::std::os::raw::c_int,
+        batchCount: ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -2830,15 +2791,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseCgpsvInterleavedBatch_bufferSizeExt(
         handle: cusparseHandle_t,
-        algo: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
+        algo: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
         ds: *const cuComplex,
         dl: *const cuComplex,
         d: *const cuComplex,
         du: *const cuComplex,
         dw: *const cuComplex,
         x: *const cuComplex,
-        batchCount: ::std::os::raw::c_int,
+        batchCount: ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -2846,80 +2807,80 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseZgpsvInterleavedBatch_bufferSizeExt(
         handle: cusparseHandle_t,
-        algo: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
+        algo: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
         ds: *const cuDoubleComplex,
         dl: *const cuDoubleComplex,
         d: *const cuDoubleComplex,
         du: *const cuDoubleComplex,
         dw: *const cuDoubleComplex,
         x: *const cuDoubleComplex,
-        batchCount: ::std::os::raw::c_int,
+        batchCount: ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSgpsvInterleavedBatch(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, ds: *mut f32, dl: *mut f32, d: *mut f32, du: *mut f32, dw: *mut f32, x: *mut f32, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSgpsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, ds: *mut f32, dl: *mut f32, d: *mut f32, du: *mut f32, dw: *mut f32, x: *mut f32, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDgpsvInterleavedBatch(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, ds: *mut f64, dl: *mut f64, d: *mut f64, du: *mut f64, dw: *mut f64, x: *mut f64, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDgpsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, ds: *mut f64, dl: *mut f64, d: *mut f64, du: *mut f64, dw: *mut f64, x: *mut f64, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCgpsvInterleavedBatch(
         handle: cusparseHandle_t,
-        algo: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
+        algo: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
         ds: *mut cuComplex,
         dl: *mut cuComplex,
         d: *mut cuComplex,
         du: *mut cuComplex,
         dw: *mut cuComplex,
         x: *mut cuComplex,
-        batchCount: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        batchCount: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZgpsvInterleavedBatch(
         handle: cusparseHandle_t,
-        algo: ::std::os::raw::c_int,
-        m: ::std::os::raw::c_int,
+        algo: ::core::ffi::c_int,
+        m: ::core::ffi::c_int,
         ds: *mut cuDoubleComplex,
         dl: *mut cuDoubleComplex,
         d: *mut cuDoubleComplex,
         du: *mut cuDoubleComplex,
         dw: *mut cuDoubleComplex,
         x: *mut cuDoubleComplex,
-        batchCount: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        batchCount: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsrgeam2_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         descrA: cusparseMatDescr_t,
-        nnzA: ::std::os::raw::c_int,
+        nnzA: ::core::ffi::c_int,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         beta: *const f32,
         descrB: cusparseMatDescr_t,
-        nnzB: ::std::os::raw::c_int,
+        nnzB: ::core::ffi::c_int,
         csrSortedValB: *const f32,
-        csrSortedRowPtrB: *const ::std::os::raw::c_int,
-        csrSortedColIndB: *const ::std::os::raw::c_int,
+        csrSortedRowPtrB: *const ::core::ffi::c_int,
+        csrSortedColIndB: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f32,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -2927,24 +2888,24 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDcsrgeam2_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         descrA: cusparseMatDescr_t,
-        nnzA: ::std::os::raw::c_int,
+        nnzA: ::core::ffi::c_int,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         beta: *const f64,
         descrB: cusparseMatDescr_t,
-        nnzB: ::std::os::raw::c_int,
+        nnzB: ::core::ffi::c_int,
         csrSortedValB: *const f64,
-        csrSortedRowPtrB: *const ::std::os::raw::c_int,
-        csrSortedColIndB: *const ::std::os::raw::c_int,
+        csrSortedRowPtrB: *const ::core::ffi::c_int,
+        csrSortedColIndB: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f64,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -2952,24 +2913,24 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseCcsrgeam2_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         descrA: cusparseMatDescr_t,
-        nnzA: ::std::os::raw::c_int,
+        nnzA: ::core::ffi::c_int,
         csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         beta: *const cuComplex,
         descrB: cusparseMatDescr_t,
-        nnzB: ::std::os::raw::c_int,
+        nnzB: ::core::ffi::c_int,
         csrSortedValB: *const cuComplex,
-        csrSortedRowPtrB: *const ::std::os::raw::c_int,
-        csrSortedColIndB: *const ::std::os::raw::c_int,
+        csrSortedRowPtrB: *const ::core::ffi::c_int,
+        csrSortedColIndB: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const cuComplex,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -2977,24 +2938,24 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseZcsrgeam2_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         descrA: cusparseMatDescr_t,
-        nnzA: ::std::os::raw::c_int,
+        nnzA: ::core::ffi::c_int,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         descrB: cusparseMatDescr_t,
-        nnzB: ::std::os::raw::c_int,
+        nnzB: ::core::ffi::c_int,
         csrSortedValB: *const cuDoubleComplex,
-        csrSortedRowPtrB: *const ::std::os::raw::c_int,
-        csrSortedColIndB: *const ::std::os::raw::c_int,
+        csrSortedRowPtrB: *const ::core::ffi::c_int,
+        csrSortedColIndB: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const cuDoubleComplex,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -3002,136 +2963,136 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseXcsrgeam2Nnz(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        nnzA: ::std::os::raw::c_int,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        nnzA: ::core::ffi::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         descrB: cusparseMatDescr_t,
-        nnzB: ::std::os::raw::c_int,
-        csrSortedRowPtrB: *const ::std::os::raw::c_int,
-        csrSortedColIndB: *const ::std::os::raw::c_int,
+        nnzB: ::core::ffi::c_int,
+        csrSortedRowPtrB: *const ::core::ffi::c_int,
+        csrSortedColIndB: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        workspace: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+        workspace: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsrgeam2(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f32,
         descrA: cusparseMatDescr_t,
-        nnzA: ::std::os::raw::c_int,
+        nnzA: ::core::ffi::c_int,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         beta: *const f32,
         descrB: cusparseMatDescr_t,
-        nnzB: ::std::os::raw::c_int,
+        nnzB: ::core::ffi::c_int,
         csrSortedValB: *const f32,
-        csrSortedRowPtrB: *const ::std::os::raw::c_int,
-        csrSortedColIndB: *const ::std::os::raw::c_int,
+        csrSortedRowPtrB: *const ::core::ffi::c_int,
+        csrSortedColIndB: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f32,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDcsrgeam2(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const f64,
         descrA: cusparseMatDescr_t,
-        nnzA: ::std::os::raw::c_int,
+        nnzA: ::core::ffi::c_int,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         beta: *const f64,
         descrB: cusparseMatDescr_t,
-        nnzB: ::std::os::raw::c_int,
+        nnzB: ::core::ffi::c_int,
         csrSortedValB: *const f64,
-        csrSortedRowPtrB: *const ::std::os::raw::c_int,
-        csrSortedColIndB: *const ::std::os::raw::c_int,
+        csrSortedRowPtrB: *const ::core::ffi::c_int,
+        csrSortedColIndB: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f64,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCcsrgeam2(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuComplex,
         descrA: cusparseMatDescr_t,
-        nnzA: ::std::os::raw::c_int,
+        nnzA: ::core::ffi::c_int,
         csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         beta: *const cuComplex,
         descrB: cusparseMatDescr_t,
-        nnzB: ::std::os::raw::c_int,
+        nnzB: ::core::ffi::c_int,
         csrSortedValB: *const cuComplex,
-        csrSortedRowPtrB: *const ::std::os::raw::c_int,
-        csrSortedColIndB: *const ::std::os::raw::c_int,
+        csrSortedRowPtrB: *const ::core::ffi::c_int,
+        csrSortedColIndB: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut cuComplex,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZcsrgeam2(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         alpha: *const cuDoubleComplex,
         descrA: cusparseMatDescr_t,
-        nnzA: ::std::os::raw::c_int,
+        nnzA: ::core::ffi::c_int,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         beta: *const cuDoubleComplex,
         descrB: cusparseMatDescr_t,
-        nnzB: ::std::os::raw::c_int,
+        nnzB: ::core::ffi::c_int,
         csrSortedValB: *const cuDoubleComplex,
-        csrSortedRowPtrB: *const ::std::os::raw::c_int,
-        csrSortedColIndB: *const ::std::os::raw::c_int,
+        csrSortedRowPtrB: *const ::core::ffi::c_int,
+        csrSortedColIndB: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut cuDoubleComplex,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsrcolor(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         fractionToColor: *const f32,
-        ncolors: *mut ::std::os::raw::c_int,
-        coloring: *mut ::std::os::raw::c_int,
-        reordering: *mut ::std::os::raw::c_int,
+        ncolors: *mut ::core::ffi::c_int,
+        coloring: *mut ::core::ffi::c_int,
+        reordering: *mut ::core::ffi::c_int,
         info: cusparseColorInfo_t,
     ) -> cusparseStatus_t;
 }
@@ -3139,16 +3100,16 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDcsrcolor(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         fractionToColor: *const f64,
-        ncolors: *mut ::std::os::raw::c_int,
-        coloring: *mut ::std::os::raw::c_int,
-        reordering: *mut ::std::os::raw::c_int,
+        ncolors: *mut ::core::ffi::c_int,
+        coloring: *mut ::core::ffi::c_int,
+        reordering: *mut ::core::ffi::c_int,
         info: cusparseColorInfo_t,
     ) -> cusparseStatus_t;
 }
@@ -3156,16 +3117,16 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseCcsrcolor(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         fractionToColor: *const f32,
-        ncolors: *mut ::std::os::raw::c_int,
-        coloring: *mut ::std::os::raw::c_int,
-        reordering: *mut ::std::os::raw::c_int,
+        ncolors: *mut ::core::ffi::c_int,
+        coloring: *mut ::core::ffi::c_int,
+        reordering: *mut ::core::ffi::c_int,
         info: cusparseColorInfo_t,
     ) -> cusparseStatus_t;
 }
@@ -3173,59 +3134,39 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseZcsrcolor(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         fractionToColor: *const f64,
-        ncolors: *mut ::std::os::raw::c_int,
-        coloring: *mut ::std::os::raw::c_int,
-        reordering: *mut ::std::os::raw::c_int,
+        ncolors: *mut ::core::ffi::c_int,
+        coloring: *mut ::core::ffi::c_int,
+        reordering: *mut ::core::ffi::c_int,
         info: cusparseColorInfo_t,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSnnz(
-        handle: cusparseHandle_t,
-        dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        descrA: cusparseMatDescr_t,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        nnzPerRowCol: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-    ) -> cusparseStatus_t;
+    pub fn cusparseSnnz(handle: cusparseHandle_t, dirA: cusparseDirection_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, descrA: cusparseMatDescr_t, A: *const f32, lda: ::core::ffi::c_int, nnzPerRowCol: *mut ::core::ffi::c_int, nnzTotalDevHostPtr: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnnz(
-        handle: cusparseHandle_t,
-        dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        descrA: cusparseMatDescr_t,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        nnzPerRowCol: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-    ) -> cusparseStatus_t;
+    pub fn cusparseDnnz(handle: cusparseHandle_t, dirA: cusparseDirection_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, descrA: cusparseMatDescr_t, A: *const f64, lda: ::core::ffi::c_int, nnzPerRowCol: *mut ::core::ffi::c_int, nnzTotalDevHostPtr: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCnnz(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        nnzPerRowCol: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        nnzPerRowCol: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3233,46 +3174,37 @@ unsafe extern "C" {
     pub fn cusparseZnnz(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        nnzPerRowCol: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
+        nnzPerRowCol: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSnnz_compress(handle: cusparseHandle_t, m: ::std::os::raw::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const f32, csrSortedRowPtrA: *const ::std::os::raw::c_int, nnzPerRow: *mut ::std::os::raw::c_int, nnzC: *mut ::std::os::raw::c_int, tol: f32) -> cusparseStatus_t;
+    pub fn cusparseSnnz_compress(handle: cusparseHandle_t, m: ::core::ffi::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const f32, csrSortedRowPtrA: *const ::core::ffi::c_int, nnzPerRow: *mut ::core::ffi::c_int, nnzC: *mut ::core::ffi::c_int, tol: f32) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnnz_compress(handle: cusparseHandle_t, m: ::std::os::raw::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const f64, csrSortedRowPtrA: *const ::std::os::raw::c_int, nnzPerRow: *mut ::std::os::raw::c_int, nnzC: *mut ::std::os::raw::c_int, tol: f64) -> cusparseStatus_t;
+    pub fn cusparseDnnz_compress(handle: cusparseHandle_t, m: ::core::ffi::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const f64, csrSortedRowPtrA: *const ::core::ffi::c_int, nnzPerRow: *mut ::core::ffi::c_int, nnzC: *mut ::core::ffi::c_int, tol: f64) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCnnz_compress(
-        handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        descr: cusparseMatDescr_t,
-        csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        nnzPerRow: *mut ::std::os::raw::c_int,
-        nnzC: *mut ::std::os::raw::c_int,
-        tol: cuComplex,
-    ) -> cusparseStatus_t;
+    pub fn cusparseCnnz_compress(handle: cusparseHandle_t, m: ::core::ffi::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const cuComplex, csrSortedRowPtrA: *const ::core::ffi::c_int, nnzPerRow: *mut ::core::ffi::c_int, nnzC: *mut ::core::ffi::c_int, tol: cuComplex) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZnnz_compress(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
         descr: cusparseMatDescr_t,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        nnzPerRow: *mut ::std::os::raw::c_int,
-        nnzC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        nnzPerRow: *mut ::core::ffi::c_int,
+        nnzC: *mut ::core::ffi::c_int,
         tol: cuDoubleComplex,
     ) -> cusparseStatus_t;
 }
@@ -3280,17 +3212,17 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseScsr2csr_compress(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
-        nnzPerRow: *const ::std::os::raw::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
+        nnzPerRow: *const ::core::ffi::c_int,
         csrSortedValC: *mut f32,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
         tol: f32,
     ) -> cusparseStatus_t;
 }
@@ -3298,17 +3230,17 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDcsr2csr_compress(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
-        nnzPerRow: *const ::std::os::raw::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
+        nnzPerRow: *const ::core::ffi::c_int,
         csrSortedValC: *mut f64,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
         tol: f64,
     ) -> cusparseStatus_t;
 }
@@ -3316,17 +3248,17 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseCcsr2csr_compress(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuComplex,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
-        nnzPerRow: *const ::std::os::raw::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
+        nnzPerRow: *const ::core::ffi::c_int,
         csrSortedValC: *mut cuComplex,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
         tol: cuComplex,
     ) -> cusparseStatus_t;
 }
@@ -3334,42 +3266,42 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseZcsr2csr_compress(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
-        nnzPerRow: *const ::std::os::raw::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
+        nnzPerRow: *const ::core::ffi::c_int,
         csrSortedValC: *mut cuDoubleComplex,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
         tol: cuDoubleComplex,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXcoo2csr(handle: cusparseHandle_t, cooRowInd: *const ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, m: ::std::os::raw::c_int, csrSortedRowPtr: *mut ::std::os::raw::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t;
+    pub fn cusparseXcoo2csr(handle: cusparseHandle_t, cooRowInd: *const ::core::ffi::c_int, nnz: ::core::ffi::c_int, m: ::core::ffi::c_int, csrSortedRowPtr: *mut ::core::ffi::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXcsr2coo(handle: cusparseHandle_t, csrSortedRowPtr: *const ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, m: ::std::os::raw::c_int, cooRowInd: *mut ::std::os::raw::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t;
+    pub fn cusparseXcsr2coo(handle: cusparseHandle_t, csrSortedRowPtr: *const ::core::ffi::c_int, nnz: ::core::ffi::c_int, m: ::core::ffi::c_int, cooRowInd: *mut ::core::ffi::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseXcsr2bsrNnz(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3377,17 +3309,17 @@ unsafe extern "C" {
     pub fn cusparseScsr2bsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut f32,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3395,17 +3327,17 @@ unsafe extern "C" {
     pub fn cusparseDcsr2bsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut f64,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3413,17 +3345,17 @@ unsafe extern "C" {
     pub fn cusparseCcsr2bsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut cuComplex,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3431,17 +3363,17 @@ unsafe extern "C" {
     pub fn cusparseZcsr2bsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut cuDoubleComplex,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3449,17 +3381,17 @@ unsafe extern "C" {
     pub fn cusparseSbsr2csr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f32,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3467,17 +3399,17 @@ unsafe extern "C" {
     pub fn cusparseDbsr2csr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f64,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3485,17 +3417,17 @@ unsafe extern "C" {
     pub fn cusparseCbsr2csr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut cuComplex,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3503,91 +3435,91 @@ unsafe extern "C" {
     pub fn cusparseZbsr2csr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        blockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        blockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut cuDoubleComplex,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSgebsr2gebsc_bufferSize(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDgebsr2gebsc_bufferSize(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCgebsr2gebsc_bufferSize(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZgebsr2gebsc_bufferSize(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSgebsr2gebsc_bufferSizeExt(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -3595,14 +3527,14 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDgebsr2gebsc_bufferSizeExt(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -3610,14 +3542,14 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseCgebsr2gebsc_bufferSizeExt(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -3625,14 +3557,14 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseZgebsr2gebsc_bufferSizeExt(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -3640,80 +3572,80 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseSgebsr2gebsc(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const f32,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         bscVal: *mut f32,
-        bscRowInd: *mut ::std::os::raw::c_int,
-        bscColPtr: *mut ::std::os::raw::c_int,
+        bscRowInd: *mut ::core::ffi::c_int,
+        bscColPtr: *mut ::core::ffi::c_int,
         copyValues: cusparseAction_t,
         idxBase: cusparseIndexBase_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDgebsr2gebsc(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const f64,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         bscVal: *mut f64,
-        bscRowInd: *mut ::std::os::raw::c_int,
-        bscColPtr: *mut ::std::os::raw::c_int,
+        bscRowInd: *mut ::core::ffi::c_int,
+        bscColPtr: *mut ::core::ffi::c_int,
         copyValues: cusparseAction_t,
         idxBase: cusparseIndexBase_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCgebsr2gebsc(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const cuComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         bscVal: *mut cuComplex,
-        bscRowInd: *mut ::std::os::raw::c_int,
-        bscColPtr: *mut ::std::os::raw::c_int,
+        bscRowInd: *mut ::core::ffi::c_int,
+        bscColPtr: *mut ::core::ffi::c_int,
         copyValues: cusparseAction_t,
         idxBase: cusparseIndexBase_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZgebsr2gebsc(
         handle: cusparseHandle_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         bsrSortedVal: *const cuDoubleComplex,
-        bsrSortedRowPtr: *const ::std::os::raw::c_int,
-        bsrSortedColInd: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtr: *const ::core::ffi::c_int,
+        bsrSortedColInd: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         bscVal: *mut cuDoubleComplex,
-        bscRowInd: *mut ::std::os::raw::c_int,
-        bscColPtr: *mut ::std::os::raw::c_int,
+        bscRowInd: *mut ::core::ffi::c_int,
+        bscColPtr: *mut ::core::ffi::c_int,
         copyValues: cusparseAction_t,
         idxBase: cusparseIndexBase_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3721,16 +3653,16 @@ unsafe extern "C" {
     pub fn cusparseXgebsr2csr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3738,18 +3670,18 @@ unsafe extern "C" {
     pub fn cusparseSgebsr2csr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f32,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3757,18 +3689,18 @@ unsafe extern "C" {
     pub fn cusparseDgebsr2csr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f64,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3776,18 +3708,18 @@ unsafe extern "C" {
     pub fn cusparseCgebsr2csr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut cuComplex,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3795,18 +3727,18 @@ unsafe extern "C" {
     pub fn cusparseZgebsr2csr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut cuDoubleComplex,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3814,15 +3746,15 @@ unsafe extern "C" {
     pub fn cusparseScsr2gebsr_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3830,15 +3762,15 @@ unsafe extern "C" {
     pub fn cusparseDcsr2gebsr_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3846,15 +3778,15 @@ unsafe extern "C" {
     pub fn cusparseCcsr2gebsr_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3862,15 +3794,15 @@ unsafe extern "C" {
     pub fn cusparseZcsr2gebsr_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3878,14 +3810,14 @@ unsafe extern "C" {
     pub fn cusparseScsr2gebsr_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -3894,14 +3826,14 @@ unsafe extern "C" {
     pub fn cusparseDcsr2gebsr_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -3910,14 +3842,14 @@ unsafe extern "C" {
     pub fn cusparseCcsr2gebsr_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -3926,14 +3858,14 @@ unsafe extern "C" {
     pub fn cusparseZcsr2gebsr_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -3942,17 +3874,17 @@ unsafe extern "C" {
     pub fn cusparseXcsr2gebsrNnz(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3960,19 +3892,19 @@ unsafe extern "C" {
     pub fn cusparseScsr2gebsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut f32,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -3980,19 +3912,19 @@ unsafe extern "C" {
     pub fn cusparseDcsr2gebsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut f64,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4000,19 +3932,19 @@ unsafe extern "C" {
     pub fn cusparseCcsr2gebsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut cuComplex,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4020,19 +3952,19 @@ unsafe extern "C" {
     pub fn cusparseZcsr2gebsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const cuDoubleComplex,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut cuDoubleComplex,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
-        rowBlockDim: ::std::os::raw::c_int,
-        colBlockDim: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
+        rowBlockDim: ::core::ffi::c_int,
+        colBlockDim: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4040,18 +3972,18 @@ unsafe extern "C" {
     pub fn cusparseSgebsr2gebsr_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4059,18 +3991,18 @@ unsafe extern "C" {
     pub fn cusparseDgebsr2gebsr_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4078,18 +4010,18 @@ unsafe extern "C" {
     pub fn cusparseCgebsr2gebsr_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4097,18 +4029,18 @@ unsafe extern "C" {
     pub fn cusparseZgebsr2gebsr_bufferSize(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
-        pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
+        pBufferSizeInBytes: *mut ::core::ffi::c_int,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4116,17 +4048,17 @@ unsafe extern "C" {
     pub fn cusparseSgebsr2gebsr_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -4135,17 +4067,17 @@ unsafe extern "C" {
     pub fn cusparseDgebsr2gebsr_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -4154,17 +4086,17 @@ unsafe extern "C" {
     pub fn cusparseCgebsr2gebsr_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -4173,17 +4105,17 @@ unsafe extern "C" {
     pub fn cusparseZgebsr2gebsr_bufferSizeExt(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
         pBufferSize: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -4192,20 +4124,20 @@ unsafe extern "C" {
     pub fn cusparseXgebsr2gebsrNnz(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4213,22 +4145,22 @@ unsafe extern "C" {
     pub fn cusparseSgebsr2gebsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f32,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut f32,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4236,22 +4168,22 @@ unsafe extern "C" {
     pub fn cusparseDgebsr2gebsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const f64,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut f64,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4259,22 +4191,22 @@ unsafe extern "C" {
     pub fn cusparseCgebsr2gebsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut cuComplex,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -4282,104 +4214,86 @@ unsafe extern "C" {
     pub fn cusparseZgebsr2gebsr(
         handle: cusparseHandle_t,
         dirA: cusparseDirection_t,
-        mb: ::std::os::raw::c_int,
-        nb: ::std::os::raw::c_int,
-        nnzb: ::std::os::raw::c_int,
+        mb: ::core::ffi::c_int,
+        nb: ::core::ffi::c_int,
+        nnzb: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         bsrSortedValA: *const cuDoubleComplex,
-        bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-        bsrSortedColIndA: *const ::std::os::raw::c_int,
-        rowBlockDimA: ::std::os::raw::c_int,
-        colBlockDimA: ::std::os::raw::c_int,
+        bsrSortedRowPtrA: *const ::core::ffi::c_int,
+        bsrSortedColIndA: *const ::core::ffi::c_int,
+        rowBlockDimA: ::core::ffi::c_int,
+        colBlockDimA: ::core::ffi::c_int,
         descrC: cusparseMatDescr_t,
         bsrSortedValC: *mut cuDoubleComplex,
-        bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        bsrSortedColIndC: *mut ::std::os::raw::c_int,
-        rowBlockDimC: ::std::os::raw::c_int,
-        colBlockDimC: ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+        bsrSortedColIndC: *mut ::core::ffi::c_int,
+        rowBlockDimC: ::core::ffi::c_int,
+        colBlockDimC: ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCreateIdentityPermutation(handle: cusparseHandle_t, n: ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseCreateIdentityPermutation(handle: cusparseHandle_t, n: ::core::ffi::c_int, p: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXcoosort_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, cooRowsA: *const ::std::os::raw::c_int, cooColsA: *const ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseXcoosort_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, cooRowsA: *const ::core::ffi::c_int, cooColsA: *const ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXcoosortByRow(
-        handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
-        cooRowsA: *mut ::std::os::raw::c_int,
-        cooColsA: *mut ::std::os::raw::c_int,
-        P: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
-    ) -> cusparseStatus_t;
+    pub fn cusparseXcoosortByRow(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, cooRowsA: *mut ::core::ffi::c_int, cooColsA: *mut ::core::ffi::c_int, P: *mut ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXcoosortByColumn(
-        handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
-        cooRowsA: *mut ::std::os::raw::c_int,
-        cooColsA: *mut ::std::os::raw::c_int,
-        P: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
-    ) -> cusparseStatus_t;
+    pub fn cusparseXcoosortByColumn(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, cooRowsA: *mut ::core::ffi::c_int, cooColsA: *mut ::core::ffi::c_int, P: *mut ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXcsrsort_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseXcsrsort_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseXcsrsort(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *mut ::std::os::raw::c_int,
-        P: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrRowPtrA: *const ::core::ffi::c_int,
+        csrColIndA: *mut ::core::ffi::c_int,
+        P: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseXcscsort_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, cscColPtrA: *const ::std::os::raw::c_int, cscRowIndA: *const ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseXcscsort_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, cscColPtrA: *const ::core::ffi::c_int, cscRowIndA: *const ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseXcscsort(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
-        cscColPtrA: *const ::std::os::raw::c_int,
-        cscRowIndA: *mut ::std::os::raw::c_int,
-        P: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        cscColPtrA: *const ::core::ffi::c_int,
+        cscRowIndA: *mut ::core::ffi::c_int,
+        P: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsru2csr_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         csrVal: *mut f32,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
@@ -4388,12 +4302,12 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDcsru2csr_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         csrVal: *mut f64,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
@@ -4402,12 +4316,12 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseCcsru2csr_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         csrVal: *mut cuComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
@@ -4416,12 +4330,12 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseZcsru2csr_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         csrVal: *mut cuDoubleComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
@@ -4430,135 +4344,135 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseScsru2csr(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *mut f32,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDcsru2csr(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *mut f64,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCcsru2csr(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *mut cuComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZcsru2csr(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *mut cuDoubleComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseScsr2csru(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *mut f32,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDcsr2csru(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *mut f64,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCcsr2csru(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *mut cuComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseZcsr2csru(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrVal: *mut cuDoubleComplex,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *mut ::std::os::raw::c_int,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *mut ::core::ffi::c_int,
         info: csru2csrInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSpruneDense2csr_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         threshold: *const f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f32,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -4566,15 +4480,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDpruneDense2csr_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         threshold: *const f64,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f64,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -4582,80 +4496,80 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseSpruneDense2csrNnz(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         threshold: *const f32,
         descrC: cusparseMatDescr_t,
-        csrRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDpruneDense2csrNnz(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         threshold: *const f64,
         descrC: cusparseMatDescr_t,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSpruneDense2csr(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         threshold: *const f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f32,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDpruneDense2csr(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         threshold: *const f64,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f64,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSpruneCsr2csr_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         threshold: *const f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f32,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -4663,18 +4577,18 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDpruneCsr2csr_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         threshold: *const f64,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f64,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -4682,89 +4596,89 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseSpruneCsr2csrNnz(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         threshold: *const f32,
         descrC: cusparseMatDescr_t,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDpruneCsr2csrNnz(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         threshold: *const f64,
         descrC: cusparseMatDescr_t,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSpruneCsr2csr(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         threshold: *const f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f32,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDpruneCsr2csr(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         threshold: *const f64,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f64,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
-        pBuffer: *mut ::std::os::raw::c_void,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSpruneDense2csrByPercentage_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f32,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         info: pruneInfo_t,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
@@ -4773,15 +4687,15 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDpruneDense2csrByPercentage_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f64,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         info: pruneInfo_t,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
@@ -4790,84 +4704,84 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseSpruneDense2csrNnzByPercentage(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
-        csrRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+        csrRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
         info: pruneInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDpruneDense2csrNnzByPercentage(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
-        csrRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+        csrRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
         info: pruneInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSpruneDense2csrByPercentage(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f32,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f32,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
         info: pruneInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDpruneDense2csrByPercentage(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
         A: *const f64,
-        lda: ::std::os::raw::c_int,
+        lda: ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f64,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
         info: pruneInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSpruneCsr2csrByPercentage_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f32,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         info: pruneInfo_t,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
@@ -4876,18 +4790,18 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseDpruneCsr2csrByPercentage_bufferSizeExt(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *const f64,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *const ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *const ::core::ffi::c_int,
         info: pruneInfo_t,
         pBufferSizeInBytes: *mut usize,
     ) -> cusparseStatus_t;
@@ -4896,78 +4810,78 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn cusparseSpruneCsr2csrNnzByPercentage(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
         info: pruneInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDpruneCsr2csrNnzByPercentage(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
-        csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-        nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *mut ::core::ffi::c_int,
+        nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
         info: pruneInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseSpruneCsr2csrByPercentage(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f32,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f32,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
         info: pruneInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseDpruneCsr2csrByPercentage(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnzA: ::core::ffi::c_int,
         descrA: cusparseMatDescr_t,
         csrSortedValA: *const f64,
-        csrSortedRowPtrA: *const ::std::os::raw::c_int,
-        csrSortedColIndA: *const ::std::os::raw::c_int,
+        csrSortedRowPtrA: *const ::core::ffi::c_int,
+        csrSortedColIndA: *const ::core::ffi::c_int,
         percentage: f32,
         descrC: cusparseMatDescr_t,
         csrSortedValC: *mut f64,
-        csrSortedRowPtrC: *const ::std::os::raw::c_int,
-        csrSortedColIndC: *mut ::std::os::raw::c_int,
+        csrSortedRowPtrC: *const ::core::ffi::c_int,
+        csrSortedColIndC: *mut ::core::ffi::c_int,
         info: pruneInfo_t,
-        pBuffer: *mut ::std::os::raw::c_void,
+        pBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 impl cusparseCsr2CscAlg_t {
@@ -4982,35 +4896,35 @@ pub enum cusparseCsr2CscAlg_t {
 unsafe extern "C" {
     pub fn cusparseCsr2cscEx2(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
-        csrVal: *const ::std::os::raw::c_void,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
-        cscVal: *mut ::std::os::raw::c_void,
-        cscColPtr: *mut ::std::os::raw::c_int,
-        cscRowInd: *mut ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
+        csrVal: *const ::core::ffi::c_void,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
+        cscVal: *mut ::core::ffi::c_void,
+        cscColPtr: *mut ::core::ffi::c_int,
+        cscRowInd: *mut ::core::ffi::c_int,
         valType: cudaDataType,
         copyValues: cusparseAction_t,
         idxBase: cusparseIndexBase_t,
         alg: cusparseCsr2CscAlg_t,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusparseCsr2cscEx2_bufferSize(
         handle: cusparseHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        nnz: ::std::os::raw::c_int,
-        csrVal: *const ::std::os::raw::c_void,
-        csrRowPtr: *const ::std::os::raw::c_int,
-        csrColInd: *const ::std::os::raw::c_int,
-        cscVal: *mut ::std::os::raw::c_void,
-        cscColPtr: *mut ::std::os::raw::c_int,
-        cscRowInd: *mut ::std::os::raw::c_int,
+        m: ::core::ffi::c_int,
+        n: ::core::ffi::c_int,
+        nnz: ::core::ffi::c_int,
+        csrVal: *const ::core::ffi::c_void,
+        csrRowPtr: *const ::core::ffi::c_int,
+        csrColInd: *const ::core::ffi::c_int,
+        cscVal: *mut ::core::ffi::c_void,
+        cscColPtr: *mut ::core::ffi::c_int,
+        cscRowInd: *mut ::core::ffi::c_int,
         valType: cudaDataType,
         copyValues: cusparseAction_t,
         idxBase: cusparseIndexBase_t,
@@ -5082,11 +4996,11 @@ pub type cusparseConstSpMatDescr_t = *const cusparseSpMatDescr;
 pub type cusparseConstDnMatDescr_t = *const cusparseDnMatDescr;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCreateSpVec(spVecDescr: *mut cusparseSpVecDescr_t, size: i64, nnz: i64, indices: *mut ::std::os::raw::c_void, values: *mut ::std::os::raw::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t;
+    pub fn cusparseCreateSpVec(spVecDescr: *mut cusparseSpVecDescr_t, size: i64, nnz: i64, indices: *mut ::core::ffi::c_void, values: *mut ::core::ffi::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCreateConstSpVec(spVecDescr: *mut cusparseConstSpVecDescr_t, size: i64, nnz: i64, indices: *const ::std::os::raw::c_void, values: *const ::std::os::raw::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t;
+    pub fn cusparseCreateConstSpVec(spVecDescr: *mut cusparseConstSpVecDescr_t, size: i64, nnz: i64, indices: *const ::core::ffi::c_void, values: *const ::core::ffi::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5094,7 +5008,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpVecGet(spVecDescr: cusparseSpVecDescr_t, size: *mut i64, nnz: *mut i64, indices: *mut *mut ::std::os::raw::c_void, values: *mut *mut ::std::os::raw::c_void, idxType: *mut cusparseIndexType_t, idxBase: *mut cusparseIndexBase_t, valueType: *mut cudaDataType) -> cusparseStatus_t;
+    pub fn cusparseSpVecGet(spVecDescr: cusparseSpVecDescr_t, size: *mut i64, nnz: *mut i64, indices: *mut *mut ::core::ffi::c_void, values: *mut *mut ::core::ffi::c_void, idxType: *mut cusparseIndexType_t, idxBase: *mut cusparseIndexBase_t, valueType: *mut cudaDataType) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5102,8 +5016,8 @@ unsafe extern "C" {
         spVecDescr: cusparseConstSpVecDescr_t,
         size: *mut i64,
         nnz: *mut i64,
-        indices: *mut *const ::std::os::raw::c_void,
-        values: *mut *const ::std::os::raw::c_void,
+        indices: *mut *const ::core::ffi::c_void,
+        values: *mut *const ::core::ffi::c_void,
         idxType: *mut cusparseIndexType_t,
         idxBase: *mut cusparseIndexBase_t,
         valueType: *mut cudaDataType,
@@ -5115,23 +5029,23 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpVecGetValues(spVecDescr: cusparseSpVecDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSpVecGetValues(spVecDescr: cusparseSpVecDescr_t, values: *mut *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseConstSpVecGetValues(spVecDescr: cusparseConstSpVecDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseConstSpVecGetValues(spVecDescr: cusparseConstSpVecDescr_t, values: *mut *const ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpVecSetValues(spVecDescr: cusparseSpVecDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSpVecSetValues(spVecDescr: cusparseSpVecDescr_t, values: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCreateDnVec(dnVecDescr: *mut cusparseDnVecDescr_t, size: i64, values: *mut ::std::os::raw::c_void, valueType: cudaDataType) -> cusparseStatus_t;
+    pub fn cusparseCreateDnVec(dnVecDescr: *mut cusparseDnVecDescr_t, size: i64, values: *mut ::core::ffi::c_void, valueType: cudaDataType) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCreateConstDnVec(dnVecDescr: *mut cusparseConstDnVecDescr_t, size: i64, values: *const ::std::os::raw::c_void, valueType: cudaDataType) -> cusparseStatus_t;
+    pub fn cusparseCreateConstDnVec(dnVecDescr: *mut cusparseConstDnVecDescr_t, size: i64, values: *const ::core::ffi::c_void, valueType: cudaDataType) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5139,23 +5053,23 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnVecGet(dnVecDescr: cusparseDnVecDescr_t, size: *mut i64, values: *mut *mut ::std::os::raw::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t;
+    pub fn cusparseDnVecGet(dnVecDescr: cusparseDnVecDescr_t, size: *mut i64, values: *mut *mut ::core::ffi::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseConstDnVecGet(dnVecDescr: cusparseConstDnVecDescr_t, size: *mut i64, values: *mut *const ::std::os::raw::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t;
+    pub fn cusparseConstDnVecGet(dnVecDescr: cusparseConstDnVecDescr_t, size: *mut i64, values: *mut *const ::core::ffi::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnVecGetValues(dnVecDescr: cusparseDnVecDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDnVecGetValues(dnVecDescr: cusparseDnVecDescr_t, values: *mut *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseConstDnVecGetValues(dnVecDescr: cusparseConstDnVecDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseConstDnVecGetValues(dnVecDescr: cusparseConstDnVecDescr_t, values: *mut *const ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnVecSetValues(dnVecDescr: cusparseDnVecDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDnVecSetValues(dnVecDescr: cusparseDnVecDescr_t, values: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5171,15 +5085,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpMatGetValues(spMatDescr: cusparseSpMatDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSpMatGetValues(spMatDescr: cusparseSpMatDescr_t, values: *mut *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseConstSpMatGetValues(spMatDescr: cusparseConstSpMatDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseConstSpMatGetValues(spMatDescr: cusparseConstSpMatDescr_t, values: *mut *const ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpMatSetValues(spMatDescr: cusparseSpMatDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSpMatSetValues(spMatDescr: cusparseSpMatDescr_t, values: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5187,19 +5101,19 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpMatGetStridedBatch(spMatDescr: cusparseConstSpMatDescr_t, batchCount: *mut ::std::os::raw::c_int) -> cusparseStatus_t;
+    pub fn cusparseSpMatGetStridedBatch(spMatDescr: cusparseConstSpMatDescr_t, batchCount: *mut ::core::ffi::c_int) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCooSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::std::os::raw::c_int, batchStride: i64) -> cusparseStatus_t;
+    pub fn cusparseCooSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::core::ffi::c_int, batchStride: i64) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCsrSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::std::os::raw::c_int, offsetsBatchStride: i64, columnsValuesBatchStride: i64) -> cusparseStatus_t;
+    pub fn cusparseCsrSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::core::ffi::c_int, offsetsBatchStride: i64, columnsValuesBatchStride: i64) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseBsrSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::std::os::raw::c_int, offsetsBatchStride: i64, columnsBatchStride: i64, ValuesBatchStride: i64) -> cusparseStatus_t;
+    pub fn cusparseBsrSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::core::ffi::c_int, offsetsBatchStride: i64, columnsBatchStride: i64, ValuesBatchStride: i64) -> cusparseStatus_t;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -5209,11 +5123,11 @@ pub enum cusparseSpMatAttribute_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpMatGetAttribute(spMatDescr: cusparseConstSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::std::os::raw::c_void, dataSize: usize) -> cusparseStatus_t;
+    pub fn cusparseSpMatGetAttribute(spMatDescr: cusparseConstSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::core::ffi::c_void, dataSize: usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpMatSetAttribute(spMatDescr: cusparseSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::std::os::raw::c_void, dataSize: usize) -> cusparseStatus_t;
+    pub fn cusparseSpMatSetAttribute(spMatDescr: cusparseSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::core::ffi::c_void, dataSize: usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5222,9 +5136,9 @@ unsafe extern "C" {
         rows: i64,
         cols: i64,
         nnz: i64,
-        csrRowOffsets: *mut ::std::os::raw::c_void,
-        csrColInd: *mut ::std::os::raw::c_void,
-        csrValues: *mut ::std::os::raw::c_void,
+        csrRowOffsets: *mut ::core::ffi::c_void,
+        csrColInd: *mut ::core::ffi::c_void,
+        csrValues: *mut ::core::ffi::c_void,
         csrRowOffsetsType: cusparseIndexType_t,
         csrColIndType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
@@ -5238,9 +5152,9 @@ unsafe extern "C" {
         rows: i64,
         cols: i64,
         nnz: i64,
-        csrRowOffsets: *const ::std::os::raw::c_void,
-        csrColInd: *const ::std::os::raw::c_void,
-        csrValues: *const ::std::os::raw::c_void,
+        csrRowOffsets: *const ::core::ffi::c_void,
+        csrColInd: *const ::core::ffi::c_void,
+        csrValues: *const ::core::ffi::c_void,
         csrRowOffsetsType: cusparseIndexType_t,
         csrColIndType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
@@ -5254,9 +5168,9 @@ unsafe extern "C" {
         rows: i64,
         cols: i64,
         nnz: i64,
-        cscColOffsets: *mut ::std::os::raw::c_void,
-        cscRowInd: *mut ::std::os::raw::c_void,
-        cscValues: *mut ::std::os::raw::c_void,
+        cscColOffsets: *mut ::core::ffi::c_void,
+        cscRowInd: *mut ::core::ffi::c_void,
+        cscValues: *mut ::core::ffi::c_void,
         cscColOffsetsType: cusparseIndexType_t,
         cscRowIndType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
@@ -5270,9 +5184,9 @@ unsafe extern "C" {
         rows: i64,
         cols: i64,
         nnz: i64,
-        cscColOffsets: *const ::std::os::raw::c_void,
-        cscRowInd: *const ::std::os::raw::c_void,
-        cscValues: *const ::std::os::raw::c_void,
+        cscColOffsets: *const ::core::ffi::c_void,
+        cscRowInd: *const ::core::ffi::c_void,
+        cscValues: *const ::core::ffi::c_void,
         cscColOffsetsType: cusparseIndexType_t,
         cscRowIndType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
@@ -5286,9 +5200,9 @@ unsafe extern "C" {
         rows: *mut i64,
         cols: *mut i64,
         nnz: *mut i64,
-        csrRowOffsets: *mut *mut ::std::os::raw::c_void,
-        csrColInd: *mut *mut ::std::os::raw::c_void,
-        csrValues: *mut *mut ::std::os::raw::c_void,
+        csrRowOffsets: *mut *mut ::core::ffi::c_void,
+        csrColInd: *mut *mut ::core::ffi::c_void,
+        csrValues: *mut *mut ::core::ffi::c_void,
         csrRowOffsetsType: *mut cusparseIndexType_t,
         csrColIndType: *mut cusparseIndexType_t,
         idxBase: *mut cusparseIndexBase_t,
@@ -5302,9 +5216,9 @@ unsafe extern "C" {
         rows: *mut i64,
         cols: *mut i64,
         nnz: *mut i64,
-        csrRowOffsets: *mut *const ::std::os::raw::c_void,
-        csrColInd: *mut *const ::std::os::raw::c_void,
-        csrValues: *mut *const ::std::os::raw::c_void,
+        csrRowOffsets: *mut *const ::core::ffi::c_void,
+        csrColInd: *mut *const ::core::ffi::c_void,
+        csrValues: *mut *const ::core::ffi::c_void,
         csrRowOffsetsType: *mut cusparseIndexType_t,
         csrColIndType: *mut cusparseIndexType_t,
         idxBase: *mut cusparseIndexBase_t,
@@ -5318,9 +5232,9 @@ unsafe extern "C" {
         rows: *mut i64,
         cols: *mut i64,
         nnz: *mut i64,
-        cscColOffsets: *mut *mut ::std::os::raw::c_void,
-        cscRowInd: *mut *mut ::std::os::raw::c_void,
-        cscValues: *mut *mut ::std::os::raw::c_void,
+        cscColOffsets: *mut *mut ::core::ffi::c_void,
+        cscRowInd: *mut *mut ::core::ffi::c_void,
+        cscValues: *mut *mut ::core::ffi::c_void,
         cscColOffsetsType: *mut cusparseIndexType_t,
         cscRowIndType: *mut cusparseIndexType_t,
         idxBase: *mut cusparseIndexBase_t,
@@ -5334,9 +5248,9 @@ unsafe extern "C" {
         rows: *mut i64,
         cols: *mut i64,
         nnz: *mut i64,
-        cscColOffsets: *mut *const ::std::os::raw::c_void,
-        cscRowInd: *mut *const ::std::os::raw::c_void,
-        cscValues: *mut *const ::std::os::raw::c_void,
+        cscColOffsets: *mut *const ::core::ffi::c_void,
+        cscRowInd: *mut *const ::core::ffi::c_void,
+        cscValues: *mut *const ::core::ffi::c_void,
         cscColOffsetsType: *mut cusparseIndexType_t,
         cscRowIndType: *mut cusparseIndexType_t,
         idxBase: *mut cusparseIndexBase_t,
@@ -5345,11 +5259,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCsrSetPointers(spMatDescr: cusparseSpMatDescr_t, csrRowOffsets: *mut ::std::os::raw::c_void, csrColInd: *mut ::std::os::raw::c_void, csrValues: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseCsrSetPointers(spMatDescr: cusparseSpMatDescr_t, csrRowOffsets: *mut ::core::ffi::c_void, csrColInd: *mut ::core::ffi::c_void, csrValues: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCscSetPointers(spMatDescr: cusparseSpMatDescr_t, cscColOffsets: *mut ::std::os::raw::c_void, cscRowInd: *mut ::std::os::raw::c_void, cscValues: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseCscSetPointers(spMatDescr: cusparseSpMatDescr_t, cscColOffsets: *mut ::core::ffi::c_void, cscRowInd: *mut ::core::ffi::c_void, cscValues: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5360,9 +5274,9 @@ unsafe extern "C" {
         bnnz: i64,
         rowBlockSize: i64,
         colBlockSize: i64,
-        bsrRowOffsets: *mut ::std::os::raw::c_void,
-        bsrColInd: *mut ::std::os::raw::c_void,
-        bsrValues: *mut ::std::os::raw::c_void,
+        bsrRowOffsets: *mut ::core::ffi::c_void,
+        bsrColInd: *mut ::core::ffi::c_void,
+        bsrValues: *mut ::core::ffi::c_void,
         bsrRowOffsetsType: cusparseIndexType_t,
         bsrColIndType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
@@ -5379,9 +5293,9 @@ unsafe extern "C" {
         bnnz: i64,
         rowBlockDim: i64,
         colBlockDim: i64,
-        bsrRowOffsets: *const ::std::os::raw::c_void,
-        bsrColInd: *const ::std::os::raw::c_void,
-        bsrValues: *const ::std::os::raw::c_void,
+        bsrRowOffsets: *const ::core::ffi::c_void,
+        bsrColInd: *const ::core::ffi::c_void,
+        bsrValues: *const ::core::ffi::c_void,
         bsrRowOffsetsType: cusparseIndexType_t,
         bsrColIndType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
@@ -5396,9 +5310,9 @@ unsafe extern "C" {
         rows: i64,
         cols: i64,
         nnz: i64,
-        cooRowInd: *mut ::std::os::raw::c_void,
-        cooColInd: *mut ::std::os::raw::c_void,
-        cooValues: *mut ::std::os::raw::c_void,
+        cooRowInd: *mut ::core::ffi::c_void,
+        cooColInd: *mut ::core::ffi::c_void,
+        cooValues: *mut ::core::ffi::c_void,
         cooIdxType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
         valueType: cudaDataType,
@@ -5411,9 +5325,9 @@ unsafe extern "C" {
         rows: i64,
         cols: i64,
         nnz: i64,
-        cooRowInd: *const ::std::os::raw::c_void,
-        cooColInd: *const ::std::os::raw::c_void,
-        cooValues: *const ::std::os::raw::c_void,
+        cooRowInd: *const ::core::ffi::c_void,
+        cooColInd: *const ::core::ffi::c_void,
+        cooValues: *const ::core::ffi::c_void,
         cooIdxType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
         valueType: cudaDataType,
@@ -5426,9 +5340,9 @@ unsafe extern "C" {
         rows: *mut i64,
         cols: *mut i64,
         nnz: *mut i64,
-        cooRowInd: *mut *mut ::std::os::raw::c_void,
-        cooColInd: *mut *mut ::std::os::raw::c_void,
-        cooValues: *mut *mut ::std::os::raw::c_void,
+        cooRowInd: *mut *mut ::core::ffi::c_void,
+        cooColInd: *mut *mut ::core::ffi::c_void,
+        cooValues: *mut *mut ::core::ffi::c_void,
         idxType: *mut cusparseIndexType_t,
         idxBase: *mut cusparseIndexBase_t,
         valueType: *mut cudaDataType,
@@ -5441,9 +5355,9 @@ unsafe extern "C" {
         rows: *mut i64,
         cols: *mut i64,
         nnz: *mut i64,
-        cooRowInd: *mut *const ::std::os::raw::c_void,
-        cooColInd: *mut *const ::std::os::raw::c_void,
-        cooValues: *mut *const ::std::os::raw::c_void,
+        cooRowInd: *mut *const ::core::ffi::c_void,
+        cooColInd: *mut *const ::core::ffi::c_void,
+        cooValues: *mut *const ::core::ffi::c_void,
         idxType: *mut cusparseIndexType_t,
         idxBase: *mut cusparseIndexBase_t,
         valueType: *mut cudaDataType,
@@ -5451,7 +5365,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCooSetPointers(spMatDescr: cusparseSpMatDescr_t, cooRows: *mut ::std::os::raw::c_void, cooColumns: *mut ::std::os::raw::c_void, cooValues: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseCooSetPointers(spMatDescr: cusparseSpMatDescr_t, cooRows: *mut ::core::ffi::c_void, cooColumns: *mut ::core::ffi::c_void, cooValues: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5461,8 +5375,8 @@ unsafe extern "C" {
         cols: i64,
         ellBlockSize: i64,
         ellCols: i64,
-        ellColInd: *mut ::std::os::raw::c_void,
-        ellValue: *mut ::std::os::raw::c_void,
+        ellColInd: *mut ::core::ffi::c_void,
+        ellValue: *mut ::core::ffi::c_void,
         ellIdxType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
         valueType: cudaDataType,
@@ -5476,8 +5390,8 @@ unsafe extern "C" {
         cols: i64,
         ellBlockSize: i64,
         ellCols: i64,
-        ellColInd: *const ::std::os::raw::c_void,
-        ellValue: *const ::std::os::raw::c_void,
+        ellColInd: *const ::core::ffi::c_void,
+        ellValue: *const ::core::ffi::c_void,
         ellIdxType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
         valueType: cudaDataType,
@@ -5491,8 +5405,8 @@ unsafe extern "C" {
         cols: *mut i64,
         ellBlockSize: *mut i64,
         ellCols: *mut i64,
-        ellColInd: *mut *mut ::std::os::raw::c_void,
-        ellValue: *mut *mut ::std::os::raw::c_void,
+        ellColInd: *mut *mut ::core::ffi::c_void,
+        ellValue: *mut *mut ::core::ffi::c_void,
         ellIdxType: *mut cusparseIndexType_t,
         idxBase: *mut cusparseIndexBase_t,
         valueType: *mut cudaDataType,
@@ -5506,8 +5420,8 @@ unsafe extern "C" {
         cols: *mut i64,
         ellBlockSize: *mut i64,
         ellCols: *mut i64,
-        ellColInd: *mut *const ::std::os::raw::c_void,
-        ellValue: *mut *const ::std::os::raw::c_void,
+        ellColInd: *mut *const ::core::ffi::c_void,
+        ellValue: *mut *const ::core::ffi::c_void,
         ellIdxType: *mut cusparseIndexType_t,
         idxBase: *mut cusparseIndexBase_t,
         valueType: *mut cudaDataType,
@@ -5522,9 +5436,9 @@ unsafe extern "C" {
         nnz: i64,
         sellValuesSize: i64,
         sliceSize: i64,
-        sellSliceOffsets: *mut ::std::os::raw::c_void,
-        sellColInd: *mut ::std::os::raw::c_void,
-        sellValues: *mut ::std::os::raw::c_void,
+        sellSliceOffsets: *mut ::core::ffi::c_void,
+        sellColInd: *mut ::core::ffi::c_void,
+        sellValues: *mut ::core::ffi::c_void,
         sellSliceOffsetsType: cusparseIndexType_t,
         sellColIndType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
@@ -5540,9 +5454,9 @@ unsafe extern "C" {
         nnz: i64,
         sellValuesSize: i64,
         sliceSize: i64,
-        sellSliceOffsets: *const ::std::os::raw::c_void,
-        sellColInd: *const ::std::os::raw::c_void,
-        sellValues: *const ::std::os::raw::c_void,
+        sellSliceOffsets: *const ::core::ffi::c_void,
+        sellColInd: *const ::core::ffi::c_void,
+        sellValues: *const ::core::ffi::c_void,
         sellSliceOffsetsType: cusparseIndexType_t,
         sellColIndType: cusparseIndexType_t,
         idxBase: cusparseIndexBase_t,
@@ -5551,11 +5465,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCreateDnMat(dnMatDescr: *mut cusparseDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *mut ::std::os::raw::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t;
+    pub fn cusparseCreateDnMat(dnMatDescr: *mut cusparseDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *mut ::core::ffi::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseCreateConstDnMat(dnMatDescr: *mut cusparseConstDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *const ::std::os::raw::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t;
+    pub fn cusparseCreateConstDnMat(dnMatDescr: *mut cusparseConstDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *const ::core::ffi::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5563,35 +5477,35 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnMatGet(dnMatDescr: cusparseDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *mut ::std::os::raw::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t;
+    pub fn cusparseDnMatGet(dnMatDescr: cusparseDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *mut ::core::ffi::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseConstDnMatGet(dnMatDescr: cusparseConstDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *const ::std::os::raw::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t;
+    pub fn cusparseConstDnMatGet(dnMatDescr: cusparseConstDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *const ::core::ffi::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnMatGetValues(dnMatDescr: cusparseDnMatDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDnMatGetValues(dnMatDescr: cusparseDnMatDescr_t, values: *mut *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseConstDnMatGetValues(dnMatDescr: cusparseConstDnMatDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseConstDnMatGetValues(dnMatDescr: cusparseConstDnMatDescr_t, values: *mut *const ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnMatSetValues(dnMatDescr: cusparseDnMatDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDnMatSetValues(dnMatDescr: cusparseDnMatDescr_t, values: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnMatSetStridedBatch(dnMatDescr: cusparseDnMatDescr_t, batchCount: ::std::os::raw::c_int, batchStride: i64) -> cusparseStatus_t;
+    pub fn cusparseDnMatSetStridedBatch(dnMatDescr: cusparseDnMatDescr_t, batchCount: ::core::ffi::c_int, batchStride: i64) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDnMatGetStridedBatch(dnMatDescr: cusparseConstDnMatDescr_t, batchCount: *mut ::std::os::raw::c_int, batchStride: *mut i64) -> cusparseStatus_t;
+    pub fn cusparseDnMatGetStridedBatch(dnMatDescr: cusparseConstDnMatDescr_t, batchCount: *mut ::core::ffi::c_int, batchStride: *mut i64) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseAxpby(handle: cusparseHandle_t, alpha: *const ::std::os::raw::c_void, vecX: cusparseConstSpVecDescr_t, beta: *const ::std::os::raw::c_void, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t;
+    pub fn cusparseAxpby(handle: cusparseHandle_t, alpha: *const ::core::ffi::c_void, vecX: cusparseConstSpVecDescr_t, beta: *const ::core::ffi::c_void, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5603,15 +5517,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseRot(handle: cusparseHandle_t, c_coeff: *const ::std::os::raw::c_void, s_coeff: *const ::std::os::raw::c_void, vecX: cusparseSpVecDescr_t, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t;
+    pub fn cusparseRot(handle: cusparseHandle_t, c_coeff: *const ::core::ffi::c_void, s_coeff: *const ::core::ffi::c_void, vecX: cusparseSpVecDescr_t, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpVV_bufferSize(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *const ::std::os::raw::c_void, computeType: cudaDataType, bufferSize: *mut usize) -> cusparseStatus_t;
+    pub fn cusparseSpVV_bufferSize(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *const ::core::ffi::c_void, computeType: cudaDataType, bufferSize: *mut usize) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpVV(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *mut ::std::os::raw::c_void, computeType: cudaDataType, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSpVV(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *mut ::core::ffi::c_void, computeType: cudaDataType, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -5624,7 +5538,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSparseToDense(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSparseToDense(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -5637,11 +5551,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDenseToSparse_analysis(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDenseToSparse_analysis(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseDenseToSparse_convert(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseDenseToSparse_convert(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -5659,14 +5573,14 @@ unsafe extern "C" {
     pub fn cusparseSpMV(
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         vecX: cusparseConstDnVecDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         vecY: cusparseDnVecDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpMVAlg_t,
-        externalBuffer: *mut ::std::os::raw::c_void,
+        externalBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -5674,10 +5588,10 @@ unsafe extern "C" {
     pub fn cusparseSpMV_bufferSize(
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         vecX: cusparseConstDnVecDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         vecY: cusparseDnVecDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpMVAlg_t,
@@ -5689,14 +5603,14 @@ unsafe extern "C" {
     pub fn cusparseSpMV_preprocess(
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         vecX: cusparseConstDnVecDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         vecY: cusparseDnVecDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpMVAlg_t,
-        externalBuffer: *mut ::std::os::raw::c_void,
+        externalBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[repr(u32)]
@@ -5729,7 +5643,7 @@ unsafe extern "C" {
     pub fn cusparseSpSV_bufferSize(
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         vecX: cusparseConstDnVecDescr_t,
         vecY: cusparseDnVecDescr_t,
@@ -5744,14 +5658,14 @@ unsafe extern "C" {
     pub fn cusparseSpSV_analysis(
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         vecX: cusparseConstDnVecDescr_t,
         vecY: cusparseDnVecDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpSVAlg_t,
         spsvDescr: cusparseSpSVDescr_t,
-        externalBuffer: *mut ::std::os::raw::c_void,
+        externalBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -5759,7 +5673,7 @@ unsafe extern "C" {
     pub fn cusparseSpSV_solve(
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         vecX: cusparseConstDnVecDescr_t,
         vecY: cusparseDnVecDescr_t,
@@ -5770,7 +5684,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpSV_updateMatrix(handle: cusparseHandle_t, spsvDescr: cusparseSpSVDescr_t, newValues: *mut ::std::os::raw::c_void, updatePart: cusparseSpSVUpdate_t) -> cusparseStatus_t;
+    pub fn cusparseSpSV_updateMatrix(handle: cusparseHandle_t, spsvDescr: cusparseSpSVDescr_t, newValues: *mut ::core::ffi::c_void, updatePart: cusparseSpSVUpdate_t) -> cusparseStatus_t;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -5803,7 +5717,7 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstDnMatDescr_t,
         matC: cusparseDnMatDescr_t,
@@ -5819,14 +5733,14 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstDnMatDescr_t,
         matC: cusparseDnMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpSMAlg_t,
         spsmDescr: cusparseSpSMDescr_t,
-        externalBuffer: *mut ::std::os::raw::c_void,
+        externalBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -5835,7 +5749,7 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstDnMatDescr_t,
         matC: cusparseDnMatDescr_t,
@@ -5846,7 +5760,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpSM_updateMatrix(handle: cusparseHandle_t, spsmDescr: cusparseSpSMDescr_t, newValues: *mut ::std::os::raw::c_void, updatePart: cusparseSpSMUpdate_t) -> cusparseStatus_t;
+    pub fn cusparseSpSM_updateMatrix(handle: cusparseHandle_t, spsmDescr: cusparseSpSMDescr_t, newValues: *mut ::core::ffi::c_void, updatePart: cusparseSpSMUpdate_t) -> cusparseStatus_t;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -5868,10 +5782,10 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstDnMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseDnMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpMMAlg_t,
@@ -5884,14 +5798,14 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstDnMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseDnMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpMMAlg_t,
-        externalBuffer: *mut ::std::os::raw::c_void,
+        externalBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -5900,14 +5814,14 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstDnMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseDnMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpMMAlg_t,
-        externalBuffer: *mut ::std::os::raw::c_void,
+        externalBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[repr(u32)]
@@ -5940,16 +5854,16 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstSpMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseSpMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpGEMMAlg_t,
         spgemmDescr: cusparseSpGEMMDescr_t,
         bufferSize1: *mut usize,
-        externalBuffer1: *mut ::std::os::raw::c_void,
+        externalBuffer1: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -5962,17 +5876,17 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstSpMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseSpMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpGEMMAlg_t,
         spgemmDescr: cusparseSpGEMMDescr_t,
         chunk_fraction: f32,
         bufferSize3: *mut usize,
-        externalBuffer3: *mut ::std::os::raw::c_void,
+        externalBuffer3: *mut ::core::ffi::c_void,
         bufferSize2: *mut usize,
     ) -> cusparseStatus_t;
 }
@@ -5982,16 +5896,16 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstSpMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseSpMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpGEMMAlg_t,
         spgemmDescr: cusparseSpGEMMDescr_t,
         bufferSize2: *mut usize,
-        externalBuffer2: *mut ::std::os::raw::c_void,
+        externalBuffer2: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -6000,10 +5914,10 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstSpMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseSpMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpGEMMAlg_t,
@@ -6022,7 +5936,7 @@ unsafe extern "C" {
         alg: cusparseSpGEMMAlg_t,
         spgemmDescr: cusparseSpGEMMDescr_t,
         bufferSize1: *mut usize,
-        externalBuffer1: *mut ::std::os::raw::c_void,
+        externalBuffer1: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -6037,11 +5951,11 @@ unsafe extern "C" {
         alg: cusparseSpGEMMAlg_t,
         spgemmDescr: cusparseSpGEMMDescr_t,
         bufferSize2: *mut usize,
-        externalBuffer2: *mut ::std::os::raw::c_void,
+        externalBuffer2: *mut ::core::ffi::c_void,
         bufferSize3: *mut usize,
-        externalBuffer3: *mut ::std::os::raw::c_void,
+        externalBuffer3: *mut ::core::ffi::c_void,
         bufferSize4: *mut usize,
-        externalBuffer4: *mut ::std::os::raw::c_void,
+        externalBuffer4: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -6056,7 +5970,7 @@ unsafe extern "C" {
         alg: cusparseSpGEMMAlg_t,
         spgemmDescr: cusparseSpGEMMDescr_t,
         bufferSize5: *mut usize,
-        externalBuffer5: *mut ::std::os::raw::c_void,
+        externalBuffer5: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -6065,10 +5979,10 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseConstSpMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseSpMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpGEMMAlg_t,
@@ -6086,10 +6000,10 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstDnMatDescr_t,
         matB: cusparseConstDnMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseSpMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSDDMMAlg_t,
@@ -6102,14 +6016,14 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstDnMatDescr_t,
         matB: cusparseConstDnMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseSpMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSDDMMAlg_t,
-        externalBuffer: *mut ::std::os::raw::c_void,
+        externalBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
@@ -6118,14 +6032,14 @@ unsafe extern "C" {
         handle: cusparseHandle_t,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
-        alpha: *const ::std::os::raw::c_void,
+        alpha: *const ::core::ffi::c_void,
         matA: cusparseConstDnMatDescr_t,
         matB: cusparseConstDnMatDescr_t,
-        beta: *const ::std::os::raw::c_void,
+        beta: *const ::core::ffi::c_void,
         matC: cusparseSpMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSDDMMAlg_t,
-        externalBuffer: *mut ::std::os::raw::c_void,
+        externalBuffer: *mut ::core::ffi::c_void,
     ) -> cusparseStatus_t;
 }
 #[repr(C)]
@@ -6151,18 +6065,18 @@ unsafe extern "C" {
         matC: cusparseDnMatDescr_t,
         computeType: cudaDataType,
         alg: cusparseSpMMOpAlg_t,
-        addOperationLtoirBuffer: *const ::std::os::raw::c_void,
+        addOperationLtoirBuffer: *const ::core::ffi::c_void,
         addOperationBufferSize: usize,
-        mulOperationLtoirBuffer: *const ::std::os::raw::c_void,
+        mulOperationLtoirBuffer: *const ::core::ffi::c_void,
         mulOperationBufferSize: usize,
-        epilogueLtoirBuffer: *const ::std::os::raw::c_void,
+        epilogueLtoirBuffer: *const ::core::ffi::c_void,
         epilogueBufferSize: usize,
         SpMMWorkspaceSize: *mut usize,
     ) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusparseSpMMOp(plan: cusparseSpMMOpPlan_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t;
+    pub fn cusparseSpMMOp(plan: cusparseSpMMOpPlan_t, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -6172,19 +6086,19 @@ unsafe extern "C" {
 pub struct DynamicBindings {
     pub cusparseCreate: Option<unsafe extern "C" fn(*mut cusparseHandle_t) -> cusparseStatus_t>,
     pub cusparseDestroy: Option<unsafe extern "C" fn(cusparseHandle_t) -> cusparseStatus_t>,
-    pub cusparseGetVersion: Option<unsafe extern "C" fn(cusparseHandle_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseGetErrorName: Option<unsafe extern "C" fn(cusparseStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cusparseGetErrorString: Option<unsafe extern "C" fn(cusparseStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cusparseGetVersion: Option<unsafe extern "C" fn(cusparseHandle_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseGetErrorName: Option<unsafe extern "C" fn(cusparseStatus_t) -> *const ::core::ffi::c_char>,
+    pub cusparseGetErrorString: Option<unsafe extern "C" fn(cusparseStatus_t) -> *const ::core::ffi::c_char>,
     pub cusparseSetStream: Option<unsafe extern "C" fn(cusparseHandle_t, cudaStream_t) -> cusparseStatus_t>,
     pub cusparseGetStream: Option<unsafe extern "C" fn(cusparseHandle_t, *mut cudaStream_t) -> cusparseStatus_t>,
     pub cusparseGetPointerMode: Option<unsafe extern "C" fn(cusparseHandle_t, *mut cusparsePointerMode_t) -> cusparseStatus_t>,
     pub cusparseSetPointerMode: Option<unsafe extern "C" fn(cusparseHandle_t, cusparsePointerMode_t) -> cusparseStatus_t>,
     pub cusparseLoggerSetCallback: Option<unsafe extern "C" fn(cusparseLoggerCallback_t) -> cusparseStatus_t>,
     pub cusparseLoggerSetFile: Option<unsafe extern "C" fn(*mut FILE) -> cusparseStatus_t>,
-    pub cusparseLoggerOpenFile: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char) -> cusparseStatus_t>,
-    pub cusparseLoggerSetLevel: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseLoggerSetMask: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseLoggerOpenFile: Option<unsafe extern "C" fn(*const ::core::ffi::c_char) -> cusparseStatus_t>,
+    pub cusparseLoggerSetLevel: Option<unsafe extern "C" fn(::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseLoggerSetMask: Option<unsafe extern "C" fn(::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseLoggerForceDisable: Option<unsafe extern "C" fn() -> cusparseStatus_t>,
     pub cusparseCreateMatDescr: Option<unsafe extern "C" fn(*mut cusparseMatDescr_t) -> cusparseStatus_t>,
     pub cusparseDestroyMatDescr: Option<unsafe extern "C" fn(cusparseMatDescr_t) -> cusparseStatus_t>,
@@ -6215,95 +6129,65 @@ pub struct DynamicBindings {
     pub cusparseCreatePruneInfo: Option<unsafe extern "C" fn(*mut pruneInfo_t) -> cusparseStatus_t>,
     pub cusparseDestroyPruneInfo: Option<unsafe extern "C" fn(pruneInfo_t) -> cusparseStatus_t>,
     pub cusparseSgemvi: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f32,
-            *const f32,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f32,
-            *const ::std::os::raw::c_int,
-            *const f32,
-            *mut f32,
-            cusparseIndexBase_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const ::core::ffi::c_int, *const f32, *mut f32, cusparseIndexBase_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
-    pub cusparseSgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseSgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseDgemvi: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f64,
-            *const f64,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const f64,
-            *const ::std::os::raw::c_int,
-            *const f64,
-            *mut f64,
-            cusparseIndexBase_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const ::core::ffi::c_int, *const f64, *mut f64, cusparseIndexBase_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
-    pub cusparseDgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseDgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseCgemvi: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
             *const cuComplex,
             *mut cuComplex,
             cusparseIndexBase_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseCgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseCgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseZgemvi: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
             cusparseIndexBase_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseZgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseZgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseSbsrmv: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             *const f32,
             *mut f32,
@@ -6314,15 +6198,15 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *const f64,
             *mut f64,
@@ -6333,15 +6217,15 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
             *mut cuComplex,
@@ -6352,15 +6236,15 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
@@ -6371,18 +6255,18 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             *const f32,
             *mut f32,
@@ -6393,18 +6277,18 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *const f64,
             *mut f64,
@@ -6415,18 +6299,18 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *const cuComplex,
             *mut cuComplex,
@@ -6437,128 +6321,70 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseXbsrsv2_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsrsv2Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseSbsrsv2_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsrsv2Info_t,
-            *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDbsrsv2_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsrsv2Info_t,
-            *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseXbsrsv2_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsrsv2Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseSbsrsv2_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrsv2Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseDbsrsv2_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrsv2Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseCbsrsv2_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsrsv2Info_t,
-            *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrsv2Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsv2_bufferSize: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsv2Info_t,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSbsrsv2_bufferSizeExt: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t,
-    >,
-    pub cusparseDbsrsv2_bufferSizeExt: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t,
-    >,
-    pub cusparseCbsrsv2_bufferSizeExt: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t,
-    >,
-    pub cusparseZbsrsv2_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsrsv2Info_t,
-            *mut usize,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSbsrsv2_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDbsrsv2_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCbsrsv2_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZbsrsv2_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSbsrsv2_analysis: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsv2Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsv2_analysis: Option<
@@ -6566,16 +6392,16 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsv2Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsv2_analysis: Option<
@@ -6583,16 +6409,16 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsv2Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsv2_analysis: Option<
@@ -6600,16 +6426,16 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsv2Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrsv2_solve: Option<
@@ -6617,19 +6443,19 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsv2Info_t,
             *const f32,
             *mut f32,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsv2_solve: Option<
@@ -6637,19 +6463,19 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsv2Info_t,
             *const f64,
             *mut f64,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsv2_solve: Option<
@@ -6657,19 +6483,19 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsv2Info_t,
             *const cuComplex,
             *mut cuComplex,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsv2_solve: Option<
@@ -6677,19 +6503,19 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsv2Info_t,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrmm: Option<
@@ -6698,21 +6524,21 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrmm: Option<
@@ -6721,21 +6547,21 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrmm: Option<
@@ -6744,21 +6570,21 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrmm: Option<
@@ -6767,40 +6593,40 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseXbsrsm2_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsrsm2Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseXbsrsm2_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsrsm2Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseSbsrsm2_bufferSize: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsm2_bufferSize: Option<
@@ -6809,16 +6635,16 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsm2_bufferSize: Option<
@@ -6827,16 +6653,16 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsm2_bufferSize: Option<
@@ -6845,16 +6671,16 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrsm2_bufferSizeExt: Option<
@@ -6863,14 +6689,14 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             *mut usize,
         ) -> cusparseStatus_t,
@@ -6881,14 +6707,14 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             *mut usize,
         ) -> cusparseStatus_t,
@@ -6899,14 +6725,14 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             *mut usize,
         ) -> cusparseStatus_t,
@@ -6917,14 +6743,14 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             *mut usize,
         ) -> cusparseStatus_t,
@@ -6935,17 +6761,17 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsm2_analysis: Option<
@@ -6954,17 +6780,17 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsm2_analysis: Option<
@@ -6973,17 +6799,17 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsm2_analysis: Option<
@@ -6992,17 +6818,17 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrsm2_solve: Option<
@@ -7011,22 +6837,22 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             *const f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsm2_solve: Option<
@@ -7035,22 +6861,22 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             *const f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsm2_solve: Option<
@@ -7059,22 +6885,22 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             *const cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsm2_solve: Option<
@@ -7083,1350 +6909,1156 @@ pub struct DynamicBindings {
             cusparseDirection_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrsm2Info_t,
             *const cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseScsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut f32) -> cusparseStatus_t>,
-    pub cusparseDcsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut f64) -> cusparseStatus_t>,
-    pub cusparseCcsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut cuComplex) -> cusparseStatus_t>,
-    pub cusparseZcsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex) -> cusparseStatus_t>,
-    pub cusparseXcsrilu02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseScsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseDcsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseCcsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseZcsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseScsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDcsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseCcsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseZcsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseScsrilu02_analysis:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDcsrilu02_analysis:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCcsrilu02_analysis:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseScsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::core::ffi::c_int, *mut f64, *mut f32) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::core::ffi::c_int, *mut f64, *mut f64) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::core::ffi::c_int, *mut f64, *mut cuComplex) -> cusparseStatus_t>,
+    pub cusparseZcsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::core::ffi::c_int, *mut f64, *mut cuDoubleComplex) -> cusparseStatus_t>,
+    pub cusparseXcsrilu02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseScsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseZcsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseScsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZcsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseScsrilu02_analysis: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02_analysis: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02_analysis: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseZcsrilu02_analysis:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseScsrilu02: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDcsrilu02: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCcsrilu02:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZcsrilu02:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut f32) -> cusparseStatus_t>,
-    pub cusparseDbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut f64) -> cusparseStatus_t>,
-    pub cusparseCbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut cuComplex) -> cusparseStatus_t>,
-    pub cusparseZbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex) -> cusparseStatus_t>,
-    pub cusparseXbsrilu02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseScsrilu02: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsrilu02: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::core::ffi::c_int, *mut f64, *mut f32) -> cusparseStatus_t>,
+    pub cusparseDbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::core::ffi::c_int, *mut f64, *mut f64) -> cusparseStatus_t>,
+    pub cusparseCbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::core::ffi::c_int, *mut f64, *mut cuComplex) -> cusparseStatus_t>,
+    pub cusparseZbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::core::ffi::c_int, *mut f64, *mut cuDoubleComplex) -> cusparseStatus_t>,
+    pub cusparseXbsrilu02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseSbsrilu02_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseDbsrilu02_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseCbsrilu02_bufferSize: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
-    >,
-    pub cusparseZbsrilu02_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsrilu02Info_t,
-            *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseCbsrilu02_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseZbsrilu02_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseSbsrilu02_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseDbsrilu02_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseCbsrilu02_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseZbsrilu02_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSbsrilu02_analysis: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsrilu02Info_t,
-            cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseDbsrilu02_analysis: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsrilu02Info_t,
-            cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseCbsrilu02_analysis: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrilu02Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrilu02_analysis: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrilu02Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrilu02: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsrilu02Info_t,
-            cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseDbsrilu02: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsrilu02Info_t,
-            cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsrilu02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseCbsrilu02: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrilu02Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrilu02: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsrilu02Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseXcsric02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseScsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseDcsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseCcsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseZcsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseScsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDcsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseCcsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseZcsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseScsric02_analysis:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDcsric02_analysis:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCcsric02_analysis:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseXcsric02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, csric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseScsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseDcsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseCcsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseZcsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseScsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDcsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCcsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZcsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseScsric02_analysis: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsric02_analysis: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsric02_analysis: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseZcsric02_analysis:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseScsric02: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDcsric02: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCcsric02:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZcsric02:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseXbsric02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseScsric02: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsric02: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsric02: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsric02: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseXbsric02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseSbsric02_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseDbsric02_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseCbsric02_bufferSize: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
-    >,
-    pub cusparseZbsric02_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsric02Info_t,
-            *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSbsric02_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDbsric02_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseCbsric02_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseZbsric02_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseSbsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDbsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseCbsric02_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseZbsric02_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSbsric02_analysis: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsric02Info_t,
-            cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseDbsric02_analysis: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsric02Info_t,
-            cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseCbsric02_analysis: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsric02Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsric02_analysis: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsric02Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsric02: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsric02Info_t,
-            cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseDbsric02: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            bsric02Info_t,
-            cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, bsric02Info_t, cusparseSolvePolicy_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseCbsric02: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsric02Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsric02: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             bsric02Info_t,
             cusparseSolvePolicy_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseZgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseSgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseZgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseSgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseZgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseSgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *mut f32, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *mut f64, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseZgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseSgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, *mut f32, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, *mut f64, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSgpsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgpsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgpsvInterleavedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, *const f32, *const f32, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, *const f64, *const f64, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, *const f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, *const f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseZgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, *const f32, *const f32, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, *const f64, *const f64, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, *const f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, *const f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseZgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, *const f32, *const f32, *const f32, *const f32, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, *const f64, *const f64, *const f64, *const f64, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, *const f32, *const f32, *const f32, *mut f32, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, *const f64, *const f64, *const f64, *mut f64, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *mut cuComplex, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseZgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, *const f32, *const f32, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, *const f64, *const f64, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, *mut f32, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, *mut f64, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseZgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSgpsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, *const f32, *const f32, *const f32, *const f32, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgpsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, *const f64, *const f64, *const f64, *const f64, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgpsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
     pub cusparseZgpsvInterleavedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseSgpsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, *mut f32, *mut f32, *mut f32, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgpsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, *mut f64, *mut f64, *mut f64, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgpsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZgpsvInterleavedBatch: Option<
-        unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t,
-    >,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgpsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, *mut f32, *mut f32, *mut f32, *mut f32, *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDgpsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, *mut f64, *mut f64, *mut f64, *mut f64, *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCgpsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseZgpsvInterleavedBatch:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseScsrgeam2_bufferSizeExt: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsrgeam2_bufferSizeExt: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsrgeam2_bufferSizeExt: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuComplex,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsrgeam2_bufferSizeExt: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseXcsrgeam2Nnz: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseScsrgeam2: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsrgeam2: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsrgeam2: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuComplex,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsrgeam2: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const cuDoubleComplex,
             cusparseMatDescr_t,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseScsrcolor: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cusparseColorInfo_t,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsrcolor: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cusparseColorInfo_t,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsrcolor: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cusparseColorInfo_t,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsrcolor: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cusparseColorInfo_t,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseDnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseCnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseZnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseSnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, f32) -> cusparseStatus_t>,
-    pub cusparseDnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, f64) -> cusparseStatus_t>,
-    pub cusparseCnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, cuComplex) -> cusparseStatus_t>,
-    pub cusparseZnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, cuDoubleComplex) -> cusparseStatus_t>,
+    pub cusparseSnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseDnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseCnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseZnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseSnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, f32) -> cusparseStatus_t>,
+    pub cusparseDnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, f64) -> cusparseStatus_t>,
+    pub cusparseCnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, cuComplex) -> cusparseStatus_t>,
+    pub cusparseZnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, cuDoubleComplex) -> cusparseStatus_t>,
     pub cusparseScsr2csr_compress: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             f32,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsr2csr_compress: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             f64,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsr2csr_compress: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cuComplex,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsr2csr_compress: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cuDoubleComplex,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseXcoo2csr: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, cusparseIndexBase_t) -> cusparseStatus_t>,
-    pub cusparseXcsr2coo: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, cusparseIndexBase_t) -> cusparseStatus_t>,
-    pub cusparseXcsr2bsrNnz: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseXcoo2csr: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, cusparseIndexBase_t) -> cusparseStatus_t>,
+    pub cusparseXcsr2coo: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, cusparseIndexBase_t) -> cusparseStatus_t>,
+    pub cusparseXcsr2bsrNnz:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseScsr2bsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsr2bsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsr2bsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsr2bsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSgebsr2gebsc_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseDgebsr2gebsc_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseSgebsr2gebsc_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseDgebsr2gebsc_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseCgebsr2gebsc_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseZgebsr2gebsc_bufferSize: Option<
-        unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
-    >,
-    pub cusparseSgebsr2gebsc_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgebsr2gebsc_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgebsr2gebsc_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseZgebsr2gebsc_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseSgebsr2gebsc_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgebsr2gebsc_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgebsr2gebsc_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
     pub cusparseZgebsr2gebsc_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
     pub cusparseSgebsr2gebsc: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cusparseAction_t,
             cusparseIndexBase_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDgebsr2gebsc: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cusparseAction_t,
             cusparseIndexBase_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCgebsr2gebsc: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cusparseAction_t,
             cusparseIndexBase_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZgebsr2gebsc: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cusparseAction_t,
             cusparseIndexBase_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseXgebsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSgebsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDgebsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCgebsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZgebsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseScsr2gebsr_bufferSize: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsr2gebsr_bufferSize: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsr2gebsr_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsr2gebsr_bufferSize: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            cusparseMatDescr_t,
-            *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseScsr2gebsr_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseDcsr2gebsr_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseCcsr2gebsr_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseZcsr2gebsr_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
     pub cusparseScsr2gebsr_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
     pub cusparseDcsr2gebsr_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
     pub cusparseCcsr2gebsr_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseZcsr2gebsr_bufferSizeExt: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t,
-    >,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZcsr2gebsr_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::core::ffi::c_int, *const ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
     pub cusparseXcsr2gebsrNnz: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseScsr2gebsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsr2gebsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsr2gebsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsr2gebsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSgebsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDgebsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCgebsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZgebsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSgebsr2gebsr_bufferSizeExt: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
@@ -8434,17 +8066,17 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
@@ -8452,17 +8084,17 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
@@ -8470,17 +8102,17 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
@@ -8488,279 +8120,269 @@ pub struct DynamicBindings {
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSgebsr2gebsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f32,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDgebsr2gebsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut f64,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCgebsr2gebsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZgebsr2gebsr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseDirection_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const cuDoubleComplex,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *mut cuDoubleComplex,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseCreateIdentityPermutation: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseXcoosort_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseXcoosortByRow: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseXcoosortByColumn: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseXcsrsort_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseXcsrsort: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseXcscsort_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseXcscsort: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseScsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDcsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseCcsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseZcsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseScsru2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDcsru2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCcsru2csr:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZcsru2csr:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseScsr2csru: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDcsr2csru: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCcsr2csru:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZcsr2csru:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpruneDense2csr_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDpruneDense2csr_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
-    pub cusparseSpruneDense2csrNnz:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, cusparseMatDescr_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDpruneDense2csrNnz:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, cusparseMatDescr_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpruneDense2csr:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDpruneDense2csr:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCreateIdentityPermutation: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseXcoosort_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseXcoosortByRow: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseXcoosortByColumn: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseXcsrsort_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseXcsrsort: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseXcscsort_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseXcscsort: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseScsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut f32, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDcsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut f64, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCcsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuComplex, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZcsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *mut cuDoubleComplex, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseScsru2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsru2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsru2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsru2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseScsr2csru: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsr2csru: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsr2csru: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsr2csru: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, csru2csrInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSpruneDense2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDpruneDense2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSpruneDense2csrNnz: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, cusparseMatDescr_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDpruneDense2csrNnz: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, cusparseMatDescr_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSpruneDense2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDpruneDense2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSpruneCsr2csr_bufferSizeExt: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csr_bufferSizeExt: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpruneCsr2csrNnz: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csrNnz: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpruneCsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f32,
             cusparseMatDescr_t,
             *mut f32,
-            *const ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *const ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csr: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             *const f64,
             cusparseMatDescr_t,
             *mut f64,
-            *const ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
+            *const ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpruneDense2csrByPercentage_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, pruneInfo_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, f32, cusparseMatDescr_t, *const f32, *const ::core::ffi::c_int, *const ::core::ffi::c_int, pruneInfo_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseDpruneDense2csrByPercentage_bufferSizeExt:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, pruneInfo_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, f32, cusparseMatDescr_t, *const f64, *const ::core::ffi::c_int, *const ::core::ffi::c_int, pruneInfo_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSpruneDense2csrNnzByPercentage:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, pruneInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, f32, cusparseMatDescr_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, pruneInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseDpruneDense2csrNnzByPercentage:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, pruneInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, f32, cusparseMatDescr_t, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, pruneInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSpruneDense2csrByPercentage:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, pruneInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, f32, cusparseMatDescr_t, *mut f32, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, pruneInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseDpruneDense2csrByPercentage:
-        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, pruneInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, f32, cusparseMatDescr_t, *mut f64, *const ::core::ffi::c_int, *mut ::core::ffi::c_int, pruneInfo_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSpruneCsr2csrByPercentage_bufferSizeExt: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             f32,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             pruneInfo_t,
             *mut usize,
         ) -> cusparseStatus_t,
@@ -8768,18 +8390,18 @@ pub struct DynamicBindings {
     pub cusparseDpruneCsr2csrByPercentage_bufferSizeExt: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             f32,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             pruneInfo_t,
             *mut usize,
         ) -> cusparseStatus_t,
@@ -8787,108 +8409,108 @@ pub struct DynamicBindings {
     pub cusparseSpruneCsr2csrNnzByPercentage: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             f32,
             cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             pruneInfo_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csrNnzByPercentage: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             f32,
             cusparseMatDescr_t,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             pruneInfo_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpruneCsr2csrByPercentage: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f32,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             f32,
             cusparseMatDescr_t,
             *mut f32,
-            *const ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             pruneInfo_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csrByPercentage: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
             cusparseMatDescr_t,
             *const f64,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
             f32,
             cusparseMatDescr_t,
             *mut f64,
-            *const ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            *const ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             pruneInfo_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCsr2cscEx2: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cudaDataType,
             cusparseAction_t,
             cusparseIndexBase_t,
             cusparseCsr2CscAlg_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCsr2cscEx2_bufferSize: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            ::std::os::raw::c_int,
-            *const ::std::os::raw::c_void,
-            *const ::std::os::raw::c_int,
-            *const ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_void,
-            *mut ::std::os::raw::c_int,
-            *mut ::std::os::raw::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            ::core::ffi::c_int,
+            *const ::core::ffi::c_void,
+            *const ::core::ffi::c_int,
+            *const ::core::ffi::c_int,
+            *mut ::core::ffi::c_void,
+            *mut ::core::ffi::c_int,
+            *mut ::core::ffi::c_int,
             cudaDataType,
             cusparseAction_t,
             cusparseIndexBase_t,
@@ -8896,170 +8518,141 @@ pub struct DynamicBindings {
             *mut usize,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseCreateSpVec: Option<unsafe extern "C" fn(*mut cusparseSpVecDescr_t, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateConstSpVec: Option<unsafe extern "C" fn(*mut cusparseConstSpVecDescr_t, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateSpVec: Option<unsafe extern "C" fn(*mut cusparseSpVecDescr_t, i64, i64, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstSpVec: Option<unsafe extern "C" fn(*mut cusparseConstSpVecDescr_t, i64, i64, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
     pub cusparseDestroySpVec: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpVecGet: Option<unsafe extern "C" fn(cusparseSpVecDescr_t, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
-    pub cusparseConstSpVecGet: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t, *mut i64, *mut i64, *mut *const ::std::os::raw::c_void, *mut *const ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseSpVecGet: Option<unsafe extern "C" fn(cusparseSpVecDescr_t, *mut i64, *mut i64, *mut *mut ::core::ffi::c_void, *mut *mut ::core::ffi::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseConstSpVecGet: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t, *mut i64, *mut i64, *mut *const ::core::ffi::c_void, *mut *const ::core::ffi::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
     pub cusparseSpVecGetIndexBase: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t, *mut cusparseIndexBase_t) -> cusparseStatus_t>,
-    pub cusparseSpVecGetValues: Option<unsafe extern "C" fn(cusparseSpVecDescr_t, *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseConstSpVecGetValues: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t, *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpVecSetValues: Option<unsafe extern "C" fn(cusparseSpVecDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCreateDnVec: Option<unsafe extern "C" fn(*mut cusparseDnVecDescr_t, i64, *mut ::std::os::raw::c_void, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateConstDnVec: Option<unsafe extern "C" fn(*mut cusparseConstDnVecDescr_t, i64, *const ::std::os::raw::c_void, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseSpVecGetValues: Option<unsafe extern "C" fn(cusparseSpVecDescr_t, *mut *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseConstSpVecGetValues: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t, *mut *const ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSpVecSetValues: Option<unsafe extern "C" fn(cusparseSpVecDescr_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCreateDnVec: Option<unsafe extern "C" fn(*mut cusparseDnVecDescr_t, i64, *mut ::core::ffi::c_void, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstDnVec: Option<unsafe extern "C" fn(*mut cusparseConstDnVecDescr_t, i64, *const ::core::ffi::c_void, cudaDataType) -> cusparseStatus_t>,
     pub cusparseDestroyDnVec: Option<unsafe extern "C" fn(cusparseConstDnVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseDnVecGet: Option<unsafe extern "C" fn(cusparseDnVecDescr_t, *mut i64, *mut *mut ::std::os::raw::c_void, *mut cudaDataType) -> cusparseStatus_t>,
-    pub cusparseConstDnVecGet: Option<unsafe extern "C" fn(cusparseConstDnVecDescr_t, *mut i64, *mut *const ::std::os::raw::c_void, *mut cudaDataType) -> cusparseStatus_t>,
-    pub cusparseDnVecGetValues: Option<unsafe extern "C" fn(cusparseDnVecDescr_t, *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseConstDnVecGetValues: Option<unsafe extern "C" fn(cusparseConstDnVecDescr_t, *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDnVecSetValues: Option<unsafe extern "C" fn(cusparseDnVecDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDnVecGet: Option<unsafe extern "C" fn(cusparseDnVecDescr_t, *mut i64, *mut *mut ::core::ffi::c_void, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseConstDnVecGet: Option<unsafe extern "C" fn(cusparseConstDnVecDescr_t, *mut i64, *mut *const ::core::ffi::c_void, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseDnVecGetValues: Option<unsafe extern "C" fn(cusparseDnVecDescr_t, *mut *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseConstDnVecGetValues: Option<unsafe extern "C" fn(cusparseConstDnVecDescr_t, *mut *const ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDnVecSetValues: Option<unsafe extern "C" fn(cusparseDnVecDescr_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseDestroySpMat: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t) -> cusparseStatus_t>,
     pub cusparseSpMatGetFormat: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut cusparseFormat_t) -> cusparseStatus_t>,
     pub cusparseSpMatGetIndexBase: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut cusparseIndexBase_t) -> cusparseStatus_t>,
-    pub cusparseSpMatGetValues: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseConstSpMatGetValues: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpMatSetValues: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpMatGetValues: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseConstSpMatGetValues: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut *const ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSpMatSetValues: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSpMatGetSize: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut i64, *mut i64, *mut i64) -> cusparseStatus_t>,
-    pub cusparseSpMatGetStridedBatch: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseCooSetStridedBatch: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, ::std::os::raw::c_int, i64) -> cusparseStatus_t>,
-    pub cusparseCsrSetStridedBatch: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, ::std::os::raw::c_int, i64, i64) -> cusparseStatus_t>,
-    pub cusparseBsrSetStridedBatch: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, ::std::os::raw::c_int, i64, i64, i64) -> cusparseStatus_t>,
-    pub cusparseSpMatGetAttribute: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, cusparseSpMatAttribute_t, *mut ::std::os::raw::c_void, usize) -> cusparseStatus_t>,
-    pub cusparseSpMatSetAttribute: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, cusparseSpMatAttribute_t, *mut ::std::os::raw::c_void, usize) -> cusparseStatus_t>,
-    pub cusparseCreateCsr: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateConstCsr: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateCsc: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateConstCsc: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCsrGet: Option<
-        unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t,
-    >,
+    pub cusparseSpMatGetStridedBatch: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut ::core::ffi::c_int) -> cusparseStatus_t>,
+    pub cusparseCooSetStridedBatch: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, ::core::ffi::c_int, i64) -> cusparseStatus_t>,
+    pub cusparseCsrSetStridedBatch: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, ::core::ffi::c_int, i64, i64) -> cusparseStatus_t>,
+    pub cusparseBsrSetStridedBatch: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, ::core::ffi::c_int, i64, i64, i64) -> cusparseStatus_t>,
+    pub cusparseSpMatGetAttribute: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, cusparseSpMatAttribute_t, *mut ::core::ffi::c_void, usize) -> cusparseStatus_t>,
+    pub cusparseSpMatSetAttribute: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, cusparseSpMatAttribute_t, *mut ::core::ffi::c_void, usize) -> cusparseStatus_t>,
+    pub cusparseCreateCsr: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstCsr: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, *const ::core::ffi::c_void, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateCsc: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstCsc: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, *const ::core::ffi::c_void, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCsrGet:
+        Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::core::ffi::c_void, *mut *mut ::core::ffi::c_void, *mut *mut ::core::ffi::c_void, *mut cusparseIndexType_t, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
     pub cusparseConstCsrGet: Option<
         unsafe extern "C" fn(
             cusparseConstSpMatDescr_t,
             *mut i64,
             *mut i64,
             *mut i64,
-            *mut *const ::std::os::raw::c_void,
-            *mut *const ::std::os::raw::c_void,
-            *mut *const ::std::os::raw::c_void,
+            *mut *const ::core::ffi::c_void,
+            *mut *const ::core::ffi::c_void,
+            *mut *const ::core::ffi::c_void,
             *mut cusparseIndexType_t,
             *mut cusparseIndexType_t,
             *mut cusparseIndexBase_t,
             *mut cudaDataType,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseCscGet: Option<
-        unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t,
-    >,
+    pub cusparseCscGet:
+        Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::core::ffi::c_void, *mut *mut ::core::ffi::c_void, *mut *mut ::core::ffi::c_void, *mut cusparseIndexType_t, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
     pub cusparseConstCscGet: Option<
         unsafe extern "C" fn(
             cusparseConstSpMatDescr_t,
             *mut i64,
             *mut i64,
             *mut i64,
-            *mut *const ::std::os::raw::c_void,
-            *mut *const ::std::os::raw::c_void,
-            *mut *const ::std::os::raw::c_void,
+            *mut *const ::core::ffi::c_void,
+            *mut *const ::core::ffi::c_void,
+            *mut *const ::core::ffi::c_void,
             *mut cusparseIndexType_t,
             *mut cusparseIndexType_t,
             *mut cusparseIndexBase_t,
             *mut cudaDataType,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseCsrSetPointers: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCscSetPointers: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCreateBsr:
-        Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
-    pub cusparseCreateConstBsr: Option<
-        unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType, cusparseOrder_t) -> cusparseStatus_t,
-    >,
-    pub cusparseCreateCoo: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateConstCoo: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCooGet: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCsrSetPointers: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCscSetPointers: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCreateBsr: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, i64, i64, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
+    pub cusparseCreateConstBsr:
+        Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, i64, i64, *const ::core::ffi::c_void, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
+    pub cusparseCreateCoo: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstCoo: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, *const ::core::ffi::c_void, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCooGet: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::core::ffi::c_void, *mut *mut ::core::ffi::c_void, *mut *mut ::core::ffi::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
     pub cusparseConstCooGet:
-        Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *const ::std::os::raw::c_void, *mut *const ::std::os::raw::c_void, *mut *const ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCooSetPointers: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCreateBlockedEll: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateConstBlockedEll: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseBlockedEllGet: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
-    pub cusparseConstBlockedEllGet: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut i64, *mut *const ::std::os::raw::c_void, *mut *const ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateSlicedEll: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *const ::core::ffi::c_void, *mut *const ::core::ffi::c_void, *mut *const ::core::ffi::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCooSetPointers: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseCreateBlockedEll: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, i64, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstBlockedEll: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, i64, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseBlockedEllGet: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut i64, *mut *mut ::core::ffi::c_void, *mut *mut ::core::ffi::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseConstBlockedEllGet: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut i64, *mut *const ::core::ffi::c_void, *mut *const ::core::ffi::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateSlicedEll: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, i64, i64, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
     pub cusparseCreateConstSlicedEll:
-        Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateDnMat: Option<unsafe extern "C" fn(*mut cusparseDnMatDescr_t, i64, i64, i64, *mut ::std::os::raw::c_void, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
-    pub cusparseCreateConstDnMat: Option<unsafe extern "C" fn(*mut cusparseConstDnMatDescr_t, i64, i64, i64, *const ::std::os::raw::c_void, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, i64, i64, *const ::core::ffi::c_void, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateDnMat: Option<unsafe extern "C" fn(*mut cusparseDnMatDescr_t, i64, i64, i64, *mut ::core::ffi::c_void, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
+    pub cusparseCreateConstDnMat: Option<unsafe extern "C" fn(*mut cusparseConstDnMatDescr_t, i64, i64, i64, *const ::core::ffi::c_void, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
     pub cusparseDestroyDnMat: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t) -> cusparseStatus_t>,
-    pub cusparseDnMatGet: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut cudaDataType, *mut cusparseOrder_t) -> cusparseStatus_t>,
-    pub cusparseConstDnMatGet: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *const ::std::os::raw::c_void, *mut cudaDataType, *mut cusparseOrder_t) -> cusparseStatus_t>,
-    pub cusparseDnMatGetValues: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseConstDnMatGetValues: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t, *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDnMatSetValues: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDnMatSetStridedBatch: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, ::std::os::raw::c_int, i64) -> cusparseStatus_t>,
-    pub cusparseDnMatGetStridedBatch: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t, *mut ::std::os::raw::c_int, *mut i64) -> cusparseStatus_t>,
-    pub cusparseAxpby: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::std::os::raw::c_void, cusparseConstSpVecDescr_t, *const ::std::os::raw::c_void, cusparseDnVecDescr_t) -> cusparseStatus_t>,
+    pub cusparseDnMatGet: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::core::ffi::c_void, *mut cudaDataType, *mut cusparseOrder_t) -> cusparseStatus_t>,
+    pub cusparseConstDnMatGet: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *const ::core::ffi::c_void, *mut cudaDataType, *mut cusparseOrder_t) -> cusparseStatus_t>,
+    pub cusparseDnMatGetValues: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, *mut *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseConstDnMatGetValues: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t, *mut *const ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDnMatSetValues: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDnMatSetStridedBatch: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, ::core::ffi::c_int, i64) -> cusparseStatus_t>,
+    pub cusparseDnMatGetStridedBatch: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t, *mut ::core::ffi::c_int, *mut i64) -> cusparseStatus_t>,
+    pub cusparseAxpby: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::core::ffi::c_void, cusparseConstSpVecDescr_t, *const ::core::ffi::c_void, cusparseDnVecDescr_t) -> cusparseStatus_t>,
     pub cusparseGather: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnVecDescr_t, cusparseSpVecDescr_t) -> cusparseStatus_t>,
     pub cusparseScatter: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstSpVecDescr_t, cusparseDnVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseRot: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseSpVecDescr_t, cusparseDnVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpVV_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseConstSpVecDescr_t, cusparseConstDnVecDescr_t, *const ::std::os::raw::c_void, cudaDataType, *mut usize) -> cusparseStatus_t>,
-    pub cusparseSpVV: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseConstSpVecDescr_t, cusparseConstDnVecDescr_t, *mut ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseRot: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cusparseSpVecDescr_t, cusparseDnVecDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpVV_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseConstSpVecDescr_t, cusparseConstDnVecDescr_t, *const ::core::ffi::c_void, cudaDataType, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSpVV: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseConstSpVecDescr_t, cusparseConstDnVecDescr_t, *mut ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSparseToDense_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstSpMatDescr_t, cusparseDnMatDescr_t, cusparseSparseToDenseAlg_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseSparseToDense: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstSpMatDescr_t, cusparseDnMatDescr_t, cusparseSparseToDenseAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSparseToDense: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstSpMatDescr_t, cusparseDnMatDescr_t, cusparseSparseToDenseAlg_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseDenseToSparse_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnMatDescr_t, cusparseSpMatDescr_t, cusparseDenseToSparseAlg_t, *mut usize) -> cusparseStatus_t>,
-    pub cusparseDenseToSparse_analysis: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnMatDescr_t, cusparseSpMatDescr_t, cusparseDenseToSparseAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDenseToSparse_convert: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnMatDescr_t, cusparseSpMatDescr_t, cusparseDenseToSparseAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDenseToSparse_analysis: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnMatDescr_t, cusparseSpMatDescr_t, cusparseDenseToSparseAlg_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseDenseToSparse_convert: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnMatDescr_t, cusparseSpMatDescr_t, cusparseDenseToSparseAlg_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSpMV:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, *const ::std::os::raw::c_void, cusparseDnVecDescr_t, cudaDataType, cusparseSpMVAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpMV_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, *const ::std::os::raw::c_void, cusparseDnVecDescr_t, cudaDataType, cusparseSpMVAlg_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, *const ::core::ffi::c_void, cusparseDnVecDescr_t, cudaDataType, cusparseSpMVAlg_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSpMV_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, *const ::core::ffi::c_void, cusparseDnVecDescr_t, cudaDataType, cusparseSpMVAlg_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSpMV_preprocess:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, *const ::std::os::raw::c_void, cusparseDnVecDescr_t, cudaDataType, cusparseSpMVAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, *const ::core::ffi::c_void, cusparseDnVecDescr_t, cudaDataType, cusparseSpMVAlg_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSpSV_createDescr: Option<unsafe extern "C" fn(*mut cusparseSpSVDescr_t) -> cusparseStatus_t>,
     pub cusparseSpSV_destroyDescr: Option<unsafe extern "C" fn(cusparseSpSVDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpSV_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, cusparseDnVecDescr_t, cudaDataType, cusparseSpSVAlg_t, cusparseSpSVDescr_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSpSV_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, cusparseDnVecDescr_t, cudaDataType, cusparseSpSVAlg_t, cusparseSpSVDescr_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSpSV_analysis:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, cusparseDnVecDescr_t, cudaDataType, cusparseSpSVAlg_t, cusparseSpSVDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpSV_solve: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, cusparseDnVecDescr_t, cudaDataType, cusparseSpSVAlg_t, cusparseSpSVDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpSV_updateMatrix: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseSpSVDescr_t, *mut ::std::os::raw::c_void, cusparseSpSVUpdate_t) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, cusparseDnVecDescr_t, cudaDataType, cusparseSpSVAlg_t, cusparseSpSVDescr_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
+    pub cusparseSpSV_solve: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, cusparseDnVecDescr_t, cudaDataType, cusparseSpSVAlg_t, cusparseSpSVDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpSV_updateMatrix: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseSpSVDescr_t, *mut ::core::ffi::c_void, cusparseSpSVUpdate_t) -> cusparseStatus_t>,
     pub cusparseSpSM_createDescr: Option<unsafe extern "C" fn(*mut cusparseSpSMDescr_t) -> cusparseStatus_t>,
     pub cusparseSpSM_destroyDescr: Option<unsafe extern "C" fn(cusparseSpSMDescr_t) -> cusparseStatus_t>,
     pub cusparseSpSM_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, cusparseDnMatDescr_t, cudaDataType, cusparseSpSMAlg_t, cusparseSpSMDescr_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, cusparseDnMatDescr_t, cudaDataType, cusparseSpSMAlg_t, cusparseSpSMDescr_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSpSM_analysis: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, cusparseDnMatDescr_t, cudaDataType, cusparseSpSMAlg_t, cusparseSpSMDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, cusparseDnMatDescr_t, cudaDataType, cusparseSpSMAlg_t, cusparseSpSMDescr_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
-    pub cusparseSpSM_solve: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, cusparseDnMatDescr_t, cudaDataType, cusparseSpSMAlg_t, cusparseSpSMDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpSM_updateMatrix: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseSpSMDescr_t, *mut ::std::os::raw::c_void, cusparseSpSMUpdate_t) -> cusparseStatus_t>,
+    pub cusparseSpSM_solve: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, cusparseDnMatDescr_t, cudaDataType, cusparseSpSMAlg_t, cusparseSpSMDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpSM_updateMatrix: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseSpSMDescr_t, *mut ::core::ffi::c_void, cusparseSpSMUpdate_t) -> cusparseStatus_t>,
     pub cusparseSpMM_bufferSize:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, *const ::std::os::raw::c_void, cusparseDnMatDescr_t, cudaDataType, cusparseSpMMAlg_t, *mut usize) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, *const ::core::ffi::c_void, cusparseDnMatDescr_t, cudaDataType, cusparseSpMMAlg_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSpMM_preprocess: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseOperation_t,
-            cusparseOperation_t,
-            *const ::std::os::raw::c_void,
-            cusparseConstSpMatDescr_t,
-            cusparseConstDnMatDescr_t,
-            *const ::std::os::raw::c_void,
-            cusparseDnMatDescr_t,
-            cudaDataType,
-            cusparseSpMMAlg_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, *const ::core::ffi::c_void, cusparseDnMatDescr_t, cudaDataType, cusparseSpMMAlg_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseSpMM: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseOperation_t,
-            cusparseOperation_t,
-            *const ::std::os::raw::c_void,
-            cusparseConstSpMatDescr_t,
-            cusparseConstDnMatDescr_t,
-            *const ::std::os::raw::c_void,
-            cusparseDnMatDescr_t,
-            cudaDataType,
-            cusparseSpMMAlg_t,
-            *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, *const ::core::ffi::c_void, cusparseDnMatDescr_t, cudaDataType, cusparseSpMMAlg_t, *mut ::core::ffi::c_void) -> cusparseStatus_t,
     >,
     pub cusparseSpGEMM_createDescr: Option<unsafe extern "C" fn(*mut cusparseSpGEMMDescr_t) -> cusparseStatus_t>,
     pub cusparseSpGEMM_destroyDescr: Option<unsafe extern "C" fn(cusparseSpGEMMDescr_t) -> cusparseStatus_t>,
@@ -9068,16 +8661,16 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseConstSpMatDescr_t,
             cusparseConstSpMatDescr_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseSpMatDescr_t,
             cudaDataType,
             cusparseSpGEMMAlg_t,
             cusparseSpGEMMDescr_t,
             *mut usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpGEMM_getNumProducts: Option<unsafe extern "C" fn(cusparseSpGEMMDescr_t, *mut i64) -> cusparseStatus_t>,
@@ -9086,17 +8679,17 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseConstSpMatDescr_t,
             cusparseConstSpMatDescr_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseSpMatDescr_t,
             cudaDataType,
             cusparseSpGEMMAlg_t,
             cusparseSpGEMMDescr_t,
             f32,
             *mut usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
@@ -9105,35 +8698,23 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseConstSpMatDescr_t,
             cusparseConstSpMatDescr_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseSpMatDescr_t,
             cudaDataType,
             cusparseSpGEMMAlg_t,
             cusparseSpGEMMDescr_t,
             *mut usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpGEMM_copy: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseOperation_t,
-            cusparseOperation_t,
-            *const ::std::os::raw::c_void,
-            cusparseConstSpMatDescr_t,
-            cusparseConstSpMatDescr_t,
-            *const ::std::os::raw::c_void,
-            cusparseSpMatDescr_t,
-            cudaDataType,
-            cusparseSpGEMMAlg_t,
-            cusparseSpGEMMDescr_t,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstSpMatDescr_t, *const ::core::ffi::c_void, cusparseSpMatDescr_t, cudaDataType, cusparseSpGEMMAlg_t, cusparseSpGEMMDescr_t) -> cusparseStatus_t,
     >,
     pub cusparseSpGEMMreuse_workEstimation:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, cusparseConstSpMatDescr_t, cusparseConstSpMatDescr_t, cusparseSpMatDescr_t, cusparseSpGEMMAlg_t, cusparseSpGEMMDescr_t, *mut usize, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, cusparseConstSpMatDescr_t, cusparseConstSpMatDescr_t, cusparseSpMatDescr_t, cusparseSpGEMMAlg_t, cusparseSpGEMMDescr_t, *mut usize, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSpGEMMreuse_nnz: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
@@ -9145,46 +8726,33 @@ pub struct DynamicBindings {
             cusparseSpGEMMAlg_t,
             cusparseSpGEMMDescr_t,
             *mut usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             *mut usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
             *mut usize,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpGEMMreuse_copy:
-        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, cusparseConstSpMatDescr_t, cusparseConstSpMatDescr_t, cusparseSpMatDescr_t, cusparseSpGEMMAlg_t, cusparseSpGEMMDescr_t, *mut usize, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, cusparseConstSpMatDescr_t, cusparseConstSpMatDescr_t, cusparseSpMatDescr_t, cusparseSpGEMMAlg_t, cusparseSpGEMMDescr_t, *mut usize, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSpGEMMreuse_compute: Option<
-        unsafe extern "C" fn(
-            cusparseHandle_t,
-            cusparseOperation_t,
-            cusparseOperation_t,
-            *const ::std::os::raw::c_void,
-            cusparseConstSpMatDescr_t,
-            cusparseConstSpMatDescr_t,
-            *const ::std::os::raw::c_void,
-            cusparseSpMatDescr_t,
-            cudaDataType,
-            cusparseSpGEMMAlg_t,
-            cusparseSpGEMMDescr_t,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstSpMatDescr_t, cusparseConstSpMatDescr_t, *const ::core::ffi::c_void, cusparseSpMatDescr_t, cudaDataType, cusparseSpGEMMAlg_t, cusparseSpGEMMDescr_t) -> cusparseStatus_t,
     >,
-    pub cusparseSDDMM_bufferSize: Option<
-        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstDnMatDescr_t, cusparseConstDnMatDescr_t, *const ::std::os::raw::c_void, cusparseSpMatDescr_t, cudaDataType, cusparseSDDMMAlg_t, *mut usize) -> cusparseStatus_t,
-    >,
+    pub cusparseSDDMM_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::core::ffi::c_void, cusparseConstDnMatDescr_t, cusparseConstDnMatDescr_t, *const ::core::ffi::c_void, cusparseSpMatDescr_t, cudaDataType, cusparseSDDMMAlg_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSDDMM_preprocess: Option<
         unsafe extern "C" fn(
             cusparseHandle_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseConstDnMatDescr_t,
             cusparseConstDnMatDescr_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseSpMatDescr_t,
             cudaDataType,
             cusparseSDDMMAlg_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSDDMM: Option<
@@ -9192,14 +8760,14 @@ pub struct DynamicBindings {
             cusparseHandle_t,
             cusparseOperation_t,
             cusparseOperation_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseConstDnMatDescr_t,
             cusparseConstDnMatDescr_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             cusparseSpMatDescr_t,
             cudaDataType,
             cusparseSDDMMAlg_t,
-            *mut ::std::os::raw::c_void,
+            *mut ::core::ffi::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpMMOp_createPlan: Option<
@@ -9213,16 +8781,16 @@ pub struct DynamicBindings {
             cusparseDnMatDescr_t,
             cudaDataType,
             cusparseSpMMOpAlg_t,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             usize,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             usize,
-            *const ::std::os::raw::c_void,
+            *const ::core::ffi::c_void,
             usize,
             *mut usize,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSpMMOp: Option<unsafe extern "C" fn(cusparseSpMMOpPlan_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpMMOp: Option<unsafe extern "C" fn(cusparseSpMMOpPlan_t, *mut ::core::ffi::c_void) -> cusparseStatus_t>,
     pub cusparseSpMMOp_destroyPlan: Option<unsafe extern "C" fn(cusparseSpMMOpPlan_t) -> cusparseStatus_t>,
 }
 #[cfg(feature = "runtime-link")]
@@ -9249,7 +8817,7 @@ pub unsafe extern "C" fn cusparseDestroy(handle: cusparseHandle_t) -> cusparseSt
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseGetVersion(handle: cusparseHandle_t, version: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseGetVersion(handle: cusparseHandle_t, version: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseGetVersion {
         Some(____func) => unsafe { ____func(handle, version) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseGetVersion"),
@@ -9257,7 +8825,7 @@ pub unsafe extern "C" fn cusparseGetVersion(handle: cusparseHandle_t, version: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseGetProperty(type_: libraryPropertyType, value: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseGetProperty {
         Some(____func) => unsafe { ____func(type_, value) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseGetProperty"),
@@ -9265,7 +8833,7 @@ pub unsafe extern "C" fn cusparseGetProperty(type_: libraryPropertyType, value: 
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseGetErrorName(status: cusparseStatus_t) -> *const ::std::os::raw::c_char {
+pub unsafe extern "C" fn cusparseGetErrorName(status: cusparseStatus_t) -> *const ::core::ffi::c_char {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseGetErrorName {
         Some(____func) => unsafe { ____func(status) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseGetErrorName"),
@@ -9273,7 +8841,7 @@ pub unsafe extern "C" fn cusparseGetErrorName(status: cusparseStatus_t) -> *cons
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseGetErrorString(status: cusparseStatus_t) -> *const ::std::os::raw::c_char {
+pub unsafe extern "C" fn cusparseGetErrorString(status: cusparseStatus_t) -> *const ::core::ffi::c_char {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseGetErrorString {
         Some(____func) => unsafe { ____func(status) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseGetErrorString"),
@@ -9332,7 +8900,7 @@ pub unsafe extern "C" fn cusparseLoggerSetFile(file: *mut FILE) -> cusparseStatu
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseLoggerOpenFile(logFile: *const ::std::os::raw::c_char) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseLoggerOpenFile(logFile: *const ::core::ffi::c_char) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseLoggerOpenFile {
         Some(____func) => unsafe { ____func(logFile) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseLoggerOpenFile"),
@@ -9340,7 +8908,7 @@ pub unsafe extern "C" fn cusparseLoggerOpenFile(logFile: *const ::std::os::raw::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseLoggerSetLevel(level: ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseLoggerSetLevel(level: ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseLoggerSetLevel {
         Some(____func) => unsafe { ____func(level) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseLoggerSetLevel"),
@@ -9348,7 +8916,7 @@ pub unsafe extern "C" fn cusparseLoggerSetLevel(level: ::std::os::raw::c_int) ->
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseLoggerSetMask(mask: ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseLoggerSetMask(mask: ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseLoggerSetMask {
         Some(____func) => unsafe { ____func(mask) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseLoggerSetMask"),
@@ -9630,18 +9198,18 @@ pub unsafe extern "C" fn cusparseDestroyPruneInfo(info: pruneInfo_t) -> cusparse
 pub unsafe extern "C" fn cusparseSgemvi(
     handle: cusparseHandle_t,
     transA: cusparseOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     xVal: *const f32,
-    xInd: *const ::std::os::raw::c_int,
+    xInd: *const ::core::ffi::c_int,
     beta: *const f32,
     y: *mut f32,
     idxBase: cusparseIndexBase_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgemvi {
         Some(____func) => unsafe { ____func(handle, transA, m, n, alpha, A, lda, nnz, xVal, xInd, beta, y, idxBase, pBuffer) },
@@ -9650,7 +9218,7 @@ pub unsafe extern "C" fn cusparseSgemvi(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, pBufferSize: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgemvi_bufferSize {
         Some(____func) => unsafe { ____func(handle, transA, m, n, nnz, pBufferSize) },
         None => panic!(
@@ -9664,18 +9232,18 @@ pub unsafe extern "C" fn cusparseSgemvi_bufferSize(handle: cusparseHandle_t, tra
 pub unsafe extern "C" fn cusparseDgemvi(
     handle: cusparseHandle_t,
     transA: cusparseOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     xVal: *const f64,
-    xInd: *const ::std::os::raw::c_int,
+    xInd: *const ::core::ffi::c_int,
     beta: *const f64,
     y: *mut f64,
     idxBase: cusparseIndexBase_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgemvi {
         Some(____func) => unsafe { ____func(handle, transA, m, n, alpha, A, lda, nnz, xVal, xInd, beta, y, idxBase, pBuffer) },
@@ -9684,7 +9252,7 @@ pub unsafe extern "C" fn cusparseDgemvi(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, pBufferSize: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgemvi_bufferSize {
         Some(____func) => unsafe { ____func(handle, transA, m, n, nnz, pBufferSize) },
         None => panic!(
@@ -9698,18 +9266,18 @@ pub unsafe extern "C" fn cusparseDgemvi_bufferSize(handle: cusparseHandle_t, tra
 pub unsafe extern "C" fn cusparseCgemvi(
     handle: cusparseHandle_t,
     transA: cusparseOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     xVal: *const cuComplex,
-    xInd: *const ::std::os::raw::c_int,
+    xInd: *const ::core::ffi::c_int,
     beta: *const cuComplex,
     y: *mut cuComplex,
     idxBase: cusparseIndexBase_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgemvi {
         Some(____func) => unsafe { ____func(handle, transA, m, n, alpha, A, lda, nnz, xVal, xInd, beta, y, idxBase, pBuffer) },
@@ -9718,7 +9286,7 @@ pub unsafe extern "C" fn cusparseCgemvi(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, pBufferSize: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgemvi_bufferSize {
         Some(____func) => unsafe { ____func(handle, transA, m, n, nnz, pBufferSize) },
         None => panic!(
@@ -9732,18 +9300,18 @@ pub unsafe extern "C" fn cusparseCgemvi_bufferSize(handle: cusparseHandle_t, tra
 pub unsafe extern "C" fn cusparseZgemvi(
     handle: cusparseHandle_t,
     transA: cusparseOperation_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     xVal: *const cuDoubleComplex,
-    xInd: *const ::std::os::raw::c_int,
+    xInd: *const ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
     idxBase: cusparseIndexBase_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgemvi {
         Some(____func) => unsafe { ____func(handle, transA, m, n, alpha, A, lda, nnz, xVal, xInd, beta, y, idxBase, pBuffer) },
@@ -9752,7 +9320,7 @@ pub unsafe extern "C" fn cusparseZgemvi(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseZgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseZgemvi_bufferSize(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, pBufferSize: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgemvi_bufferSize {
         Some(____func) => unsafe { ____func(handle, transA, m, n, nnz, pBufferSize) },
         None => panic!(
@@ -9767,15 +9335,15 @@ pub unsafe extern "C" fn cusparseSbsrmv(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f32,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     x: *const f32,
     beta: *const f32,
     y: *mut f32,
@@ -9791,15 +9359,15 @@ pub unsafe extern "C" fn cusparseDbsrmv(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f64,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     x: *const f64,
     beta: *const f64,
     y: *mut f64,
@@ -9815,15 +9383,15 @@ pub unsafe extern "C" fn cusparseCbsrmv(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     x: *const cuComplex,
     beta: *const cuComplex,
     y: *mut cuComplex,
@@ -9839,15 +9407,15 @@ pub unsafe extern "C" fn cusparseZbsrmv(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     x: *const cuDoubleComplex,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
@@ -9863,18 +9431,18 @@ pub unsafe extern "C" fn cusparseSbsrxmv(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    sizeOfMask: ::std::os::raw::c_int,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    sizeOfMask: ::core::ffi::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f32,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedMaskPtrA: *const ::core::ffi::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedEndPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     x: *const f32,
     beta: *const f32,
     y: *mut f32,
@@ -9890,18 +9458,18 @@ pub unsafe extern "C" fn cusparseDbsrxmv(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    sizeOfMask: ::std::os::raw::c_int,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    sizeOfMask: ::core::ffi::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f64,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedMaskPtrA: *const ::core::ffi::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedEndPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     x: *const f64,
     beta: *const f64,
     y: *mut f64,
@@ -9917,18 +9485,18 @@ pub unsafe extern "C" fn cusparseCbsrxmv(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    sizeOfMask: ::std::os::raw::c_int,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    sizeOfMask: ::core::ffi::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedMaskPtrA: *const ::core::ffi::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedEndPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     x: *const cuComplex,
     beta: *const cuComplex,
     y: *mut cuComplex,
@@ -9944,18 +9512,18 @@ pub unsafe extern "C" fn cusparseZbsrxmv(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    sizeOfMask: ::std::os::raw::c_int,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    sizeOfMask: ::core::ffi::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedMaskPtrA: *const ::core::ffi::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedEndPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     x: *const cuDoubleComplex,
     beta: *const cuDoubleComplex,
     y: *mut cuDoubleComplex,
@@ -9967,7 +9535,7 @@ pub unsafe extern "C" fn cusparseZbsrxmv(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXbsrsv2_zeroPivot(handle: cusparseHandle_t, info: bsrsv2Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXbsrsv2_zeroPivot(handle: cusparseHandle_t, info: bsrsv2Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXbsrsv2_zeroPivot {
         Some(____func) => unsafe { ____func(handle, info, position) },
         None => panic!(
@@ -9982,15 +9550,15 @@ pub unsafe extern "C" fn cusparseSbsrsv2_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *mut f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrsv2_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, pBufferSizeInBytes) },
@@ -10006,15 +9574,15 @@ pub unsafe extern "C" fn cusparseDbsrsv2_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *mut f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrsv2_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, pBufferSizeInBytes) },
@@ -10030,15 +9598,15 @@ pub unsafe extern "C" fn cusparseCbsrsv2_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *mut cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrsv2_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, pBufferSizeInBytes) },
@@ -10054,15 +9622,15 @@ pub unsafe extern "C" fn cusparseZbsrsv2_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *mut cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrsv2_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, pBufferSizeInBytes) },
@@ -10078,13 +9646,13 @@ pub unsafe extern "C" fn cusparseSbsrsv2_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *mut f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -10102,13 +9670,13 @@ pub unsafe extern "C" fn cusparseDbsrsv2_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *mut f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -10126,13 +9694,13 @@ pub unsafe extern "C" fn cusparseCbsrsv2_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *mut cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -10150,13 +9718,13 @@ pub unsafe extern "C" fn cusparseZbsrsv2_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *mut cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -10174,16 +9742,16 @@ pub unsafe extern "C" fn cusparseSbsrsv2_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrsv2_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, policy, pBuffer) },
@@ -10196,16 +9764,16 @@ pub unsafe extern "C" fn cusparseDbsrsv2_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrsv2_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, policy, pBuffer) },
@@ -10218,16 +9786,16 @@ pub unsafe extern "C" fn cusparseCbsrsv2_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrsv2_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, policy, pBuffer) },
@@ -10240,16 +9808,16 @@ pub unsafe extern "C" fn cusparseZbsrsv2_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrsv2_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, policy, pBuffer) },
@@ -10262,19 +9830,19 @@ pub unsafe extern "C" fn cusparseSbsrsv2_solve(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f32,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     f: *const f32,
     x: *mut f32,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrsv2_solve {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, alpha, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, f, x, policy, pBuffer) },
@@ -10287,19 +9855,19 @@ pub unsafe extern "C" fn cusparseDbsrsv2_solve(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f64,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     f: *const f64,
     x: *mut f64,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrsv2_solve {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, alpha, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, f, x, policy, pBuffer) },
@@ -10312,19 +9880,19 @@ pub unsafe extern "C" fn cusparseCbsrsv2_solve(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     f: *const cuComplex,
     x: *mut cuComplex,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrsv2_solve {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, alpha, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, f, x, policy, pBuffer) },
@@ -10337,19 +9905,19 @@ pub unsafe extern "C" fn cusparseZbsrsv2_solve(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrsv2Info_t,
     f: *const cuDoubleComplex,
     x: *mut cuDoubleComplex,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrsv2_solve {
         Some(____func) => unsafe { ____func(handle, dirA, transA, mb, nnzb, alpha, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, f, x, policy, pBuffer) },
@@ -10363,21 +9931,21 @@ pub unsafe extern "C" fn cusparseSbsrmm(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transB: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    kb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f32,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f32,
     C: *mut f32,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrmm {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockSize, B, ldb, beta, C, ldc) },
@@ -10391,21 +9959,21 @@ pub unsafe extern "C" fn cusparseDbsrmm(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transB: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    kb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f64,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const f64,
     C: *mut f64,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrmm {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockSize, B, ldb, beta, C, ldc) },
@@ -10419,21 +9987,21 @@ pub unsafe extern "C" fn cusparseCbsrmm(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transB: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    kb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuComplex,
     C: *mut cuComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrmm {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockSize, B, ldb, beta, C, ldc) },
@@ -10447,21 +10015,21 @@ pub unsafe extern "C" fn cusparseZbsrmm(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transB: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    kb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     C: *mut cuDoubleComplex,
-    ldc: ::std::os::raw::c_int,
+    ldc: ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrmm {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockSize, B, ldb, beta, C, ldc) },
@@ -10470,7 +10038,7 @@ pub unsafe extern "C" fn cusparseZbsrmm(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXbsrsm2_zeroPivot(handle: cusparseHandle_t, info: bsrsm2Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXbsrsm2_zeroPivot(handle: cusparseHandle_t, info: bsrsm2Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXbsrsm2_zeroPivot {
         Some(____func) => unsafe { ____func(handle, info, position) },
         None => panic!(
@@ -10486,16 +10054,16 @@ pub unsafe extern "C" fn cusparseSbsrsm2_bufferSize(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrsm2_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, pBufferSizeInBytes) },
@@ -10512,16 +10080,16 @@ pub unsafe extern "C" fn cusparseDbsrsm2_bufferSize(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrsm2_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, pBufferSizeInBytes) },
@@ -10538,16 +10106,16 @@ pub unsafe extern "C" fn cusparseCbsrsm2_bufferSize(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrsm2_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, pBufferSizeInBytes) },
@@ -10564,16 +10132,16 @@ pub unsafe extern "C" fn cusparseZbsrsm2_bufferSize(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrsm2_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, pBufferSizeInBytes) },
@@ -10590,14 +10158,14 @@ pub unsafe extern "C" fn cusparseSbsrsm2_bufferSizeExt(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transB: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -10616,14 +10184,14 @@ pub unsafe extern "C" fn cusparseDbsrsm2_bufferSizeExt(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transB: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -10642,14 +10210,14 @@ pub unsafe extern "C" fn cusparseCbsrsm2_bufferSizeExt(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transB: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -10668,14 +10236,14 @@ pub unsafe extern "C" fn cusparseZbsrsm2_bufferSizeExt(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transB: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -10694,17 +10262,17 @@ pub unsafe extern "C" fn cusparseSbsrsm2_analysis(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrsm2_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, policy, pBuffer) },
@@ -10718,17 +10286,17 @@ pub unsafe extern "C" fn cusparseDbsrsm2_analysis(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrsm2_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, policy, pBuffer) },
@@ -10742,17 +10310,17 @@ pub unsafe extern "C" fn cusparseCbsrsm2_analysis(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrsm2_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, policy, pBuffer) },
@@ -10766,17 +10334,17 @@ pub unsafe extern "C" fn cusparseZbsrsm2_analysis(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrsm2_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, policy, pBuffer) },
@@ -10790,22 +10358,22 @@ pub unsafe extern "C" fn cusparseSbsrsm2_solve(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f32,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     B: *const f32,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     X: *mut f32,
-    ldx: ::std::os::raw::c_int,
+    ldx: ::core::ffi::c_int,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrsm2_solve {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, alpha, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, B, ldb, X, ldx, policy, pBuffer) },
@@ -10819,22 +10387,22 @@ pub unsafe extern "C" fn cusparseDbsrsm2_solve(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const f64,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     B: *const f64,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     X: *mut f64,
-    ldx: ::std::os::raw::c_int,
+    ldx: ::core::ffi::c_int,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrsm2_solve {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, alpha, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, B, ldb, X, ldx, policy, pBuffer) },
@@ -10848,22 +10416,22 @@ pub unsafe extern "C" fn cusparseCbsrsm2_solve(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     X: *mut cuComplex,
-    ldx: ::std::os::raw::c_int,
+    ldx: ::core::ffi::c_int,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrsm2_solve {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, alpha, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, B, ldb, X, ldx, policy, pBuffer) },
@@ -10877,22 +10445,22 @@ pub unsafe extern "C" fn cusparseZbsrsm2_solve(
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
     transXY: cusparseOperation_t,
-    mb: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrsm2Info_t,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     X: *mut cuDoubleComplex,
-    ldx: ::std::os::raw::c_int,
+    ldx: ::core::ffi::c_int,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrsm2_solve {
         Some(____func) => unsafe { ____func(handle, dirA, transA, transXY, mb, n, nnzb, alpha, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockSize, info, B, ldb, X, ldx, policy, pBuffer) },
@@ -10901,7 +10469,7 @@ pub unsafe extern "C" fn cusparseZbsrsm2_solve(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseScsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseScsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsrilu02_numericBoost {
         Some(____func) => unsafe { ____func(handle, info, enable_boost, tol, boost_val) },
         None => panic!(
@@ -10912,7 +10480,7 @@ pub unsafe extern "C" fn cusparseScsrilu02_numericBoost(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsrilu02_numericBoost {
         Some(____func) => unsafe { ____func(handle, info, enable_boost, tol, boost_val) },
         None => panic!(
@@ -10923,7 +10491,7 @@ pub unsafe extern "C" fn cusparseDcsrilu02_numericBoost(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsrilu02_numericBoost {
         Some(____func) => unsafe { ____func(handle, info, enable_boost, tol, boost_val) },
         None => panic!(
@@ -10934,7 +10502,7 @@ pub unsafe extern "C" fn cusparseCcsrilu02_numericBoost(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseZcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseZcsrilu02_numericBoost(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsrilu02_numericBoost {
         Some(____func) => unsafe { ____func(handle, info, enable_boost, tol, boost_val) },
         None => panic!(
@@ -10945,7 +10513,7 @@ pub unsafe extern "C" fn cusparseZcsrilu02_numericBoost(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXcsrilu02_zeroPivot(handle: cusparseHandle_t, info: csrilu02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXcsrilu02_zeroPivot(handle: cusparseHandle_t, info: csrilu02Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcsrilu02_zeroPivot {
         Some(____func) => unsafe { ____func(handle, info, position) },
         None => panic!(
@@ -10958,14 +10526,14 @@ pub unsafe extern "C" fn cusparseXcsrilu02_zeroPivot(handle: cusparseHandle_t, i
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsrilu02_bufferSize(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *mut f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsrilu02_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, pBufferSizeInBytes) },
@@ -10979,14 +10547,14 @@ pub unsafe extern "C" fn cusparseScsrilu02_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsrilu02_bufferSize(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *mut f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsrilu02_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, pBufferSizeInBytes) },
@@ -11000,14 +10568,14 @@ pub unsafe extern "C" fn cusparseDcsrilu02_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsrilu02_bufferSize(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *mut cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsrilu02_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, pBufferSizeInBytes) },
@@ -11021,14 +10589,14 @@ pub unsafe extern "C" fn cusparseCcsrilu02_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsrilu02_bufferSize(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *mut cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsrilu02_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, pBufferSizeInBytes) },
@@ -11042,12 +10610,12 @@ pub unsafe extern "C" fn cusparseZcsrilu02_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsrilu02_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedVal: *mut f32,
-    csrSortedRowPtr: *const ::std::os::raw::c_int,
-    csrSortedColInd: *const ::std::os::raw::c_int,
+    csrSortedRowPtr: *const ::core::ffi::c_int,
+    csrSortedColInd: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11063,12 +10631,12 @@ pub unsafe extern "C" fn cusparseScsrilu02_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsrilu02_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedVal: *mut f64,
-    csrSortedRowPtr: *const ::std::os::raw::c_int,
-    csrSortedColInd: *const ::std::os::raw::c_int,
+    csrSortedRowPtr: *const ::core::ffi::c_int,
+    csrSortedColInd: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11084,12 +10652,12 @@ pub unsafe extern "C" fn cusparseDcsrilu02_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsrilu02_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedVal: *mut cuComplex,
-    csrSortedRowPtr: *const ::std::os::raw::c_int,
-    csrSortedColInd: *const ::std::os::raw::c_int,
+    csrSortedRowPtr: *const ::core::ffi::c_int,
+    csrSortedColInd: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11105,12 +10673,12 @@ pub unsafe extern "C" fn cusparseCcsrilu02_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsrilu02_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedVal: *mut cuDoubleComplex,
-    csrSortedRowPtr: *const ::std::os::raw::c_int,
-    csrSortedColInd: *const ::std::os::raw::c_int,
+    csrSortedRowPtr: *const ::core::ffi::c_int,
+    csrSortedColInd: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11126,15 +10694,15 @@ pub unsafe extern "C" fn cusparseZcsrilu02_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsrilu02_analysis(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsrilu02_analysis {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11148,15 +10716,15 @@ pub unsafe extern "C" fn cusparseScsrilu02_analysis(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsrilu02_analysis(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsrilu02_analysis {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11170,15 +10738,15 @@ pub unsafe extern "C" fn cusparseDcsrilu02_analysis(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsrilu02_analysis(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsrilu02_analysis {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11192,15 +10760,15 @@ pub unsafe extern "C" fn cusparseCcsrilu02_analysis(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsrilu02_analysis(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsrilu02_analysis {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11214,15 +10782,15 @@ pub unsafe extern "C" fn cusparseZcsrilu02_analysis(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsrilu02(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA_valM: *mut f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsrilu02 {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11233,15 +10801,15 @@ pub unsafe extern "C" fn cusparseScsrilu02(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsrilu02(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA_valM: *mut f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsrilu02 {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11252,15 +10820,15 @@ pub unsafe extern "C" fn cusparseDcsrilu02(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsrilu02(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA_valM: *mut cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsrilu02 {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11271,15 +10839,15 @@ pub unsafe extern "C" fn cusparseCcsrilu02(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsrilu02(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA_valM: *mut cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsrilu02 {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11288,7 +10856,7 @@ pub unsafe extern "C" fn cusparseZcsrilu02(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrilu02_numericBoost {
         Some(____func) => unsafe { ____func(handle, info, enable_boost, tol, boost_val) },
         None => panic!(
@@ -11299,7 +10867,7 @@ pub unsafe extern "C" fn cusparseSbsrilu02_numericBoost(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrilu02_numericBoost {
         Some(____func) => unsafe { ____func(handle, info, enable_boost, tol, boost_val) },
         None => panic!(
@@ -11310,7 +10878,7 @@ pub unsafe extern "C" fn cusparseDbsrilu02_numericBoost(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrilu02_numericBoost {
         Some(____func) => unsafe { ____func(handle, info, enable_boost, tol, boost_val) },
         None => panic!(
@@ -11321,7 +10889,7 @@ pub unsafe extern "C" fn cusparseCbsrilu02_numericBoost(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseZbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseZbsrilu02_numericBoost(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::core::ffi::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrilu02_numericBoost {
         Some(____func) => unsafe { ____func(handle, info, enable_boost, tol, boost_val) },
         None => panic!(
@@ -11332,7 +10900,7 @@ pub unsafe extern "C" fn cusparseZbsrilu02_numericBoost(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXbsrilu02_zeroPivot(handle: cusparseHandle_t, info: bsrilu02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXbsrilu02_zeroPivot(handle: cusparseHandle_t, info: bsrilu02Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXbsrilu02_zeroPivot {
         Some(____func) => unsafe { ____func(handle, info, position) },
         None => panic!(
@@ -11346,15 +10914,15 @@ pub unsafe extern "C" fn cusparseXbsrilu02_zeroPivot(handle: cusparseHandle_t, i
 pub unsafe extern "C" fn cusparseSbsrilu02_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrilu02_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, pBufferSizeInBytes) },
@@ -11369,15 +10937,15 @@ pub unsafe extern "C" fn cusparseSbsrilu02_bufferSize(
 pub unsafe extern "C" fn cusparseDbsrilu02_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrilu02_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, pBufferSizeInBytes) },
@@ -11392,15 +10960,15 @@ pub unsafe extern "C" fn cusparseDbsrilu02_bufferSize(
 pub unsafe extern "C" fn cusparseCbsrilu02_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrilu02_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, pBufferSizeInBytes) },
@@ -11415,15 +10983,15 @@ pub unsafe extern "C" fn cusparseCbsrilu02_bufferSize(
 pub unsafe extern "C" fn cusparseZbsrilu02_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrilu02_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, pBufferSizeInBytes) },
@@ -11438,13 +11006,13 @@ pub unsafe extern "C" fn cusparseZbsrilu02_bufferSize(
 pub unsafe extern "C" fn cusparseSbsrilu02_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11461,13 +11029,13 @@ pub unsafe extern "C" fn cusparseSbsrilu02_bufferSizeExt(
 pub unsafe extern "C" fn cusparseDbsrilu02_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11484,13 +11052,13 @@ pub unsafe extern "C" fn cusparseDbsrilu02_bufferSizeExt(
 pub unsafe extern "C" fn cusparseCbsrilu02_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11507,13 +11075,13 @@ pub unsafe extern "C" fn cusparseCbsrilu02_bufferSizeExt(
 pub unsafe extern "C" fn cusparseZbsrilu02_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11530,16 +11098,16 @@ pub unsafe extern "C" fn cusparseZbsrilu02_bufferSizeExt(
 pub unsafe extern "C" fn cusparseSbsrilu02_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrilu02_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -11554,16 +11122,16 @@ pub unsafe extern "C" fn cusparseSbsrilu02_analysis(
 pub unsafe extern "C" fn cusparseDbsrilu02_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrilu02_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -11578,16 +11146,16 @@ pub unsafe extern "C" fn cusparseDbsrilu02_analysis(
 pub unsafe extern "C" fn cusparseCbsrilu02_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrilu02_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -11602,16 +11170,16 @@ pub unsafe extern "C" fn cusparseCbsrilu02_analysis(
 pub unsafe extern "C" fn cusparseZbsrilu02_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrilu02_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -11626,16 +11194,16 @@ pub unsafe extern "C" fn cusparseZbsrilu02_analysis(
 pub unsafe extern "C" fn cusparseSbsrilu02(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsrilu02 {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -11647,16 +11215,16 @@ pub unsafe extern "C" fn cusparseSbsrilu02(
 pub unsafe extern "C" fn cusparseDbsrilu02(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsrilu02 {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -11668,16 +11236,16 @@ pub unsafe extern "C" fn cusparseDbsrilu02(
 pub unsafe extern "C" fn cusparseCbsrilu02(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsrilu02 {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -11689,16 +11257,16 @@ pub unsafe extern "C" fn cusparseCbsrilu02(
 pub unsafe extern "C" fn cusparseZbsrilu02(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsrilu02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsrilu02 {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -11707,7 +11275,7 @@ pub unsafe extern "C" fn cusparseZbsrilu02(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXcsric02_zeroPivot(handle: cusparseHandle_t, info: csric02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXcsric02_zeroPivot(handle: cusparseHandle_t, info: csric02Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcsric02_zeroPivot {
         Some(____func) => unsafe { ____func(handle, info, position) },
         None => panic!(
@@ -11720,14 +11288,14 @@ pub unsafe extern "C" fn cusparseXcsric02_zeroPivot(handle: cusparseHandle_t, in
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsric02_bufferSize(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *mut f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsric02_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, pBufferSizeInBytes) },
@@ -11741,14 +11309,14 @@ pub unsafe extern "C" fn cusparseScsric02_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsric02_bufferSize(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *mut f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsric02_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, pBufferSizeInBytes) },
@@ -11762,14 +11330,14 @@ pub unsafe extern "C" fn cusparseDcsric02_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsric02_bufferSize(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *mut cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsric02_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, pBufferSizeInBytes) },
@@ -11783,14 +11351,14 @@ pub unsafe extern "C" fn cusparseCcsric02_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsric02_bufferSize(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *mut cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsric02_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, pBufferSizeInBytes) },
@@ -11804,12 +11372,12 @@ pub unsafe extern "C" fn cusparseZcsric02_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsric02_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedVal: *mut f32,
-    csrSortedRowPtr: *const ::std::os::raw::c_int,
-    csrSortedColInd: *const ::std::os::raw::c_int,
+    csrSortedRowPtr: *const ::core::ffi::c_int,
+    csrSortedColInd: *const ::core::ffi::c_int,
     info: csric02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11825,12 +11393,12 @@ pub unsafe extern "C" fn cusparseScsric02_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsric02_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedVal: *mut f64,
-    csrSortedRowPtr: *const ::std::os::raw::c_int,
-    csrSortedColInd: *const ::std::os::raw::c_int,
+    csrSortedRowPtr: *const ::core::ffi::c_int,
+    csrSortedColInd: *const ::core::ffi::c_int,
     info: csric02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11846,12 +11414,12 @@ pub unsafe extern "C" fn cusparseDcsric02_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsric02_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedVal: *mut cuComplex,
-    csrSortedRowPtr: *const ::std::os::raw::c_int,
-    csrSortedColInd: *const ::std::os::raw::c_int,
+    csrSortedRowPtr: *const ::core::ffi::c_int,
+    csrSortedColInd: *const ::core::ffi::c_int,
     info: csric02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11867,12 +11435,12 @@ pub unsafe extern "C" fn cusparseCcsric02_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsric02_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedVal: *mut cuDoubleComplex,
-    csrSortedRowPtr: *const ::std::os::raw::c_int,
-    csrSortedColInd: *const ::std::os::raw::c_int,
+    csrSortedRowPtr: *const ::core::ffi::c_int,
+    csrSortedColInd: *const ::core::ffi::c_int,
     info: csric02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -11888,15 +11456,15 @@ pub unsafe extern "C" fn cusparseZcsric02_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsric02_analysis(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsric02_analysis {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11910,15 +11478,15 @@ pub unsafe extern "C" fn cusparseScsric02_analysis(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsric02_analysis(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsric02_analysis {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11932,15 +11500,15 @@ pub unsafe extern "C" fn cusparseDcsric02_analysis(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsric02_analysis(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsric02_analysis {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11954,15 +11522,15 @@ pub unsafe extern "C" fn cusparseCcsric02_analysis(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsric02_analysis(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsric02_analysis {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11976,15 +11544,15 @@ pub unsafe extern "C" fn cusparseZcsric02_analysis(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsric02(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA_valM: *mut f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsric02 {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -11995,15 +11563,15 @@ pub unsafe extern "C" fn cusparseScsric02(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsric02(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA_valM: *mut f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsric02 {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -12014,15 +11582,15 @@ pub unsafe extern "C" fn cusparseDcsric02(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsric02(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA_valM: *mut cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsric02 {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -12033,15 +11601,15 @@ pub unsafe extern "C" fn cusparseCcsric02(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsric02(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA_valM: *mut cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     info: csric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsric02 {
         Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) },
@@ -12050,7 +11618,7 @@ pub unsafe extern "C" fn cusparseZcsric02(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXbsric02_zeroPivot(handle: cusparseHandle_t, info: bsric02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXbsric02_zeroPivot(handle: cusparseHandle_t, info: bsric02Info_t, position: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXbsric02_zeroPivot {
         Some(____func) => unsafe { ____func(handle, info, position) },
         None => panic!(
@@ -12064,15 +11632,15 @@ pub unsafe extern "C" fn cusparseXbsric02_zeroPivot(handle: cusparseHandle_t, in
 pub unsafe extern "C" fn cusparseSbsric02_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsric02_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, pBufferSizeInBytes) },
@@ -12087,15 +11655,15 @@ pub unsafe extern "C" fn cusparseSbsric02_bufferSize(
 pub unsafe extern "C" fn cusparseDbsric02_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsric02_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, pBufferSizeInBytes) },
@@ -12110,15 +11678,15 @@ pub unsafe extern "C" fn cusparseDbsric02_bufferSize(
 pub unsafe extern "C" fn cusparseCbsric02_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsric02_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, pBufferSizeInBytes) },
@@ -12133,15 +11701,15 @@ pub unsafe extern "C" fn cusparseCbsric02_bufferSize(
 pub unsafe extern "C" fn cusparseZbsric02_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsric02_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, pBufferSizeInBytes) },
@@ -12156,13 +11724,13 @@ pub unsafe extern "C" fn cusparseZbsric02_bufferSize(
 pub unsafe extern "C" fn cusparseSbsric02_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsric02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -12179,13 +11747,13 @@ pub unsafe extern "C" fn cusparseSbsric02_bufferSizeExt(
 pub unsafe extern "C" fn cusparseDbsric02_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsric02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -12202,13 +11770,13 @@ pub unsafe extern "C" fn cusparseDbsric02_bufferSizeExt(
 pub unsafe extern "C" fn cusparseCbsric02_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsric02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -12225,13 +11793,13 @@ pub unsafe extern "C" fn cusparseCbsric02_bufferSizeExt(
 pub unsafe extern "C" fn cusparseZbsric02_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockSize: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockSize: ::core::ffi::c_int,
     info: bsric02Info_t,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -12248,16 +11816,16 @@ pub unsafe extern "C" fn cusparseZbsric02_bufferSizeExt(
 pub unsafe extern "C" fn cusparseSbsric02_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pInputBuffer: *mut ::std::os::raw::c_void,
+    pInputBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsric02_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pInputBuffer) },
@@ -12272,16 +11840,16 @@ pub unsafe extern "C" fn cusparseSbsric02_analysis(
 pub unsafe extern "C" fn cusparseDbsric02_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pInputBuffer: *mut ::std::os::raw::c_void,
+    pInputBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsric02_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pInputBuffer) },
@@ -12296,16 +11864,16 @@ pub unsafe extern "C" fn cusparseDbsric02_analysis(
 pub unsafe extern "C" fn cusparseCbsric02_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pInputBuffer: *mut ::std::os::raw::c_void,
+    pInputBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsric02_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pInputBuffer) },
@@ -12320,16 +11888,16 @@ pub unsafe extern "C" fn cusparseCbsric02_analysis(
 pub unsafe extern "C" fn cusparseZbsric02_analysis(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *const cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pInputBuffer: *mut ::std::os::raw::c_void,
+    pInputBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsric02_analysis {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pInputBuffer) },
@@ -12344,16 +11912,16 @@ pub unsafe extern "C" fn cusparseZbsric02_analysis(
 pub unsafe extern "C" fn cusparseSbsric02(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsric02 {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -12365,16 +11933,16 @@ pub unsafe extern "C" fn cusparseSbsric02(
 pub unsafe extern "C" fn cusparseDbsric02(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsric02 {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -12386,16 +11954,16 @@ pub unsafe extern "C" fn cusparseDbsric02(
 pub unsafe extern "C" fn cusparseCbsric02(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsric02 {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -12407,16 +11975,16 @@ pub unsafe extern "C" fn cusparseCbsric02(
 pub unsafe extern "C" fn cusparseZbsric02(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedVal: *mut cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     info: bsric02Info_t,
     policy: cusparseSolvePolicy_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsric02 {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nnzb, descrA, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, blockDim, info, policy, pBuffer) },
@@ -12425,7 +11993,7 @@ pub unsafe extern "C" fn cusparseZbsric02(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgtsv2_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, bufferSizeInBytes) },
         None => panic!(
@@ -12436,7 +12004,7 @@ pub unsafe extern "C" fn cusparseSgtsv2_bufferSizeExt(handle: cusparseHandle_t, 
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgtsv2_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, bufferSizeInBytes) },
         None => panic!(
@@ -12447,7 +12015,7 @@ pub unsafe extern "C" fn cusparseDgtsv2_bufferSizeExt(handle: cusparseHandle_t, 
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *const cuComplex, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCgtsv2_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *const cuComplex, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgtsv2_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, bufferSizeInBytes) },
         None => panic!(
@@ -12460,13 +12028,13 @@ pub unsafe extern "C" fn cusparseCgtsv2_bufferSizeExt(handle: cusparseHandle_t, 
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgtsv2_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     dl: *const cuDoubleComplex,
     d: *const cuDoubleComplex,
     du: *const cuDoubleComplex,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     bufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgtsv2_bufferSizeExt {
@@ -12479,7 +12047,7 @@ pub unsafe extern "C" fn cusparseZgtsv2_bufferSizeExt(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgtsv2(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgtsv2(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgtsv2 {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, pBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSgtsv2"),
@@ -12487,7 +12055,7 @@ pub unsafe extern "C" fn cusparseSgtsv2(handle: cusparseHandle_t, m: ::std::os::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgtsv2(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgtsv2(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgtsv2 {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, pBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseDgtsv2"),
@@ -12495,7 +12063,7 @@ pub unsafe extern "C" fn cusparseDgtsv2(handle: cusparseHandle_t, m: ::std::os::
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCgtsv2(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCgtsv2(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgtsv2 {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, pBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCgtsv2"),
@@ -12505,14 +12073,14 @@ pub unsafe extern "C" fn cusparseCgtsv2(handle: cusparseHandle_t, m: ::std::os::
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgtsv2(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     dl: *const cuDoubleComplex,
     d: *const cuDoubleComplex,
     du: *const cuDoubleComplex,
     B: *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    ldb: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgtsv2 {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, pBuffer) },
@@ -12521,7 +12089,7 @@ pub unsafe extern "C" fn cusparseZgtsv2(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgtsv2_nopivot_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, bufferSizeInBytes) },
         None => panic!(
@@ -12532,7 +12100,7 @@ pub unsafe extern "C" fn cusparseSgtsv2_nopivot_bufferSizeExt(handle: cusparseHa
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgtsv2_nopivot_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, bufferSizeInBytes) },
         None => panic!(
@@ -12543,17 +12111,7 @@ pub unsafe extern "C" fn cusparseDgtsv2_nopivot_bufferSizeExt(handle: cusparseHa
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCgtsv2_nopivot_bufferSizeExt(
-    handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    dl: *const cuComplex,
-    d: *const cuComplex,
-    du: *const cuComplex,
-    B: *const cuComplex,
-    ldb: ::std::os::raw::c_int,
-    bufferSizeInBytes: *mut usize,
-) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCgtsv2_nopivot_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *const cuComplex, ldb: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgtsv2_nopivot_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, bufferSizeInBytes) },
         None => panic!(
@@ -12566,13 +12124,13 @@ pub unsafe extern "C" fn cusparseCgtsv2_nopivot_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgtsv2_nopivot_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     dl: *const cuDoubleComplex,
     d: *const cuDoubleComplex,
     du: *const cuDoubleComplex,
     B: *const cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
+    ldb: ::core::ffi::c_int,
     bufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgtsv2_nopivot_bufferSizeExt {
@@ -12585,7 +12143,7 @@ pub unsafe extern "C" fn cusparseZgtsv2_nopivot_bufferSizeExt(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgtsv2_nopivot(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgtsv2_nopivot(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgtsv2_nopivot {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, pBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSgtsv2_nopivot"),
@@ -12593,7 +12151,7 @@ pub unsafe extern "C" fn cusparseSgtsv2_nopivot(handle: cusparseHandle_t, m: ::s
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgtsv2_nopivot(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgtsv2_nopivot(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgtsv2_nopivot {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, pBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseDgtsv2_nopivot"),
@@ -12601,7 +12159,7 @@ pub unsafe extern "C" fn cusparseDgtsv2_nopivot(handle: cusparseHandle_t, m: ::s
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCgtsv2_nopivot(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCgtsv2_nopivot(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgtsv2_nopivot {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, pBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCgtsv2_nopivot"),
@@ -12611,14 +12169,14 @@ pub unsafe extern "C" fn cusparseCgtsv2_nopivot(handle: cusparseHandle_t, m: ::s
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgtsv2_nopivot(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     dl: *const cuDoubleComplex,
     d: *const cuDoubleComplex,
     du: *const cuDoubleComplex,
     B: *mut cuDoubleComplex,
-    ldb: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    ldb: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgtsv2_nopivot {
         Some(____func) => unsafe { ____func(handle, m, n, dl, d, du, B, ldb, pBuffer) },
@@ -12627,17 +12185,7 @@ pub unsafe extern "C" fn cusparseZgtsv2_nopivot(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgtsv2StridedBatch_bufferSizeExt(
-    handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    dl: *const f32,
-    d: *const f32,
-    du: *const f32,
-    x: *const f32,
-    batchCount: ::std::os::raw::c_int,
-    batchStride: ::std::os::raw::c_int,
-    bufferSizeInBytes: *mut usize,
-) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgtsv2StridedBatch_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *const f32, batchCount: ::core::ffi::c_int, batchStride: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgtsv2StridedBatch_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, dl, d, du, x, batchCount, batchStride, bufferSizeInBytes) },
         None => panic!(
@@ -12648,17 +12196,7 @@ pub unsafe extern "C" fn cusparseSgtsv2StridedBatch_bufferSizeExt(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgtsv2StridedBatch_bufferSizeExt(
-    handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    dl: *const f64,
-    d: *const f64,
-    du: *const f64,
-    x: *const f64,
-    batchCount: ::std::os::raw::c_int,
-    batchStride: ::std::os::raw::c_int,
-    bufferSizeInBytes: *mut usize,
-) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgtsv2StridedBatch_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *const f64, batchCount: ::core::ffi::c_int, batchStride: ::core::ffi::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgtsv2StridedBatch_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, dl, d, du, x, batchCount, batchStride, bufferSizeInBytes) },
         None => panic!(
@@ -12671,13 +12209,13 @@ pub unsafe extern "C" fn cusparseDgtsv2StridedBatch_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCgtsv2StridedBatch_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
     dl: *const cuComplex,
     d: *const cuComplex,
     du: *const cuComplex,
     x: *const cuComplex,
-    batchCount: ::std::os::raw::c_int,
-    batchStride: ::std::os::raw::c_int,
+    batchCount: ::core::ffi::c_int,
+    batchStride: ::core::ffi::c_int,
     bufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgtsv2StridedBatch_bufferSizeExt {
@@ -12692,13 +12230,13 @@ pub unsafe extern "C" fn cusparseCgtsv2StridedBatch_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgtsv2StridedBatch_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
     dl: *const cuDoubleComplex,
     d: *const cuDoubleComplex,
     du: *const cuDoubleComplex,
     x: *const cuDoubleComplex,
-    batchCount: ::std::os::raw::c_int,
-    batchStride: ::std::os::raw::c_int,
+    batchCount: ::core::ffi::c_int,
+    batchStride: ::core::ffi::c_int,
     bufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgtsv2StridedBatch_bufferSizeExt {
@@ -12711,7 +12249,7 @@ pub unsafe extern "C" fn cusparseZgtsv2StridedBatch_bufferSizeExt(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgtsv2StridedBatch(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *mut f32, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgtsv2StridedBatch(handle: cusparseHandle_t, m: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *mut f32, batchCount: ::core::ffi::c_int, batchStride: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgtsv2StridedBatch {
         Some(____func) => unsafe { ____func(handle, m, dl, d, du, x, batchCount, batchStride, pBuffer) },
         None => panic!(
@@ -12722,7 +12260,7 @@ pub unsafe extern "C" fn cusparseSgtsv2StridedBatch(handle: cusparseHandle_t, m:
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgtsv2StridedBatch(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *mut f64, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgtsv2StridedBatch(handle: cusparseHandle_t, m: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *mut f64, batchCount: ::core::ffi::c_int, batchStride: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgtsv2StridedBatch {
         Some(____func) => unsafe { ____func(handle, m, dl, d, du, x, batchCount, batchStride, pBuffer) },
         None => panic!(
@@ -12735,14 +12273,14 @@ pub unsafe extern "C" fn cusparseDgtsv2StridedBatch(handle: cusparseHandle_t, m:
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCgtsv2StridedBatch(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
     dl: *const cuComplex,
     d: *const cuComplex,
     du: *const cuComplex,
     x: *mut cuComplex,
-    batchCount: ::std::os::raw::c_int,
-    batchStride: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    batchCount: ::core::ffi::c_int,
+    batchStride: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgtsv2StridedBatch {
         Some(____func) => unsafe { ____func(handle, m, dl, d, du, x, batchCount, batchStride, pBuffer) },
@@ -12756,14 +12294,14 @@ pub unsafe extern "C" fn cusparseCgtsv2StridedBatch(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgtsv2StridedBatch(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
     dl: *const cuDoubleComplex,
     d: *const cuDoubleComplex,
     du: *const cuDoubleComplex,
     x: *mut cuDoubleComplex,
-    batchCount: ::std::os::raw::c_int,
-    batchStride: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    batchCount: ::core::ffi::c_int,
+    batchStride: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgtsv2StridedBatch {
         Some(____func) => unsafe { ____func(handle, m, dl, d, du, x, batchCount, batchStride, pBuffer) },
@@ -12775,7 +12313,7 @@ pub unsafe extern "C" fn cusparseZgtsv2StridedBatch(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgtsvInterleavedBatch_bufferSizeExt(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *const f32, batchCount: ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgtsvInterleavedBatch_bufferSizeExt(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *const f32, batchCount: ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgtsvInterleavedBatch_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, algo, m, dl, d, du, x, batchCount, pBufferSizeInBytes) },
         None => panic!(
@@ -12786,7 +12324,7 @@ pub unsafe extern "C" fn cusparseSgtsvInterleavedBatch_bufferSizeExt(handle: cus
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgtsvInterleavedBatch_bufferSizeExt(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *const f64, batchCount: ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgtsvInterleavedBatch_bufferSizeExt(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *const f64, batchCount: ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgtsvInterleavedBatch_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, algo, m, dl, d, du, x, batchCount, pBufferSizeInBytes) },
         None => panic!(
@@ -12799,13 +12337,13 @@ pub unsafe extern "C" fn cusparseDgtsvInterleavedBatch_bufferSizeExt(handle: cus
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCgtsvInterleavedBatch_bufferSizeExt(
     handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
+    algo: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
     dl: *const cuComplex,
     d: *const cuComplex,
     du: *const cuComplex,
     x: *const cuComplex,
-    batchCount: ::std::os::raw::c_int,
+    batchCount: ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgtsvInterleavedBatch_bufferSizeExt {
@@ -12820,13 +12358,13 @@ pub unsafe extern "C" fn cusparseCgtsvInterleavedBatch_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgtsvInterleavedBatch_bufferSizeExt(
     handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
+    algo: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
     dl: *const cuDoubleComplex,
     d: *const cuDoubleComplex,
     du: *const cuDoubleComplex,
     x: *const cuDoubleComplex,
-    batchCount: ::std::os::raw::c_int,
+    batchCount: ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgtsvInterleavedBatch_bufferSizeExt {
@@ -12839,7 +12377,7 @@ pub unsafe extern "C" fn cusparseZgtsvInterleavedBatch_bufferSizeExt(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *mut f32, d: *mut f32, du: *mut f32, x: *mut f32, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *mut f32, d: *mut f32, du: *mut f32, x: *mut f32, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgtsvInterleavedBatch {
         Some(____func) => unsafe { ____func(handle, algo, m, dl, d, du, x, batchCount, pBuffer) },
         None => panic!(
@@ -12850,7 +12388,7 @@ pub unsafe extern "C" fn cusparseSgtsvInterleavedBatch(handle: cusparseHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *mut f64, d: *mut f64, du: *mut f64, x: *mut f64, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *mut f64, d: *mut f64, du: *mut f64, x: *mut f64, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgtsvInterleavedBatch {
         Some(____func) => unsafe { ____func(handle, algo, m, dl, d, du, x, batchCount, pBuffer) },
         None => panic!(
@@ -12861,17 +12399,7 @@ pub unsafe extern "C" fn cusparseDgtsvInterleavedBatch(handle: cusparseHandle_t,
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCgtsvInterleavedBatch(
-    handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    dl: *mut cuComplex,
-    d: *mut cuComplex,
-    du: *mut cuComplex,
-    x: *mut cuComplex,
-    batchCount: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
-) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCgtsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, dl: *mut cuComplex, d: *mut cuComplex, du: *mut cuComplex, x: *mut cuComplex, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgtsvInterleavedBatch {
         Some(____func) => unsafe { ____func(handle, algo, m, dl, d, du, x, batchCount, pBuffer) },
         None => panic!(
@@ -12884,14 +12412,14 @@ pub unsafe extern "C" fn cusparseCgtsvInterleavedBatch(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgtsvInterleavedBatch(
     handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
+    algo: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
     dl: *mut cuDoubleComplex,
     d: *mut cuDoubleComplex,
     du: *mut cuDoubleComplex,
     x: *mut cuDoubleComplex,
-    batchCount: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    batchCount: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgtsvInterleavedBatch {
         Some(____func) => unsafe { ____func(handle, algo, m, dl, d, du, x, batchCount, pBuffer) },
@@ -12905,15 +12433,15 @@ pub unsafe extern "C" fn cusparseZgtsvInterleavedBatch(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSgpsvInterleavedBatch_bufferSizeExt(
     handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
+    algo: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
     ds: *const f32,
     dl: *const f32,
     d: *const f32,
     du: *const f32,
     dw: *const f32,
     x: *const f32,
-    batchCount: ::std::os::raw::c_int,
+    batchCount: ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgpsvInterleavedBatch_bufferSizeExt {
@@ -12928,15 +12456,15 @@ pub unsafe extern "C" fn cusparseSgpsvInterleavedBatch_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDgpsvInterleavedBatch_bufferSizeExt(
     handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
+    algo: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
     ds: *const f64,
     dl: *const f64,
     d: *const f64,
     du: *const f64,
     dw: *const f64,
     x: *const f64,
-    batchCount: ::std::os::raw::c_int,
+    batchCount: ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgpsvInterleavedBatch_bufferSizeExt {
@@ -12951,15 +12479,15 @@ pub unsafe extern "C" fn cusparseDgpsvInterleavedBatch_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCgpsvInterleavedBatch_bufferSizeExt(
     handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
+    algo: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
     ds: *const cuComplex,
     dl: *const cuComplex,
     d: *const cuComplex,
     du: *const cuComplex,
     dw: *const cuComplex,
     x: *const cuComplex,
-    batchCount: ::std::os::raw::c_int,
+    batchCount: ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgpsvInterleavedBatch_bufferSizeExt {
@@ -12974,15 +12502,15 @@ pub unsafe extern "C" fn cusparseCgpsvInterleavedBatch_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgpsvInterleavedBatch_bufferSizeExt(
     handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
+    algo: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
     ds: *const cuDoubleComplex,
     dl: *const cuDoubleComplex,
     d: *const cuDoubleComplex,
     du: *const cuDoubleComplex,
     dw: *const cuDoubleComplex,
     x: *const cuDoubleComplex,
-    batchCount: ::std::os::raw::c_int,
+    batchCount: ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgpsvInterleavedBatch_bufferSizeExt {
@@ -12995,19 +12523,7 @@ pub unsafe extern "C" fn cusparseZgpsvInterleavedBatch_bufferSizeExt(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSgpsvInterleavedBatch(
-    handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    ds: *mut f32,
-    dl: *mut f32,
-    d: *mut f32,
-    du: *mut f32,
-    dw: *mut f32,
-    x: *mut f32,
-    batchCount: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
-) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSgpsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, ds: *mut f32, dl: *mut f32, d: *mut f32, du: *mut f32, dw: *mut f32, x: *mut f32, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgpsvInterleavedBatch {
         Some(____func) => unsafe { ____func(handle, algo, m, ds, dl, d, du, dw, x, batchCount, pBuffer) },
         None => panic!(
@@ -13018,19 +12534,7 @@ pub unsafe extern "C" fn cusparseSgpsvInterleavedBatch(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDgpsvInterleavedBatch(
-    handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
-    ds: *mut f64,
-    dl: *mut f64,
-    d: *mut f64,
-    du: *mut f64,
-    dw: *mut f64,
-    x: *mut f64,
-    batchCount: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
-) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDgpsvInterleavedBatch(handle: cusparseHandle_t, algo: ::core::ffi::c_int, m: ::core::ffi::c_int, ds: *mut f64, dl: *mut f64, d: *mut f64, du: *mut f64, dw: *mut f64, x: *mut f64, batchCount: ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgpsvInterleavedBatch {
         Some(____func) => unsafe { ____func(handle, algo, m, ds, dl, d, du, dw, x, batchCount, pBuffer) },
         None => panic!(
@@ -13043,16 +12547,16 @@ pub unsafe extern "C" fn cusparseDgpsvInterleavedBatch(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCgpsvInterleavedBatch(
     handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
+    algo: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
     ds: *mut cuComplex,
     dl: *mut cuComplex,
     d: *mut cuComplex,
     du: *mut cuComplex,
     dw: *mut cuComplex,
     x: *mut cuComplex,
-    batchCount: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    batchCount: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgpsvInterleavedBatch {
         Some(____func) => unsafe { ____func(handle, algo, m, ds, dl, d, du, dw, x, batchCount, pBuffer) },
@@ -13066,16 +12570,16 @@ pub unsafe extern "C" fn cusparseCgpsvInterleavedBatch(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgpsvInterleavedBatch(
     handle: cusparseHandle_t,
-    algo: ::std::os::raw::c_int,
-    m: ::std::os::raw::c_int,
+    algo: ::core::ffi::c_int,
+    m: ::core::ffi::c_int,
     ds: *mut cuDoubleComplex,
     dl: *mut cuDoubleComplex,
     d: *mut cuDoubleComplex,
     du: *mut cuDoubleComplex,
     dw: *mut cuDoubleComplex,
     x: *mut cuDoubleComplex,
-    batchCount: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    batchCount: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgpsvInterleavedBatch {
         Some(____func) => unsafe { ____func(handle, algo, m, ds, dl, d, du, dw, x, batchCount, pBuffer) },
@@ -13089,24 +12593,24 @@ pub unsafe extern "C" fn cusparseZgpsvInterleavedBatch(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsrgeam2_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     descrA: cusparseMatDescr_t,
-    nnzA: ::std::os::raw::c_int,
+    nnzA: ::core::ffi::c_int,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     beta: *const f32,
     descrB: cusparseMatDescr_t,
-    nnzB: ::std::os::raw::c_int,
+    nnzB: ::core::ffi::c_int,
     csrSortedValB: *const f32,
-    csrSortedRowPtrB: *const ::std::os::raw::c_int,
-    csrSortedColIndB: *const ::std::os::raw::c_int,
+    csrSortedRowPtrB: *const ::core::ffi::c_int,
+    csrSortedColIndB: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f32,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsrgeam2_bufferSizeExt {
@@ -13144,24 +12648,24 @@ pub unsafe extern "C" fn cusparseScsrgeam2_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsrgeam2_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     descrA: cusparseMatDescr_t,
-    nnzA: ::std::os::raw::c_int,
+    nnzA: ::core::ffi::c_int,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     beta: *const f64,
     descrB: cusparseMatDescr_t,
-    nnzB: ::std::os::raw::c_int,
+    nnzB: ::core::ffi::c_int,
     csrSortedValB: *const f64,
-    csrSortedRowPtrB: *const ::std::os::raw::c_int,
-    csrSortedColIndB: *const ::std::os::raw::c_int,
+    csrSortedRowPtrB: *const ::core::ffi::c_int,
+    csrSortedColIndB: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f64,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsrgeam2_bufferSizeExt {
@@ -13199,24 +12703,24 @@ pub unsafe extern "C" fn cusparseDcsrgeam2_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsrgeam2_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     descrA: cusparseMatDescr_t,
-    nnzA: ::std::os::raw::c_int,
+    nnzA: ::core::ffi::c_int,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     beta: *const cuComplex,
     descrB: cusparseMatDescr_t,
-    nnzB: ::std::os::raw::c_int,
+    nnzB: ::core::ffi::c_int,
     csrSortedValB: *const cuComplex,
-    csrSortedRowPtrB: *const ::std::os::raw::c_int,
-    csrSortedColIndB: *const ::std::os::raw::c_int,
+    csrSortedRowPtrB: *const ::core::ffi::c_int,
+    csrSortedColIndB: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const cuComplex,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsrgeam2_bufferSizeExt {
@@ -13254,24 +12758,24 @@ pub unsafe extern "C" fn cusparseCcsrgeam2_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsrgeam2_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     descrA: cusparseMatDescr_t,
-    nnzA: ::std::os::raw::c_int,
+    nnzA: ::core::ffi::c_int,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     descrB: cusparseMatDescr_t,
-    nnzB: ::std::os::raw::c_int,
+    nnzB: ::core::ffi::c_int,
     csrSortedValB: *const cuDoubleComplex,
-    csrSortedRowPtrB: *const ::std::os::raw::c_int,
-    csrSortedColIndB: *const ::std::os::raw::c_int,
+    csrSortedRowPtrB: *const ::core::ffi::c_int,
+    csrSortedColIndB: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const cuDoubleComplex,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsrgeam2_bufferSizeExt {
@@ -13309,20 +12813,20 @@ pub unsafe extern "C" fn cusparseZcsrgeam2_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseXcsrgeam2Nnz(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    nnzA: ::std::os::raw::c_int,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    nnzA: ::core::ffi::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     descrB: cusparseMatDescr_t,
-    nnzB: ::std::os::raw::c_int,
-    csrSortedRowPtrB: *const ::std::os::raw::c_int,
-    csrSortedColIndB: *const ::std::os::raw::c_int,
+    nnzB: ::core::ffi::c_int,
+    csrSortedRowPtrB: *const ::core::ffi::c_int,
+    csrSortedColIndB: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-    workspace: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+    workspace: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcsrgeam2Nnz {
         Some(____func) => unsafe { ____func(handle, m, n, descrA, nnzA, csrSortedRowPtrA, csrSortedColIndA, descrB, nnzB, csrSortedRowPtrB, csrSortedColIndB, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, workspace) },
@@ -13333,25 +12837,25 @@ pub unsafe extern "C" fn cusparseXcsrgeam2Nnz(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsrgeam2(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f32,
     descrA: cusparseMatDescr_t,
-    nnzA: ::std::os::raw::c_int,
+    nnzA: ::core::ffi::c_int,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     beta: *const f32,
     descrB: cusparseMatDescr_t,
-    nnzB: ::std::os::raw::c_int,
+    nnzB: ::core::ffi::c_int,
     csrSortedValB: *const f32,
-    csrSortedRowPtrB: *const ::std::os::raw::c_int,
-    csrSortedColIndB: *const ::std::os::raw::c_int,
+    csrSortedRowPtrB: *const ::core::ffi::c_int,
+    csrSortedColIndB: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f32,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsrgeam2 {
         Some(____func) => unsafe {
@@ -13385,25 +12889,25 @@ pub unsafe extern "C" fn cusparseScsrgeam2(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsrgeam2(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const f64,
     descrA: cusparseMatDescr_t,
-    nnzA: ::std::os::raw::c_int,
+    nnzA: ::core::ffi::c_int,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     beta: *const f64,
     descrB: cusparseMatDescr_t,
-    nnzB: ::std::os::raw::c_int,
+    nnzB: ::core::ffi::c_int,
     csrSortedValB: *const f64,
-    csrSortedRowPtrB: *const ::std::os::raw::c_int,
-    csrSortedColIndB: *const ::std::os::raw::c_int,
+    csrSortedRowPtrB: *const ::core::ffi::c_int,
+    csrSortedColIndB: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f64,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsrgeam2 {
         Some(____func) => unsafe {
@@ -13437,25 +12941,25 @@ pub unsafe extern "C" fn cusparseDcsrgeam2(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsrgeam2(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuComplex,
     descrA: cusparseMatDescr_t,
-    nnzA: ::std::os::raw::c_int,
+    nnzA: ::core::ffi::c_int,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     beta: *const cuComplex,
     descrB: cusparseMatDescr_t,
-    nnzB: ::std::os::raw::c_int,
+    nnzB: ::core::ffi::c_int,
     csrSortedValB: *const cuComplex,
-    csrSortedRowPtrB: *const ::std::os::raw::c_int,
-    csrSortedColIndB: *const ::std::os::raw::c_int,
+    csrSortedRowPtrB: *const ::core::ffi::c_int,
+    csrSortedColIndB: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut cuComplex,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsrgeam2 {
         Some(____func) => unsafe {
@@ -13489,25 +12993,25 @@ pub unsafe extern "C" fn cusparseCcsrgeam2(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsrgeam2(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: *const cuDoubleComplex,
     descrA: cusparseMatDescr_t,
-    nnzA: ::std::os::raw::c_int,
+    nnzA: ::core::ffi::c_int,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     beta: *const cuDoubleComplex,
     descrB: cusparseMatDescr_t,
-    nnzB: ::std::os::raw::c_int,
+    nnzB: ::core::ffi::c_int,
     csrSortedValB: *const cuDoubleComplex,
-    csrSortedRowPtrB: *const ::std::os::raw::c_int,
-    csrSortedColIndB: *const ::std::os::raw::c_int,
+    csrSortedRowPtrB: *const ::core::ffi::c_int,
+    csrSortedColIndB: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut cuDoubleComplex,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsrgeam2 {
         Some(____func) => unsafe {
@@ -13541,16 +13045,16 @@ pub unsafe extern "C" fn cusparseZcsrgeam2(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsrcolor(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     fractionToColor: *const f32,
-    ncolors: *mut ::std::os::raw::c_int,
-    coloring: *mut ::std::os::raw::c_int,
-    reordering: *mut ::std::os::raw::c_int,
+    ncolors: *mut ::core::ffi::c_int,
+    coloring: *mut ::core::ffi::c_int,
+    reordering: *mut ::core::ffi::c_int,
     info: cusparseColorInfo_t,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsrcolor {
@@ -13562,16 +13066,16 @@ pub unsafe extern "C" fn cusparseScsrcolor(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsrcolor(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     fractionToColor: *const f64,
-    ncolors: *mut ::std::os::raw::c_int,
-    coloring: *mut ::std::os::raw::c_int,
-    reordering: *mut ::std::os::raw::c_int,
+    ncolors: *mut ::core::ffi::c_int,
+    coloring: *mut ::core::ffi::c_int,
+    reordering: *mut ::core::ffi::c_int,
     info: cusparseColorInfo_t,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsrcolor {
@@ -13583,16 +13087,16 @@ pub unsafe extern "C" fn cusparseDcsrcolor(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsrcolor(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     fractionToColor: *const f32,
-    ncolors: *mut ::std::os::raw::c_int,
-    coloring: *mut ::std::os::raw::c_int,
-    reordering: *mut ::std::os::raw::c_int,
+    ncolors: *mut ::core::ffi::c_int,
+    coloring: *mut ::core::ffi::c_int,
+    reordering: *mut ::core::ffi::c_int,
     info: cusparseColorInfo_t,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsrcolor {
@@ -13604,16 +13108,16 @@ pub unsafe extern "C" fn cusparseCcsrcolor(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsrcolor(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     fractionToColor: *const f64,
-    ncolors: *mut ::std::os::raw::c_int,
-    coloring: *mut ::std::os::raw::c_int,
-    reordering: *mut ::std::os::raw::c_int,
+    ncolors: *mut ::core::ffi::c_int,
+    coloring: *mut ::core::ffi::c_int,
+    reordering: *mut ::core::ffi::c_int,
     info: cusparseColorInfo_t,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsrcolor {
@@ -13626,13 +13130,13 @@ pub unsafe extern "C" fn cusparseZcsrcolor(
 pub unsafe extern "C" fn cusparseSnnz(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
-    nnzPerRowCol: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    nnzPerRowCol: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSnnz {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, A, lda, nnzPerRowCol, nnzTotalDevHostPtr) },
@@ -13644,13 +13148,13 @@ pub unsafe extern "C" fn cusparseSnnz(
 pub unsafe extern "C" fn cusparseDnnz(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
-    nnzPerRowCol: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    nnzPerRowCol: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnnz {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, A, lda, nnzPerRowCol, nnzTotalDevHostPtr) },
@@ -13662,13 +13166,13 @@ pub unsafe extern "C" fn cusparseDnnz(
 pub unsafe extern "C" fn cusparseCnnz(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    nnzPerRowCol: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    nnzPerRowCol: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCnnz {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, A, lda, nnzPerRowCol, nnzTotalDevHostPtr) },
@@ -13680,13 +13184,13 @@ pub unsafe extern "C" fn cusparseCnnz(
 pub unsafe extern "C" fn cusparseZnnz(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    nnzPerRowCol: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
+    nnzPerRowCol: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZnnz {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, A, lda, nnzPerRowCol, nnzTotalDevHostPtr) },
@@ -13695,16 +13199,7 @@ pub unsafe extern "C" fn cusparseZnnz(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSnnz_compress(
-    handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    descr: cusparseMatDescr_t,
-    csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    nnzPerRow: *mut ::std::os::raw::c_int,
-    nnzC: *mut ::std::os::raw::c_int,
-    tol: f32,
-) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSnnz_compress(handle: cusparseHandle_t, m: ::core::ffi::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const f32, csrSortedRowPtrA: *const ::core::ffi::c_int, nnzPerRow: *mut ::core::ffi::c_int, nnzC: *mut ::core::ffi::c_int, tol: f32) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSnnz_compress {
         Some(____func) => unsafe { ____func(handle, m, descr, csrSortedValA, csrSortedRowPtrA, nnzPerRow, nnzC, tol) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSnnz_compress"),
@@ -13712,16 +13207,7 @@ pub unsafe extern "C" fn cusparseSnnz_compress(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDnnz_compress(
-    handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    descr: cusparseMatDescr_t,
-    csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    nnzPerRow: *mut ::std::os::raw::c_int,
-    nnzC: *mut ::std::os::raw::c_int,
-    tol: f64,
-) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDnnz_compress(handle: cusparseHandle_t, m: ::core::ffi::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const f64, csrSortedRowPtrA: *const ::core::ffi::c_int, nnzPerRow: *mut ::core::ffi::c_int, nnzC: *mut ::core::ffi::c_int, tol: f64) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnnz_compress {
         Some(____func) => unsafe { ____func(handle, m, descr, csrSortedValA, csrSortedRowPtrA, nnzPerRow, nnzC, tol) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseDnnz_compress"),
@@ -13731,12 +13217,12 @@ pub unsafe extern "C" fn cusparseDnnz_compress(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCnnz_compress(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
     descr: cusparseMatDescr_t,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    nnzPerRow: *mut ::std::os::raw::c_int,
-    nnzC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    nnzPerRow: *mut ::core::ffi::c_int,
+    nnzC: *mut ::core::ffi::c_int,
     tol: cuComplex,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCnnz_compress {
@@ -13748,12 +13234,12 @@ pub unsafe extern "C" fn cusparseCnnz_compress(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZnnz_compress(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
     descr: cusparseMatDescr_t,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    nnzPerRow: *mut ::std::os::raw::c_int,
-    nnzC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    nnzPerRow: *mut ::core::ffi::c_int,
+    nnzC: *mut ::core::ffi::c_int,
     tol: cuDoubleComplex,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZnnz_compress {
@@ -13765,17 +13251,17 @@ pub unsafe extern "C" fn cusparseZnnz_compress(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsr2csr_compress(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    nnzPerRow: *const ::std::os::raw::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
+    nnzPerRow: *const ::core::ffi::c_int,
     csrSortedValC: *mut f32,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
     tol: f32,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsr2csr_compress {
@@ -13790,17 +13276,17 @@ pub unsafe extern "C" fn cusparseScsr2csr_compress(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsr2csr_compress(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    nnzPerRow: *const ::std::os::raw::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
+    nnzPerRow: *const ::core::ffi::c_int,
     csrSortedValC: *mut f64,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
     tol: f64,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsr2csr_compress {
@@ -13815,17 +13301,17 @@ pub unsafe extern "C" fn cusparseDcsr2csr_compress(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsr2csr_compress(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuComplex,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    nnzPerRow: *const ::std::os::raw::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
+    nnzPerRow: *const ::core::ffi::c_int,
     csrSortedValC: *mut cuComplex,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
     tol: cuComplex,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsr2csr_compress {
@@ -13840,17 +13326,17 @@ pub unsafe extern "C" fn cusparseCcsr2csr_compress(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsr2csr_compress(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    nnzPerRow: *const ::std::os::raw::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
+    nnzPerRow: *const ::core::ffi::c_int,
     csrSortedValC: *mut cuDoubleComplex,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
     tol: cuDoubleComplex,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsr2csr_compress {
@@ -13863,7 +13349,7 @@ pub unsafe extern "C" fn cusparseZcsr2csr_compress(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXcoo2csr(handle: cusparseHandle_t, cooRowInd: *const ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, m: ::std::os::raw::c_int, csrSortedRowPtr: *mut ::std::os::raw::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXcoo2csr(handle: cusparseHandle_t, cooRowInd: *const ::core::ffi::c_int, nnz: ::core::ffi::c_int, m: ::core::ffi::c_int, csrSortedRowPtr: *mut ::core::ffi::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcoo2csr {
         Some(____func) => unsafe { ____func(handle, cooRowInd, nnz, m, csrSortedRowPtr, idxBase) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseXcoo2csr"),
@@ -13871,7 +13357,7 @@ pub unsafe extern "C" fn cusparseXcoo2csr(handle: cusparseHandle_t, cooRowInd: *
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXcsr2coo(handle: cusparseHandle_t, csrSortedRowPtr: *const ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, m: ::std::os::raw::c_int, cooRowInd: *mut ::std::os::raw::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXcsr2coo(handle: cusparseHandle_t, csrSortedRowPtr: *const ::core::ffi::c_int, nnz: ::core::ffi::c_int, m: ::core::ffi::c_int, cooRowInd: *mut ::core::ffi::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcsr2coo {
         Some(____func) => unsafe { ____func(handle, csrSortedRowPtr, nnz, m, cooRowInd, idxBase) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseXcsr2coo"),
@@ -13882,15 +13368,15 @@ pub unsafe extern "C" fn cusparseXcsr2coo(handle: cusparseHandle_t, csrSortedRow
 pub unsafe extern "C" fn cusparseXcsr2bsrNnz(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcsr2bsrNnz {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedRowPtrA, csrSortedColIndA, blockDim, descrC, bsrSortedRowPtrC, nnzTotalDevHostPtr) },
@@ -13902,17 +13388,17 @@ pub unsafe extern "C" fn cusparseXcsr2bsrNnz(
 pub unsafe extern "C" fn cusparseScsr2bsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut f32,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsr2bsr {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, blockDim, descrC, bsrSortedValC, bsrSortedRowPtrC, bsrSortedColIndC) },
@@ -13924,17 +13410,17 @@ pub unsafe extern "C" fn cusparseScsr2bsr(
 pub unsafe extern "C" fn cusparseDcsr2bsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut f64,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsr2bsr {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, blockDim, descrC, bsrSortedValC, bsrSortedRowPtrC, bsrSortedColIndC) },
@@ -13946,17 +13432,17 @@ pub unsafe extern "C" fn cusparseDcsr2bsr(
 pub unsafe extern "C" fn cusparseCcsr2bsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut cuComplex,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsr2bsr {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, blockDim, descrC, bsrSortedValC, bsrSortedRowPtrC, bsrSortedColIndC) },
@@ -13968,17 +13454,17 @@ pub unsafe extern "C" fn cusparseCcsr2bsr(
 pub unsafe extern "C" fn cusparseZcsr2bsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut cuDoubleComplex,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsr2bsr {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, blockDim, descrC, bsrSortedValC, bsrSortedRowPtrC, bsrSortedColIndC) },
@@ -13990,17 +13476,17 @@ pub unsafe extern "C" fn cusparseZcsr2bsr(
 pub unsafe extern "C" fn cusparseSbsr2csr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f32,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSbsr2csr {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC) },
@@ -14012,17 +13498,17 @@ pub unsafe extern "C" fn cusparseSbsr2csr(
 pub unsafe extern "C" fn cusparseDbsr2csr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f64,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDbsr2csr {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC) },
@@ -14034,17 +13520,17 @@ pub unsafe extern "C" fn cusparseDbsr2csr(
 pub unsafe extern "C" fn cusparseCbsr2csr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut cuComplex,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCbsr2csr {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC) },
@@ -14056,17 +13542,17 @@ pub unsafe extern "C" fn cusparseCbsr2csr(
 pub unsafe extern "C" fn cusparseZbsr2csr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    blockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    blockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut cuDoubleComplex,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZbsr2csr {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC) },
@@ -14077,15 +13563,15 @@ pub unsafe extern "C" fn cusparseZbsr2csr(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSgebsr2gebsc_bufferSize(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgebsr2gebsc_bufferSize {
         Some(____func) => unsafe { ____func(handle, mb, nb, nnzb, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, rowBlockDim, colBlockDim, pBufferSizeInBytes) },
@@ -14099,15 +13585,15 @@ pub unsafe extern "C" fn cusparseSgebsr2gebsc_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDgebsr2gebsc_bufferSize(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgebsr2gebsc_bufferSize {
         Some(____func) => unsafe { ____func(handle, mb, nb, nnzb, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, rowBlockDim, colBlockDim, pBufferSizeInBytes) },
@@ -14121,15 +13607,15 @@ pub unsafe extern "C" fn cusparseDgebsr2gebsc_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCgebsr2gebsc_bufferSize(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgebsr2gebsc_bufferSize {
         Some(____func) => unsafe { ____func(handle, mb, nb, nnzb, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, rowBlockDim, colBlockDim, pBufferSizeInBytes) },
@@ -14143,15 +13629,15 @@ pub unsafe extern "C" fn cusparseCgebsr2gebsc_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgebsr2gebsc_bufferSize(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgebsr2gebsc_bufferSize {
         Some(____func) => unsafe { ____func(handle, mb, nb, nnzb, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, rowBlockDim, colBlockDim, pBufferSizeInBytes) },
@@ -14165,14 +13651,14 @@ pub unsafe extern "C" fn cusparseZgebsr2gebsc_bufferSize(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSgebsr2gebsc_bufferSizeExt(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgebsr2gebsc_bufferSizeExt {
@@ -14187,14 +13673,14 @@ pub unsafe extern "C" fn cusparseSgebsr2gebsc_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDgebsr2gebsc_bufferSizeExt(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgebsr2gebsc_bufferSizeExt {
@@ -14209,14 +13695,14 @@ pub unsafe extern "C" fn cusparseDgebsr2gebsc_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCgebsr2gebsc_bufferSizeExt(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgebsr2gebsc_bufferSizeExt {
@@ -14231,14 +13717,14 @@ pub unsafe extern "C" fn cusparseCgebsr2gebsc_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgebsr2gebsc_bufferSizeExt(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgebsr2gebsc_bufferSizeExt {
@@ -14253,20 +13739,20 @@ pub unsafe extern "C" fn cusparseZgebsr2gebsc_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSgebsr2gebsc(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const f32,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     bscVal: *mut f32,
-    bscRowInd: *mut ::std::os::raw::c_int,
-    bscColPtr: *mut ::std::os::raw::c_int,
+    bscRowInd: *mut ::core::ffi::c_int,
+    bscColPtr: *mut ::core::ffi::c_int,
     copyValues: cusparseAction_t,
     idxBase: cusparseIndexBase_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgebsr2gebsc {
         Some(____func) => unsafe { ____func(handle, mb, nb, nnzb, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, rowBlockDim, colBlockDim, bscVal, bscRowInd, bscColPtr, copyValues, idxBase, pBuffer) },
@@ -14277,20 +13763,20 @@ pub unsafe extern "C" fn cusparseSgebsr2gebsc(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDgebsr2gebsc(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const f64,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     bscVal: *mut f64,
-    bscRowInd: *mut ::std::os::raw::c_int,
-    bscColPtr: *mut ::std::os::raw::c_int,
+    bscRowInd: *mut ::core::ffi::c_int,
+    bscColPtr: *mut ::core::ffi::c_int,
     copyValues: cusparseAction_t,
     idxBase: cusparseIndexBase_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgebsr2gebsc {
         Some(____func) => unsafe { ____func(handle, mb, nb, nnzb, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, rowBlockDim, colBlockDim, bscVal, bscRowInd, bscColPtr, copyValues, idxBase, pBuffer) },
@@ -14301,20 +13787,20 @@ pub unsafe extern "C" fn cusparseDgebsr2gebsc(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCgebsr2gebsc(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const cuComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     bscVal: *mut cuComplex,
-    bscRowInd: *mut ::std::os::raw::c_int,
-    bscColPtr: *mut ::std::os::raw::c_int,
+    bscRowInd: *mut ::core::ffi::c_int,
+    bscColPtr: *mut ::core::ffi::c_int,
     copyValues: cusparseAction_t,
     idxBase: cusparseIndexBase_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgebsr2gebsc {
         Some(____func) => unsafe { ____func(handle, mb, nb, nnzb, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, rowBlockDim, colBlockDim, bscVal, bscRowInd, bscColPtr, copyValues, idxBase, pBuffer) },
@@ -14325,20 +13811,20 @@ pub unsafe extern "C" fn cusparseCgebsr2gebsc(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZgebsr2gebsc(
     handle: cusparseHandle_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     bsrSortedVal: *const cuDoubleComplex,
-    bsrSortedRowPtr: *const ::std::os::raw::c_int,
-    bsrSortedColInd: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtr: *const ::core::ffi::c_int,
+    bsrSortedColInd: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     bscVal: *mut cuDoubleComplex,
-    bscRowInd: *mut ::std::os::raw::c_int,
-    bscColPtr: *mut ::std::os::raw::c_int,
+    bscRowInd: *mut ::core::ffi::c_int,
+    bscColPtr: *mut ::core::ffi::c_int,
     copyValues: cusparseAction_t,
     idxBase: cusparseIndexBase_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgebsr2gebsc {
         Some(____func) => unsafe { ____func(handle, mb, nb, nnzb, bsrSortedVal, bsrSortedRowPtr, bsrSortedColInd, rowBlockDim, colBlockDim, bscVal, bscRowInd, bscColPtr, copyValues, idxBase, pBuffer) },
@@ -14350,16 +13836,16 @@ pub unsafe extern "C" fn cusparseZgebsr2gebsc(
 pub unsafe extern "C" fn cusparseXgebsr2csr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXgebsr2csr {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, descrA, bsrSortedRowPtrA, bsrSortedColIndA, rowBlockDim, colBlockDim, descrC, csrSortedRowPtrC, csrSortedColIndC) },
@@ -14371,18 +13857,18 @@ pub unsafe extern "C" fn cusparseXgebsr2csr(
 pub unsafe extern "C" fn cusparseSgebsr2csr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f32,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgebsr2csr {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, rowBlockDim, colBlockDim, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC) },
@@ -14394,18 +13880,18 @@ pub unsafe extern "C" fn cusparseSgebsr2csr(
 pub unsafe extern "C" fn cusparseDgebsr2csr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f64,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgebsr2csr {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, rowBlockDim, colBlockDim, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC) },
@@ -14417,18 +13903,18 @@ pub unsafe extern "C" fn cusparseDgebsr2csr(
 pub unsafe extern "C" fn cusparseCgebsr2csr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut cuComplex,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgebsr2csr {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, rowBlockDim, colBlockDim, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC) },
@@ -14440,18 +13926,18 @@ pub unsafe extern "C" fn cusparseCgebsr2csr(
 pub unsafe extern "C" fn cusparseZgebsr2csr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut cuDoubleComplex,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgebsr2csr {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, rowBlockDim, colBlockDim, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC) },
@@ -14463,15 +13949,15 @@ pub unsafe extern "C" fn cusparseZgebsr2csr(
 pub unsafe extern "C" fn cusparseScsr2gebsr_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsr2gebsr_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, rowBlockDim, colBlockDim, pBufferSizeInBytes) },
@@ -14486,15 +13972,15 @@ pub unsafe extern "C" fn cusparseScsr2gebsr_bufferSize(
 pub unsafe extern "C" fn cusparseDcsr2gebsr_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsr2gebsr_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, rowBlockDim, colBlockDim, pBufferSizeInBytes) },
@@ -14509,15 +13995,15 @@ pub unsafe extern "C" fn cusparseDcsr2gebsr_bufferSize(
 pub unsafe extern "C" fn cusparseCcsr2gebsr_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsr2gebsr_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, rowBlockDim, colBlockDim, pBufferSizeInBytes) },
@@ -14532,15 +14018,15 @@ pub unsafe extern "C" fn cusparseCcsr2gebsr_bufferSize(
 pub unsafe extern "C" fn cusparseZcsr2gebsr_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsr2gebsr_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, rowBlockDim, colBlockDim, pBufferSizeInBytes) },
@@ -14555,14 +14041,14 @@ pub unsafe extern "C" fn cusparseZcsr2gebsr_bufferSize(
 pub unsafe extern "C" fn cusparseScsr2gebsr_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsr2gebsr_bufferSizeExt {
@@ -14578,14 +14064,14 @@ pub unsafe extern "C" fn cusparseScsr2gebsr_bufferSizeExt(
 pub unsafe extern "C" fn cusparseDcsr2gebsr_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsr2gebsr_bufferSizeExt {
@@ -14601,14 +14087,14 @@ pub unsafe extern "C" fn cusparseDcsr2gebsr_bufferSizeExt(
 pub unsafe extern "C" fn cusparseCcsr2gebsr_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsr2gebsr_bufferSizeExt {
@@ -14624,14 +14110,14 @@ pub unsafe extern "C" fn cusparseCcsr2gebsr_bufferSizeExt(
 pub unsafe extern "C" fn cusparseZcsr2gebsr_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsr2gebsr_bufferSizeExt {
@@ -14647,17 +14133,17 @@ pub unsafe extern "C" fn cusparseZcsr2gebsr_bufferSizeExt(
 pub unsafe extern "C" fn cusparseXcsr2gebsrNnz(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcsr2gebsrNnz {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedRowPtrA, csrSortedColIndA, descrC, bsrSortedRowPtrC, rowBlockDim, colBlockDim, nnzTotalDevHostPtr, pBuffer) },
@@ -14669,19 +14155,19 @@ pub unsafe extern "C" fn cusparseXcsr2gebsrNnz(
 pub unsafe extern "C" fn cusparseScsr2gebsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut f32,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsr2gebsr {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, descrC, bsrSortedValC, bsrSortedRowPtrC, bsrSortedColIndC, rowBlockDim, colBlockDim, pBuffer) },
@@ -14693,19 +14179,19 @@ pub unsafe extern "C" fn cusparseScsr2gebsr(
 pub unsafe extern "C" fn cusparseDcsr2gebsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut f64,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsr2gebsr {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, descrC, bsrSortedValC, bsrSortedRowPtrC, bsrSortedColIndC, rowBlockDim, colBlockDim, pBuffer) },
@@ -14717,19 +14203,19 @@ pub unsafe extern "C" fn cusparseDcsr2gebsr(
 pub unsafe extern "C" fn cusparseCcsr2gebsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut cuComplex,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsr2gebsr {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, descrC, bsrSortedValC, bsrSortedRowPtrC, bsrSortedColIndC, rowBlockDim, colBlockDim, pBuffer) },
@@ -14741,19 +14227,19 @@ pub unsafe extern "C" fn cusparseCcsr2gebsr(
 pub unsafe extern "C" fn cusparseZcsr2gebsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const cuDoubleComplex,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut cuDoubleComplex,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
-    rowBlockDim: ::std::os::raw::c_int,
-    colBlockDim: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
+    rowBlockDim: ::core::ffi::c_int,
+    colBlockDim: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsr2gebsr {
         Some(____func) => unsafe { ____func(handle, dirA, m, n, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, descrC, bsrSortedValC, bsrSortedRowPtrC, bsrSortedColIndC, rowBlockDim, colBlockDim, pBuffer) },
@@ -14765,18 +14251,18 @@ pub unsafe extern "C" fn cusparseZcsr2gebsr(
 pub unsafe extern "C" fn cusparseSgebsr2gebsr_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgebsr2gebsr_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, rowBlockDimA, colBlockDimA, rowBlockDimC, colBlockDimC, pBufferSizeInBytes) },
@@ -14791,18 +14277,18 @@ pub unsafe extern "C" fn cusparseSgebsr2gebsr_bufferSize(
 pub unsafe extern "C" fn cusparseDgebsr2gebsr_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgebsr2gebsr_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, rowBlockDimA, colBlockDimA, rowBlockDimC, colBlockDimC, pBufferSizeInBytes) },
@@ -14817,18 +14303,18 @@ pub unsafe extern "C" fn cusparseDgebsr2gebsr_bufferSize(
 pub unsafe extern "C" fn cusparseCgebsr2gebsr_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgebsr2gebsr_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, rowBlockDimA, colBlockDimA, rowBlockDimC, colBlockDimC, pBufferSizeInBytes) },
@@ -14843,18 +14329,18 @@ pub unsafe extern "C" fn cusparseCgebsr2gebsr_bufferSize(
 pub unsafe extern "C" fn cusparseZgebsr2gebsr_bufferSize(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
-    pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
+    pBufferSizeInBytes: *mut ::core::ffi::c_int,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgebsr2gebsr_bufferSize {
         Some(____func) => unsafe { ____func(handle, dirA, mb, nb, nnzb, descrA, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, rowBlockDimA, colBlockDimA, rowBlockDimC, colBlockDimC, pBufferSizeInBytes) },
@@ -14869,17 +14355,17 @@ pub unsafe extern "C" fn cusparseZgebsr2gebsr_bufferSize(
 pub unsafe extern "C" fn cusparseSgebsr2gebsr_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgebsr2gebsr_bufferSizeExt {
@@ -14895,17 +14381,17 @@ pub unsafe extern "C" fn cusparseSgebsr2gebsr_bufferSizeExt(
 pub unsafe extern "C" fn cusparseDgebsr2gebsr_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgebsr2gebsr_bufferSizeExt {
@@ -14921,17 +14407,17 @@ pub unsafe extern "C" fn cusparseDgebsr2gebsr_bufferSizeExt(
 pub unsafe extern "C" fn cusparseCgebsr2gebsr_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgebsr2gebsr_bufferSizeExt {
@@ -14947,17 +14433,17 @@ pub unsafe extern "C" fn cusparseCgebsr2gebsr_bufferSizeExt(
 pub unsafe extern "C" fn cusparseZgebsr2gebsr_bufferSizeExt(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
     pBufferSize: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgebsr2gebsr_bufferSizeExt {
@@ -14973,20 +14459,20 @@ pub unsafe extern "C" fn cusparseZgebsr2gebsr_bufferSizeExt(
 pub unsafe extern "C" fn cusparseXgebsr2gebsrNnz(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXgebsr2gebsrNnz {
         Some(____func) => unsafe {
@@ -15017,22 +14503,22 @@ pub unsafe extern "C" fn cusparseXgebsr2gebsrNnz(
 pub unsafe extern "C" fn cusparseSgebsr2gebsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f32,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut f32,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSgebsr2gebsr {
         Some(____func) => unsafe {
@@ -15065,22 +14551,22 @@ pub unsafe extern "C" fn cusparseSgebsr2gebsr(
 pub unsafe extern "C" fn cusparseDgebsr2gebsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const f64,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut f64,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDgebsr2gebsr {
         Some(____func) => unsafe {
@@ -15113,22 +14599,22 @@ pub unsafe extern "C" fn cusparseDgebsr2gebsr(
 pub unsafe extern "C" fn cusparseCgebsr2gebsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut cuComplex,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCgebsr2gebsr {
         Some(____func) => unsafe {
@@ -15161,22 +14647,22 @@ pub unsafe extern "C" fn cusparseCgebsr2gebsr(
 pub unsafe extern "C" fn cusparseZgebsr2gebsr(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
-    mb: ::std::os::raw::c_int,
-    nb: ::std::os::raw::c_int,
-    nnzb: ::std::os::raw::c_int,
+    mb: ::core::ffi::c_int,
+    nb: ::core::ffi::c_int,
+    nnzb: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     bsrSortedValA: *const cuDoubleComplex,
-    bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-    bsrSortedColIndA: *const ::std::os::raw::c_int,
-    rowBlockDimA: ::std::os::raw::c_int,
-    colBlockDimA: ::std::os::raw::c_int,
+    bsrSortedRowPtrA: *const ::core::ffi::c_int,
+    bsrSortedColIndA: *const ::core::ffi::c_int,
+    rowBlockDimA: ::core::ffi::c_int,
+    colBlockDimA: ::core::ffi::c_int,
     descrC: cusparseMatDescr_t,
     bsrSortedValC: *mut cuDoubleComplex,
-    bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    bsrSortedColIndC: *mut ::std::os::raw::c_int,
-    rowBlockDimC: ::std::os::raw::c_int,
-    colBlockDimC: ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    bsrSortedRowPtrC: *mut ::core::ffi::c_int,
+    bsrSortedColIndC: *mut ::core::ffi::c_int,
+    rowBlockDimC: ::core::ffi::c_int,
+    colBlockDimC: ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZgebsr2gebsr {
         Some(____func) => unsafe {
@@ -15206,7 +14692,7 @@ pub unsafe extern "C" fn cusparseZgebsr2gebsr(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCreateIdentityPermutation(handle: cusparseHandle_t, n: ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCreateIdentityPermutation(handle: cusparseHandle_t, n: ::core::ffi::c_int, p: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCreateIdentityPermutation {
         Some(____func) => unsafe { ____func(handle, n, p) },
         None => panic!(
@@ -15217,7 +14703,7 @@ pub unsafe extern "C" fn cusparseCreateIdentityPermutation(handle: cusparseHandl
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXcoosort_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, cooRowsA: *const ::std::os::raw::c_int, cooColsA: *const ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXcoosort_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, cooRowsA: *const ::core::ffi::c_int, cooColsA: *const ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcoosort_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, cooRowsA, cooColsA, pBufferSizeInBytes) },
         None => panic!(
@@ -15228,16 +14714,7 @@ pub unsafe extern "C" fn cusparseXcoosort_bufferSizeExt(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXcoosortByRow(
-    handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    cooRowsA: *mut ::std::os::raw::c_int,
-    cooColsA: *mut ::std::os::raw::c_int,
-    P: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
-) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXcoosortByRow(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, cooRowsA: *mut ::core::ffi::c_int, cooColsA: *mut ::core::ffi::c_int, P: *mut ::core::ffi::c_int, pBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcoosortByRow {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, cooRowsA, cooColsA, P, pBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseXcoosortByRow"),
@@ -15247,13 +14724,13 @@ pub unsafe extern "C" fn cusparseXcoosortByRow(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseXcoosortByColumn(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    cooRowsA: *mut ::std::os::raw::c_int,
-    cooColsA: *mut ::std::os::raw::c_int,
-    P: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
+    cooRowsA: *mut ::core::ffi::c_int,
+    cooColsA: *mut ::core::ffi::c_int,
+    P: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcoosortByColumn {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, cooRowsA, cooColsA, P, pBuffer) },
@@ -15262,7 +14739,7 @@ pub unsafe extern "C" fn cusparseXcoosortByColumn(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXcsrsort_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXcsrsort_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, csrRowPtrA: *const ::core::ffi::c_int, csrColIndA: *const ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcsrsort_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, csrRowPtrA, csrColIndA, pBufferSizeInBytes) },
         None => panic!(
@@ -15275,14 +14752,14 @@ pub unsafe extern "C" fn cusparseXcsrsort_bufferSizeExt(handle: cusparseHandle_t
 #[inline(always)]
 pub unsafe extern "C" fn cusparseXcsrsort(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *mut ::std::os::raw::c_int,
-    P: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrRowPtrA: *const ::core::ffi::c_int,
+    csrColIndA: *mut ::core::ffi::c_int,
+    P: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcsrsort {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrRowPtrA, csrColIndA, P, pBuffer) },
@@ -15291,7 +14768,7 @@ pub unsafe extern "C" fn cusparseXcsrsort(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseXcscsort_bufferSizeExt(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, cscColPtrA: *const ::std::os::raw::c_int, cscRowIndA: *const ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseXcscsort_bufferSizeExt(handle: cusparseHandle_t, m: ::core::ffi::c_int, n: ::core::ffi::c_int, nnz: ::core::ffi::c_int, cscColPtrA: *const ::core::ffi::c_int, cscRowIndA: *const ::core::ffi::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcscsort_bufferSizeExt {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, cscColPtrA, cscRowIndA, pBufferSizeInBytes) },
         None => panic!(
@@ -15304,14 +14781,14 @@ pub unsafe extern "C" fn cusparseXcscsort_bufferSizeExt(handle: cusparseHandle_t
 #[inline(always)]
 pub unsafe extern "C" fn cusparseXcscsort(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
-    cscColPtrA: *const ::std::os::raw::c_int,
-    cscRowIndA: *mut ::std::os::raw::c_int,
-    P: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    cscColPtrA: *const ::core::ffi::c_int,
+    cscRowIndA: *mut ::core::ffi::c_int,
+    P: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseXcscsort {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, cscColPtrA, cscRowIndA, P, pBuffer) },
@@ -15322,12 +14799,12 @@ pub unsafe extern "C" fn cusparseXcscsort(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsru2csr_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     csrVal: *mut f32,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
@@ -15343,12 +14820,12 @@ pub unsafe extern "C" fn cusparseScsru2csr_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsru2csr_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     csrVal: *mut f64,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
@@ -15364,12 +14841,12 @@ pub unsafe extern "C" fn cusparseDcsru2csr_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsru2csr_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     csrVal: *mut cuComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
@@ -15385,12 +14862,12 @@ pub unsafe extern "C" fn cusparseCcsru2csr_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsru2csr_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     csrVal: *mut cuDoubleComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
@@ -15406,15 +14883,15 @@ pub unsafe extern "C" fn cusparseZcsru2csr_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsru2csr(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *mut f32,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsru2csr {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, info, pBuffer) },
@@ -15425,15 +14902,15 @@ pub unsafe extern "C" fn cusparseScsru2csr(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsru2csr(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *mut f64,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsru2csr {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, info, pBuffer) },
@@ -15444,15 +14921,15 @@ pub unsafe extern "C" fn cusparseDcsru2csr(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsru2csr(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *mut cuComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsru2csr {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, info, pBuffer) },
@@ -15463,15 +14940,15 @@ pub unsafe extern "C" fn cusparseCcsru2csr(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsru2csr(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *mut cuDoubleComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsru2csr {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, info, pBuffer) },
@@ -15482,15 +14959,15 @@ pub unsafe extern "C" fn cusparseZcsru2csr(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseScsr2csru(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *mut f32,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseScsr2csru {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, info, pBuffer) },
@@ -15501,15 +14978,15 @@ pub unsafe extern "C" fn cusparseScsr2csru(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDcsr2csru(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *mut f64,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDcsr2csru {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, info, pBuffer) },
@@ -15520,15 +14997,15 @@ pub unsafe extern "C" fn cusparseDcsr2csru(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCcsr2csru(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *mut cuComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCcsr2csru {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, info, pBuffer) },
@@ -15539,15 +15016,15 @@ pub unsafe extern "C" fn cusparseCcsr2csru(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseZcsr2csru(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrVal: *mut cuDoubleComplex,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *mut ::std::os::raw::c_int,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *mut ::core::ffi::c_int,
     info: csru2csrInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseZcsr2csru {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, info, pBuffer) },
@@ -15558,15 +15035,15 @@ pub unsafe extern "C" fn cusparseZcsr2csru(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneDense2csr_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     threshold: *const f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f32,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneDense2csr_bufferSizeExt {
@@ -15581,15 +15058,15 @@ pub unsafe extern "C" fn cusparseSpruneDense2csr_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneDense2csr_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     threshold: *const f64,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f64,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneDense2csr_bufferSizeExt {
@@ -15604,15 +15081,15 @@ pub unsafe extern "C" fn cusparseDpruneDense2csr_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneDense2csrNnz(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     threshold: *const f32,
     descrC: cusparseMatDescr_t,
-    csrRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneDense2csrNnz {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, threshold, descrC, csrRowPtrC, nnzTotalDevHostPtr, pBuffer) },
@@ -15626,15 +15103,15 @@ pub unsafe extern "C" fn cusparseSpruneDense2csrNnz(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneDense2csrNnz(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     threshold: *const f64,
     descrC: cusparseMatDescr_t,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneDense2csrNnz {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, threshold, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, pBuffer) },
@@ -15648,16 +15125,16 @@ pub unsafe extern "C" fn cusparseDpruneDense2csrNnz(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneDense2csr(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     threshold: *const f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f32,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneDense2csr {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, threshold, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC, pBuffer) },
@@ -15668,16 +15145,16 @@ pub unsafe extern "C" fn cusparseSpruneDense2csr(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneDense2csr(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     threshold: *const f64,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f64,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneDense2csr {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, threshold, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC, pBuffer) },
@@ -15688,18 +15165,18 @@ pub unsafe extern "C" fn cusparseDpruneDense2csr(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneCsr2csr_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     threshold: *const f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f32,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneCsr2csr_bufferSizeExt {
@@ -15714,18 +15191,18 @@ pub unsafe extern "C" fn cusparseSpruneCsr2csr_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneCsr2csr_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     threshold: *const f64,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f64,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneCsr2csr_bufferSizeExt {
@@ -15740,18 +15217,18 @@ pub unsafe extern "C" fn cusparseDpruneCsr2csr_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneCsr2csrNnz(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     threshold: *const f32,
     descrC: cusparseMatDescr_t,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneCsr2csrNnz {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, threshold, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, pBuffer) },
@@ -15762,18 +15239,18 @@ pub unsafe extern "C" fn cusparseSpruneCsr2csrNnz(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneCsr2csrNnz(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     threshold: *const f64,
     descrC: cusparseMatDescr_t,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneCsr2csrNnz {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, threshold, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, pBuffer) },
@@ -15784,19 +15261,19 @@ pub unsafe extern "C" fn cusparseDpruneCsr2csrNnz(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneCsr2csr(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     threshold: *const f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f32,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneCsr2csr {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, threshold, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC, pBuffer) },
@@ -15807,19 +15284,19 @@ pub unsafe extern "C" fn cusparseSpruneCsr2csr(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneCsr2csr(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     threshold: *const f64,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f64,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
-    pBuffer: *mut ::std::os::raw::c_void,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneCsr2csr {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, threshold, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC, pBuffer) },
@@ -15830,15 +15307,15 @@ pub unsafe extern "C" fn cusparseDpruneCsr2csr(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneDense2csrByPercentage_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f32,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     info: pruneInfo_t,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
@@ -15854,15 +15331,15 @@ pub unsafe extern "C" fn cusparseSpruneDense2csrByPercentage_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneDense2csrByPercentage_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f64,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     info: pruneInfo_t,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
@@ -15878,16 +15355,16 @@ pub unsafe extern "C" fn cusparseDpruneDense2csrByPercentage_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneDense2csrNnzByPercentage(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
-    csrRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+    csrRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
     info: pruneInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneDense2csrNnzByPercentage {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, percentage, descrC, csrRowPtrC, nnzTotalDevHostPtr, info, pBuffer) },
@@ -15901,16 +15378,16 @@ pub unsafe extern "C" fn cusparseSpruneDense2csrNnzByPercentage(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneDense2csrNnzByPercentage(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
-    csrRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+    csrRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
     info: pruneInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneDense2csrNnzByPercentage {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, percentage, descrC, csrRowPtrC, nnzTotalDevHostPtr, info, pBuffer) },
@@ -15924,17 +15401,17 @@ pub unsafe extern "C" fn cusparseDpruneDense2csrNnzByPercentage(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneDense2csrByPercentage(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f32,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f32,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
     info: pruneInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneDense2csrByPercentage {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, percentage, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC, info, pBuffer) },
@@ -15948,17 +15425,17 @@ pub unsafe extern "C" fn cusparseSpruneDense2csrByPercentage(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneDense2csrByPercentage(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     A: *const f64,
-    lda: ::std::os::raw::c_int,
+    lda: ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f64,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
     info: pruneInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneDense2csrByPercentage {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, percentage, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC, info, pBuffer) },
@@ -15972,18 +15449,18 @@ pub unsafe extern "C" fn cusparseDpruneDense2csrByPercentage(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneCsr2csrByPercentage_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f32,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     info: pruneInfo_t,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
@@ -15999,18 +15476,18 @@ pub unsafe extern "C" fn cusparseSpruneCsr2csrByPercentage_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneCsr2csrByPercentage_bufferSizeExt(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *const f64,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *const ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *const ::core::ffi::c_int,
     info: pruneInfo_t,
     pBufferSizeInBytes: *mut usize,
 ) -> cusparseStatus_t {
@@ -16026,19 +15503,19 @@ pub unsafe extern "C" fn cusparseDpruneCsr2csrByPercentage_bufferSizeExt(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneCsr2csrNnzByPercentage(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
     info: pruneInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneCsr2csrNnzByPercentage {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, percentage, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, info, pBuffer) },
@@ -16052,19 +15529,19 @@ pub unsafe extern "C" fn cusparseSpruneCsr2csrNnzByPercentage(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneCsr2csrNnzByPercentage(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
-    csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-    nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *mut ::core::ffi::c_int,
+    nnzTotalDevHostPtr: *mut ::core::ffi::c_int,
     info: pruneInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneCsr2csrNnzByPercentage {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, percentage, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, info, pBuffer) },
@@ -16078,20 +15555,20 @@ pub unsafe extern "C" fn cusparseDpruneCsr2csrNnzByPercentage(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseSpruneCsr2csrByPercentage(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f32,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f32,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
     info: pruneInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpruneCsr2csrByPercentage {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, percentage, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC, info, pBuffer) },
@@ -16105,20 +15582,20 @@ pub unsafe extern "C" fn cusparseSpruneCsr2csrByPercentage(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseDpruneCsr2csrByPercentage(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnzA: ::core::ffi::c_int,
     descrA: cusparseMatDescr_t,
     csrSortedValA: *const f64,
-    csrSortedRowPtrA: *const ::std::os::raw::c_int,
-    csrSortedColIndA: *const ::std::os::raw::c_int,
+    csrSortedRowPtrA: *const ::core::ffi::c_int,
+    csrSortedColIndA: *const ::core::ffi::c_int,
     percentage: f32,
     descrC: cusparseMatDescr_t,
     csrSortedValC: *mut f64,
-    csrSortedRowPtrC: *const ::std::os::raw::c_int,
-    csrSortedColIndC: *mut ::std::os::raw::c_int,
+    csrSortedRowPtrC: *const ::core::ffi::c_int,
+    csrSortedColIndC: *mut ::core::ffi::c_int,
     info: pruneInfo_t,
-    pBuffer: *mut ::std::os::raw::c_void,
+    pBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDpruneCsr2csrByPercentage {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, percentage, descrC, csrSortedValC, csrSortedRowPtrC, csrSortedColIndC, info, pBuffer) },
@@ -16132,20 +15609,20 @@ pub unsafe extern "C" fn cusparseDpruneCsr2csrByPercentage(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCsr2cscEx2(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    csrVal: *const ::std::os::raw::c_void,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
-    cscVal: *mut ::std::os::raw::c_void,
-    cscColPtr: *mut ::std::os::raw::c_int,
-    cscRowInd: *mut ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
+    csrVal: *const ::core::ffi::c_void,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
+    cscVal: *mut ::core::ffi::c_void,
+    cscColPtr: *mut ::core::ffi::c_int,
+    cscRowInd: *mut ::core::ffi::c_int,
     valType: cudaDataType,
     copyValues: cusparseAction_t,
     idxBase: cusparseIndexBase_t,
     alg: cusparseCsr2CscAlg_t,
-    buffer: *mut ::std::os::raw::c_void,
+    buffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCsr2cscEx2 {
         Some(____func) => unsafe { ____func(handle, m, n, nnz, csrVal, csrRowPtr, csrColInd, cscVal, cscColPtr, cscRowInd, valType, copyValues, idxBase, alg, buffer) },
@@ -16156,15 +15633,15 @@ pub unsafe extern "C" fn cusparseCsr2cscEx2(
 #[inline(always)]
 pub unsafe extern "C" fn cusparseCsr2cscEx2_bufferSize(
     handle: cusparseHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    csrVal: *const ::std::os::raw::c_void,
-    csrRowPtr: *const ::std::os::raw::c_int,
-    csrColInd: *const ::std::os::raw::c_int,
-    cscVal: *mut ::std::os::raw::c_void,
-    cscColPtr: *mut ::std::os::raw::c_int,
-    cscRowInd: *mut ::std::os::raw::c_int,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nnz: ::core::ffi::c_int,
+    csrVal: *const ::core::ffi::c_void,
+    csrRowPtr: *const ::core::ffi::c_int,
+    csrColInd: *const ::core::ffi::c_int,
+    cscVal: *mut ::core::ffi::c_void,
+    cscColPtr: *mut ::core::ffi::c_int,
+    cscRowInd: *mut ::core::ffi::c_int,
     valType: cudaDataType,
     copyValues: cusparseAction_t,
     idxBase: cusparseIndexBase_t,
@@ -16181,7 +15658,7 @@ pub unsafe extern "C" fn cusparseCsr2cscEx2_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCreateSpVec(spVecDescr: *mut cusparseSpVecDescr_t, size: i64, nnz: i64, indices: *mut ::std::os::raw::c_void, values: *mut ::std::os::raw::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCreateSpVec(spVecDescr: *mut cusparseSpVecDescr_t, size: i64, nnz: i64, indices: *mut ::core::ffi::c_void, values: *mut ::core::ffi::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCreateSpVec {
         Some(____func) => unsafe { ____func(spVecDescr, size, nnz, indices, values, idxType, idxBase, valueType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCreateSpVec"),
@@ -16189,7 +15666,7 @@ pub unsafe extern "C" fn cusparseCreateSpVec(spVecDescr: *mut cusparseSpVecDescr
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCreateConstSpVec(spVecDescr: *mut cusparseConstSpVecDescr_t, size: i64, nnz: i64, indices: *const ::std::os::raw::c_void, values: *const ::std::os::raw::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCreateConstSpVec(spVecDescr: *mut cusparseConstSpVecDescr_t, size: i64, nnz: i64, indices: *const ::core::ffi::c_void, values: *const ::core::ffi::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCreateConstSpVec {
         Some(____func) => unsafe { ____func(spVecDescr, size, nnz, indices, values, idxType, idxBase, valueType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCreateConstSpVec"),
@@ -16209,8 +15686,8 @@ pub unsafe extern "C" fn cusparseSpVecGet(
     spVecDescr: cusparseSpVecDescr_t,
     size: *mut i64,
     nnz: *mut i64,
-    indices: *mut *mut ::std::os::raw::c_void,
-    values: *mut *mut ::std::os::raw::c_void,
+    indices: *mut *mut ::core::ffi::c_void,
+    values: *mut *mut ::core::ffi::c_void,
     idxType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
     valueType: *mut cudaDataType,
@@ -16226,8 +15703,8 @@ pub unsafe extern "C" fn cusparseConstSpVecGet(
     spVecDescr: cusparseConstSpVecDescr_t,
     size: *mut i64,
     nnz: *mut i64,
-    indices: *mut *const ::std::os::raw::c_void,
-    values: *mut *const ::std::os::raw::c_void,
+    indices: *mut *const ::core::ffi::c_void,
+    values: *mut *const ::core::ffi::c_void,
     idxType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
     valueType: *mut cudaDataType,
@@ -16250,7 +15727,7 @@ pub unsafe extern "C" fn cusparseSpVecGetIndexBase(spVecDescr: cusparseConstSpVe
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpVecGetValues(spVecDescr: cusparseSpVecDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpVecGetValues(spVecDescr: cusparseSpVecDescr_t, values: *mut *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpVecGetValues {
         Some(____func) => unsafe { ____func(spVecDescr, values) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSpVecGetValues"),
@@ -16258,7 +15735,7 @@ pub unsafe extern "C" fn cusparseSpVecGetValues(spVecDescr: cusparseSpVecDescr_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseConstSpVecGetValues(spVecDescr: cusparseConstSpVecDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseConstSpVecGetValues(spVecDescr: cusparseConstSpVecDescr_t, values: *mut *const ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseConstSpVecGetValues {
         Some(____func) => unsafe { ____func(spVecDescr, values) },
         None => panic!(
@@ -16269,7 +15746,7 @@ pub unsafe extern "C" fn cusparseConstSpVecGetValues(spVecDescr: cusparseConstSp
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpVecSetValues(spVecDescr: cusparseSpVecDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpVecSetValues(spVecDescr: cusparseSpVecDescr_t, values: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpVecSetValues {
         Some(____func) => unsafe { ____func(spVecDescr, values) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSpVecSetValues"),
@@ -16277,7 +15754,7 @@ pub unsafe extern "C" fn cusparseSpVecSetValues(spVecDescr: cusparseSpVecDescr_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCreateDnVec(dnVecDescr: *mut cusparseDnVecDescr_t, size: i64, values: *mut ::std::os::raw::c_void, valueType: cudaDataType) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCreateDnVec(dnVecDescr: *mut cusparseDnVecDescr_t, size: i64, values: *mut ::core::ffi::c_void, valueType: cudaDataType) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCreateDnVec {
         Some(____func) => unsafe { ____func(dnVecDescr, size, values, valueType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCreateDnVec"),
@@ -16285,7 +15762,7 @@ pub unsafe extern "C" fn cusparseCreateDnVec(dnVecDescr: *mut cusparseDnVecDescr
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCreateConstDnVec(dnVecDescr: *mut cusparseConstDnVecDescr_t, size: i64, values: *const ::std::os::raw::c_void, valueType: cudaDataType) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCreateConstDnVec(dnVecDescr: *mut cusparseConstDnVecDescr_t, size: i64, values: *const ::core::ffi::c_void, valueType: cudaDataType) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCreateConstDnVec {
         Some(____func) => unsafe { ____func(dnVecDescr, size, values, valueType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCreateConstDnVec"),
@@ -16301,7 +15778,7 @@ pub unsafe extern "C" fn cusparseDestroyDnVec(dnVecDescr: cusparseConstDnVecDesc
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDnVecGet(dnVecDescr: cusparseDnVecDescr_t, size: *mut i64, values: *mut *mut ::std::os::raw::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDnVecGet(dnVecDescr: cusparseDnVecDescr_t, size: *mut i64, values: *mut *mut ::core::ffi::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnVecGet {
         Some(____func) => unsafe { ____func(dnVecDescr, size, values, valueType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseDnVecGet"),
@@ -16309,7 +15786,7 @@ pub unsafe extern "C" fn cusparseDnVecGet(dnVecDescr: cusparseDnVecDescr_t, size
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseConstDnVecGet(dnVecDescr: cusparseConstDnVecDescr_t, size: *mut i64, values: *mut *const ::std::os::raw::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseConstDnVecGet(dnVecDescr: cusparseConstDnVecDescr_t, size: *mut i64, values: *mut *const ::core::ffi::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseConstDnVecGet {
         Some(____func) => unsafe { ____func(dnVecDescr, size, values, valueType) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseConstDnVecGet"),
@@ -16317,7 +15794,7 @@ pub unsafe extern "C" fn cusparseConstDnVecGet(dnVecDescr: cusparseConstDnVecDes
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDnVecGetValues(dnVecDescr: cusparseDnVecDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDnVecGetValues(dnVecDescr: cusparseDnVecDescr_t, values: *mut *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnVecGetValues {
         Some(____func) => unsafe { ____func(dnVecDescr, values) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseDnVecGetValues"),
@@ -16325,7 +15802,7 @@ pub unsafe extern "C" fn cusparseDnVecGetValues(dnVecDescr: cusparseDnVecDescr_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseConstDnVecGetValues(dnVecDescr: cusparseConstDnVecDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseConstDnVecGetValues(dnVecDescr: cusparseConstDnVecDescr_t, values: *mut *const ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseConstDnVecGetValues {
         Some(____func) => unsafe { ____func(dnVecDescr, values) },
         None => panic!(
@@ -16336,7 +15813,7 @@ pub unsafe extern "C" fn cusparseConstDnVecGetValues(dnVecDescr: cusparseConstDn
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDnVecSetValues(dnVecDescr: cusparseDnVecDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDnVecSetValues(dnVecDescr: cusparseDnVecDescr_t, values: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnVecSetValues {
         Some(____func) => unsafe { ____func(dnVecDescr, values) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseDnVecSetValues"),
@@ -16371,7 +15848,7 @@ pub unsafe extern "C" fn cusparseSpMatGetIndexBase(spMatDescr: cusparseConstSpMa
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpMatGetValues(spMatDescr: cusparseSpMatDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpMatGetValues(spMatDescr: cusparseSpMatDescr_t, values: *mut *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMatGetValues {
         Some(____func) => unsafe { ____func(spMatDescr, values) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSpMatGetValues"),
@@ -16379,7 +15856,7 @@ pub unsafe extern "C" fn cusparseSpMatGetValues(spMatDescr: cusparseSpMatDescr_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseConstSpMatGetValues(spMatDescr: cusparseConstSpMatDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseConstSpMatGetValues(spMatDescr: cusparseConstSpMatDescr_t, values: *mut *const ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseConstSpMatGetValues {
         Some(____func) => unsafe { ____func(spMatDescr, values) },
         None => panic!(
@@ -16390,7 +15867,7 @@ pub unsafe extern "C" fn cusparseConstSpMatGetValues(spMatDescr: cusparseConstSp
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpMatSetValues(spMatDescr: cusparseSpMatDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpMatSetValues(spMatDescr: cusparseSpMatDescr_t, values: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMatSetValues {
         Some(____func) => unsafe { ____func(spMatDescr, values) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSpMatSetValues"),
@@ -16406,7 +15883,7 @@ pub unsafe extern "C" fn cusparseSpMatGetSize(spMatDescr: cusparseConstSpMatDesc
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpMatGetStridedBatch(spMatDescr: cusparseConstSpMatDescr_t, batchCount: *mut ::std::os::raw::c_int) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpMatGetStridedBatch(spMatDescr: cusparseConstSpMatDescr_t, batchCount: *mut ::core::ffi::c_int) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMatGetStridedBatch {
         Some(____func) => unsafe { ____func(spMatDescr, batchCount) },
         None => panic!(
@@ -16417,7 +15894,7 @@ pub unsafe extern "C" fn cusparseSpMatGetStridedBatch(spMatDescr: cusparseConstS
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCooSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::std::os::raw::c_int, batchStride: i64) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCooSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::core::ffi::c_int, batchStride: i64) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCooSetStridedBatch {
         Some(____func) => unsafe { ____func(spMatDescr, batchCount, batchStride) },
         None => panic!(
@@ -16428,7 +15905,7 @@ pub unsafe extern "C" fn cusparseCooSetStridedBatch(spMatDescr: cusparseSpMatDes
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCsrSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::std::os::raw::c_int, offsetsBatchStride: i64, columnsValuesBatchStride: i64) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCsrSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::core::ffi::c_int, offsetsBatchStride: i64, columnsValuesBatchStride: i64) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCsrSetStridedBatch {
         Some(____func) => unsafe { ____func(spMatDescr, batchCount, offsetsBatchStride, columnsValuesBatchStride) },
         None => panic!(
@@ -16439,7 +15916,7 @@ pub unsafe extern "C" fn cusparseCsrSetStridedBatch(spMatDescr: cusparseSpMatDes
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseBsrSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::std::os::raw::c_int, offsetsBatchStride: i64, columnsBatchStride: i64, ValuesBatchStride: i64) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseBsrSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batchCount: ::core::ffi::c_int, offsetsBatchStride: i64, columnsBatchStride: i64, ValuesBatchStride: i64) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseBsrSetStridedBatch {
         Some(____func) => unsafe { ____func(spMatDescr, batchCount, offsetsBatchStride, columnsBatchStride, ValuesBatchStride) },
         None => panic!(
@@ -16450,7 +15927,7 @@ pub unsafe extern "C" fn cusparseBsrSetStridedBatch(spMatDescr: cusparseSpMatDes
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpMatGetAttribute(spMatDescr: cusparseConstSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::std::os::raw::c_void, dataSize: usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpMatGetAttribute(spMatDescr: cusparseConstSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::core::ffi::c_void, dataSize: usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMatGetAttribute {
         Some(____func) => unsafe { ____func(spMatDescr, attribute, data, dataSize) },
         None => panic!(
@@ -16461,7 +15938,7 @@ pub unsafe extern "C" fn cusparseSpMatGetAttribute(spMatDescr: cusparseConstSpMa
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpMatSetAttribute(spMatDescr: cusparseSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::std::os::raw::c_void, dataSize: usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpMatSetAttribute(spMatDescr: cusparseSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::core::ffi::c_void, dataSize: usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMatSetAttribute {
         Some(____func) => unsafe { ____func(spMatDescr, attribute, data, dataSize) },
         None => panic!(
@@ -16477,9 +15954,9 @@ pub unsafe extern "C" fn cusparseCreateCsr(
     rows: i64,
     cols: i64,
     nnz: i64,
-    csrRowOffsets: *mut ::std::os::raw::c_void,
-    csrColInd: *mut ::std::os::raw::c_void,
-    csrValues: *mut ::std::os::raw::c_void,
+    csrRowOffsets: *mut ::core::ffi::c_void,
+    csrColInd: *mut ::core::ffi::c_void,
+    csrValues: *mut ::core::ffi::c_void,
     csrRowOffsetsType: cusparseIndexType_t,
     csrColIndType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
@@ -16497,9 +15974,9 @@ pub unsafe extern "C" fn cusparseCreateConstCsr(
     rows: i64,
     cols: i64,
     nnz: i64,
-    csrRowOffsets: *const ::std::os::raw::c_void,
-    csrColInd: *const ::std::os::raw::c_void,
-    csrValues: *const ::std::os::raw::c_void,
+    csrRowOffsets: *const ::core::ffi::c_void,
+    csrColInd: *const ::core::ffi::c_void,
+    csrValues: *const ::core::ffi::c_void,
     csrRowOffsetsType: cusparseIndexType_t,
     csrColIndType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
@@ -16517,9 +15994,9 @@ pub unsafe extern "C" fn cusparseCreateCsc(
     rows: i64,
     cols: i64,
     nnz: i64,
-    cscColOffsets: *mut ::std::os::raw::c_void,
-    cscRowInd: *mut ::std::os::raw::c_void,
-    cscValues: *mut ::std::os::raw::c_void,
+    cscColOffsets: *mut ::core::ffi::c_void,
+    cscRowInd: *mut ::core::ffi::c_void,
+    cscValues: *mut ::core::ffi::c_void,
     cscColOffsetsType: cusparseIndexType_t,
     cscRowIndType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
@@ -16537,9 +16014,9 @@ pub unsafe extern "C" fn cusparseCreateConstCsc(
     rows: i64,
     cols: i64,
     nnz: i64,
-    cscColOffsets: *const ::std::os::raw::c_void,
-    cscRowInd: *const ::std::os::raw::c_void,
-    cscValues: *const ::std::os::raw::c_void,
+    cscColOffsets: *const ::core::ffi::c_void,
+    cscRowInd: *const ::core::ffi::c_void,
+    cscValues: *const ::core::ffi::c_void,
     cscColOffsetsType: cusparseIndexType_t,
     cscRowIndType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
@@ -16557,9 +16034,9 @@ pub unsafe extern "C" fn cusparseCsrGet(
     rows: *mut i64,
     cols: *mut i64,
     nnz: *mut i64,
-    csrRowOffsets: *mut *mut ::std::os::raw::c_void,
-    csrColInd: *mut *mut ::std::os::raw::c_void,
-    csrValues: *mut *mut ::std::os::raw::c_void,
+    csrRowOffsets: *mut *mut ::core::ffi::c_void,
+    csrColInd: *mut *mut ::core::ffi::c_void,
+    csrValues: *mut *mut ::core::ffi::c_void,
     csrRowOffsetsType: *mut cusparseIndexType_t,
     csrColIndType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
@@ -16577,9 +16054,9 @@ pub unsafe extern "C" fn cusparseConstCsrGet(
     rows: *mut i64,
     cols: *mut i64,
     nnz: *mut i64,
-    csrRowOffsets: *mut *const ::std::os::raw::c_void,
-    csrColInd: *mut *const ::std::os::raw::c_void,
-    csrValues: *mut *const ::std::os::raw::c_void,
+    csrRowOffsets: *mut *const ::core::ffi::c_void,
+    csrColInd: *mut *const ::core::ffi::c_void,
+    csrValues: *mut *const ::core::ffi::c_void,
     csrRowOffsetsType: *mut cusparseIndexType_t,
     csrColIndType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
@@ -16597,9 +16074,9 @@ pub unsafe extern "C" fn cusparseCscGet(
     rows: *mut i64,
     cols: *mut i64,
     nnz: *mut i64,
-    cscColOffsets: *mut *mut ::std::os::raw::c_void,
-    cscRowInd: *mut *mut ::std::os::raw::c_void,
-    cscValues: *mut *mut ::std::os::raw::c_void,
+    cscColOffsets: *mut *mut ::core::ffi::c_void,
+    cscRowInd: *mut *mut ::core::ffi::c_void,
+    cscValues: *mut *mut ::core::ffi::c_void,
     cscColOffsetsType: *mut cusparseIndexType_t,
     cscRowIndType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
@@ -16617,9 +16094,9 @@ pub unsafe extern "C" fn cusparseConstCscGet(
     rows: *mut i64,
     cols: *mut i64,
     nnz: *mut i64,
-    cscColOffsets: *mut *const ::std::os::raw::c_void,
-    cscRowInd: *mut *const ::std::os::raw::c_void,
-    cscValues: *mut *const ::std::os::raw::c_void,
+    cscColOffsets: *mut *const ::core::ffi::c_void,
+    cscRowInd: *mut *const ::core::ffi::c_void,
+    cscValues: *mut *const ::core::ffi::c_void,
     cscColOffsetsType: *mut cusparseIndexType_t,
     cscRowIndType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
@@ -16632,7 +16109,7 @@ pub unsafe extern "C" fn cusparseConstCscGet(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCsrSetPointers(spMatDescr: cusparseSpMatDescr_t, csrRowOffsets: *mut ::std::os::raw::c_void, csrColInd: *mut ::std::os::raw::c_void, csrValues: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCsrSetPointers(spMatDescr: cusparseSpMatDescr_t, csrRowOffsets: *mut ::core::ffi::c_void, csrColInd: *mut ::core::ffi::c_void, csrValues: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCsrSetPointers {
         Some(____func) => unsafe { ____func(spMatDescr, csrRowOffsets, csrColInd, csrValues) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCsrSetPointers"),
@@ -16640,7 +16117,7 @@ pub unsafe extern "C" fn cusparseCsrSetPointers(spMatDescr: cusparseSpMatDescr_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCscSetPointers(spMatDescr: cusparseSpMatDescr_t, cscColOffsets: *mut ::std::os::raw::c_void, cscRowInd: *mut ::std::os::raw::c_void, cscValues: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCscSetPointers(spMatDescr: cusparseSpMatDescr_t, cscColOffsets: *mut ::core::ffi::c_void, cscRowInd: *mut ::core::ffi::c_void, cscValues: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCscSetPointers {
         Some(____func) => unsafe { ____func(spMatDescr, cscColOffsets, cscRowInd, cscValues) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCscSetPointers"),
@@ -16655,9 +16132,9 @@ pub unsafe extern "C" fn cusparseCreateBsr(
     bnnz: i64,
     rowBlockSize: i64,
     colBlockSize: i64,
-    bsrRowOffsets: *mut ::std::os::raw::c_void,
-    bsrColInd: *mut ::std::os::raw::c_void,
-    bsrValues: *mut ::std::os::raw::c_void,
+    bsrRowOffsets: *mut ::core::ffi::c_void,
+    bsrColInd: *mut ::core::ffi::c_void,
+    bsrValues: *mut ::core::ffi::c_void,
     bsrRowOffsetsType: cusparseIndexType_t,
     bsrColIndType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
@@ -16678,9 +16155,9 @@ pub unsafe extern "C" fn cusparseCreateConstBsr(
     bnnz: i64,
     rowBlockDim: i64,
     colBlockDim: i64,
-    bsrRowOffsets: *const ::std::os::raw::c_void,
-    bsrColInd: *const ::std::os::raw::c_void,
-    bsrValues: *const ::std::os::raw::c_void,
+    bsrRowOffsets: *const ::core::ffi::c_void,
+    bsrColInd: *const ::core::ffi::c_void,
+    bsrValues: *const ::core::ffi::c_void,
     bsrRowOffsetsType: cusparseIndexType_t,
     bsrColIndType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
@@ -16699,9 +16176,9 @@ pub unsafe extern "C" fn cusparseCreateCoo(
     rows: i64,
     cols: i64,
     nnz: i64,
-    cooRowInd: *mut ::std::os::raw::c_void,
-    cooColInd: *mut ::std::os::raw::c_void,
-    cooValues: *mut ::std::os::raw::c_void,
+    cooRowInd: *mut ::core::ffi::c_void,
+    cooColInd: *mut ::core::ffi::c_void,
+    cooValues: *mut ::core::ffi::c_void,
     cooIdxType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
     valueType: cudaDataType,
@@ -16718,9 +16195,9 @@ pub unsafe extern "C" fn cusparseCreateConstCoo(
     rows: i64,
     cols: i64,
     nnz: i64,
-    cooRowInd: *const ::std::os::raw::c_void,
-    cooColInd: *const ::std::os::raw::c_void,
-    cooValues: *const ::std::os::raw::c_void,
+    cooRowInd: *const ::core::ffi::c_void,
+    cooColInd: *const ::core::ffi::c_void,
+    cooValues: *const ::core::ffi::c_void,
     cooIdxType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
     valueType: cudaDataType,
@@ -16737,9 +16214,9 @@ pub unsafe extern "C" fn cusparseCooGet(
     rows: *mut i64,
     cols: *mut i64,
     nnz: *mut i64,
-    cooRowInd: *mut *mut ::std::os::raw::c_void,
-    cooColInd: *mut *mut ::std::os::raw::c_void,
-    cooValues: *mut *mut ::std::os::raw::c_void,
+    cooRowInd: *mut *mut ::core::ffi::c_void,
+    cooColInd: *mut *mut ::core::ffi::c_void,
+    cooValues: *mut *mut ::core::ffi::c_void,
     idxType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
     valueType: *mut cudaDataType,
@@ -16756,9 +16233,9 @@ pub unsafe extern "C" fn cusparseConstCooGet(
     rows: *mut i64,
     cols: *mut i64,
     nnz: *mut i64,
-    cooRowInd: *mut *const ::std::os::raw::c_void,
-    cooColInd: *mut *const ::std::os::raw::c_void,
-    cooValues: *mut *const ::std::os::raw::c_void,
+    cooRowInd: *mut *const ::core::ffi::c_void,
+    cooColInd: *mut *const ::core::ffi::c_void,
+    cooValues: *mut *const ::core::ffi::c_void,
     idxType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
     valueType: *mut cudaDataType,
@@ -16770,7 +16247,7 @@ pub unsafe extern "C" fn cusparseConstCooGet(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCooSetPointers(spMatDescr: cusparseSpMatDescr_t, cooRows: *mut ::std::os::raw::c_void, cooColumns: *mut ::std::os::raw::c_void, cooValues: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCooSetPointers(spMatDescr: cusparseSpMatDescr_t, cooRows: *mut ::core::ffi::c_void, cooColumns: *mut ::core::ffi::c_void, cooValues: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCooSetPointers {
         Some(____func) => unsafe { ____func(spMatDescr, cooRows, cooColumns, cooValues) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCooSetPointers"),
@@ -16784,8 +16261,8 @@ pub unsafe extern "C" fn cusparseCreateBlockedEll(
     cols: i64,
     ellBlockSize: i64,
     ellCols: i64,
-    ellColInd: *mut ::std::os::raw::c_void,
-    ellValue: *mut ::std::os::raw::c_void,
+    ellColInd: *mut ::core::ffi::c_void,
+    ellValue: *mut ::core::ffi::c_void,
     ellIdxType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
     valueType: cudaDataType,
@@ -16803,8 +16280,8 @@ pub unsafe extern "C" fn cusparseCreateConstBlockedEll(
     cols: i64,
     ellBlockSize: i64,
     ellCols: i64,
-    ellColInd: *const ::std::os::raw::c_void,
-    ellValue: *const ::std::os::raw::c_void,
+    ellColInd: *const ::core::ffi::c_void,
+    ellValue: *const ::core::ffi::c_void,
     ellIdxType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
     valueType: cudaDataType,
@@ -16825,8 +16302,8 @@ pub unsafe extern "C" fn cusparseBlockedEllGet(
     cols: *mut i64,
     ellBlockSize: *mut i64,
     ellCols: *mut i64,
-    ellColInd: *mut *mut ::std::os::raw::c_void,
-    ellValue: *mut *mut ::std::os::raw::c_void,
+    ellColInd: *mut *mut ::core::ffi::c_void,
+    ellValue: *mut *mut ::core::ffi::c_void,
     ellIdxType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
     valueType: *mut cudaDataType,
@@ -16844,8 +16321,8 @@ pub unsafe extern "C" fn cusparseConstBlockedEllGet(
     cols: *mut i64,
     ellBlockSize: *mut i64,
     ellCols: *mut i64,
-    ellColInd: *mut *const ::std::os::raw::c_void,
-    ellValue: *mut *const ::std::os::raw::c_void,
+    ellColInd: *mut *const ::core::ffi::c_void,
+    ellValue: *mut *const ::core::ffi::c_void,
     ellIdxType: *mut cusparseIndexType_t,
     idxBase: *mut cusparseIndexBase_t,
     valueType: *mut cudaDataType,
@@ -16867,9 +16344,9 @@ pub unsafe extern "C" fn cusparseCreateSlicedEll(
     nnz: i64,
     sellValuesSize: i64,
     sliceSize: i64,
-    sellSliceOffsets: *mut ::std::os::raw::c_void,
-    sellColInd: *mut ::std::os::raw::c_void,
-    sellValues: *mut ::std::os::raw::c_void,
+    sellSliceOffsets: *mut ::core::ffi::c_void,
+    sellColInd: *mut ::core::ffi::c_void,
+    sellValues: *mut ::core::ffi::c_void,
     sellSliceOffsetsType: cusparseIndexType_t,
     sellColIndType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
@@ -16889,9 +16366,9 @@ pub unsafe extern "C" fn cusparseCreateConstSlicedEll(
     nnz: i64,
     sellValuesSize: i64,
     sliceSize: i64,
-    sellSliceOffsets: *const ::std::os::raw::c_void,
-    sellColInd: *const ::std::os::raw::c_void,
-    sellValues: *const ::std::os::raw::c_void,
+    sellSliceOffsets: *const ::core::ffi::c_void,
+    sellColInd: *const ::core::ffi::c_void,
+    sellValues: *const ::core::ffi::c_void,
     sellSliceOffsetsType: cusparseIndexType_t,
     sellColIndType: cusparseIndexType_t,
     idxBase: cusparseIndexBase_t,
@@ -16907,7 +16384,7 @@ pub unsafe extern "C" fn cusparseCreateConstSlicedEll(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCreateDnMat(dnMatDescr: *mut cusparseDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *mut ::std::os::raw::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCreateDnMat(dnMatDescr: *mut cusparseDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *mut ::core::ffi::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCreateDnMat {
         Some(____func) => unsafe { ____func(dnMatDescr, rows, cols, ld, values, valueType, order) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCreateDnMat"),
@@ -16915,7 +16392,7 @@ pub unsafe extern "C" fn cusparseCreateDnMat(dnMatDescr: *mut cusparseDnMatDescr
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseCreateConstDnMat(dnMatDescr: *mut cusparseConstDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *const ::std::os::raw::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseCreateConstDnMat(dnMatDescr: *mut cusparseConstDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *const ::core::ffi::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseCreateConstDnMat {
         Some(____func) => unsafe { ____func(dnMatDescr, rows, cols, ld, values, valueType, order) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseCreateConstDnMat"),
@@ -16931,7 +16408,7 @@ pub unsafe extern "C" fn cusparseDestroyDnMat(dnMatDescr: cusparseConstDnMatDesc
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDnMatGet(dnMatDescr: cusparseDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *mut ::std::os::raw::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDnMatGet(dnMatDescr: cusparseDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *mut ::core::ffi::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnMatGet {
         Some(____func) => unsafe { ____func(dnMatDescr, rows, cols, ld, values, type_, order) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseDnMatGet"),
@@ -16939,7 +16416,7 @@ pub unsafe extern "C" fn cusparseDnMatGet(dnMatDescr: cusparseDnMatDescr_t, rows
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseConstDnMatGet(dnMatDescr: cusparseConstDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *const ::std::os::raw::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseConstDnMatGet(dnMatDescr: cusparseConstDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *const ::core::ffi::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseConstDnMatGet {
         Some(____func) => unsafe { ____func(dnMatDescr, rows, cols, ld, values, type_, order) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseConstDnMatGet"),
@@ -16947,7 +16424,7 @@ pub unsafe extern "C" fn cusparseConstDnMatGet(dnMatDescr: cusparseConstDnMatDes
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDnMatGetValues(dnMatDescr: cusparseDnMatDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDnMatGetValues(dnMatDescr: cusparseDnMatDescr_t, values: *mut *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnMatGetValues {
         Some(____func) => unsafe { ____func(dnMatDescr, values) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseDnMatGetValues"),
@@ -16955,7 +16432,7 @@ pub unsafe extern "C" fn cusparseDnMatGetValues(dnMatDescr: cusparseDnMatDescr_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseConstDnMatGetValues(dnMatDescr: cusparseConstDnMatDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseConstDnMatGetValues(dnMatDescr: cusparseConstDnMatDescr_t, values: *mut *const ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseConstDnMatGetValues {
         Some(____func) => unsafe { ____func(dnMatDescr, values) },
         None => panic!(
@@ -16966,7 +16443,7 @@ pub unsafe extern "C" fn cusparseConstDnMatGetValues(dnMatDescr: cusparseConstDn
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDnMatSetValues(dnMatDescr: cusparseDnMatDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDnMatSetValues(dnMatDescr: cusparseDnMatDescr_t, values: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnMatSetValues {
         Some(____func) => unsafe { ____func(dnMatDescr, values) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseDnMatSetValues"),
@@ -16974,7 +16451,7 @@ pub unsafe extern "C" fn cusparseDnMatSetValues(dnMatDescr: cusparseDnMatDescr_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDnMatSetStridedBatch(dnMatDescr: cusparseDnMatDescr_t, batchCount: ::std::os::raw::c_int, batchStride: i64) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDnMatSetStridedBatch(dnMatDescr: cusparseDnMatDescr_t, batchCount: ::core::ffi::c_int, batchStride: i64) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnMatSetStridedBatch {
         Some(____func) => unsafe { ____func(dnMatDescr, batchCount, batchStride) },
         None => panic!(
@@ -16985,7 +16462,7 @@ pub unsafe extern "C" fn cusparseDnMatSetStridedBatch(dnMatDescr: cusparseDnMatD
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDnMatGetStridedBatch(dnMatDescr: cusparseConstDnMatDescr_t, batchCount: *mut ::std::os::raw::c_int, batchStride: *mut i64) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDnMatGetStridedBatch(dnMatDescr: cusparseConstDnMatDescr_t, batchCount: *mut ::core::ffi::c_int, batchStride: *mut i64) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDnMatGetStridedBatch {
         Some(____func) => unsafe { ____func(dnMatDescr, batchCount, batchStride) },
         None => panic!(
@@ -16996,7 +16473,7 @@ pub unsafe extern "C" fn cusparseDnMatGetStridedBatch(dnMatDescr: cusparseConstD
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseAxpby(handle: cusparseHandle_t, alpha: *const ::std::os::raw::c_void, vecX: cusparseConstSpVecDescr_t, beta: *const ::std::os::raw::c_void, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseAxpby(handle: cusparseHandle_t, alpha: *const ::core::ffi::c_void, vecX: cusparseConstSpVecDescr_t, beta: *const ::core::ffi::c_void, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseAxpby {
         Some(____func) => unsafe { ____func(handle, alpha, vecX, beta, vecY) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseAxpby"),
@@ -17020,7 +16497,7 @@ pub unsafe extern "C" fn cusparseScatter(handle: cusparseHandle_t, vecX: cuspars
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseRot(handle: cusparseHandle_t, c_coeff: *const ::std::os::raw::c_void, s_coeff: *const ::std::os::raw::c_void, vecX: cusparseSpVecDescr_t, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseRot(handle: cusparseHandle_t, c_coeff: *const ::core::ffi::c_void, s_coeff: *const ::core::ffi::c_void, vecX: cusparseSpVecDescr_t, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseRot {
         Some(____func) => unsafe { ____func(handle, c_coeff, s_coeff, vecX, vecY) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseRot"),
@@ -17028,7 +16505,7 @@ pub unsafe extern "C" fn cusparseRot(handle: cusparseHandle_t, c_coeff: *const :
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpVV_bufferSize(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *const ::std::os::raw::c_void, computeType: cudaDataType, bufferSize: *mut usize) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpVV_bufferSize(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *const ::core::ffi::c_void, computeType: cudaDataType, bufferSize: *mut usize) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpVV_bufferSize {
         Some(____func) => unsafe { ____func(handle, opX, vecX, vecY, result, computeType, bufferSize) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSpVV_bufferSize"),
@@ -17036,7 +16513,7 @@ pub unsafe extern "C" fn cusparseSpVV_bufferSize(handle: cusparseHandle_t, opX: 
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpVV(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *mut ::std::os::raw::c_void, computeType: cudaDataType, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpVV(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *mut ::core::ffi::c_void, computeType: cudaDataType, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpVV {
         Some(____func) => unsafe { ____func(handle, opX, vecX, vecY, result, computeType, externalBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSpVV"),
@@ -17055,7 +16532,7 @@ pub unsafe extern "C" fn cusparseSparseToDense_bufferSize(handle: cusparseHandle
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSparseToDense(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSparseToDense(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSparseToDense {
         Some(____func) => unsafe { ____func(handle, matA, matB, alg, externalBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSparseToDense"),
@@ -17074,7 +16551,7 @@ pub unsafe extern "C" fn cusparseDenseToSparse_bufferSize(handle: cusparseHandle
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDenseToSparse_analysis(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDenseToSparse_analysis(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDenseToSparse_analysis {
         Some(____func) => unsafe { ____func(handle, matA, matB, alg, externalBuffer) },
         None => panic!(
@@ -17085,7 +16562,7 @@ pub unsafe extern "C" fn cusparseDenseToSparse_analysis(handle: cusparseHandle_t
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseDenseToSparse_convert(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseDenseToSparse_convert(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseDenseToSparse_convert {
         Some(____func) => unsafe { ____func(handle, matA, matB, alg, externalBuffer) },
         None => panic!(
@@ -17099,14 +16576,14 @@ pub unsafe extern "C" fn cusparseDenseToSparse_convert(handle: cusparseHandle_t,
 pub unsafe extern "C" fn cusparseSpMV(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     vecX: cusparseConstDnVecDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     vecY: cusparseDnVecDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpMVAlg_t,
-    externalBuffer: *mut ::std::os::raw::c_void,
+    externalBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMV {
         Some(____func) => unsafe { ____func(handle, opA, alpha, matA, vecX, beta, vecY, computeType, alg, externalBuffer) },
@@ -17118,10 +16595,10 @@ pub unsafe extern "C" fn cusparseSpMV(
 pub unsafe extern "C" fn cusparseSpMV_bufferSize(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     vecX: cusparseConstDnVecDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     vecY: cusparseDnVecDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpMVAlg_t,
@@ -17137,14 +16614,14 @@ pub unsafe extern "C" fn cusparseSpMV_bufferSize(
 pub unsafe extern "C" fn cusparseSpMV_preprocess(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     vecX: cusparseConstDnVecDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     vecY: cusparseDnVecDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpMVAlg_t,
-    externalBuffer: *mut ::std::os::raw::c_void,
+    externalBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMV_preprocess {
         Some(____func) => unsafe { ____func(handle, opA, alpha, matA, vecX, beta, vecY, computeType, alg, externalBuffer) },
@@ -17175,7 +16652,7 @@ pub unsafe extern "C" fn cusparseSpSV_destroyDescr(descr: cusparseSpSVDescr_t) -
 pub unsafe extern "C" fn cusparseSpSV_bufferSize(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     vecX: cusparseConstDnVecDescr_t,
     vecY: cusparseDnVecDescr_t,
@@ -17194,14 +16671,14 @@ pub unsafe extern "C" fn cusparseSpSV_bufferSize(
 pub unsafe extern "C" fn cusparseSpSV_analysis(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     vecX: cusparseConstDnVecDescr_t,
     vecY: cusparseDnVecDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpSVAlg_t,
     spsvDescr: cusparseSpSVDescr_t,
-    externalBuffer: *mut ::std::os::raw::c_void,
+    externalBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpSV_analysis {
         Some(____func) => unsafe { ____func(handle, opA, alpha, matA, vecX, vecY, computeType, alg, spsvDescr, externalBuffer) },
@@ -17213,7 +16690,7 @@ pub unsafe extern "C" fn cusparseSpSV_analysis(
 pub unsafe extern "C" fn cusparseSpSV_solve(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     vecX: cusparseConstDnVecDescr_t,
     vecY: cusparseDnVecDescr_t,
@@ -17228,7 +16705,7 @@ pub unsafe extern "C" fn cusparseSpSV_solve(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpSV_updateMatrix(handle: cusparseHandle_t, spsvDescr: cusparseSpSVDescr_t, newValues: *mut ::std::os::raw::c_void, updatePart: cusparseSpSVUpdate_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpSV_updateMatrix(handle: cusparseHandle_t, spsvDescr: cusparseSpSVDescr_t, newValues: *mut ::core::ffi::c_void, updatePart: cusparseSpSVUpdate_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpSV_updateMatrix {
         Some(____func) => unsafe { ____func(handle, spsvDescr, newValues, updatePart) },
         None => panic!(
@@ -17262,7 +16739,7 @@ pub unsafe extern "C" fn cusparseSpSM_bufferSize(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstDnMatDescr_t,
     matC: cusparseDnMatDescr_t,
@@ -17282,14 +16759,14 @@ pub unsafe extern "C" fn cusparseSpSM_analysis(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstDnMatDescr_t,
     matC: cusparseDnMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpSMAlg_t,
     spsmDescr: cusparseSpSMDescr_t,
-    externalBuffer: *mut ::std::os::raw::c_void,
+    externalBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpSM_analysis {
         Some(____func) => unsafe { ____func(handle, opA, opB, alpha, matA, matB, matC, computeType, alg, spsmDescr, externalBuffer) },
@@ -17302,7 +16779,7 @@ pub unsafe extern "C" fn cusparseSpSM_solve(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstDnMatDescr_t,
     matC: cusparseDnMatDescr_t,
@@ -17317,7 +16794,7 @@ pub unsafe extern "C" fn cusparseSpSM_solve(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpSM_updateMatrix(handle: cusparseHandle_t, spsmDescr: cusparseSpSMDescr_t, newValues: *mut ::std::os::raw::c_void, updatePart: cusparseSpSMUpdate_t) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpSM_updateMatrix(handle: cusparseHandle_t, spsmDescr: cusparseSpSMDescr_t, newValues: *mut ::core::ffi::c_void, updatePart: cusparseSpSMUpdate_t) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpSM_updateMatrix {
         Some(____func) => unsafe { ____func(handle, spsmDescr, newValues, updatePart) },
         None => panic!(
@@ -17332,10 +16809,10 @@ pub unsafe extern "C" fn cusparseSpMM_bufferSize(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstDnMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseDnMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpMMAlg_t,
@@ -17352,14 +16829,14 @@ pub unsafe extern "C" fn cusparseSpMM_preprocess(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstDnMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseDnMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpMMAlg_t,
-    externalBuffer: *mut ::std::os::raw::c_void,
+    externalBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMM_preprocess {
         Some(____func) => unsafe { ____func(handle, opA, opB, alpha, matA, matB, beta, matC, computeType, alg, externalBuffer) },
@@ -17372,14 +16849,14 @@ pub unsafe extern "C" fn cusparseSpMM(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstDnMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseDnMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpMMAlg_t,
-    externalBuffer: *mut ::std::os::raw::c_void,
+    externalBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMM {
         Some(____func) => unsafe { ____func(handle, opA, opB, alpha, matA, matB, beta, matC, computeType, alg, externalBuffer) },
@@ -17414,16 +16891,16 @@ pub unsafe extern "C" fn cusparseSpGEMM_workEstimation(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstSpMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseSpMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpGEMMAlg_t,
     spgemmDescr: cusparseSpGEMMDescr_t,
     bufferSize1: *mut usize,
-    externalBuffer1: *mut ::std::os::raw::c_void,
+    externalBuffer1: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpGEMM_workEstimation {
         Some(____func) => unsafe { ____func(handle, opA, opB, alpha, matA, matB, beta, matC, computeType, alg, spgemmDescr, bufferSize1, externalBuffer1) },
@@ -17450,17 +16927,17 @@ pub unsafe extern "C" fn cusparseSpGEMM_estimateMemory(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstSpMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseSpMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpGEMMAlg_t,
     spgemmDescr: cusparseSpGEMMDescr_t,
     chunk_fraction: f32,
     bufferSize3: *mut usize,
-    externalBuffer3: *mut ::std::os::raw::c_void,
+    externalBuffer3: *mut ::core::ffi::c_void,
     bufferSize2: *mut usize,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpGEMM_estimateMemory {
@@ -17477,16 +16954,16 @@ pub unsafe extern "C" fn cusparseSpGEMM_compute(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstSpMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseSpMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpGEMMAlg_t,
     spgemmDescr: cusparseSpGEMMDescr_t,
     bufferSize2: *mut usize,
-    externalBuffer2: *mut ::std::os::raw::c_void,
+    externalBuffer2: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpGEMM_compute {
         Some(____func) => unsafe { ____func(handle, opA, opB, alpha, matA, matB, beta, matC, computeType, alg, spgemmDescr, bufferSize2, externalBuffer2) },
@@ -17499,10 +16976,10 @@ pub unsafe extern "C" fn cusparseSpGEMM_copy(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstSpMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseSpMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpGEMMAlg_t,
@@ -17525,7 +17002,7 @@ pub unsafe extern "C" fn cusparseSpGEMMreuse_workEstimation(
     alg: cusparseSpGEMMAlg_t,
     spgemmDescr: cusparseSpGEMMDescr_t,
     bufferSize1: *mut usize,
-    externalBuffer1: *mut ::std::os::raw::c_void,
+    externalBuffer1: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpGEMMreuse_workEstimation {
         Some(____func) => unsafe { ____func(handle, opA, opB, matA, matB, matC, alg, spgemmDescr, bufferSize1, externalBuffer1) },
@@ -17547,11 +17024,11 @@ pub unsafe extern "C" fn cusparseSpGEMMreuse_nnz(
     alg: cusparseSpGEMMAlg_t,
     spgemmDescr: cusparseSpGEMMDescr_t,
     bufferSize2: *mut usize,
-    externalBuffer2: *mut ::std::os::raw::c_void,
+    externalBuffer2: *mut ::core::ffi::c_void,
     bufferSize3: *mut usize,
-    externalBuffer3: *mut ::std::os::raw::c_void,
+    externalBuffer3: *mut ::core::ffi::c_void,
     bufferSize4: *mut usize,
-    externalBuffer4: *mut ::std::os::raw::c_void,
+    externalBuffer4: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpGEMMreuse_nnz {
         Some(____func) => unsafe { ____func(handle, opA, opB, matA, matB, matC, alg, spgemmDescr, bufferSize2, externalBuffer2, bufferSize3, externalBuffer3, bufferSize4, externalBuffer4) },
@@ -17570,7 +17047,7 @@ pub unsafe extern "C" fn cusparseSpGEMMreuse_copy(
     alg: cusparseSpGEMMAlg_t,
     spgemmDescr: cusparseSpGEMMDescr_t,
     bufferSize5: *mut usize,
-    externalBuffer5: *mut ::std::os::raw::c_void,
+    externalBuffer5: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpGEMMreuse_copy {
         Some(____func) => unsafe { ____func(handle, opA, opB, matA, matB, matC, alg, spgemmDescr, bufferSize5, externalBuffer5) },
@@ -17583,10 +17060,10 @@ pub unsafe extern "C" fn cusparseSpGEMMreuse_compute(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstSpMatDescr_t,
     matB: cusparseConstSpMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseSpMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpGEMMAlg_t,
@@ -17606,10 +17083,10 @@ pub unsafe extern "C" fn cusparseSDDMM_bufferSize(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstDnMatDescr_t,
     matB: cusparseConstDnMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseSpMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSDDMMAlg_t,
@@ -17626,14 +17103,14 @@ pub unsafe extern "C" fn cusparseSDDMM_preprocess(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstDnMatDescr_t,
     matB: cusparseConstDnMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseSpMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSDDMMAlg_t,
-    externalBuffer: *mut ::std::os::raw::c_void,
+    externalBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSDDMM_preprocess {
         Some(____func) => unsafe { ____func(handle, opA, opB, alpha, matA, matB, beta, matC, computeType, alg, externalBuffer) },
@@ -17646,14 +17123,14 @@ pub unsafe extern "C" fn cusparseSDDMM(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
-    alpha: *const ::std::os::raw::c_void,
+    alpha: *const ::core::ffi::c_void,
     matA: cusparseConstDnMatDescr_t,
     matB: cusparseConstDnMatDescr_t,
-    beta: *const ::std::os::raw::c_void,
+    beta: *const ::core::ffi::c_void,
     matC: cusparseSpMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSDDMMAlg_t,
-    externalBuffer: *mut ::std::os::raw::c_void,
+    externalBuffer: *mut ::core::ffi::c_void,
 ) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSDDMM {
         Some(____func) => unsafe { ____func(handle, opA, opB, alpha, matA, matB, beta, matC, computeType, alg, externalBuffer) },
@@ -17672,11 +17149,11 @@ pub unsafe extern "C" fn cusparseSpMMOp_createPlan(
     matC: cusparseDnMatDescr_t,
     computeType: cudaDataType,
     alg: cusparseSpMMOpAlg_t,
-    addOperationLtoirBuffer: *const ::std::os::raw::c_void,
+    addOperationLtoirBuffer: *const ::core::ffi::c_void,
     addOperationBufferSize: usize,
-    mulOperationLtoirBuffer: *const ::std::os::raw::c_void,
+    mulOperationLtoirBuffer: *const ::core::ffi::c_void,
     mulOperationBufferSize: usize,
-    epilogueLtoirBuffer: *const ::std::os::raw::c_void,
+    epilogueLtoirBuffer: *const ::core::ffi::c_void,
     epilogueBufferSize: usize,
     SpMMWorkspaceSize: *mut usize,
 ) -> cusparseStatus_t {
@@ -17709,7 +17186,7 @@ pub unsafe extern "C" fn cusparseSpMMOp_createPlan(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusparseSpMMOp(plan: cusparseSpMMOpPlan_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t {
+pub unsafe extern "C" fn cusparseSpMMOp(plan: cusparseSpMMOpPlan_t, externalBuffer: *mut ::core::ffi::c_void) -> cusparseStatus_t {
     match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusparseSpMMOp {
         Some(____func) => unsafe { ____func(plan, externalBuffer) },
         None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusparseSpMMOp"),

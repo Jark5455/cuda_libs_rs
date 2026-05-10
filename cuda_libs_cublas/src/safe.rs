@@ -43,11 +43,11 @@ impl crate::sys::DynamicBindings {
         self.cublasDestroy_v2 = val;
         self
     }
-    pub fn cublasGetVersion_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetVersion_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasGetVersion_v2 = val;
         self
     }
-    pub fn cublasGetProperty(mut self, val: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetProperty(mut self, val: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasGetProperty = val;
         self
     }
@@ -55,7 +55,7 @@ impl crate::sys::DynamicBindings {
         self.cublasGetCudartVersion = val;
         self
     }
-    pub fn cublasSetWorkspace_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_void, usize) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetWorkspace_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_void, usize) -> cublasStatus_t>) -> Self {
         self.cublasSetWorkspace_v2 = val;
         self
     }
@@ -91,11 +91,11 @@ impl crate::sys::DynamicBindings {
         self.cublasSetMathMode = val;
         self
     }
-    pub fn cublasGetSmCountTarget(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetSmCountTarget(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasGetSmCountTarget = val;
         self
     }
-    pub fn cublasSetSmCountTarget(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetSmCountTarget(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSetSmCountTarget = val;
         self
     }
@@ -123,39 +123,39 @@ impl crate::sys::DynamicBindings {
         self.cublasSetFixedPointEmulationMantissaControl = val;
         self
     }
-    pub fn cublasGetFixedPointEmulationMaxMantissaBitCount(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetFixedPointEmulationMaxMantissaBitCount(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasGetFixedPointEmulationMaxMantissaBitCount = val;
         self
     }
-    pub fn cublasSetFixedPointEmulationMaxMantissaBitCount(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetFixedPointEmulationMaxMantissaBitCount(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSetFixedPointEmulationMaxMantissaBitCount = val;
         self
     }
-    pub fn cublasGetFixedPointEmulationMantissaBitOffset(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetFixedPointEmulationMantissaBitOffset(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasGetFixedPointEmulationMantissaBitOffset = val;
         self
     }
-    pub fn cublasSetFixedPointEmulationMantissaBitOffset(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetFixedPointEmulationMantissaBitOffset(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSetFixedPointEmulationMantissaBitOffset = val;
         self
     }
-    pub fn cublasGetFixedPointEmulationMantissaBitCountPointer(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetFixedPointEmulationMantissaBitCountPointer(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasGetFixedPointEmulationMantissaBitCountPointer = val;
         self
     }
-    pub fn cublasSetFixedPointEmulationMantissaBitCountPointer(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetFixedPointEmulationMantissaBitCountPointer(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSetFixedPointEmulationMantissaBitCountPointer = val;
         self
     }
-    pub fn cublasGetStatusName(mut self, val: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::std::os::raw::c_char>) -> Self {
+    pub fn cublasGetStatusName(mut self, val: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::core::ffi::c_char>) -> Self {
         self.cublasGetStatusName = val;
         self
     }
-    pub fn cublasGetStatusString(mut self, val: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::std::os::raw::c_char>) -> Self {
+    pub fn cublasGetStatusString(mut self, val: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::core::ffi::c_char>) -> Self {
         self.cublasGetStatusString = val;
         self
     }
-    pub fn cublasLoggerConfigure(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_char) -> cublasStatus_t>) -> Self {
+    pub fn cublasLoggerConfigure(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_char) -> cublasStatus_t>) -> Self {
         self.cublasLoggerConfigure = val;
         self
     }
@@ -167,83 +167,83 @@ impl crate::sys::DynamicBindings {
         self.cublasGetLoggerCallback = val;
         self
     }
-    pub fn cublasSetVector(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetVector(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSetVector = val;
         self
     }
-    pub fn cublasSetVector_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetVector_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64) -> cublasStatus_t>) -> Self {
         self.cublasSetVector_64 = val;
         self
     }
-    pub fn cublasGetVector(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetVector(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasGetVector = val;
         self
     }
-    pub fn cublasGetVector_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetVector_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64) -> cublasStatus_t>) -> Self {
         self.cublasGetVector_64 = val;
         self
     }
-    pub fn cublasSetMatrix(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetMatrix(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSetMatrix = val;
         self
     }
-    pub fn cublasSetMatrix_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetMatrix_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64) -> cublasStatus_t>) -> Self {
         self.cublasSetMatrix_64 = val;
         self
     }
-    pub fn cublasGetMatrix(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetMatrix(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasGetMatrix = val;
         self
     }
-    pub fn cublasGetMatrix_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetMatrix_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64) -> cublasStatus_t>) -> Self {
         self.cublasGetMatrix_64 = val;
         self
     }
-    pub fn cublasSetVectorAsync(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cudaStream_t) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetVectorAsync(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int, cudaStream_t) -> cublasStatus_t>) -> Self {
         self.cublasSetVectorAsync = val;
         self
     }
-    pub fn cublasSetVectorAsync_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64, cudaStream_t) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetVectorAsync_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64, cudaStream_t) -> cublasStatus_t>) -> Self {
         self.cublasSetVectorAsync_64 = val;
         self
     }
-    pub fn cublasGetVectorAsync(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cudaStream_t) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetVectorAsync(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int, cudaStream_t) -> cublasStatus_t>) -> Self {
         self.cublasGetVectorAsync = val;
         self
     }
-    pub fn cublasGetVectorAsync_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64, cudaStream_t) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetVectorAsync_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64, cudaStream_t) -> cublasStatus_t>) -> Self {
         self.cublasGetVectorAsync_64 = val;
         self
     }
-    pub fn cublasSetMatrixAsync(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cudaStream_t) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetMatrixAsync(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int, cudaStream_t) -> cublasStatus_t>) -> Self {
         self.cublasSetMatrixAsync = val;
         self
     }
-    pub fn cublasSetMatrixAsync_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64, cudaStream_t) -> cublasStatus_t>) -> Self {
+    pub fn cublasSetMatrixAsync_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64, cudaStream_t) -> cublasStatus_t>) -> Self {
         self.cublasSetMatrixAsync_64 = val;
         self
     }
-    pub fn cublasGetMatrixAsync(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cudaStream_t) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetMatrixAsync(mut self, val: Option<unsafe extern "C" fn(::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const ::core::ffi::c_void, ::core::ffi::c_int, *mut ::core::ffi::c_void, ::core::ffi::c_int, cudaStream_t) -> cublasStatus_t>) -> Self {
         self.cublasGetMatrixAsync = val;
         self
     }
-    pub fn cublasGetMatrixAsync_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, i64, *const ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, i64, cudaStream_t) -> cublasStatus_t>) -> Self {
+    pub fn cublasGetMatrixAsync_64(mut self, val: Option<unsafe extern "C" fn(i64, i64, i64, *const ::core::ffi::c_void, i64, *mut ::core::ffi::c_void, i64, cudaStream_t) -> cublasStatus_t>) -> Self {
         self.cublasGetMatrixAsync_64 = val;
         self
     }
-    pub fn cublasXerbla(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char, ::std::os::raw::c_int)>) -> Self {
+    pub fn cublasXerbla(mut self, val: Option<unsafe extern "C" fn(*const ::core::ffi::c_char, ::core::ffi::c_int)>) -> Self {
         self.cublasXerbla = val;
         self
     }
-    pub fn cublasNrm2Ex(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasNrm2Ex(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasNrm2Ex = val;
         self
     }
-    pub fn cublasNrm2Ex_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasNrm2Ex_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasNrm2Ex_64 = val;
         self
     }
-    pub fn cublasSnrm2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasSnrm2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>) -> Self {
         self.cublasSnrm2_v2 = val;
         self
     }
@@ -251,7 +251,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSnrm2_v2_64 = val;
         self
     }
-    pub fn cublasDnrm2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDnrm2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>) -> Self {
         self.cublasDnrm2_v2 = val;
         self
     }
@@ -259,7 +259,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDnrm2_v2_64 = val;
         self
     }
-    pub fn cublasScnrm2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasScnrm2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>) -> Self {
         self.cublasScnrm2_v2 = val;
         self
     }
@@ -267,7 +267,7 @@ impl crate::sys::DynamicBindings {
         self.cublasScnrm2_v2_64 = val;
         self
     }
-    pub fn cublasDznrm2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDznrm2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>) -> Self {
         self.cublasDznrm2_v2 = val;
         self
     }
@@ -277,27 +277,27 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDotEx(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDotEx = val;
         self
     }
-    pub fn cublasDotEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasDotEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasDotEx_64 = val;
         self
     }
     pub fn cublasDotcEx(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDotcEx = val;
         self
     }
-    pub fn cublasDotcEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasDotcEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasDotcEx_64 = val;
         self
     }
-    pub fn cublasSdot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasSdot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>) -> Self {
         self.cublasSdot_v2 = val;
         self
     }
@@ -305,7 +305,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSdot_v2_64 = val;
         self
     }
-    pub fn cublasDdot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDdot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>) -> Self {
         self.cublasDdot_v2 = val;
         self
     }
@@ -313,7 +313,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDdot_v2_64 = val;
         self
     }
-    pub fn cublasCdotu_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasCdotu_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
         self.cublasCdotu_v2 = val;
         self
     }
@@ -321,7 +321,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCdotu_v2_64 = val;
         self
     }
-    pub fn cublasCdotc_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasCdotc_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
         self.cublasCdotc_v2 = val;
         self
     }
@@ -329,7 +329,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCdotc_v2_64 = val;
         self
     }
-    pub fn cublasZdotu_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasZdotu_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
         self.cublasZdotu_v2 = val;
         self
     }
@@ -337,7 +337,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZdotu_v2_64 = val;
         self
     }
-    pub fn cublasZdotc_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasZdotc_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
         self.cublasZdotc_v2 = val;
         self
     }
@@ -345,15 +345,15 @@ impl crate::sys::DynamicBindings {
         self.cublasZdotc_v2_64 = val;
         self
     }
-    pub fn cublasScalEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasScalEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasScalEx = val;
         self
     }
-    pub fn cublasScalEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, i64, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasScalEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, i64, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasScalEx_64 = val;
         self
     }
-    pub fn cublasSscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSscal_v2 = val;
         self
     }
@@ -361,7 +361,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSscal_v2_64 = val;
         self
     }
-    pub fn cublasDscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDscal_v2 = val;
         self
     }
@@ -369,7 +369,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDscal_v2_64 = val;
         self
     }
-    pub fn cublasCscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCscal_v2 = val;
         self
     }
@@ -377,7 +377,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCscal_v2_64 = val;
         self
     }
-    pub fn cublasCsscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCsscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCsscal_v2 = val;
         self
     }
@@ -385,7 +385,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCsscal_v2_64 = val;
         self
     }
-    pub fn cublasZscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZscal_v2 = val;
         self
     }
@@ -393,7 +393,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZscal_v2_64 = val;
         self
     }
-    pub fn cublasZdscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZdscal_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZdscal_v2 = val;
         self
     }
@@ -403,16 +403,16 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasAxpyEx(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, cudaDataType) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, cudaDataType) -> cublasStatus_t>,
     ) -> Self {
         self.cublasAxpyEx = val;
         self
     }
-    pub fn cublasAxpyEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasAxpyEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasAxpyEx_64 = val;
         self
     }
-    pub fn cublasSaxpy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSaxpy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSaxpy_v2 = val;
         self
     }
@@ -420,7 +420,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSaxpy_v2_64 = val;
         self
     }
-    pub fn cublasDaxpy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDaxpy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDaxpy_v2 = val;
         self
     }
@@ -428,7 +428,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDaxpy_v2_64 = val;
         self
     }
-    pub fn cublasCaxpy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCaxpy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCaxpy_v2 = val;
         self
     }
@@ -436,7 +436,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCaxpy_v2_64 = val;
         self
     }
-    pub fn cublasZaxpy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZaxpy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZaxpy_v2 = val;
         self
     }
@@ -444,15 +444,15 @@ impl crate::sys::DynamicBindings {
         self.cublasZaxpy_v2_64 = val;
         self
     }
-    pub fn cublasCopyEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCopyEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCopyEx = val;
         self
     }
-    pub fn cublasCopyEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasCopyEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
         self.cublasCopyEx_64 = val;
         self
     }
-    pub fn cublasScopy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasScopy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasScopy_v2 = val;
         self
     }
@@ -460,7 +460,7 @@ impl crate::sys::DynamicBindings {
         self.cublasScopy_v2_64 = val;
         self
     }
-    pub fn cublasDcopy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDcopy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDcopy_v2 = val;
         self
     }
@@ -468,7 +468,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDcopy_v2_64 = val;
         self
     }
-    pub fn cublasCcopy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCcopy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCcopy_v2 = val;
         self
     }
@@ -476,7 +476,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCcopy_v2_64 = val;
         self
     }
-    pub fn cublasZcopy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZcopy_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZcopy_v2 = val;
         self
     }
@@ -484,7 +484,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZcopy_v2_64 = val;
         self
     }
-    pub fn cublasSswap_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSswap_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSswap_v2 = val;
         self
     }
@@ -492,7 +492,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSswap_v2_64 = val;
         self
     }
-    pub fn cublasDswap_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDswap_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDswap_v2 = val;
         self
     }
@@ -500,7 +500,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDswap_v2_64 = val;
         self
     }
-    pub fn cublasCswap_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCswap_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCswap_v2 = val;
         self
     }
@@ -508,7 +508,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCswap_v2_64 = val;
         self
     }
-    pub fn cublasZswap_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZswap_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZswap_v2 = val;
         self
     }
@@ -516,15 +516,15 @@ impl crate::sys::DynamicBindings {
         self.cublasZswap_v2_64 = val;
         self
     }
-    pub fn cublasSwapEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSwapEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSwapEx = val;
         self
     }
-    pub fn cublasSwapEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasSwapEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
         self.cublasSwapEx_64 = val;
         self
     }
-    pub fn cublasIsamax_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIsamax_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIsamax_v2 = val;
         self
     }
@@ -532,7 +532,7 @@ impl crate::sys::DynamicBindings {
         self.cublasIsamax_v2_64 = val;
         self
     }
-    pub fn cublasIdamax_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIdamax_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIdamax_v2 = val;
         self
     }
@@ -540,7 +540,7 @@ impl crate::sys::DynamicBindings {
         self.cublasIdamax_v2_64 = val;
         self
     }
-    pub fn cublasIcamax_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIcamax_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIcamax_v2 = val;
         self
     }
@@ -548,7 +548,7 @@ impl crate::sys::DynamicBindings {
         self.cublasIcamax_v2_64 = val;
         self
     }
-    pub fn cublasIzamax_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIzamax_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIzamax_v2 = val;
         self
     }
@@ -556,15 +556,15 @@ impl crate::sys::DynamicBindings {
         self.cublasIzamax_v2_64 = val;
         self
     }
-    pub fn cublasIamaxEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIamaxEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIamaxEx = val;
         self
     }
-    pub fn cublasIamaxEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasIamaxEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut i64) -> cublasStatus_t>) -> Self {
         self.cublasIamaxEx_64 = val;
         self
     }
-    pub fn cublasIsamin_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIsamin_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIsamin_v2 = val;
         self
     }
@@ -572,7 +572,7 @@ impl crate::sys::DynamicBindings {
         self.cublasIsamin_v2_64 = val;
         self
     }
-    pub fn cublasIdamin_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIdamin_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIdamin_v2 = val;
         self
     }
@@ -580,7 +580,7 @@ impl crate::sys::DynamicBindings {
         self.cublasIdamin_v2_64 = val;
         self
     }
-    pub fn cublasIcamin_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIcamin_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIcamin_v2 = val;
         self
     }
@@ -588,7 +588,7 @@ impl crate::sys::DynamicBindings {
         self.cublasIcamin_v2_64 = val;
         self
     }
-    pub fn cublasIzamin_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIzamin_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIzamin_v2 = val;
         self
     }
@@ -596,23 +596,23 @@ impl crate::sys::DynamicBindings {
         self.cublasIzamin_v2_64 = val;
         self
     }
-    pub fn cublasIaminEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasIaminEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasIaminEx = val;
         self
     }
-    pub fn cublasIaminEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasIaminEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut i64) -> cublasStatus_t>) -> Self {
         self.cublasIaminEx_64 = val;
         self
     }
-    pub fn cublasAsumEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasAsumEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasAsumEx = val;
         self
     }
-    pub fn cublasAsumEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasAsumEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *const ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasAsumEx_64 = val;
         self
     }
-    pub fn cublasSasum_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasSasum_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>) -> Self {
         self.cublasSasum_v2 = val;
         self
     }
@@ -620,7 +620,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSasum_v2_64 = val;
         self
     }
-    pub fn cublasDasum_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDasum_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>) -> Self {
         self.cublasDasum_v2 = val;
         self
     }
@@ -628,7 +628,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDasum_v2_64 = val;
         self
     }
-    pub fn cublasScasum_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasScasum_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>) -> Self {
         self.cublasScasum_v2 = val;
         self
     }
@@ -636,7 +636,7 @@ impl crate::sys::DynamicBindings {
         self.cublasScasum_v2_64 = val;
         self
     }
-    pub fn cublasDzasum_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDzasum_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>) -> Self {
         self.cublasDzasum_v2 = val;
         self
     }
@@ -644,7 +644,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDzasum_v2_64 = val;
         self
     }
-    pub fn cublasSrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32, *const f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasSrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *const f32, *const f32) -> cublasStatus_t>) -> Self {
         self.cublasSrot_v2 = val;
         self
     }
@@ -652,7 +652,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSrot_v2_64 = val;
         self
     }
-    pub fn cublasDrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64, *const f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *const f64, *const f64) -> cublasStatus_t>) -> Self {
         self.cublasDrot_v2 = val;
         self
     }
@@ -660,7 +660,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDrot_v2_64 = val;
         self
     }
-    pub fn cublasCrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const f32, *const cuComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasCrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *const f32, *const cuComplex) -> cublasStatus_t>) -> Self {
         self.cublasCrot_v2 = val;
         self
     }
@@ -668,7 +668,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCrot_v2_64 = val;
         self
     }
-    pub fn cublasCsrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const f32, *const f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasCsrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int, *const f32, *const f32) -> cublasStatus_t>) -> Self {
         self.cublasCsrot_v2 = val;
         self
     }
@@ -676,7 +676,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCsrot_v2_64 = val;
         self
     }
-    pub fn cublasZrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const f64, *const cuDoubleComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasZrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *const f64, *const cuDoubleComplex) -> cublasStatus_t>) -> Self {
         self.cublasZrot_v2 = val;
         self
     }
@@ -684,7 +684,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZrot_v2_64 = val;
         self
     }
-    pub fn cublasZdrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const f64, *const f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasZdrot_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int, *const f64, *const f64) -> cublasStatus_t>) -> Self {
         self.cublasZdrot_v2 = val;
         self
     }
@@ -694,30 +694,12 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasRotEx(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_void,
-                cudaDataType,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_void,
-                cudaDataType,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
-                cudaDataType,
-                cudaDataType,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
     ) -> Self {
         self.cublasRotEx = val;
         self
     }
-    pub fn cublasRotEx_64(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasRotEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, *const ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasRotEx_64 = val;
         self
     }
@@ -737,11 +719,11 @@ impl crate::sys::DynamicBindings {
         self.cublasZrotg_v2 = val;
         self
     }
-    pub fn cublasRotgEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasRotgEx(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasRotgEx = val;
         self
     }
-    pub fn cublasSrotm_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasSrotm_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int, *const f32) -> cublasStatus_t>) -> Self {
         self.cublasSrotm_v2 = val;
         self
     }
@@ -749,7 +731,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSrotm_v2_64 = val;
         self
     }
-    pub fn cublasDrotm_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDrotm_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int, *const f64) -> cublasStatus_t>) -> Self {
         self.cublasDrotm_v2 = val;
         self
     }
@@ -759,12 +741,12 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasRotmEx(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, cudaDataType, ::std::os::raw::c_int, *const ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
     ) -> Self {
         self.cublasRotmEx = val;
         self
     }
-    pub fn cublasRotmEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *mut ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
+    pub fn cublasRotmEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *mut ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>) -> Self {
         self.cublasRotmEx_64 = val;
         self
     }
@@ -778,17 +760,12 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasRotmgEx(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(cublasHandle_t, *mut ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void, cudaDataType, cudaDataType) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, *mut ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, *const ::core::ffi::c_void, cudaDataType, *mut ::core::ffi::c_void, cudaDataType, cudaDataType) -> cublasStatus_t>,
     ) -> Self {
         self.cublasRotmgEx = val;
         self
     }
-    pub fn cublasSgemv_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasSgemv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSgemv_v2 = val;
         self
     }
@@ -796,10 +773,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSgemv_v2_64 = val;
         self
     }
-    pub fn cublasDgemv_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasDgemv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDgemv_v2 = val;
         self
     }
@@ -809,7 +783,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasCgemv_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCgemv_v2 = val;
         self
@@ -824,16 +798,16 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -846,24 +820,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasSgbmv_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f32,
-                *const f32,
-                ::std::os::raw::c_int,
-                *const f32,
-                ::std::os::raw::c_int,
-                *const f32,
-                *mut f32,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSgbmv_v2 = val;
         self
@@ -874,24 +831,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDgbmv_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f64,
-                *const f64,
-                ::std::os::raw::c_int,
-                *const f64,
-                ::std::os::raw::c_int,
-                *const f64,
-                *mut f64,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDgbmv_v2 = val;
         self
@@ -906,18 +846,18 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *mut cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -934,18 +874,18 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -956,7 +896,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZgbmv_v2_64 = val;
         self
     }
-    pub fn cublasStrmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasStrmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasStrmv_v2 = val;
         self
     }
@@ -964,7 +904,7 @@ impl crate::sys::DynamicBindings {
         self.cublasStrmv_v2_64 = val;
         self
     }
-    pub fn cublasDtrmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDtrmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDtrmv_v2 = val;
         self
     }
@@ -972,7 +912,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDtrmv_v2_64 = val;
         self
     }
-    pub fn cublasCtrmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCtrmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCtrmv_v2 = val;
         self
     }
@@ -980,7 +920,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCtrmv_v2_64 = val;
         self
     }
-    pub fn cublasZtrmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZtrmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZtrmv_v2 = val;
         self
     }
@@ -988,7 +928,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZtrmv_v2_64 = val;
         self
     }
-    pub fn cublasStbmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasStbmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasStbmv_v2 = val;
         self
     }
@@ -996,7 +936,7 @@ impl crate::sys::DynamicBindings {
         self.cublasStbmv_v2_64 = val;
         self
     }
-    pub fn cublasDtbmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDtbmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDtbmv_v2 = val;
         self
     }
@@ -1004,7 +944,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDtbmv_v2_64 = val;
         self
     }
-    pub fn cublasCtbmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCtbmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCtbmv_v2 = val;
         self
     }
@@ -1012,10 +952,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCtbmv_v2_64 = val;
         self
     }
-    pub fn cublasZtbmv_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasZtbmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZtbmv_v2 = val;
         self
     }
@@ -1023,7 +960,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZtbmv_v2_64 = val;
         self
     }
-    pub fn cublasStpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasStpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasStpmv_v2 = val;
         self
     }
@@ -1031,7 +968,7 @@ impl crate::sys::DynamicBindings {
         self.cublasStpmv_v2_64 = val;
         self
     }
-    pub fn cublasDtpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDtpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDtpmv_v2 = val;
         self
     }
@@ -1039,7 +976,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDtpmv_v2_64 = val;
         self
     }
-    pub fn cublasCtpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCtpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCtpmv_v2 = val;
         self
     }
@@ -1047,7 +984,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCtpmv_v2_64 = val;
         self
     }
-    pub fn cublasZtpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZtpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZtpmv_v2 = val;
         self
     }
@@ -1055,7 +992,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZtpmv_v2_64 = val;
         self
     }
-    pub fn cublasStrsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasStrsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasStrsv_v2 = val;
         self
     }
@@ -1063,7 +1000,7 @@ impl crate::sys::DynamicBindings {
         self.cublasStrsv_v2_64 = val;
         self
     }
-    pub fn cublasDtrsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDtrsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDtrsv_v2 = val;
         self
     }
@@ -1071,7 +1008,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDtrsv_v2_64 = val;
         self
     }
-    pub fn cublasCtrsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCtrsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCtrsv_v2 = val;
         self
     }
@@ -1079,7 +1016,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCtrsv_v2_64 = val;
         self
     }
-    pub fn cublasZtrsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZtrsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZtrsv_v2 = val;
         self
     }
@@ -1087,7 +1024,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZtrsv_v2_64 = val;
         self
     }
-    pub fn cublasStpsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasStpsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasStpsv_v2 = val;
         self
     }
@@ -1095,7 +1032,7 @@ impl crate::sys::DynamicBindings {
         self.cublasStpsv_v2_64 = val;
         self
     }
-    pub fn cublasDtpsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDtpsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDtpsv_v2 = val;
         self
     }
@@ -1103,7 +1040,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDtpsv_v2_64 = val;
         self
     }
-    pub fn cublasCtpsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCtpsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCtpsv_v2 = val;
         self
     }
@@ -1111,7 +1048,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCtpsv_v2_64 = val;
         self
     }
-    pub fn cublasZtpsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZtpsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZtpsv_v2 = val;
         self
     }
@@ -1119,7 +1056,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZtpsv_v2_64 = val;
         self
     }
-    pub fn cublasStbsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasStbsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasStbsv_v2 = val;
         self
     }
@@ -1127,7 +1064,7 @@ impl crate::sys::DynamicBindings {
         self.cublasStbsv_v2_64 = val;
         self
     }
-    pub fn cublasDtbsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDtbsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDtbsv_v2 = val;
         self
     }
@@ -1135,7 +1072,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDtbsv_v2_64 = val;
         self
     }
-    pub fn cublasCtbsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCtbsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCtbsv_v2 = val;
         self
     }
@@ -1143,10 +1080,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCtbsv_v2_64 = val;
         self
     }
-    pub fn cublasZtbsv_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasZtbsv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZtbsv_v2 = val;
         self
     }
@@ -1154,7 +1088,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZtbsv_v2_64 = val;
         self
     }
-    pub fn cublasSsymv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSsymv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSsymv_v2 = val;
         self
     }
@@ -1162,7 +1096,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSsymv_v2_64 = val;
         self
     }
-    pub fn cublasDsymv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDsymv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDsymv_v2 = val;
         self
     }
@@ -1170,10 +1104,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDsymv_v2_64 = val;
         self
     }
-    pub fn cublasCsymv_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasCsymv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCsymv_v2 = val;
         self
     }
@@ -1183,9 +1114,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZsymv_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZsymv_v2 = val;
         self
@@ -1194,10 +1123,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZsymv_v2_64 = val;
         self
     }
-    pub fn cublasChemv_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasChemv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasChemv_v2 = val;
         self
     }
@@ -1207,9 +1133,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZhemv_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZhemv_v2 = val;
         self
@@ -1218,10 +1142,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZhemv_v2_64 = val;
         self
     }
-    pub fn cublasSsbmv_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasSsbmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSsbmv_v2 = val;
         self
     }
@@ -1229,10 +1150,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSsbmv_v2_64 = val;
         self
     }
-    pub fn cublasDsbmv_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasDsbmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDsbmv_v2 = val;
         self
     }
@@ -1242,7 +1160,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasChbmv_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasChbmv_v2 = val;
         self
@@ -1257,16 +1175,16 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasFillMode_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1277,7 +1195,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZhbmv_v2_64 = val;
         self
     }
-    pub fn cublasSspmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSspmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSspmv_v2 = val;
         self
     }
@@ -1285,7 +1203,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSspmv_v2_64 = val;
         self
     }
-    pub fn cublasDspmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDspmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDspmv_v2 = val;
         self
     }
@@ -1293,7 +1211,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDspmv_v2_64 = val;
         self
     }
-    pub fn cublasChpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasChpmv_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasChpmv_v2 = val;
         self
     }
@@ -1303,7 +1221,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZhpmv_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZhpmv_v2 = val;
         self
@@ -1312,7 +1230,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZhpmv_v2_64 = val;
         self
     }
-    pub fn cublasSger_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSger_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSger_v2 = val;
         self
     }
@@ -1320,7 +1238,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSger_v2_64 = val;
         self
     }
-    pub fn cublasDger_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDger_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDger_v2 = val;
         self
     }
@@ -1328,7 +1246,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDger_v2_64 = val;
         self
     }
-    pub fn cublasCgeru_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCgeru_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCgeru_v2 = val;
         self
     }
@@ -1336,7 +1254,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCgeru_v2_64 = val;
         self
     }
-    pub fn cublasCgerc_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCgerc_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCgerc_v2 = val;
         self
     }
@@ -1346,7 +1264,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZgeru_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZgeru_v2 = val;
         self
@@ -1357,7 +1275,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZgerc_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZgerc_v2 = val;
         self
@@ -1366,7 +1284,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZgerc_v2_64 = val;
         self
     }
-    pub fn cublasSsyr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSsyr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSsyr_v2 = val;
         self
     }
@@ -1374,7 +1292,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSsyr_v2_64 = val;
         self
     }
-    pub fn cublasDsyr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDsyr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDsyr_v2 = val;
         self
     }
@@ -1382,7 +1300,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDsyr_v2_64 = val;
         self
     }
-    pub fn cublasCsyr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCsyr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCsyr_v2 = val;
         self
     }
@@ -1390,7 +1308,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCsyr_v2_64 = val;
         self
     }
-    pub fn cublasZsyr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZsyr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZsyr_v2 = val;
         self
     }
@@ -1398,7 +1316,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZsyr_v2_64 = val;
         self
     }
-    pub fn cublasCher_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCher_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCher_v2 = val;
         self
     }
@@ -1406,7 +1324,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCher_v2_64 = val;
         self
     }
-    pub fn cublasZher_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZher_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZher_v2 = val;
         self
     }
@@ -1414,7 +1332,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZher_v2_64 = val;
         self
     }
-    pub fn cublasSspr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasSspr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>) -> Self {
         self.cublasSspr_v2 = val;
         self
     }
@@ -1422,7 +1340,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSspr_v2_64 = val;
         self
     }
-    pub fn cublasDspr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDspr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>) -> Self {
         self.cublasDspr_v2 = val;
         self
     }
@@ -1430,7 +1348,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDspr_v2_64 = val;
         self
     }
-    pub fn cublasChpr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasChpr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
         self.cublasChpr_v2 = val;
         self
     }
@@ -1438,7 +1356,7 @@ impl crate::sys::DynamicBindings {
         self.cublasChpr_v2_64 = val;
         self
     }
-    pub fn cublasZhpr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasZhpr_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
         self.cublasZhpr_v2 = val;
         self
     }
@@ -1446,7 +1364,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZhpr_v2_64 = val;
         self
     }
-    pub fn cublasSsyr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSsyr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSsyr2_v2 = val;
         self
     }
@@ -1454,7 +1372,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSsyr2_v2_64 = val;
         self
     }
-    pub fn cublasDsyr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDsyr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDsyr2_v2 = val;
         self
     }
@@ -1462,7 +1380,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDsyr2_v2_64 = val;
         self
     }
-    pub fn cublasCsyr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCsyr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCsyr2_v2 = val;
         self
     }
@@ -1472,7 +1390,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZsyr2_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZsyr2_v2 = val;
         self
@@ -1481,7 +1399,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZsyr2_v2_64 = val;
         self
     }
-    pub fn cublasCher2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCher2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCher2_v2 = val;
         self
     }
@@ -1491,7 +1409,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZher2_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZher2_v2 = val;
         self
@@ -1500,7 +1418,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZher2_v2_64 = val;
         self
     }
-    pub fn cublasSspr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasSspr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>) -> Self {
         self.cublasSspr2_v2 = val;
         self
     }
@@ -1508,7 +1426,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSspr2_v2_64 = val;
         self
     }
-    pub fn cublasDspr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDspr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>) -> Self {
         self.cublasDspr2_v2 = val;
         self
     }
@@ -1516,7 +1434,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDspr2_v2_64 = val;
         self
     }
-    pub fn cublasChpr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasChpr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
         self.cublasChpr2_v2 = val;
         self
     }
@@ -1524,7 +1442,7 @@ impl crate::sys::DynamicBindings {
         self.cublasChpr2_v2_64 = val;
         self
     }
-    pub fn cublasZhpr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasZhpr2_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
         self.cublasZhpr2_v2 = val;
         self
     }
@@ -1534,23 +1452,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasSgemvBatched(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f32,
-                *const *const f32,
-                ::std::os::raw::c_int,
-                *const *const f32,
-                ::std::os::raw::c_int,
-                *const f32,
-                *const *mut f32,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const *const f32, ::core::ffi::c_int, *const *const f32, ::core::ffi::c_int, *const f32, *const *mut f32, ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSgemvBatched = val;
         self
@@ -1561,23 +1463,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDgemvBatched(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f64,
-                *const *const f64,
-                ::std::os::raw::c_int,
-                *const *const f64,
-                ::std::os::raw::c_int,
-                *const f64,
-                *const *mut f64,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const *const f64, ::core::ffi::c_int, *const *const f64, ::core::ffi::c_int, *const f64, *const *mut f64, ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDgemvBatched = val;
         self
@@ -1592,17 +1478,17 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const *mut cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1619,17 +1505,17 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1649,20 +1535,20 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const f32,
                 *const f32,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const f32,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const f32,
                 *mut f32,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1671,7 +1557,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasSgemvStridedBatched_64(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f32, *const f32, i64, ::std::os::raw::c_longlong, *const f32, i64, ::std::os::raw::c_longlong, *const f32, *mut f32, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f32, *const f32, i64, ::core::ffi::c_longlong, *const f32, i64, ::core::ffi::c_longlong, *const f32, *mut f32, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSgemvStridedBatched_64 = val;
         self
@@ -1682,20 +1568,20 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const f64,
                 *const f64,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const f64,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const f64,
                 *mut f64,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1704,7 +1590,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDgemvStridedBatched_64(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f64, *const f64, i64, ::std::os::raw::c_longlong, *const f64, i64, ::std::os::raw::c_longlong, *const f64, *mut f64, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const f64, *const f64, i64, ::core::ffi::c_longlong, *const f64, i64, ::core::ffi::c_longlong, *const f64, *mut f64, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDgemvStridedBatched_64 = val;
         self
@@ -1715,20 +1601,20 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
                 *mut cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1737,7 +1623,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasCgemvStridedBatched_64(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, ::std::os::raw::c_longlong, *const cuComplex, i64, ::std::os::raw::c_longlong, *const cuComplex, *mut cuComplex, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, i64, i64, *const cuComplex, *const cuComplex, i64, ::core::ffi::c_longlong, *const cuComplex, i64, ::core::ffi::c_longlong, *const cuComplex, *mut cuComplex, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCgemvStridedBatched_64 = val;
         self
@@ -1748,20 +1634,20 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1779,14 +1665,14 @@ impl crate::sys::DynamicBindings {
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 *const cuDoubleComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 i64,
             ) -> cublasStatus_t,
         >,
@@ -1796,24 +1682,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasSgemm_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f32,
-                *const f32,
-                ::std::os::raw::c_int,
-                *const f32,
-                ::std::os::raw::c_int,
-                *const f32,
-                *mut f32,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSgemm_v2 = val;
         self
@@ -1824,24 +1693,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDgemm_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f64,
-                *const f64,
-                ::std::os::raw::c_int,
-                *const f64,
-                ::std::os::raw::c_int,
-                *const f64,
-                *mut f64,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDgemm_v2 = val;
         self
@@ -1857,17 +1709,17 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *mut cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1885,17 +1737,17 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *mut cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1913,20 +1765,20 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1936,25 +1788,7 @@ impl crate::sys::DynamicBindings {
     pub fn cublasCgemm3mEx_64(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                cublasOperation_t,
-                i64,
-                i64,
-                i64,
-                *const cuComplex,
-                *const ::std::os::raw::c_void,
-                cudaDataType,
-                i64,
-                *const ::std::os::raw::c_void,
-                cudaDataType,
-                i64,
-                *const cuComplex,
-                *mut ::std::os::raw::c_void,
-                cudaDataType,
-                i64,
-            ) -> cublasStatus_t,
+            unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t,
         >,
     ) -> Self {
         self.cublasCgemm3mEx_64 = val;
@@ -1967,17 +1801,17 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -1998,17 +1832,17 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2029,20 +1863,20 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const f32,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const f32,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2051,9 +1885,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasSgemmEx_64(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const ::std::os::raw::c_void, cudaDataType, i64, *const ::std::os::raw::c_void, cudaDataType, i64, *const f32, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const f32, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSgemmEx_64 = val;
         self
@@ -2065,20 +1897,20 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 cublasComputeType_t,
                 cublasGemmAlgo_t,
             ) -> cublasStatus_t,
@@ -2097,15 +1929,15 @@ impl crate::sys::DynamicBindings {
                 i64,
                 i64,
                 i64,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
                 i64,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
                 i64,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 cudaDataType,
                 i64,
                 cublasComputeType_t,
@@ -2123,20 +1955,20 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2146,31 +1978,13 @@ impl crate::sys::DynamicBindings {
     pub fn cublasCgemmEx_64(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                cublasOperation_t,
-                i64,
-                i64,
-                i64,
-                *const cuComplex,
-                *const ::std::os::raw::c_void,
-                cudaDataType,
-                i64,
-                *const ::std::os::raw::c_void,
-                cudaDataType,
-                i64,
-                *const cuComplex,
-                *mut ::std::os::raw::c_void,
-                cudaDataType,
-                i64,
-            ) -> cublasStatus_t,
+            unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, i64, *const ::core::ffi::c_void, cudaDataType, i64, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t,
         >,
     ) -> Self {
         self.cublasCgemmEx_64 = val;
         self
     }
-    pub fn cublasSsyrk_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSsyrk_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSsyrk_v2 = val;
         self
     }
@@ -2178,7 +1992,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSsyrk_v2_64 = val;
         self
     }
-    pub fn cublasDsyrk_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDsyrk_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDsyrk_v2 = val;
         self
     }
@@ -2188,7 +2002,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasCsyrk_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCsyrk_v2 = val;
         self
@@ -2199,7 +2013,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZsyrk_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZsyrk_v2 = val;
         self
@@ -2215,23 +2029,23 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasFillMode_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
         self.cublasCsyrkEx = val;
         self
     }
-    pub fn cublasCsyrkEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const ::std::os::raw::c_void, cudaDataType, i64, *const cuComplex, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasCsyrkEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, i64, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
         self.cublasCsyrkEx_64 = val;
         self
     }
@@ -2242,30 +2056,27 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasFillMode_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                *mut ::std::os::raw::c_void,
+                *mut ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
         self.cublasCsyrk3mEx = val;
         self
     }
-    pub fn cublasCsyrk3mEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const ::std::os::raw::c_void, cudaDataType, i64, *const cuComplex, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasCsyrk3mEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const cuComplex, *const ::core::ffi::c_void, cudaDataType, i64, *const cuComplex, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
         self.cublasCsyrk3mEx_64 = val;
         self
     }
-    pub fn cublasCherk_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasCherk_v2(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const cuComplex, ::core::ffi::c_int, *const f32, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCherk_v2 = val;
         self
     }
@@ -2275,7 +2086,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZherk_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const cuDoubleComplex, ::core::ffi::c_int, *const f64, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZherk_v2 = val;
         self
@@ -2286,61 +2097,29 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasCherkEx(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f32,
-                *const ::std::os::raw::c_void,
-                cudaDataType,
-                ::std::os::raw::c_int,
-                *const f32,
-                *mut ::std::os::raw::c_void,
-                cudaDataType,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCherkEx = val;
         self
     }
-    pub fn cublasCherkEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const ::std::os::raw::c_void, cudaDataType, i64, *const f32, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasCherkEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const ::core::ffi::c_void, cudaDataType, i64, *const f32, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
         self.cublasCherkEx_64 = val;
         self
     }
     pub fn cublasCherk3mEx(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f32,
-                *const ::std::os::raw::c_void,
-                cudaDataType,
-                ::std::os::raw::c_int,
-                *const f32,
-                *mut ::std::os::raw::c_void,
-                cudaDataType,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int, *const f32, *mut ::core::ffi::c_void, cudaDataType, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCherk3mEx = val;
         self
     }
-    pub fn cublasCherk3mEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const ::std::os::raw::c_void, cudaDataType, i64, *const f32, *mut ::std::os::raw::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
+    pub fn cublasCherk3mEx_64(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, i64, i64, *const f32, *const ::core::ffi::c_void, cudaDataType, i64, *const f32, *mut ::core::ffi::c_void, cudaDataType, i64) -> cublasStatus_t>) -> Self {
         self.cublasCherk3mEx_64 = val;
         self
     }
     pub fn cublasSsyr2k_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSsyr2k_v2 = val;
         self
@@ -2351,7 +2130,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDsyr2k_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDsyr2k_v2 = val;
         self
@@ -2363,21 +2142,7 @@ impl crate::sys::DynamicBindings {
     pub fn cublasCsyr2k_v2(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *mut cuComplex,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
+            unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t,
         >,
     ) -> Self {
         self.cublasCsyr2k_v2 = val;
@@ -2394,16 +2159,16 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasFillMode_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2416,23 +2181,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasCher2k_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const f32,
-                *mut cuComplex,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCher2k_v2 = val;
         self
@@ -2448,16 +2197,16 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasFillMode_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const f64,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2470,7 +2219,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasSsyrkx(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSsyrkx = val;
         self
@@ -2481,7 +2230,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDsyrkx(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDsyrkx = val;
         self
@@ -2493,21 +2242,7 @@ impl crate::sys::DynamicBindings {
     pub fn cublasCsyrkx(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *mut cuComplex,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
+            unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t,
         >,
     ) -> Self {
         self.cublasCsyrkx = val;
@@ -2524,16 +2259,16 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasFillMode_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2546,23 +2281,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasCherkx(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const f32,
-                *mut cuComplex,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const f32, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCherkx = val;
         self
@@ -2578,16 +2297,16 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasFillMode_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const f64,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2600,7 +2319,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasSsymm_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSsymm_v2 = val;
         self
@@ -2611,7 +2330,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDsymm_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDsymm_v2 = val;
         self
@@ -2622,23 +2341,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasCsymm_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasSideMode_t,
-                cublasFillMode_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *mut cuComplex,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCsymm_v2 = val;
         self
@@ -2654,16 +2357,16 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasSideMode_t,
                 cublasFillMode_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2676,23 +2379,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasChemm_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasSideMode_t,
-                cublasFillMode_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *mut cuComplex,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasChemm_v2 = val;
         self
@@ -2708,16 +2395,16 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasSideMode_t,
                 cublasFillMode_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2730,7 +2417,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasStrsm_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasStrsm_v2 = val;
         self
@@ -2741,7 +2428,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDtrsm_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDtrsm_v2 = val;
         self
@@ -2752,7 +2439,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasCtrsm_v2(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCtrsm_v2 = val;
         self
@@ -2763,22 +2450,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasZtrsm_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasSideMode_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                cublasDiagType_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const cuDoubleComplex,
-                *const cuDoubleComplex,
-                ::std::os::raw::c_int,
-                *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZtrsm_v2 = val;
         self
@@ -2789,24 +2461,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasStrmm_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasSideMode_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                cublasDiagType_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f32,
-                *const f32,
-                ::std::os::raw::c_int,
-                *const f32,
-                ::std::os::raw::c_int,
-                *mut f32,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasStrmm_v2 = val;
         self
@@ -2817,24 +2472,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDtrmm_v2(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasSideMode_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                cublasDiagType_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f64,
-                *const f64,
-                ::std::os::raw::c_int,
-                *const f64,
-                ::std::os::raw::c_int,
-                *mut f64,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDtrmm_v2 = val;
         self
@@ -2852,15 +2490,15 @@ impl crate::sys::DynamicBindings {
                 cublasFillMode_t,
                 cublasOperation_t,
                 cublasDiagType_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *mut cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2880,15 +2518,15 @@ impl crate::sys::DynamicBindings {
                 cublasFillMode_t,
                 cublasOperation_t,
                 cublasDiagType_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2909,18 +2547,18 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const f32,
                 *const *const f32,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *const f32,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const f32,
                 *const *mut f32,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2938,18 +2576,18 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const f64,
                 *const *const f64,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *const f64,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const f64,
                 *const *mut f64,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2967,18 +2605,18 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const *mut cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -2999,18 +2637,18 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const *mut cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3031,18 +2669,18 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3063,21 +2701,21 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const f32,
                 *const f32,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const f32,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const f32,
                 *mut f32,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3086,7 +2724,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasSgemmStridedBatched_64(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const f32, i64, ::std::os::raw::c_longlong, *const f32, i64, ::std::os::raw::c_longlong, *const f32, *mut f32, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f32, *const f32, i64, ::core::ffi::c_longlong, *const f32, i64, ::core::ffi::c_longlong, *const f32, *mut f32, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSgemmStridedBatched_64 = val;
         self
@@ -3098,21 +2736,21 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const f64,
                 *const f64,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const f64,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const f64,
                 *mut f64,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3121,7 +2759,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDgemmStridedBatched_64(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f64, *const f64, i64, ::std::os::raw::c_longlong, *const f64, i64, ::std::os::raw::c_longlong, *const f64, *mut f64, i64, ::std::os::raw::c_longlong, i64) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, i64, i64, i64, *const f64, *const f64, i64, ::core::ffi::c_longlong, *const f64, i64, ::core::ffi::c_longlong, *const f64, *mut f64, i64, ::core::ffi::c_longlong, i64) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDgemmStridedBatched_64 = val;
         self
@@ -3133,21 +2771,21 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
                 *mut cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3167,14 +2805,14 @@ impl crate::sys::DynamicBindings {
                 *const cuComplex,
                 *const cuComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
                 *mut cuComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 i64,
             ) -> cublasStatus_t,
         >,
@@ -3189,21 +2827,21 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
                 *mut cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3223,14 +2861,14 @@ impl crate::sys::DynamicBindings {
                 *const cuComplex,
                 *const cuComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 *const cuComplex,
                 *mut cuComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 i64,
             ) -> cublasStatus_t,
         >,
@@ -3245,21 +2883,21 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3279,14 +2917,14 @@ impl crate::sys::DynamicBindings {
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 *const cuDoubleComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 *const cuDoubleComplex,
                 *mut cuDoubleComplex,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 i64,
             ) -> cublasStatus_t,
         >,
@@ -3301,21 +2939,21 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
-                *const *const ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
+                *const *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                *const *const ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                *const *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
-                *const *mut ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
+                *const *mut ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 cublasComputeType_t,
                 cublasGemmAlgo_t,
             ) -> cublasStatus_t,
@@ -3334,15 +2972,15 @@ impl crate::sys::DynamicBindings {
                 i64,
                 i64,
                 i64,
-                *const ::std::os::raw::c_void,
-                *const *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const *const ::core::ffi::c_void,
                 cudaDataType,
                 i64,
-                *const *const ::std::os::raw::c_void,
+                *const *const ::core::ffi::c_void,
                 cudaDataType,
                 i64,
-                *const ::std::os::raw::c_void,
-                *const *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const *mut ::core::ffi::c_void,
                 cudaDataType,
                 i64,
                 i64,
@@ -3361,24 +2999,24 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                *const ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                *const ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 cudaDataType,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_longlong,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_longlong,
+                ::core::ffi::c_int,
                 cublasComputeType_t,
                 cublasGemmAlgo_t,
             ) -> cublasStatus_t,
@@ -3397,20 +3035,20 @@ impl crate::sys::DynamicBindings {
                 i64,
                 i64,
                 i64,
-                *const ::std::os::raw::c_void,
-                *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const ::core::ffi::c_void,
                 cudaDataType,
                 i64,
-                ::std::os::raw::c_longlong,
-                *const ::std::os::raw::c_void,
+                ::core::ffi::c_longlong,
+                *const ::core::ffi::c_void,
                 cudaDataType,
                 i64,
-                ::std::os::raw::c_longlong,
-                *const ::std::os::raw::c_void,
-                *mut ::std::os::raw::c_void,
+                ::core::ffi::c_longlong,
+                *const ::core::ffi::c_void,
+                *mut ::core::ffi::c_void,
                 cudaDataType,
                 i64,
-                ::std::os::raw::c_longlong,
+                ::core::ffi::c_longlong,
                 i64,
                 cublasComputeType_t,
                 cublasGemmAlgo_t,
@@ -3427,19 +3065,19 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 *const cublasOperation_t,
                 *const cublasOperation_t,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
                 *const f32,
                 *const *const f32,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
                 *const *const f32,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
                 *const f32,
                 *const *mut f32,
-                *const ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3460,19 +3098,19 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 *const cublasOperation_t,
                 *const cublasOperation_t,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
                 *const f64,
                 *const *const f64,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
                 *const *const f64,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
                 *const f64,
                 *const *mut f64,
-                *const ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3493,22 +3131,22 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 *const cublasOperation_t,
                 *const cublasOperation_t,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
-                *const *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
+                *const *const ::core::ffi::c_void,
                 cudaDataType_t,
-                *const ::std::os::raw::c_int,
-                *const *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_int,
+                *const *const ::core::ffi::c_void,
                 cudaDataType_t,
-                *const ::std::os::raw::c_int,
-                *const ::std::os::raw::c_void,
-                *const *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_int,
+                *const ::core::ffi::c_void,
+                *const *mut ::core::ffi::c_void,
                 cudaDataType_t,
-                *const ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
+                *const ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_int,
                 cublasComputeType_t,
             ) -> cublasStatus_t,
         >,
@@ -3526,15 +3164,15 @@ impl crate::sys::DynamicBindings {
                 *const i64,
                 *const i64,
                 *const i64,
-                *const ::std::os::raw::c_void,
-                *const *const ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const *const ::core::ffi::c_void,
                 cudaDataType_t,
                 *const i64,
-                *const *const ::std::os::raw::c_void,
+                *const *const ::core::ffi::c_void,
                 cudaDataType_t,
                 *const i64,
-                *const ::std::os::raw::c_void,
-                *const *mut ::std::os::raw::c_void,
+                *const ::core::ffi::c_void,
+                *const *mut ::core::ffi::c_void,
                 cudaDataType_t,
                 *const i64,
                 i64,
@@ -3548,7 +3186,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasSgeam(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *const f32, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSgeam = val;
         self
@@ -3559,7 +3197,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDgeam(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *const f64, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDgeam = val;
         self
@@ -3571,21 +3209,7 @@ impl crate::sys::DynamicBindings {
     pub fn cublasCgeam(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *const cuComplex,
-                *const cuComplex,
-                ::std::os::raw::c_int,
-                *mut cuComplex,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
+            unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *const cuComplex, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t,
         >,
     ) -> Self {
         self.cublasCgeam = val;
@@ -3602,16 +3226,16 @@ impl crate::sys::DynamicBindings {
                 cublasHandle_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3624,23 +3248,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasStrsmBatched(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasSideMode_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                cublasDiagType_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f32,
-                *const *const f32,
-                ::std::os::raw::c_int,
-                *const *mut f32,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, *const *const f32, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasStrsmBatched = val;
         self
@@ -3651,23 +3259,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cublasDtrsmBatched(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasSideMode_t,
-                cublasFillMode_t,
-                cublasOperation_t,
-                cublasDiagType_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const f64,
-                *const *const f64,
-                ::std::os::raw::c_int,
-                *const *mut f64,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, cublasDiagType_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, *const *const f64, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDtrsmBatched = val;
         self
@@ -3685,14 +3277,14 @@ impl crate::sys::DynamicBindings {
                 cublasFillMode_t,
                 cublasOperation_t,
                 cublasDiagType_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuComplex,
                 *const *const cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *mut cuComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3712,14 +3304,14 @@ impl crate::sys::DynamicBindings {
                 cublasFillMode_t,
                 cublasOperation_t,
                 cublasDiagType_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const cuDoubleComplex,
                 *const *const cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3733,7 +3325,7 @@ impl crate::sys::DynamicBindings {
         self.cublasZtrsmBatched_64 = val;
         self
     }
-    pub fn cublasSdgmm(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSdgmm(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSdgmm = val;
         self
     }
@@ -3741,7 +3333,7 @@ impl crate::sys::DynamicBindings {
         self.cublasSdgmm_64 = val;
         self
     }
-    pub fn cublasDdgmm(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDdgmm(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDdgmm = val;
         self
     }
@@ -3749,7 +3341,7 @@ impl crate::sys::DynamicBindings {
         self.cublasDdgmm_64 = val;
         self
     }
-    pub fn cublasCdgmm(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCdgmm(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCdgmm = val;
         self
     }
@@ -3757,10 +3349,7 @@ impl crate::sys::DynamicBindings {
         self.cublasCdgmm_64 = val;
         self
     }
-    pub fn cublasZdgmm(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasZdgmm(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasSideMode_t, ::core::ffi::c_int, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZdgmm = val;
         self
     }
@@ -3768,78 +3357,48 @@ impl crate::sys::DynamicBindings {
         self.cublasZdgmm_64 = val;
         self
     }
-    pub fn cublasSmatinvBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const f32, ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSmatinvBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const f32, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSmatinvBatched = val;
         self
     }
-    pub fn cublasDmatinvBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const f64, ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDmatinvBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const f64, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDmatinvBatched = val;
         self
     }
-    pub fn cublasCmatinvBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const cuComplex, ::std::os::raw::c_int, *const *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCmatinvBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const cuComplex, ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCmatinvBatched = val;
         self
     }
-    pub fn cublasZmatinvBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const cuDoubleComplex, ::std::os::raw::c_int, *const *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZmatinvBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const cuDoubleComplex, ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZmatinvBatched = val;
         self
     }
-    pub fn cublasSgeqrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *const *mut f32, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSgeqrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *const *mut f32, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSgeqrfBatched = val;
         self
     }
-    pub fn cublasDgeqrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *const *mut f64, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDgeqrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *const *mut f64, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDgeqrfBatched = val;
         self
     }
-    pub fn cublasCgeqrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *mut cuComplex, ::std::os::raw::c_int, *const *mut cuComplex, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCgeqrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *const *mut cuComplex, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCgeqrfBatched = val;
         self
     }
-    pub fn cublasZgeqrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *mut cuDoubleComplex, ::std::os::raw::c_int, *const *mut cuDoubleComplex, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZgeqrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *const *mut cuDoubleComplex, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZgeqrfBatched = val;
         self
     }
     pub fn cublasSgelsBatched(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const *mut f32,
-                ::std::os::raw::c_int,
-                *const *mut f32,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSgelsBatched = val;
         self
     }
     pub fn cublasDgelsBatched(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const *mut f64,
-                ::std::os::raw::c_int,
-                *const *mut f64,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDgelsBatched = val;
         self
@@ -3850,16 +3409,16 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const *mut cuComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *mut cuComplex,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -3872,133 +3431,106 @@ impl crate::sys::DynamicBindings {
             unsafe extern "C" fn(
                 cublasHandle_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
                 *const *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
                 *const *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                *mut ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
         self.cublasZgelsBatched = val;
         self
     }
-    pub fn cublasStpttr(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasStpttr(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, *mut f32, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasStpttr = val;
         self
     }
-    pub fn cublasDtpttr(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDtpttr(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, *mut f64, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDtpttr = val;
         self
     }
-    pub fn cublasCtpttr(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCtpttr(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, *mut cuComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCtpttr = val;
         self
     }
-    pub fn cublasZtpttr(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZtpttr(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZtpttr = val;
         self
     }
-    pub fn cublasStrttp(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32) -> cublasStatus_t>) -> Self {
+    pub fn cublasStrttp(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f32, ::core::ffi::c_int, *mut f32) -> cublasStatus_t>) -> Self {
         self.cublasStrttp = val;
         self
     }
-    pub fn cublasDtrttp(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64) -> cublasStatus_t>) -> Self {
+    pub fn cublasDtrttp(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const f64, ::core::ffi::c_int, *mut f64) -> cublasStatus_t>) -> Self {
         self.cublasDtrttp = val;
         self
     }
-    pub fn cublasCtrttp(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasCtrttp(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuComplex, ::core::ffi::c_int, *mut cuComplex) -> cublasStatus_t>) -> Self {
         self.cublasCtrttp = val;
         self
     }
-    pub fn cublasZtrttp(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
+    pub fn cublasZtrttp(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, cublasFillMode_t, ::core::ffi::c_int, *const cuDoubleComplex, ::core::ffi::c_int, *mut cuDoubleComplex) -> cublasStatus_t>) -> Self {
         self.cublasZtrttp = val;
         self
     }
-    pub fn cublasSgetrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasSgetrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSgetrfBatched = val;
         self
     }
-    pub fn cublasDgetrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasDgetrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDgetrfBatched = val;
         self
     }
-    pub fn cublasCgetrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasCgetrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCgetrfBatched = val;
         self
     }
-    pub fn cublasZgetrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>) -> Self {
+    pub fn cublasZgetrfBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasZgetrfBatched = val;
         self
     }
-    pub fn cublasSgetriBatched(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasSgetriBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const f32, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasSgetriBatched = val;
         self
     }
-    pub fn cublasDgetriBatched(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasDgetriBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const f64, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasDgetriBatched = val;
         self
     }
-    pub fn cublasCgetriBatched(
-        mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const cuComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
-    ) -> Self {
+    pub fn cublasCgetriBatched(mut self, val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const cuComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>) -> Self {
         self.cublasCgetriBatched = val;
         self
     }
     pub fn cublasZgetriBatched(
         mut self,
-        val: Option<unsafe extern "C" fn(cublasHandle_t, ::std::os::raw::c_int, *const *const cuDoubleComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t>,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, ::core::ffi::c_int, *const *const cuDoubleComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasZgetriBatched = val;
         self
     }
     pub fn cublasSgetrsBatched(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *const f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *const f32, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut f32, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasSgetrsBatched = val;
         self
     }
     pub fn cublasDgetrsBatched(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const *const f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *const f64, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut f64, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasDgetrsBatched = val;
         self
     }
     pub fn cublasCgetrsBatched(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const *const cuComplex,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const *mut cuComplex,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *const cuComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut cuComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t>,
     ) -> Self {
         self.cublasCgetrsBatched = val;
         self
@@ -4006,19 +3538,7 @@ impl crate::sys::DynamicBindings {
     pub fn cublasZgetrsBatched(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                cublasHandle_t,
-                cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const *const cuDoubleComplex,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_int,
-                *const *mut cuDoubleComplex,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-            ) -> cublasStatus_t,
+            unsafe extern "C" fn(cublasHandle_t, cublasOperation_t, ::core::ffi::c_int, ::core::ffi::c_int, *const *const cuDoubleComplex, ::core::ffi::c_int, *const ::core::ffi::c_int, *const *mut cuDoubleComplex, ::core::ffi::c_int, *mut ::core::ffi::c_int, ::core::ffi::c_int) -> cublasStatus_t,
         >,
     ) -> Self {
         self.cublasZgetrsBatched = val;
@@ -4032,20 +3552,20 @@ impl crate::sys::DynamicBindings {
                 cublasOperation_t,
                 cublasOperation_t,
                 cublasOperation_t,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_uchar,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *const ::std::os::raw::c_uchar,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                *mut ::std::os::raw::c_uchar,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
-                ::std::os::raw::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_uchar,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                *const ::core::ffi::c_uchar,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                *mut ::core::ffi::c_uchar,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
+                ::core::ffi::c_int,
             ) -> cublasStatus_t,
         >,
     ) -> Self {
@@ -4066,20 +3586,20 @@ pub unsafe fn cublasDestroy_v2(handle: cublasHandle_t) -> Result<(), crate::sys:
     let status = unsafe { crate::sys::cublasDestroy_v2(handle) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetVersion_v2(handle: cublasHandle_t) -> Result<i32, crate::sys::cublasStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+pub unsafe fn cublasGetVersion_v2(handle: cublasHandle_t) -> Result<::core::ffi::c_int, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cublasGetVersion_v2(handle, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cublasGetProperty(type_: libraryPropertyType) -> Result<i32, crate::sys::cublasStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+pub unsafe fn cublasGetProperty(type_: libraryPropertyType) -> Result<::core::ffi::c_int, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cublasGetProperty(type_, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
@@ -4143,17 +3663,17 @@ pub unsafe fn cublasSetMathMode(handle: cublasHandle_t, mode: cublasMath_t) -> R
     let status = unsafe { crate::sys::cublasSetMathMode(handle, mode) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetSmCountTarget(handle: cublasHandle_t) -> Result<i32, crate::sys::cublasStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+pub unsafe fn cublasGetSmCountTarget(handle: cublasHandle_t) -> Result<::core::ffi::c_int, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cublasGetSmCountTarget(handle, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cublasSetSmCountTarget(handle: cublasHandle_t, smCountTarget: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSetSmCountTarget(handle, smCountTarget as _) };
+pub unsafe fn cublasSetSmCountTarget(handle: cublasHandle_t, smCountTarget: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetSmCountTarget(handle, smCountTarget) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasGetEmulationStrategy(handle: cublasHandle_t) -> Result<cublasEmulationStrategy_t, crate::sys::cublasStatus_t> {
@@ -4195,37 +3715,37 @@ pub unsafe fn cublasSetFixedPointEmulationMantissaControl(handle: cublasHandle_t
     let status = unsafe { crate::sys::cublasSetFixedPointEmulationMantissaControl(handle, mantissaControl) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t) -> Result<i32, crate::sys::cublasStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+pub unsafe fn cublasGetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t) -> Result<::core::ffi::c_int, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cublasGetFixedPointEmulationMaxMantissaBitCount(handle, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cublasSetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSetFixedPointEmulationMaxMantissaBitCount(handle, maxMantissaBitCount as _) };
+pub unsafe fn cublasSetFixedPointEmulationMaxMantissaBitCount(handle: cublasHandle_t, maxMantissaBitCount: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetFixedPointEmulationMaxMantissaBitCount(handle, maxMantissaBitCount) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t) -> Result<i32, crate::sys::cublasStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+pub unsafe fn cublasGetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t) -> Result<::core::ffi::c_int, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cublasGetFixedPointEmulationMantissaBitOffset(handle, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as i32) }
+        unsafe { Ok(out_1.assume_init() as ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cublasSetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSetFixedPointEmulationMantissaBitOffset(handle, mantissaBitOffset as _) };
+pub unsafe fn cublasSetFixedPointEmulationMantissaBitOffset(handle: cublasHandle_t, mantissaBitOffset: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetFixedPointEmulationMantissaBitOffset(handle, mantissaBitOffset) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t) -> Result<*mut ::std::os::raw::c_int, crate::sys::cublasStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<*mut ::std::os::raw::c_int> = std::mem::MaybeUninit::zeroed();
+pub unsafe fn cublasGetFixedPointEmulationMantissaBitCountPointer(handle: cublasHandle_t) -> Result<*mut ::core::ffi::c_int, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<*mut ::core::ffi::c_int> = std::mem::MaybeUninit::zeroed();
     let status = unsafe { crate::sys::cublasGetFixedPointEmulationMantissaBitCountPointer(handle, out_1.as_mut_ptr() as *mut _) };
     if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-        unsafe { Ok(out_1.assume_init() as *mut ::std::os::raw::c_int) }
+        unsafe { Ok(out_1.assume_init() as *mut ::core::ffi::c_int) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
     }
@@ -4234,14 +3754,14 @@ pub unsafe fn cublasSetFixedPointEmulationMantissaBitCountPointer<T0: types::Cud
     let status = unsafe { crate::sys::cublasSetFixedPointEmulationMantissaBitCountPointer(handle, mantissaBitCount.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetStatusName(status: cublasStatus_t) -> *const ::std::os::raw::c_char {
+pub unsafe fn cublasGetStatusName(status: cublasStatus_t) -> *const ::core::ffi::c_char {
     unsafe { crate::sys::cublasGetStatusName(status) }
 }
-pub unsafe fn cublasGetStatusString(status: cublasStatus_t) -> *const ::std::os::raw::c_char {
+pub unsafe fn cublasGetStatusString(status: cublasStatus_t) -> *const ::core::ffi::c_char {
     unsafe { crate::sys::cublasGetStatusString(status) }
 }
-pub unsafe fn cublasLoggerConfigure<T0: types::CudaAsPtr>(logIsOn: i32, logToStdOut: i32, logToStdErr: i32, logFileName: T0) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasLoggerConfigure(logIsOn as _, logToStdOut as _, logToStdErr as _, logFileName.as_const_ptr() as *const _) };
+pub unsafe fn cublasLoggerConfigure<T0: types::CudaAsPtr>(logIsOn: ::core::ffi::c_int, logToStdOut: ::core::ffi::c_int, logToStdErr: ::core::ffi::c_int, logFileName: T0) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasLoggerConfigure(logIsOn, logToStdOut, logToStdErr, logFileName.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSetLoggerCallback(userCallback: cublasLogCallback) -> Result<(), crate::sys::cublasStatus_t> {
@@ -4257,107 +3777,107 @@ pub unsafe fn cublasGetLoggerCallback() -> Result<cublasLogCallback, crate::sys:
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cublasSetVector<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: i32, elemSize: i32, x: T0, incx: i32, mut devicePtr: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSetVector(n as _, elemSize as _, x.as_const_ptr() as *const _, incx as _, devicePtr.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasSetVector<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut devicePtr: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetVector(n, elemSize, x.as_const_ptr() as *const _, incx, devicePtr.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSetVector_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: i64, elemSize: i64, x: T0, incx: i64, mut devicePtr: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSetVector_64(n, elemSize, x.as_const_ptr() as *const _, incx, devicePtr.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetVector<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: i32, elemSize: i32, x: T0, incx: i32, mut y: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasGetVector(n as _, elemSize as _, x.as_const_ptr() as *const _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasGetVector<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasGetVector(n, elemSize, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasGetVector_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: i64, elemSize: i64, x: T0, incx: i64, mut y: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasGetVector_64(n, elemSize, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSetMatrix<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: i32, cols: i32, elemSize: i32, A: T0, lda: i32, mut B: T1, ldb: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSetMatrix(rows as _, cols as _, elemSize as _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _) };
+pub unsafe fn cublasSetMatrix<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut B: T1, ldb: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetMatrix(rows, cols, elemSize, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSetMatrix_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: i64, cols: i64, elemSize: i64, A: T0, lda: i64, mut B: T1, ldb: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSetMatrix_64(rows, cols, elemSize, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetMatrix<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: i32, cols: i32, elemSize: i32, A: T0, lda: i32, mut B: T1, ldb: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasGetMatrix(rows as _, cols as _, elemSize as _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _) };
+pub unsafe fn cublasGetMatrix<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut B: T1, ldb: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasGetMatrix(rows, cols, elemSize, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasGetMatrix_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: i64, cols: i64, elemSize: i64, A: T0, lda: i64, mut B: T1, ldb: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasGetMatrix_64(rows, cols, elemSize, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSetVectorAsync<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: i32, elemSize: i32, hostPtr: T0, incx: i32, mut devicePtr: T1, incy: i32, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSetVectorAsync(n as _, elemSize as _, hostPtr.as_const_ptr() as *const _, incx as _, devicePtr.as_mut_ptr() as *mut _, incy as _, stream) };
+pub unsafe fn cublasSetVectorAsync<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, hostPtr: T0, incx: ::core::ffi::c_int, mut devicePtr: T1, incy: ::core::ffi::c_int, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetVectorAsync(n, elemSize, hostPtr.as_const_ptr() as *const _, incx, devicePtr.as_mut_ptr() as *mut _, incy, stream) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSetVectorAsync_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: i64, elemSize: i64, hostPtr: T0, incx: i64, mut devicePtr: T1, incy: i64, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSetVectorAsync_64(n, elemSize, hostPtr.as_const_ptr() as *const _, incx, devicePtr.as_mut_ptr() as *mut _, incy, stream) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetVectorAsync<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: i32, elemSize: i32, devicePtr: T0, incx: i32, mut hostPtr: T1, incy: i32, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasGetVectorAsync(n as _, elemSize as _, devicePtr.as_const_ptr() as *const _, incx as _, hostPtr.as_mut_ptr() as *mut _, incy as _, stream) };
+pub unsafe fn cublasGetVectorAsync<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, devicePtr: T0, incx: ::core::ffi::c_int, mut hostPtr: T1, incy: ::core::ffi::c_int, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasGetVectorAsync(n, elemSize, devicePtr.as_const_ptr() as *const _, incx, hostPtr.as_mut_ptr() as *mut _, incy, stream) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasGetVectorAsync_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(n: i64, elemSize: i64, devicePtr: T0, incx: i64, mut hostPtr: T1, incy: i64, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasGetVectorAsync_64(n, elemSize, devicePtr.as_const_ptr() as *const _, incx, hostPtr.as_mut_ptr() as *mut _, incy, stream) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSetMatrixAsync<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: i32, cols: i32, elemSize: i32, A: T0, lda: i32, mut B: T1, ldb: i32, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSetMatrixAsync(rows as _, cols as _, elemSize as _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, stream) };
+pub unsafe fn cublasSetMatrixAsync<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut B: T1, ldb: ::core::ffi::c_int, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetMatrixAsync(rows, cols, elemSize, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb, stream) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSetMatrixAsync_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: i64, cols: i64, elemSize: i64, A: T0, lda: i64, mut B: T1, ldb: i64, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSetMatrixAsync_64(rows, cols, elemSize, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb, stream) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasGetMatrixAsync<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: i32, cols: i32, elemSize: i32, A: T0, lda: i32, mut B: T1, ldb: i32, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasGetMatrixAsync(rows as _, cols as _, elemSize as _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, stream) };
+pub unsafe fn cublasGetMatrixAsync<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: ::core::ffi::c_int, cols: ::core::ffi::c_int, elemSize: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut B: T1, ldb: ::core::ffi::c_int, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasGetMatrixAsync(rows, cols, elemSize, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb, stream) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasGetMatrixAsync_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(rows: i64, cols: i64, elemSize: i64, A: T0, lda: i64, mut B: T1, ldb: i64, stream: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasGetMatrixAsync_64(rows, cols, elemSize, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb, stream) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasXerbla<T0: types::CudaAsPtr>(srName: T0, info: i32) -> () {
-    unsafe { crate::sys::cublasXerbla(srName.as_const_ptr() as *const _, info as _) }
+pub unsafe fn cublasXerbla<T0: types::CudaAsPtr>(srName: T0, info: ::core::ffi::c_int) -> () {
+    unsafe { crate::sys::cublasXerbla(srName.as_const_ptr() as *const _, info) }
 }
-pub unsafe fn cublasNrm2Ex<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, xType: cudaDataType, incx: i32, mut result: T1, resultType: cudaDataType, executionType: cudaDataType) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasNrm2Ex(handle, n as _, x.as_const_ptr() as *const _, xType, incx as _, result.as_mut_ptr() as *mut _, resultType, executionType) };
+pub unsafe fn cublasNrm2Ex<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, xType: cudaDataType, incx: ::core::ffi::c_int, mut result: T1, resultType: cudaDataType, executionType: cudaDataType) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasNrm2Ex(handle, n, x.as_const_ptr() as *const _, xType, incx, result.as_mut_ptr() as *mut _, resultType, executionType) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasNrm2Ex_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, xType: cudaDataType, incx: i64, mut result: T1, resultType: cudaDataType, executionType: cudaDataType) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasNrm2Ex_64(handle, n, x.as_const_ptr() as *const _, xType, incx, result.as_mut_ptr() as *mut _, resultType, executionType) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSnrm2_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSnrm2_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasSnrm2_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSnrm2_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSnrm2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSnrm2_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDnrm2_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDnrm2_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasDnrm2_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDnrm2_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDnrm2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDnrm2_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasScnrm2_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasScnrm2_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasScnrm2_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasScnrm2_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasScnrm2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasScnrm2_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDznrm2_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDznrm2_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasDznrm2_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDznrm2_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDznrm2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
@@ -4366,18 +3886,18 @@ pub unsafe fn cublasDznrm2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
 }
 pub unsafe fn cublasDotEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     x: T0,
     xType: cudaDataType,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     y: T1,
     yType: cudaDataType,
-    incy: i32,
+    incy: ::core::ffi::c_int,
     mut result: T2,
     resultType: cudaDataType,
     executionType: cudaDataType,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDotEx(handle, n as _, x.as_const_ptr() as *const _, xType, incx as _, y.as_const_ptr() as *const _, yType, incy as _, result.as_mut_ptr() as *mut _, resultType, executionType) };
+    let status = unsafe { crate::sys::cublasDotEx(handle, n, x.as_const_ptr() as *const _, xType, incx, y.as_const_ptr() as *const _, yType, incy, result.as_mut_ptr() as *mut _, resultType, executionType) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDotEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
@@ -4398,18 +3918,18 @@ pub unsafe fn cublasDotEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
 }
 pub unsafe fn cublasDotcEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     x: T0,
     xType: cudaDataType,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     y: T1,
     yType: cudaDataType,
-    incy: i32,
+    incy: ::core::ffi::c_int,
     mut result: T2,
     resultType: cudaDataType,
     executionType: cudaDataType,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDotcEx(handle, n as _, x.as_const_ptr() as *const _, xType, incx as _, y.as_const_ptr() as *const _, yType, incy as _, result.as_mut_ptr() as *mut _, resultType, executionType) };
+    let status = unsafe { crate::sys::cublasDotcEx(handle, n, x.as_const_ptr() as *const _, xType, incx, y.as_const_ptr() as *const _, yType, incy, result.as_mut_ptr() as *mut _, resultType, executionType) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDotcEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
@@ -4428,104 +3948,104 @@ pub unsafe fn cublasDotcEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     let status = unsafe { crate::sys::cublasDotcEx_64(handle, n, x.as_const_ptr() as *const _, xType, incx, y.as_const_ptr() as *const _, yType, incy, result.as_mut_ptr() as *mut _, resultType, executionType) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSdot_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, y: T1, incy: i32, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSdot_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasSdot_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, y: T1, incy: ::core::ffi::c_int, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSdot_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSdot_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, y: T1, incy: i64, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSdot_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDdot_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, y: T1, incy: i32, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDdot_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasDdot_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, y: T1, incy: ::core::ffi::c_int, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDdot_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDdot_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, y: T1, incy: i64, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDdot_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCdotu_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, y: T1, incy: i32, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCdotu_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasCdotu_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, y: T1, incy: ::core::ffi::c_int, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCdotu_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCdotu_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, y: T1, incy: i64, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCdotu_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCdotc_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, y: T1, incy: i32, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCdotc_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasCdotc_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, y: T1, incy: ::core::ffi::c_int, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCdotc_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCdotc_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, y: T1, incy: i64, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCdotc_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZdotu_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, y: T1, incy: i32, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZdotu_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasZdotu_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, y: T1, incy: ::core::ffi::c_int, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZdotu_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZdotu_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, y: T1, incy: i64, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZdotu_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZdotc_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, y: T1, incy: i32, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZdotc_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasZdotc_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, y: T1, incy: ::core::ffi::c_int, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZdotc_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZdotc_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, y: T1, incy: i64, mut result: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZdotc_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasScalEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, alphaType: cudaDataType, mut x: T1, xType: cudaDataType, incx: i32, executionType: cudaDataType) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasScalEx(handle, n as _, alpha.as_const_ptr() as *const _, alphaType, x.as_mut_ptr() as *mut _, xType, incx as _, executionType) };
+pub unsafe fn cublasScalEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, alphaType: cudaDataType, mut x: T1, xType: cudaDataType, incx: ::core::ffi::c_int, executionType: cudaDataType) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasScalEx(handle, n, alpha.as_const_ptr() as *const _, alphaType, x.as_mut_ptr() as *mut _, xType, incx, executionType) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasScalEx_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, alphaType: cudaDataType, mut x: T1, xType: cudaDataType, incx: i64, executionType: cudaDataType) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasScalEx_64(handle, n, alpha.as_const_ptr() as *const _, alphaType, x.as_mut_ptr() as *mut _, xType, incx, executionType) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSscal_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasSscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSscal_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSscal_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSscal_v2_64(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDscal_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasDscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDscal_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDscal_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDscal_v2_64(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCscal_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasCscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCscal_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCscal_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCscal_v2_64(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCsscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCsscal_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasCsscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCsscal_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCsscal_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCsscal_v2_64(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZscal_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasZscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZscal_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZscal_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZscal_v2_64(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZdscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZdscal_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasZdscal_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZdscal_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZdscal_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
@@ -4534,18 +4054,18 @@ pub unsafe fn cublasZdscal_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
 }
 pub unsafe fn cublasAxpyEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     alphaType: cudaDataType,
     x: T1,
     xType: cudaDataType,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     mut y: T2,
     yType: cudaDataType,
-    incy: i32,
+    incy: ::core::ffi::c_int,
     executiontype: cudaDataType,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasAxpyEx(handle, n as _, alpha.as_const_ptr() as *const _, alphaType, x.as_const_ptr() as *const _, xType, incx as _, y.as_mut_ptr() as *mut _, yType, incy as _, executiontype) };
+    let status = unsafe { crate::sys::cublasAxpyEx(handle, n, alpha.as_const_ptr() as *const _, alphaType, x.as_const_ptr() as *const _, xType, incx, y.as_mut_ptr() as *mut _, yType, incy, executiontype) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasAxpyEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
@@ -4564,280 +4084,298 @@ pub unsafe fn cublasAxpyEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     let status = unsafe { crate::sys::cublasAxpyEx_64(handle, n, alpha.as_const_ptr() as *const _, alphaType, x.as_const_ptr() as *const _, xType, incx, y.as_mut_ptr() as *mut _, yType, incy, executiontype) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSaxpy_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, x: T1, incx: i32, mut y: T2, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSaxpy_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasSaxpy_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut y: T2, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSaxpy_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSaxpy_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, x: T1, incx: i64, mut y: T2, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSaxpy_v2_64(handle, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDaxpy_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, x: T1, incx: i32, mut y: T2, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDaxpy_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasDaxpy_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut y: T2, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDaxpy_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDaxpy_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, x: T1, incx: i64, mut y: T2, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDaxpy_v2_64(handle, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCaxpy_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, x: T1, incx: i32, mut y: T2, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCaxpy_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasCaxpy_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut y: T2, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCaxpy_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCaxpy_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, x: T1, incx: i64, mut y: T2, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCaxpy_v2_64(handle, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZaxpy_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, alpha: T0, x: T1, incx: i32, mut y: T2, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZaxpy_v2(handle, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasZaxpy_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut y: T2, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZaxpy_v2(handle, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZaxpy_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, alpha: T0, x: T1, incx: i64, mut y: T2, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZaxpy_v2_64(handle, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCopyEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, xType: cudaDataType, incx: i32, mut y: T1, yType: cudaDataType, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCopyEx(handle, n as _, x.as_const_ptr() as *const _, xType, incx as _, y.as_mut_ptr() as *mut _, yType, incy as _) };
+pub unsafe fn cublasCopyEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, xType: cudaDataType, incx: ::core::ffi::c_int, mut y: T1, yType: cudaDataType, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCopyEx(handle, n, x.as_const_ptr() as *const _, xType, incx, y.as_mut_ptr() as *mut _, yType, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCopyEx_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, xType: cudaDataType, incx: i64, mut y: T1, yType: cudaDataType, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCopyEx_64(handle, n, x.as_const_ptr() as *const _, xType, incx, y.as_mut_ptr() as *mut _, yType, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasScopy_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut y: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasScopy_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasScopy_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasScopy_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasScopy_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut y: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasScopy_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDcopy_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut y: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDcopy_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasDcopy_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDcopy_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDcopy_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut y: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDcopy_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCcopy_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut y: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCcopy_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasCcopy_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCcopy_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCcopy_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut y: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCcopy_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZcopy_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut y: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZcopy_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasZcopy_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZcopy_v2(handle, n, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZcopy_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut y: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZcopy_v2_64(handle, n, x.as_const_ptr() as *const _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSswap_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSswap_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasSswap_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSswap_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSswap_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSswap_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDswap_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDswap_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasDswap_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDswap_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDswap_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDswap_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCswap_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCswap_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasCswap_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCswap_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCswap_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCswap_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZswap_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZswap_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _) };
+pub unsafe fn cublasZswap_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZswap_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZswap_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZswap_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSwapEx<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, mut x: T0, xType: cudaDataType, incx: i32, mut y: T1, yType: cudaDataType, incy: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSwapEx(handle, n as _, x.as_mut_ptr() as *mut _, xType, incx as _, y.as_mut_ptr() as *mut _, yType, incy as _) };
+pub unsafe fn cublasSwapEx<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, xType: cudaDataType, incx: ::core::ffi::c_int, mut y: T1, yType: cudaDataType, incy: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSwapEx(handle, n, x.as_mut_ptr() as *mut _, xType, incx, y.as_mut_ptr() as *mut _, yType, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSwapEx_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, mut x: T0, xType: cudaDataType, incx: i64, mut y: T1, yType: cudaDataType, incy: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSwapEx_64(handle, n, x.as_mut_ptr() as *mut _, xType, incx, y.as_mut_ptr() as *mut _, yType, incy) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIsamax_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIsamax_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIsamax_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIsamax_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIsamax_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIsamax_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIdamax_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIdamax_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIdamax_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIdamax_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIdamax_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIdamax_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIcamax_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIcamax_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIcamax_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIcamax_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIcamax_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIcamax_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIzamax_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIzamax_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIzamax_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIzamax_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIzamax_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIzamax_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIamaxEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, xType: cudaDataType, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIamaxEx(handle, n as _, x.as_const_ptr() as *const _, xType, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIamaxEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, xType: cudaDataType, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIamaxEx(handle, n, x.as_const_ptr() as *const _, xType, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIamaxEx_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, xType: cudaDataType, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIamaxEx_64(handle, n, x.as_const_ptr() as *const _, xType, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIsamin_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIsamin_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIsamin_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIsamin_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIsamin_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIsamin_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIdamin_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIdamin_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIdamin_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIdamin_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIdamin_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIdamin_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIcamin_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIcamin_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIcamin_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIcamin_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIcamin_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIcamin_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIzamin_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIzamin_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIzamin_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIzamin_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIzamin_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIzamin_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasIaminEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, xType: cudaDataType, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasIaminEx(handle, n as _, x.as_const_ptr() as *const _, xType, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasIaminEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, xType: cudaDataType, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasIaminEx(handle, n, x.as_const_ptr() as *const _, xType, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasIaminEx_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, xType: cudaDataType, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasIaminEx_64(handle, n, x.as_const_ptr() as *const _, xType, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasAsumEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, xType: cudaDataType, incx: i32, mut result: T1, resultType: cudaDataType, executiontype: cudaDataType) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasAsumEx(handle, n as _, x.as_const_ptr() as *const _, xType, incx as _, result.as_mut_ptr() as *mut _, resultType, executiontype) };
+pub unsafe fn cublasAsumEx<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, xType: cudaDataType, incx: ::core::ffi::c_int, mut result: T1, resultType: cudaDataType, executiontype: cudaDataType) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasAsumEx(handle, n, x.as_const_ptr() as *const _, xType, incx, result.as_mut_ptr() as *mut _, resultType, executiontype) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasAsumEx_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, xType: cudaDataType, incx: i64, mut result: T1, resultType: cudaDataType, executiontype: cudaDataType) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasAsumEx_64(handle, n, x.as_const_ptr() as *const _, xType, incx, result.as_mut_ptr() as *mut _, resultType, executiontype) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSasum_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSasum_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasSasum_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSasum_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSasum_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSasum_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDasum_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDasum_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasDasum_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDasum_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDasum_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDasum_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasScasum_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasScasum_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasScasum_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasScasum_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasScasum_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasScasum_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDzasum_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, x: T0, incx: i32, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDzasum_v2(handle, n as _, x.as_const_ptr() as *const _, incx as _, result.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasDzasum_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, x: T0, incx: ::core::ffi::c_int, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDzasum_v2(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDzasum_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i64, x: T0, incx: i64, mut result: T1) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDzasum_v2_64(handle, n, x.as_const_ptr() as *const _, incx, result.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSrot_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
+pub unsafe fn cublasSrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSrot_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSrot_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSrot_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDrot_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
+pub unsafe fn cublasDrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDrot_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDrot_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDrot_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCrot_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
+pub unsafe fn cublasCrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCrot_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCrot_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCrot_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCsrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCsrot_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
+pub unsafe fn cublasCsrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    mut x: T0,
+    incx: ::core::ffi::c_int,
+    mut y: T1,
+    incy: ::core::ffi::c_int,
+    c: T2,
+    s: T3,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCsrot_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCsrot_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCsrot_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZrot_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
+pub unsafe fn cublasZrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZrot_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZrot_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZrot_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZdrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZdrot_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
+pub unsafe fn cublasZdrot_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    mut x: T0,
+    incx: ::core::ffi::c_int,
+    mut y: T1,
+    incy: ::core::ffi::c_int,
+    c: T2,
+    s: T3,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZdrot_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZdrot_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64, c: T2, s: T3) -> Result<(), crate::sys::cublasStatus_t> {
@@ -4846,34 +4384,19 @@ pub unsafe fn cublasZdrot_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr
 }
 pub unsafe fn cublasRotEx<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(
     handle: cublasHandle_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     mut x: T0,
     xType: cudaDataType,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     mut y: T1,
     yType: cudaDataType,
-    incy: i32,
+    incy: ::core::ffi::c_int,
     c: T2,
     s: T3,
     csType: cudaDataType,
     executiontype: cudaDataType,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasRotEx(
-            handle,
-            n as _,
-            x.as_mut_ptr() as *mut _,
-            xType,
-            incx as _,
-            y.as_mut_ptr() as *mut _,
-            yType,
-            incy as _,
-            c.as_const_ptr() as *const _,
-            s.as_const_ptr() as *const _,
-            csType,
-            executiontype,
-        )
-    };
+    let status = unsafe { crate::sys::cublasRotEx(handle, n, x.as_mut_ptr() as *mut _, xType, incx, y.as_mut_ptr() as *mut _, yType, incy, c.as_const_ptr() as *const _, s.as_const_ptr() as *const _, csType, executiontype) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasRotEx_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(
@@ -4922,16 +4445,16 @@ pub unsafe fn cublasRotgEx<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2:
     let status = unsafe { crate::sys::cublasRotgEx(handle, a.as_mut_ptr() as *mut _, b.as_mut_ptr() as *mut _, abType, c.as_mut_ptr() as *mut _, s.as_mut_ptr() as *mut _, csType, executiontype) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSrotm_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32, param: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSrotm_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _, param.as_const_ptr() as *const _) };
+pub unsafe fn cublasSrotm_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int, param: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSrotm_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, param.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSrotm_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64, param: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSrotm_v2_64(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, param.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDrotm_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr>(handle: cublasHandle_t, n: i32, mut x: T0, incx: i32, mut y: T1, incy: i32, param: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDrotm_v2(handle, n as _, x.as_mut_ptr() as *mut _, incx as _, y.as_mut_ptr() as *mut _, incy as _, param.as_const_ptr() as *const _) };
+pub unsafe fn cublasDrotm_v2<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, mut x: T0, incx: ::core::ffi::c_int, mut y: T1, incy: ::core::ffi::c_int, param: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDrotm_v2(handle, n, x.as_mut_ptr() as *mut _, incx, y.as_mut_ptr() as *mut _, incy, param.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDrotm_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr>(handle: cublasHandle_t, n: i64, mut x: T0, incx: i64, mut y: T1, incy: i64, param: T2) -> Result<(), crate::sys::cublasStatus_t> {
@@ -4940,18 +4463,18 @@ pub unsafe fn cublasDrotm_v2_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr
 }
 pub unsafe fn cublasRotmEx<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr>(
     handle: cublasHandle_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     mut x: T0,
     xType: cudaDataType,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     mut y: T1,
     yType: cudaDataType,
-    incy: i32,
+    incy: ::core::ffi::c_int,
     param: T2,
     paramType: cudaDataType,
     executiontype: cudaDataType,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasRotmEx(handle, n as _, x.as_mut_ptr() as *mut _, xType, incx as _, y.as_mut_ptr() as *mut _, yType, incy as _, param.as_const_ptr() as *const _, paramType, executiontype) };
+    let status = unsafe { crate::sys::cublasRotmEx(handle, n, x.as_mut_ptr() as *mut _, xType, incx, y.as_mut_ptr() as *mut _, yType, incy, param.as_const_ptr() as *const _, paramType, executiontype) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasRotmEx_64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr>(
@@ -5013,31 +4536,31 @@ pub unsafe fn cublasRotmgEx<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2
 pub unsafe fn cublasSgemv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgemv_v2(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5077,31 +4600,31 @@ pub unsafe fn cublasSgemv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasDgemv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDgemv_v2(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5141,31 +4664,31 @@ pub unsafe fn cublasDgemv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasCgemv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemv_v2(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5205,31 +4728,31 @@ pub unsafe fn cublasCgemv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasZgemv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgemv_v2(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5269,35 +4792,35 @@ pub unsafe fn cublasZgemv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasSgbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
-    kl: i32,
-    ku: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kl: ::core::ffi::c_int,
+    ku: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgbmv_v2(
             handle,
             trans,
-            m as _,
-            n as _,
-            kl as _,
-            ku as _,
+            m,
+            n,
+            kl,
+            ku,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5341,35 +4864,35 @@ pub unsafe fn cublasSgbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasDgbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
-    kl: i32,
-    ku: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kl: ::core::ffi::c_int,
+    ku: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDgbmv_v2(
             handle,
             trans,
-            m as _,
-            n as _,
-            kl as _,
-            ku as _,
+            m,
+            n,
+            kl,
+            ku,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5413,35 +4936,35 @@ pub unsafe fn cublasDgbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasCgbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
-    kl: i32,
-    ku: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kl: ::core::ffi::c_int,
+    ku: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgbmv_v2(
             handle,
             trans,
-            m as _,
-            n as _,
-            kl as _,
-            ku as _,
+            m,
+            n,
+            kl,
+            ku,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5485,35 +5008,35 @@ pub unsafe fn cublasCgbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasZgbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
-    kl: i32,
-    ku: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    kl: ::core::ffi::c_int,
+    ku: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgbmv_v2(
             handle,
             trans,
-            m as _,
-            n as _,
-            kl as _,
-            ku as _,
+            m,
+            n,
+            kl,
+            ku,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5554,192 +5077,360 @@ pub unsafe fn cublasZgbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasStrmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStrmv_v2(handle, uplo, trans, diag, n as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasStrmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasStrmv_v2(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasStrmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasStrmv_v2_64(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDtrmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtrmv_v2(handle, uplo, trans, diag, n as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasDtrmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDtrmv_v2(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDtrmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDtrmv_v2_64(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCtrmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtrmv_v2(handle, uplo, trans, diag, n as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasCtrmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCtrmv_v2(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCtrmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCtrmv_v2_64(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZtrmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtrmv_v2(handle, uplo, trans, diag, n as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasZtrmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZtrmv_v2(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZtrmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZtrmv_v2_64(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasStbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, k: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStbmv_v2(handle, uplo, trans, diag, n as _, k as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasStbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasStbmv_v2(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasStbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, k: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasStbmv_v2_64(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDtbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, k: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtbmv_v2(handle, uplo, trans, diag, n as _, k as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasDtbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDtbmv_v2(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDtbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, k: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDtbmv_v2_64(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCtbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, k: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtbmv_v2(handle, uplo, trans, diag, n as _, k as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasCtbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCtbmv_v2(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCtbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, k: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCtbmv_v2_64(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZtbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, k: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtbmv_v2(handle, uplo, trans, diag, n as _, k as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasZtbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZtbmv_v2(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZtbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, k: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZtbmv_v2_64(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasStpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, AP: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStpmv_v2(handle, uplo, trans, diag, n as _, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasStpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasStpmv_v2(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasStpmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, AP: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasStpmv_v2_64(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDtpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, AP: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtpmv_v2(handle, uplo, trans, diag, n as _, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasDtpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDtpmv_v2(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDtpmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, AP: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDtpmv_v2_64(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCtpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, AP: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtpmv_v2(handle, uplo, trans, diag, n as _, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasCtpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCtpmv_v2(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCtpmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, AP: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCtpmv_v2_64(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZtpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, AP: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtpmv_v2(handle, uplo, trans, diag, n as _, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasZtpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZtpmv_v2(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZtpmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, AP: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZtpmv_v2_64(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasStrsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStrsv_v2(handle, uplo, trans, diag, n as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasStrsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasStrsv_v2(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasStrsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasStrsv_v2_64(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDtrsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtrsv_v2(handle, uplo, trans, diag, n as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasDtrsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDtrsv_v2(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDtrsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDtrsv_v2_64(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCtrsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtrsv_v2(handle, uplo, trans, diag, n as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasCtrsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCtrsv_v2(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCtrsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCtrsv_v2_64(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZtrsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtrsv_v2(handle, uplo, trans, diag, n as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasZtrsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZtrsv_v2(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZtrsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZtrsv_v2_64(handle, uplo, trans, diag, n, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasStpsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, AP: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStpsv_v2(handle, uplo, trans, diag, n as _, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasStpsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasStpsv_v2(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasStpsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, AP: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasStpsv_v2_64(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDtpsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, AP: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtpsv_v2(handle, uplo, trans, diag, n as _, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasDtpsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDtpsv_v2(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDtpsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, AP: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDtpsv_v2_64(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCtpsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, AP: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtpsv_v2(handle, uplo, trans, diag, n as _, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasCtpsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCtpsv_v2(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCtpsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, AP: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCtpsv_v2_64(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZtpsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, AP: T0, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtpsv_v2(handle, uplo, trans, diag, n as _, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasZtpsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: ::core::ffi::c_int, AP: T0, mut x: T1, incx: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZtpsv_v2(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZtpsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, AP: T0, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZtpsv_v2_64(handle, uplo, trans, diag, n, AP.as_const_ptr() as *const _, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasStbsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, k: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStbsv_v2(handle, uplo, trans, diag, n as _, k as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasStbsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasStbsv_v2(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasStbsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, k: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasStbsv_v2_64(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDtbsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, k: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtbsv_v2(handle, uplo, trans, diag, n as _, k as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasDtbsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDtbsv_v2(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDtbsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, k: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDtbsv_v2_64(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCtbsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, k: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtbsv_v2(handle, uplo, trans, diag, n as _, k as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasCtbsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCtbsv_v2(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCtbsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, k: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCtbsv_v2_64(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZtbsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i32, k: i32, A: T0, lda: i32, mut x: T1, incx: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtbsv_v2(handle, uplo, trans, diag, n as _, k as _, A.as_const_ptr() as *const _, lda as _, x.as_mut_ptr() as *mut _, incx as _) };
+pub unsafe fn cublasZtbsv_v2<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    mut x: T1,
+    incx: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZtbsv_v2(handle, uplo, trans, diag, n, k, A.as_const_ptr() as *const _, lda, x.as_mut_ptr() as *mut _, incx) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZtbsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, trans: cublasOperation_t, diag: cublasDiagType_t, n: i64, k: i64, A: T0, lda: i64, mut x: T1, incx: i64) -> Result<(), crate::sys::cublasStatus_t> {
@@ -5749,29 +5440,29 @@ pub unsafe fn cublasZtbsv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(h
 pub unsafe fn cublasSsymv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSsymv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5809,29 +5500,29 @@ pub unsafe fn cublasSsymv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasDsymv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDsymv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5869,29 +5560,29 @@ pub unsafe fn cublasDsymv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasCsymv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCsymv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5929,29 +5620,29 @@ pub unsafe fn cublasCsymv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasZsymv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZsymv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -5989,29 +5680,29 @@ pub unsafe fn cublasZsymv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasChemv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasChemv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6049,29 +5740,29 @@ pub unsafe fn cublasChemv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasZhemv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZhemv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6109,31 +5800,31 @@ pub unsafe fn cublasZhemv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasSsbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSsbmv_v2(
             handle,
             uplo,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6173,31 +5864,31 @@ pub unsafe fn cublasSsbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasDsbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDsbmv_v2(
             handle,
             uplo,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6237,31 +5928,31 @@ pub unsafe fn cublasDsbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasChbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasChbmv_v2(
             handle,
             uplo,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6301,31 +5992,31 @@ pub unsafe fn cublasChbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasZhbmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZhbmv_v2(
             handle,
             uplo,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6365,27 +6056,27 @@ pub unsafe fn cublasZhbmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasSspmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     AP: T1,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSspmv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             AP.as_const_ptr() as *const _,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6421,27 +6112,27 @@ pub unsafe fn cublasSspmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasDspmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     AP: T1,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDspmv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             AP.as_const_ptr() as *const _,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6477,27 +6168,27 @@ pub unsafe fn cublasDspmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasChpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     AP: T1,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasChpmv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             AP.as_const_ptr() as *const _,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6533,27 +6224,27 @@ pub unsafe fn cublasChpmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasZhpmv_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
-    n: i32,
+    n: ::core::ffi::c_int,
     alpha: T0,
     AP: T1,
     x: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     mut y: T4,
-    incy: i32,
+    incy: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZhpmv_v2(
             handle,
             uplo,
-            n as _,
+            n,
             alpha.as_const_ptr() as *const _,
             AP.as_const_ptr() as *const _,
             x.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
+            incy,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6586,208 +6277,380 @@ pub unsafe fn cublasZhpmv_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSger_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSger_v2(handle, m as _, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasSger_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSger_v2(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSger_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i64, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSger_v2_64(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDger_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDger_v2(handle, m as _, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasDger_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDger_v2(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDger_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i64, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDger_v2_64(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCgeru_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCgeru_v2(handle, m as _, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasCgeru_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCgeru_v2(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCgeru_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i64, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCgeru_v2_64(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCgerc_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCgerc_v2(handle, m as _, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasCgerc_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCgerc_v2(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCgerc_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i64, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCgerc_v2_64(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZgeru_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZgeru_v2(handle, m as _, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasZgeru_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZgeru_v2(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZgeru_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i64, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZgeru_v2_64(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZgerc_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZgerc_v2(handle, m as _, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasZgerc_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZgerc_v2(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZgerc_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i64, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZgerc_v2_64(handle, m, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSsyr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut A: T2, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSsyr_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasSsyr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut A: T2, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSsyr_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSsyr_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut A: T2, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSsyr_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDsyr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut A: T2, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDsyr_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasDsyr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut A: T2, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDsyr_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDsyr_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut A: T2, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDsyr_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCsyr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut A: T2, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCsyr_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasCsyr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut A: T2, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCsyr_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCsyr_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut A: T2, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCsyr_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZsyr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut A: T2, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZsyr_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasZsyr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut A: T2, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZsyr_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZsyr_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut A: T2, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZsyr_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCher_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut A: T2, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCher_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasCher_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut A: T2, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCher_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCher_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut A: T2, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCher_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZher_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut A: T2, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZher_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasZher_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut A: T2, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZher_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZher_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut A: T2, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZher_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSspr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSspr_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasSspr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSspr_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSspr_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSspr_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDspr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDspr_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasDspr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDspr_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDspr_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDspr_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasChpr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasChpr_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasChpr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasChpr_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasChpr_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasChpr_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZhpr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZhpr_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasZhpr_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, alpha: T0, x: T1, incx: ::core::ffi::c_int, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZhpr_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZhpr_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, mut AP: T2) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZhpr_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSsyr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSsyr2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasSsyr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSsyr2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSsyr2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSsyr2_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDsyr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDsyr2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasDsyr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDsyr2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDsyr2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDsyr2_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCsyr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCsyr2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasCsyr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCsyr2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCsyr2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCsyr2_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZsyr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZsyr2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasZsyr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZsyr2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZsyr2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZsyr2_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCher2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCher2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasCher2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCher2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCher2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCher2_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZher2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut A: T3, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZher2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasZher2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut A: T3,
+    lda: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZher2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZher2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut A: T3, lda: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZher2_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSspr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut AP: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSspr2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasSspr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut AP: T3,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSspr2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSspr2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut AP: T3) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSspr2_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDspr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut AP: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDspr2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasDspr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut AP: T3,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDspr2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDspr2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut AP: T3) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDspr2_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasChpr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut AP: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasChpr2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasChpr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut AP: T3,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasChpr2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasChpr2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut AP: T3) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasChpr2_v2_64(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZhpr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, alpha: T0, x: T1, incx: i32, y: T2, incy: i32, mut AP: T3) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZhpr2_v2(handle, uplo, n as _, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx as _, y.as_const_ptr() as *const _, incy as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasZhpr2_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: ::core::ffi::c_int,
+    alpha: T0,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    y: T2,
+    incy: ::core::ffi::c_int,
+    mut AP: T3,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZhpr2_v2(handle, uplo, n, alpha.as_const_ptr() as *const _, x.as_const_ptr() as *const _, incx, y.as_const_ptr() as *const _, incy, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZhpr2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i64, alpha: T0, x: T1, incx: i64, y: T2, incy: i64, mut AP: T3) -> Result<(), crate::sys::cublasStatus_t> {
@@ -6797,33 +6660,33 @@ pub unsafe fn cublasZhpr2_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: 
 pub unsafe fn cublasSgemvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     xarray: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     yarray: T4,
-    incy: i32,
-    batchCount: i32,
+    incy: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgemvBatched(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             xarray.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             yarray.as_const_ptr() as *const _,
-            incy as _,
-            batchCount as _,
+            incy,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6865,33 +6728,33 @@ pub unsafe fn cublasSgemvBatched_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, 
 pub unsafe fn cublasDgemvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     xarray: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     yarray: T4,
-    incy: i32,
-    batchCount: i32,
+    incy: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDgemvBatched(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             xarray.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             yarray.as_const_ptr() as *const _,
-            incy as _,
-            batchCount as _,
+            incy,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -6933,33 +6796,33 @@ pub unsafe fn cublasDgemvBatched_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, 
 pub unsafe fn cublasCgemvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     xarray: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     yarray: T4,
-    incy: i32,
-    batchCount: i32,
+    incy: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemvBatched(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             xarray.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             yarray.as_const_ptr() as *const _,
-            incy as _,
-            batchCount as _,
+            incy,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7001,33 +6864,33 @@ pub unsafe fn cublasCgemvBatched_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, 
 pub unsafe fn cublasZgemvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     xarray: T2,
-    incx: i32,
+    incx: ::core::ffi::c_int,
     beta: T3,
     yarray: T4,
-    incy: i32,
-    batchCount: i32,
+    incy: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgemvBatched(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             xarray.as_const_ptr() as *const _,
-            incx as _,
+            incx,
             beta.as_const_ptr() as *const _,
             yarray.as_const_ptr() as *const _,
-            incy as _,
-            batchCount as _,
+            incy,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7069,39 +6932,39 @@ pub unsafe fn cublasZgemvBatched_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, 
 pub unsafe fn cublasSgemvStridedBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     x: T2,
-    incx: i32,
-    stridex: i64,
+    incx: ::core::ffi::c_int,
+    stridex: ::core::ffi::c_longlong,
     beta: T3,
     mut y: T4,
-    incy: i32,
-    stridey: i64,
-    batchCount: i32,
+    incy: ::core::ffi::c_int,
+    stridey: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgemvStridedBatched(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             x.as_const_ptr() as *const _,
-            incx as _,
-            stridex as _,
+            incx,
+            stridex,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
-            stridey as _,
-            batchCount as _,
+            incy,
+            stridey,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7114,14 +6977,14 @@ pub unsafe fn cublasSgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
     alpha: T0,
     A: T1,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     x: T2,
     incx: i64,
-    stridex: i64,
+    stridex: ::core::ffi::c_longlong,
     beta: T3,
     mut y: T4,
     incy: i64,
-    stridey: i64,
+    stridey: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -7133,14 +6996,14 @@ pub unsafe fn cublasSgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             lda,
-            strideA as _,
+            strideA,
             x.as_const_ptr() as *const _,
             incx,
-            stridex as _,
+            stridex,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
             incy,
-            stridey as _,
+            stridey,
             batchCount,
         )
     };
@@ -7149,39 +7012,39 @@ pub unsafe fn cublasSgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
 pub unsafe fn cublasDgemvStridedBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     x: T2,
-    incx: i32,
-    stridex: i64,
+    incx: ::core::ffi::c_int,
+    stridex: ::core::ffi::c_longlong,
     beta: T3,
     mut y: T4,
-    incy: i32,
-    stridey: i64,
-    batchCount: i32,
+    incy: ::core::ffi::c_int,
+    stridey: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDgemvStridedBatched(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             x.as_const_ptr() as *const _,
-            incx as _,
-            stridex as _,
+            incx,
+            stridex,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
-            stridey as _,
-            batchCount as _,
+            incy,
+            stridey,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7194,14 +7057,14 @@ pub unsafe fn cublasDgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
     alpha: T0,
     A: T1,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     x: T2,
     incx: i64,
-    stridex: i64,
+    stridex: ::core::ffi::c_longlong,
     beta: T3,
     mut y: T4,
     incy: i64,
-    stridey: i64,
+    stridey: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -7213,14 +7076,14 @@ pub unsafe fn cublasDgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             lda,
-            strideA as _,
+            strideA,
             x.as_const_ptr() as *const _,
             incx,
-            stridex as _,
+            stridex,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
             incy,
-            stridey as _,
+            stridey,
             batchCount,
         )
     };
@@ -7229,39 +7092,39 @@ pub unsafe fn cublasDgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
 pub unsafe fn cublasCgemvStridedBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     x: T2,
-    incx: i32,
-    stridex: i64,
+    incx: ::core::ffi::c_int,
+    stridex: ::core::ffi::c_longlong,
     beta: T3,
     mut y: T4,
-    incy: i32,
-    stridey: i64,
-    batchCount: i32,
+    incy: ::core::ffi::c_int,
+    stridey: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemvStridedBatched(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             x.as_const_ptr() as *const _,
-            incx as _,
-            stridex as _,
+            incx,
+            stridex,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
-            stridey as _,
-            batchCount as _,
+            incy,
+            stridey,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7274,14 +7137,14 @@ pub unsafe fn cublasCgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
     alpha: T0,
     A: T1,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     x: T2,
     incx: i64,
-    stridex: i64,
+    stridex: ::core::ffi::c_longlong,
     beta: T3,
     mut y: T4,
     incy: i64,
-    stridey: i64,
+    stridey: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -7293,14 +7156,14 @@ pub unsafe fn cublasCgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             lda,
-            strideA as _,
+            strideA,
             x.as_const_ptr() as *const _,
             incx,
-            stridex as _,
+            stridex,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
             incy,
-            stridey as _,
+            stridey,
             batchCount,
         )
     };
@@ -7309,39 +7172,39 @@ pub unsafe fn cublasCgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
 pub unsafe fn cublasZgemvStridedBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     x: T2,
-    incx: i32,
-    stridex: i64,
+    incx: ::core::ffi::c_int,
+    stridex: ::core::ffi::c_longlong,
     beta: T3,
     mut y: T4,
-    incy: i32,
-    stridey: i64,
-    batchCount: i32,
+    incy: ::core::ffi::c_int,
+    stridey: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgemvStridedBatched(
             handle,
             trans,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             x.as_const_ptr() as *const _,
-            incx as _,
-            stridex as _,
+            incx,
+            stridex,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
-            incy as _,
-            stridey as _,
-            batchCount as _,
+            incy,
+            stridey,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7354,14 +7217,14 @@ pub unsafe fn cublasZgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
     alpha: T0,
     A: T1,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     x: T2,
     incx: i64,
-    stridex: i64,
+    stridex: ::core::ffi::c_longlong,
     beta: T3,
     mut y: T4,
     incy: i64,
-    stridey: i64,
+    stridey: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -7373,14 +7236,14 @@ pub unsafe fn cublasZgemvStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             lda,
-            strideA as _,
+            strideA,
             x.as_const_ptr() as *const _,
             incx,
-            stridex as _,
+            stridex,
             beta.as_const_ptr() as *const _,
             y.as_mut_ptr() as *mut _,
             incy,
-            stridey as _,
+            stridey,
             batchCount,
         )
     };
@@ -7390,34 +7253,34 @@ pub unsafe fn cublasSgemm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgemm_v2(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7462,34 +7325,34 @@ pub unsafe fn cublasDgemm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDgemm_v2(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7534,34 +7397,34 @@ pub unsafe fn cublasCgemm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemm_v2(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7606,34 +7469,34 @@ pub unsafe fn cublasCgemm3m<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: type
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemm3m(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7678,40 +7541,40 @@ pub unsafe fn cublasCgemm3mEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
     Atype: cudaDataType,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
     Btype: cudaDataType,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
     Ctype: cudaDataType,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemm3mEx(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             Atype,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
             Btype,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             Ctype,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7762,34 +7625,34 @@ pub unsafe fn cublasZgemm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgemm_v2(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7834,34 +7697,34 @@ pub unsafe fn cublasZgemm3m<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: type
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgemm3m(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7906,40 +7769,40 @@ pub unsafe fn cublasSgemmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: type
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
     Atype: cudaDataType,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
     Btype: cudaDataType,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
     Ctype: cudaDataType,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgemmEx(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             Atype,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
             Btype,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             Ctype,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -7990,20 +7853,20 @@ pub unsafe fn cublasGemmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
     Atype: cudaDataType,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
     Btype: cudaDataType,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
     Ctype: cudaDataType,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
     computeType: cublasComputeType_t,
     algo: cublasGemmAlgo_t,
 ) -> Result<(), crate::sys::cublasStatus_t> {
@@ -8012,20 +7875,20 @@ pub unsafe fn cublasGemmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             Atype,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
             Btype,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             Ctype,
-            ldc as _,
+            ldc,
             computeType,
             algo,
         )
@@ -8082,40 +7945,40 @@ pub unsafe fn cublasCgemmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: type
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
     Atype: cudaDataType,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
     Btype: cudaDataType,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
     Ctype: cudaDataType,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemmEx(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             Atype,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
             Btype,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             Ctype,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -8166,16 +8029,16 @@ pub unsafe fn cublasSsyrk_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSsyrk_v2(handle, uplo, trans, n as _, k as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc as _) };
+    let status = unsafe { crate::sys::cublasSsyrk_v2(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSsyrk_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8198,16 +8061,16 @@ pub unsafe fn cublasDsyrk_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDsyrk_v2(handle, uplo, trans, n as _, k as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc as _) };
+    let status = unsafe { crate::sys::cublasDsyrk_v2(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDsyrk_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8230,16 +8093,16 @@ pub unsafe fn cublasCsyrk_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCsyrk_v2(handle, uplo, trans, n as _, k as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc as _) };
+    let status = unsafe { crate::sys::cublasCsyrk_v2(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCsyrk_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8262,16 +8125,16 @@ pub unsafe fn cublasZsyrk_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZsyrk_v2(handle, uplo, trans, n as _, k as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc as _) };
+    let status = unsafe { crate::sys::cublasZsyrk_v2(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZsyrk_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8294,34 +8157,18 @@ pub unsafe fn cublasCsyrkEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: type
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
     Atype: cudaDataType,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
     Ctype: cudaDataType,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasCsyrkEx(
-            handle,
-            uplo,
-            trans,
-            n as _,
-            k as _,
-            alpha.as_const_ptr() as *const _,
-            A.as_const_ptr() as *const _,
-            Atype,
-            lda as _,
-            beta.as_const_ptr() as *const _,
-            C.as_mut_ptr() as *mut _,
-            Ctype,
-            ldc as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasCsyrkEx(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, Atype, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, Ctype, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCsyrkEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8346,34 +8193,18 @@ pub unsafe fn cublasCsyrk3mEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
     Atype: cudaDataType,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
     Ctype: cudaDataType,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasCsyrk3mEx(
-            handle,
-            uplo,
-            trans,
-            n as _,
-            k as _,
-            alpha.as_const_ptr() as *const _,
-            A.as_const_ptr() as *const _,
-            Atype,
-            lda as _,
-            beta.as_const_ptr() as *const _,
-            C.as_mut_ptr() as *mut _,
-            Ctype,
-            ldc as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasCsyrk3mEx(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, Atype, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, Ctype, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCsyrk3mEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8398,16 +8229,16 @@ pub unsafe fn cublasCherk_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCherk_v2(handle, uplo, trans, n as _, k as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc as _) };
+    let status = unsafe { crate::sys::cublasCherk_v2(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCherk_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8430,16 +8261,16 @@ pub unsafe fn cublasZherk_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZherk_v2(handle, uplo, trans, n as _, k as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc as _) };
+    let status = unsafe { crate::sys::cublasZherk_v2(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZherk_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8462,34 +8293,18 @@ pub unsafe fn cublasCherkEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: type
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
     Atype: cudaDataType,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
     Ctype: cudaDataType,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasCherkEx(
-            handle,
-            uplo,
-            trans,
-            n as _,
-            k as _,
-            alpha.as_const_ptr() as *const _,
-            A.as_const_ptr() as *const _,
-            Atype,
-            lda as _,
-            beta.as_const_ptr() as *const _,
-            C.as_mut_ptr() as *mut _,
-            Ctype,
-            ldc as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasCherkEx(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, Atype, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, Ctype, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCherkEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8514,34 +8329,18 @@ pub unsafe fn cublasCherk3mEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
     Atype: cudaDataType,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     mut C: T3,
     Ctype: cudaDataType,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasCherk3mEx(
-            handle,
-            uplo,
-            trans,
-            n as _,
-            k as _,
-            alpha.as_const_ptr() as *const _,
-            A.as_const_ptr() as *const _,
-            Atype,
-            lda as _,
-            beta.as_const_ptr() as *const _,
-            C.as_mut_ptr() as *mut _,
-            Ctype,
-            ldc as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasCherk3mEx(handle, uplo, trans, n, k, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, Atype, lda, beta.as_const_ptr() as *const _, C.as_mut_ptr() as *mut _, Ctype, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCherk3mEx_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -8566,32 +8365,32 @@ pub unsafe fn cublasSsyr2k_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSsyr2k_v2(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -8634,32 +8433,32 @@ pub unsafe fn cublasDsyr2k_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDsyr2k_v2(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -8702,32 +8501,32 @@ pub unsafe fn cublasCsyr2k_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCsyr2k_v2(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -8770,32 +8569,32 @@ pub unsafe fn cublasZsyr2k_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZsyr2k_v2(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -8838,32 +8637,32 @@ pub unsafe fn cublasCher2k_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCher2k_v2(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -8906,32 +8705,32 @@ pub unsafe fn cublasZher2k_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: ty
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZher2k_v2(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -8974,32 +8773,32 @@ pub unsafe fn cublasSsyrkx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSsyrkx(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9042,32 +8841,32 @@ pub unsafe fn cublasDsyrkx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDsyrkx(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9110,32 +8909,32 @@ pub unsafe fn cublasCsyrkx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCsyrkx(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9178,32 +8977,32 @@ pub unsafe fn cublasZsyrkx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZsyrkx(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9246,32 +9045,32 @@ pub unsafe fn cublasCherkx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCherkx(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9314,32 +9113,32 @@ pub unsafe fn cublasZherkx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types
     handle: cublasHandle_t,
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
-    n: i32,
-    k: i32,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZherkx(
             handle,
             uplo,
             trans,
-            n as _,
-            k as _,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9382,32 +9181,32 @@ pub unsafe fn cublasSsymm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSsymm_v2(
             handle,
             side,
             uplo,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9450,32 +9249,32 @@ pub unsafe fn cublasDsymm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDsymm_v2(
             handle,
             side,
             uplo,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9518,32 +9317,32 @@ pub unsafe fn cublasCsymm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCsymm_v2(
             handle,
             side,
             uplo,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9586,32 +9385,32 @@ pub unsafe fn cublasZsymm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZsymm_v2(
             handle,
             side,
             uplo,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9654,32 +9453,32 @@ pub unsafe fn cublasChemm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasChemm_v2(
             handle,
             side,
             uplo,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9722,32 +9521,32 @@ pub unsafe fn cublasZhemm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     handle: cublasHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZhemm_v2(
             handle,
             side,
             uplo,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -9792,15 +9591,15 @@ pub unsafe fn cublasStrsm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     mut B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStrsm_v2(handle, side, uplo, trans, diag, m as _, n as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _) };
+    let status = unsafe { crate::sys::cublasStrsm_v2(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasStrsm_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
@@ -9826,15 +9625,15 @@ pub unsafe fn cublasDtrsm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     mut B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtrsm_v2(handle, side, uplo, trans, diag, m as _, n as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _) };
+    let status = unsafe { crate::sys::cublasDtrsm_v2(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDtrsm_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
@@ -9860,15 +9659,15 @@ pub unsafe fn cublasCtrsm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     mut B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtrsm_v2(handle, side, uplo, trans, diag, m as _, n as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _) };
+    let status = unsafe { crate::sys::cublasCtrsm_v2(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCtrsm_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
@@ -9894,15 +9693,15 @@ pub unsafe fn cublasZtrsm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     mut B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtrsm_v2(handle, side, uplo, trans, diag, m as _, n as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _) };
+    let status = unsafe { crate::sys::cublasZtrsm_v2(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_mut_ptr() as *mut _, ldb) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZtrsm_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
@@ -9928,34 +9727,17 @@ pub unsafe fn cublasStrmm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasStrmm_v2(
-            handle,
-            side,
-            uplo,
-            trans,
-            diag,
-            m as _,
-            n as _,
-            alpha.as_const_ptr() as *const _,
-            A.as_const_ptr() as *const _,
-            lda as _,
-            B.as_const_ptr() as *const _,
-            ldb as _,
-            C.as_mut_ptr() as *mut _,
-            ldc as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasStrmm_v2(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_const_ptr() as *const _, ldb, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasStrmm_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -9983,34 +9765,17 @@ pub unsafe fn cublasDtrmm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasDtrmm_v2(
-            handle,
-            side,
-            uplo,
-            trans,
-            diag,
-            m as _,
-            n as _,
-            alpha.as_const_ptr() as *const _,
-            A.as_const_ptr() as *const _,
-            lda as _,
-            B.as_const_ptr() as *const _,
-            ldb as _,
-            C.as_mut_ptr() as *mut _,
-            ldc as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasDtrmm_v2(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_const_ptr() as *const _, ldb, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDtrmm_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -10038,34 +9803,17 @@ pub unsafe fn cublasCtrmm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasCtrmm_v2(
-            handle,
-            side,
-            uplo,
-            trans,
-            diag,
-            m as _,
-            n as _,
-            alpha.as_const_ptr() as *const _,
-            A.as_const_ptr() as *const _,
-            lda as _,
-            B.as_const_ptr() as *const _,
-            ldb as _,
-            C.as_mut_ptr() as *mut _,
-            ldc as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasCtrmm_v2(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_const_ptr() as *const _, ldb, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCtrmm_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -10093,34 +9841,17 @@ pub unsafe fn cublasZtrmm_v2<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: typ
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut C: T3,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasZtrmm_v2(
-            handle,
-            side,
-            uplo,
-            trans,
-            diag,
-            m as _,
-            n as _,
-            alpha.as_const_ptr() as *const _,
-            A.as_const_ptr() as *const _,
-            lda as _,
-            B.as_const_ptr() as *const _,
-            ldb as _,
-            C.as_mut_ptr() as *mut _,
-            ldc as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasZtrmm_v2(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_const_ptr() as *const _, ldb, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZtrmm_v2_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
@@ -10146,36 +9877,36 @@ pub unsafe fn cublasSgemmBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Barray: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     Carray: T4,
-    ldc: i32,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgemmBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             Barray.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             Carray.as_const_ptr() as *const _,
-            ldc as _,
-            batchCount as _,
+            ldc,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10222,36 +9953,36 @@ pub unsafe fn cublasDgemmBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Barray: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     Carray: T4,
-    ldc: i32,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDgemmBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             Barray.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             Carray.as_const_ptr() as *const _,
-            ldc as _,
-            batchCount as _,
+            ldc,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10298,36 +10029,36 @@ pub unsafe fn cublasCgemmBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Barray: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     Carray: T4,
-    ldc: i32,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemmBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             Barray.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             Carray.as_const_ptr() as *const _,
-            ldc as _,
-            batchCount as _,
+            ldc,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10374,36 +10105,36 @@ pub unsafe fn cublasCgemm3mBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Barray: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     Carray: T4,
-    ldc: i32,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemm3mBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             Barray.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             Carray.as_const_ptr() as *const _,
-            ldc as _,
-            batchCount as _,
+            ldc,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10450,36 +10181,36 @@ pub unsafe fn cublasZgemmBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Barray: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     Carray: T4,
-    ldc: i32,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgemmBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             Barray.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             Carray.as_const_ptr() as *const _,
-            ldc as _,
-            batchCount as _,
+            ldc,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10526,42 +10257,42 @@ pub unsafe fn cublasSgemmStridedBatched<T0: types::CudaAsPtr, T1: types::CudaAsP
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
-    ldb: i32,
-    strideB: i64,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
-    ldc: i32,
-    strideC: i64,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgemmStridedBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             B.as_const_ptr() as *const _,
-            ldb as _,
-            strideB as _,
+            ldb,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
-            strideC as _,
-            batchCount as _,
+            ldc,
+            strideC,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10576,14 +10307,14 @@ pub unsafe fn cublasSgemmStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
     alpha: T0,
     A: T1,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
     ldb: i64,
-    strideB: i64,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
     ldc: i64,
-    strideC: i64,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -10597,14 +10328,14 @@ pub unsafe fn cublasSgemmStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             lda,
-            strideA as _,
+            strideA,
             B.as_const_ptr() as *const _,
             ldb,
-            strideB as _,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             ldc,
-            strideC as _,
+            strideC,
             batchCount,
         )
     };
@@ -10614,42 +10345,42 @@ pub unsafe fn cublasDgemmStridedBatched<T0: types::CudaAsPtr, T1: types::CudaAsP
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
-    ldb: i32,
-    strideB: i64,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
-    ldc: i32,
-    strideC: i64,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDgemmStridedBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             B.as_const_ptr() as *const _,
-            ldb as _,
-            strideB as _,
+            ldb,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
-            strideC as _,
-            batchCount as _,
+            ldc,
+            strideC,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10664,14 +10395,14 @@ pub unsafe fn cublasDgemmStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
     alpha: T0,
     A: T1,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
     ldb: i64,
-    strideB: i64,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
     ldc: i64,
-    strideC: i64,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -10685,14 +10416,14 @@ pub unsafe fn cublasDgemmStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             lda,
-            strideA as _,
+            strideA,
             B.as_const_ptr() as *const _,
             ldb,
-            strideB as _,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             ldc,
-            strideC as _,
+            strideC,
             batchCount,
         )
     };
@@ -10702,42 +10433,42 @@ pub unsafe fn cublasCgemmStridedBatched<T0: types::CudaAsPtr, T1: types::CudaAsP
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
-    ldb: i32,
-    strideB: i64,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
-    ldc: i32,
-    strideC: i64,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemmStridedBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             B.as_const_ptr() as *const _,
-            ldb as _,
-            strideB as _,
+            ldb,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
-            strideC as _,
-            batchCount as _,
+            ldc,
+            strideC,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10752,14 +10483,14 @@ pub unsafe fn cublasCgemmStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
     alpha: T0,
     A: T1,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
     ldb: i64,
-    strideB: i64,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
     ldc: i64,
-    strideC: i64,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -10773,14 +10504,14 @@ pub unsafe fn cublasCgemmStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             lda,
-            strideA as _,
+            strideA,
             B.as_const_ptr() as *const _,
             ldb,
-            strideB as _,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             ldc,
-            strideC as _,
+            strideC,
             batchCount,
         )
     };
@@ -10790,42 +10521,42 @@ pub unsafe fn cublasCgemm3mStridedBatched<T0: types::CudaAsPtr, T1: types::CudaA
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
-    ldb: i32,
-    strideB: i64,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
-    ldc: i32,
-    strideC: i64,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgemm3mStridedBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             B.as_const_ptr() as *const _,
-            ldb as _,
-            strideB as _,
+            ldb,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
-            strideC as _,
-            batchCount as _,
+            ldc,
+            strideC,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10840,14 +10571,14 @@ pub unsafe fn cublasCgemm3mStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cu
     alpha: T0,
     A: T1,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
     ldb: i64,
-    strideB: i64,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
     ldc: i64,
-    strideC: i64,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -10861,14 +10592,14 @@ pub unsafe fn cublasCgemm3mStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cu
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             lda,
-            strideA as _,
+            strideA,
             B.as_const_ptr() as *const _,
             ldb,
-            strideB as _,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             ldc,
-            strideC as _,
+            strideC,
             batchCount,
         )
     };
@@ -10878,42 +10609,42 @@ pub unsafe fn cublasZgemmStridedBatched<T0: types::CudaAsPtr, T1: types::CudaAsP
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
-    ldb: i32,
-    strideB: i64,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
-    ldc: i32,
-    strideC: i64,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgemmStridedBatched(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             B.as_const_ptr() as *const _,
-            ldb as _,
-            strideB as _,
+            ldb,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
-            strideC as _,
-            batchCount as _,
+            ldc,
+            strideC,
+            batchCount,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -10928,14 +10659,14 @@ pub unsafe fn cublasZgemmStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
     alpha: T0,
     A: T1,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
     ldb: i64,
-    strideB: i64,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
     ldc: i64,
-    strideC: i64,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -10949,14 +10680,14 @@ pub unsafe fn cublasZgemmStridedBatched_64<T0: types::CudaAsPtr, T1: types::Cuda
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             lda,
-            strideA as _,
+            strideA,
             B.as_const_ptr() as *const _,
             ldb,
-            strideB as _,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             ldc,
-            strideC as _,
+            strideC,
             batchCount,
         )
     };
@@ -10966,21 +10697,21 @@ pub unsafe fn cublasGemmBatchedEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     Aarray: T1,
     Atype: cudaDataType,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Barray: T2,
     Btype: cudaDataType,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     beta: T3,
     Carray: T4,
     Ctype: cudaDataType,
-    ldc: i32,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
     computeType: cublasComputeType_t,
     algo: cublasGemmAlgo_t,
 ) -> Result<(), crate::sys::cublasStatus_t> {
@@ -10989,21 +10720,21 @@ pub unsafe fn cublasGemmBatchedEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             Aarray.as_const_ptr() as *const _,
             Atype,
-            lda as _,
+            lda,
             Barray.as_const_ptr() as *const _,
             Btype,
-            ldb as _,
+            ldb,
             beta.as_const_ptr() as *const _,
             Carray.as_const_ptr() as *const _,
             Ctype,
-            ldc as _,
-            batchCount as _,
+            ldc,
+            batchCount,
             computeType,
             algo,
         )
@@ -11062,24 +10793,24 @@ pub unsafe fn cublasGemmStridedBatchedEx<T0: types::CudaAsPtr, T1: types::CudaAs
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
     Atype: cudaDataType,
-    lda: i32,
-    strideA: i64,
+    lda: ::core::ffi::c_int,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
     Btype: cudaDataType,
-    ldb: i32,
-    strideB: i64,
+    ldb: ::core::ffi::c_int,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
     Ctype: cudaDataType,
-    ldc: i32,
-    strideC: i64,
-    batchCount: i32,
+    ldc: ::core::ffi::c_int,
+    strideC: ::core::ffi::c_longlong,
+    batchCount: ::core::ffi::c_int,
     computeType: cublasComputeType_t,
     algo: cublasGemmAlgo_t,
 ) -> Result<(), crate::sys::cublasStatus_t> {
@@ -11088,24 +10819,24 @@ pub unsafe fn cublasGemmStridedBatchedEx<T0: types::CudaAsPtr, T1: types::CudaAs
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
             Atype,
-            lda as _,
-            strideA as _,
+            lda,
+            strideA,
             B.as_const_ptr() as *const _,
             Btype,
-            ldb as _,
-            strideB as _,
+            ldb,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             Ctype,
-            ldc as _,
-            strideC as _,
-            batchCount as _,
+            ldc,
+            strideC,
+            batchCount,
             computeType,
             algo,
         )
@@ -11123,16 +10854,16 @@ pub unsafe fn cublasGemmStridedBatchedEx_64<T0: types::CudaAsPtr, T1: types::Cud
     A: T1,
     Atype: cudaDataType,
     lda: i64,
-    strideA: i64,
+    strideA: ::core::ffi::c_longlong,
     B: T2,
     Btype: cudaDataType,
     ldb: i64,
-    strideB: i64,
+    strideB: ::core::ffi::c_longlong,
     beta: T3,
     mut C: T4,
     Ctype: cudaDataType,
     ldc: i64,
-    strideC: i64,
+    strideC: ::core::ffi::c_longlong,
     batchCount: i64,
     computeType: cublasComputeType_t,
     algo: cublasGemmAlgo_t,
@@ -11149,16 +10880,16 @@ pub unsafe fn cublasGemmStridedBatchedEx_64<T0: types::CudaAsPtr, T1: types::Cud
             A.as_const_ptr() as *const _,
             Atype,
             lda,
-            strideA as _,
+            strideA,
             B.as_const_ptr() as *const _,
             Btype,
             ldb,
-            strideB as _,
+            strideB,
             beta.as_const_ptr() as *const _,
             C.as_mut_ptr() as *mut _,
             Ctype,
             ldc,
-            strideC as _,
+            strideC,
             batchCount,
             computeType,
             algo,
@@ -11196,7 +10927,7 @@ pub unsafe fn cublasSgemmGroupedBatched<
     beta_array: T10,
     Carray: T11,
     ldc_array: T12,
-    group_count: i32,
+    group_count: ::core::ffi::c_int,
     group_size: T13,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -11215,7 +10946,7 @@ pub unsafe fn cublasSgemmGroupedBatched<
             beta_array.as_const_ptr() as *const _,
             Carray.as_const_ptr() as *const _,
             ldc_array.as_const_ptr() as *const _,
-            group_count as _,
+            group_count,
             group_size.as_const_ptr() as *const _,
         )
     };
@@ -11306,7 +11037,7 @@ pub unsafe fn cublasDgemmGroupedBatched<
     beta_array: T10,
     Carray: T11,
     ldc_array: T12,
-    group_count: i32,
+    group_count: ::core::ffi::c_int,
     group_size: T13,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
@@ -11325,7 +11056,7 @@ pub unsafe fn cublasDgemmGroupedBatched<
             beta_array.as_const_ptr() as *const _,
             Carray.as_const_ptr() as *const _,
             ldc_array.as_const_ptr() as *const _,
-            group_count as _,
+            group_count,
             group_size.as_const_ptr() as *const _,
         )
     };
@@ -11419,7 +11150,7 @@ pub unsafe fn cublasGemmGroupedBatchedEx<
     Carray: T11,
     Ctype: cudaDataType_t,
     ldc_array: T12,
-    group_count: i32,
+    group_count: ::core::ffi::c_int,
     group_size: T13,
     computeType: cublasComputeType_t,
 ) -> Result<(), crate::sys::cublasStatus_t> {
@@ -11442,7 +11173,7 @@ pub unsafe fn cublasGemmGroupedBatchedEx<
             Carray.as_const_ptr() as *const _,
             Ctype,
             ldc_array.as_const_ptr() as *const _,
-            group_count as _,
+            group_count,
             group_size.as_const_ptr() as *const _,
             computeType,
         )
@@ -11516,32 +11247,32 @@ pub unsafe fn cublasSgeam<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types:
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     B: T3,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgeam(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             beta.as_const_ptr() as *const _,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -11584,32 +11315,32 @@ pub unsafe fn cublasDgeam<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types:
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     B: T3,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDgeam(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             beta.as_const_ptr() as *const _,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -11652,32 +11383,32 @@ pub unsafe fn cublasCgeam<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types:
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     B: T3,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgeam(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             beta.as_const_ptr() as *const _,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -11720,32 +11451,32 @@ pub unsafe fn cublasZgeam<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types:
     handle: cublasHandle_t,
     transa: cublasOperation_t,
     transb: cublasOperation_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     beta: T2,
     B: T3,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut C: T4,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgeam(
             handle,
             transa,
             transb,
-            m as _,
-            n as _,
+            m,
+            n,
             alpha.as_const_ptr() as *const _,
             A.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             beta.as_const_ptr() as *const _,
             B.as_const_ptr() as *const _,
-            ldb as _,
+            ldb,
             C.as_mut_ptr() as *mut _,
-            ldc as _,
+            ldc,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -11790,16 +11521,16 @@ pub unsafe fn cublasStrsmBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
-    batchCount: i32,
+    ldb: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStrsmBatched(handle, side, uplo, trans, diag, m as _, n as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, B.as_const_ptr() as *const _, ldb as _, batchCount as _) };
+    let status = unsafe { crate::sys::cublasStrsmBatched(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_const_ptr() as *const _, ldb, batchCount) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasStrsmBatched_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
@@ -11826,16 +11557,16 @@ pub unsafe fn cublasDtrsmBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
-    batchCount: i32,
+    ldb: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtrsmBatched(handle, side, uplo, trans, diag, m as _, n as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, B.as_const_ptr() as *const _, ldb as _, batchCount as _) };
+    let status = unsafe { crate::sys::cublasDtrsmBatched(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_const_ptr() as *const _, ldb, batchCount) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDtrsmBatched_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
@@ -11862,16 +11593,16 @@ pub unsafe fn cublasCtrsmBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
-    batchCount: i32,
+    ldb: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtrsmBatched(handle, side, uplo, trans, diag, m as _, n as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, B.as_const_ptr() as *const _, ldb as _, batchCount as _) };
+    let status = unsafe { crate::sys::cublasCtrsmBatched(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_const_ptr() as *const _, ldb, batchCount) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCtrsmBatched_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
@@ -11898,16 +11629,16 @@ pub unsafe fn cublasZtrsmBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
     uplo: cublasFillMode_t,
     trans: cublasOperation_t,
     diag: cublasDiagType_t,
-    m: i32,
-    n: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
     alpha: T0,
     A: T1,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     B: T2,
-    ldb: i32,
-    batchCount: i32,
+    ldb: ::core::ffi::c_int,
+    batchCount: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtrsmBatched(handle, side, uplo, trans, diag, m as _, n as _, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda as _, B.as_const_ptr() as *const _, ldb as _, batchCount as _) };
+    let status = unsafe { crate::sys::cublasZtrsmBatched(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_const_ptr() as *const _, ldb, batchCount) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZtrsmBatched_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
@@ -11928,98 +11659,214 @@ pub unsafe fn cublasZtrsmBatched_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, 
     let status = unsafe { crate::sys::cublasZtrsmBatched_64(handle, side, uplo, trans, diag, m, n, alpha.as_const_ptr() as *const _, A.as_const_ptr() as *const _, lda, B.as_const_ptr() as *const _, ldb, batchCount) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSdgmm<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, mode: cublasSideMode_t, m: i32, n: i32, A: T0, lda: i32, x: T1, incx: i32, mut C: T2, ldc: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSdgmm(handle, mode, m as _, n as _, A.as_const_ptr() as *const _, lda as _, x.as_const_ptr() as *const _, incx as _, C.as_mut_ptr() as *mut _, ldc as _) };
+pub unsafe fn cublasSdgmm<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    mut C: T2,
+    ldc: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSdgmm(handle, mode, m, n, A.as_const_ptr() as *const _, lda, x.as_const_ptr() as *const _, incx, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSdgmm_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, mode: cublasSideMode_t, m: i64, n: i64, A: T0, lda: i64, x: T1, incx: i64, mut C: T2, ldc: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasSdgmm_64(handle, mode, m, n, A.as_const_ptr() as *const _, lda, x.as_const_ptr() as *const _, incx, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDdgmm<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, mode: cublasSideMode_t, m: i32, n: i32, A: T0, lda: i32, x: T1, incx: i32, mut C: T2, ldc: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDdgmm(handle, mode, m as _, n as _, A.as_const_ptr() as *const _, lda as _, x.as_const_ptr() as *const _, incx as _, C.as_mut_ptr() as *mut _, ldc as _) };
+pub unsafe fn cublasDdgmm<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    mut C: T2,
+    ldc: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDdgmm(handle, mode, m, n, A.as_const_ptr() as *const _, lda, x.as_const_ptr() as *const _, incx, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDdgmm_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, mode: cublasSideMode_t, m: i64, n: i64, A: T0, lda: i64, x: T1, incx: i64, mut C: T2, ldc: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasDdgmm_64(handle, mode, m, n, A.as_const_ptr() as *const _, lda, x.as_const_ptr() as *const _, incx, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCdgmm<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, mode: cublasSideMode_t, m: i32, n: i32, A: T0, lda: i32, x: T1, incx: i32, mut C: T2, ldc: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCdgmm(handle, mode, m as _, n as _, A.as_const_ptr() as *const _, lda as _, x.as_const_ptr() as *const _, incx as _, C.as_mut_ptr() as *mut _, ldc as _) };
+pub unsafe fn cublasCdgmm<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    mut C: T2,
+    ldc: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCdgmm(handle, mode, m, n, A.as_const_ptr() as *const _, lda, x.as_const_ptr() as *const _, incx, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCdgmm_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, mode: cublasSideMode_t, m: i64, n: i64, A: T0, lda: i64, x: T1, incx: i64, mut C: T2, ldc: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasCdgmm_64(handle, mode, m, n, A.as_const_ptr() as *const _, lda, x.as_const_ptr() as *const _, incx, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZdgmm<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, mode: cublasSideMode_t, m: i32, n: i32, A: T0, lda: i32, x: T1, incx: i32, mut C: T2, ldc: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZdgmm(handle, mode, m as _, n as _, A.as_const_ptr() as *const _, lda as _, x.as_const_ptr() as *const _, incx as _, C.as_mut_ptr() as *mut _, ldc as _) };
+pub unsafe fn cublasZdgmm<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    x: T1,
+    incx: ::core::ffi::c_int,
+    mut C: T2,
+    ldc: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZdgmm(handle, mode, m, n, A.as_const_ptr() as *const _, lda, x.as_const_ptr() as *const _, incx, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZdgmm_64<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, mode: cublasSideMode_t, m: i64, n: i64, A: T0, lda: i64, x: T1, incx: i64, mut C: T2, ldc: i64) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasZdgmm_64(handle, mode, m, n, A.as_const_ptr() as *const _, lda, x.as_const_ptr() as *const _, incx, C.as_mut_ptr() as *mut _, ldc) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSmatinvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, Ainv: T1, lda_inv: i32, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSmatinvBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, Ainv.as_const_ptr() as *const _, lda_inv as _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasSmatinvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    Ainv: T1,
+    lda_inv: ::core::ffi::c_int,
+    mut info: T2,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSmatinvBatched(handle, n, A.as_const_ptr() as *const _, lda, Ainv.as_const_ptr() as *const _, lda_inv, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDmatinvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, Ainv: T1, lda_inv: i32, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDmatinvBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, Ainv.as_const_ptr() as *const _, lda_inv as _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasDmatinvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    Ainv: T1,
+    lda_inv: ::core::ffi::c_int,
+    mut info: T2,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDmatinvBatched(handle, n, A.as_const_ptr() as *const _, lda, Ainv.as_const_ptr() as *const _, lda_inv, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCmatinvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, Ainv: T1, lda_inv: i32, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCmatinvBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, Ainv.as_const_ptr() as *const _, lda_inv as _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasCmatinvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    Ainv: T1,
+    lda_inv: ::core::ffi::c_int,
+    mut info: T2,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCmatinvBatched(handle, n, A.as_const_ptr() as *const _, lda, Ainv.as_const_ptr() as *const _, lda_inv, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZmatinvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, Ainv: T1, lda_inv: i32, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZmatinvBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, Ainv.as_const_ptr() as *const _, lda_inv as _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasZmatinvBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    Ainv: T1,
+    lda_inv: ::core::ffi::c_int,
+    mut info: T2,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZmatinvBatched(handle, n, A.as_const_ptr() as *const _, lda, Ainv.as_const_ptr() as *const _, lda_inv, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSgeqrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, Aarray: T0, lda: i32, TauArray: T1, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSgeqrfBatched(handle, m as _, n as _, Aarray.as_const_ptr() as *const _, lda as _, TauArray.as_const_ptr() as *const _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasSgeqrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    Aarray: T0,
+    lda: ::core::ffi::c_int,
+    TauArray: T1,
+    mut info: T2,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSgeqrfBatched(handle, m, n, Aarray.as_const_ptr() as *const _, lda, TauArray.as_const_ptr() as *const _, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDgeqrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, Aarray: T0, lda: i32, TauArray: T1, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDgeqrfBatched(handle, m as _, n as _, Aarray.as_const_ptr() as *const _, lda as _, TauArray.as_const_ptr() as *const _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasDgeqrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    Aarray: T0,
+    lda: ::core::ffi::c_int,
+    TauArray: T1,
+    mut info: T2,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDgeqrfBatched(handle, m, n, Aarray.as_const_ptr() as *const _, lda, TauArray.as_const_ptr() as *const _, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCgeqrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, Aarray: T0, lda: i32, TauArray: T1, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCgeqrfBatched(handle, m as _, n as _, Aarray.as_const_ptr() as *const _, lda as _, TauArray.as_const_ptr() as *const _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasCgeqrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    Aarray: T0,
+    lda: ::core::ffi::c_int,
+    TauArray: T1,
+    mut info: T2,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCgeqrfBatched(handle, m, n, Aarray.as_const_ptr() as *const _, lda, TauArray.as_const_ptr() as *const _, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZgeqrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, m: i32, n: i32, Aarray: T0, lda: i32, TauArray: T1, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZgeqrfBatched(handle, m as _, n as _, Aarray.as_const_ptr() as *const _, lda as _, TauArray.as_const_ptr() as *const _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasZgeqrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    Aarray: T0,
+    lda: ::core::ffi::c_int,
+    TauArray: T1,
+    mut info: T2,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZgeqrfBatched(handle, m, n, Aarray.as_const_ptr() as *const _, lda, TauArray.as_const_ptr() as *const _, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSgelsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
-    nrhs: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: T0,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Carray: T1,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
     mut info: T2,
     mut devInfoArray: T3,
-    batchSize: i32,
+    batchSize: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasSgelsBatched(
             handle,
             trans,
-            m as _,
-            n as _,
-            nrhs as _,
+            m,
+            n,
+            nrhs,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             Carray.as_const_ptr() as *const _,
-            ldc as _,
+            ldc,
             info.as_mut_ptr() as *mut _,
             devInfoArray.as_mut_ptr() as *mut _,
-            batchSize as _,
+            batchSize,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -12027,31 +11874,31 @@ pub unsafe fn cublasSgelsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
 pub unsafe fn cublasDgelsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
-    nrhs: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: T0,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Carray: T1,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
     mut info: T2,
     mut devInfoArray: T3,
-    batchSize: i32,
+    batchSize: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasDgelsBatched(
             handle,
             trans,
-            m as _,
-            n as _,
-            nrhs as _,
+            m,
+            n,
+            nrhs,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             Carray.as_const_ptr() as *const _,
-            ldc as _,
+            ldc,
             info.as_mut_ptr() as *mut _,
             devInfoArray.as_mut_ptr() as *mut _,
-            batchSize as _,
+            batchSize,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -12059,31 +11906,31 @@ pub unsafe fn cublasDgelsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
 pub unsafe fn cublasCgelsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
-    nrhs: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: T0,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Carray: T1,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
     mut info: T2,
     mut devInfoArray: T3,
-    batchSize: i32,
+    batchSize: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasCgelsBatched(
             handle,
             trans,
-            m as _,
-            n as _,
-            nrhs as _,
+            m,
+            n,
+            nrhs,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             Carray.as_const_ptr() as *const _,
-            ldc as _,
+            ldc,
             info.as_mut_ptr() as *mut _,
             devInfoArray.as_mut_ptr() as *mut _,
-            batchSize as _,
+            batchSize,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -12091,217 +11938,201 @@ pub unsafe fn cublasCgelsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2:
 pub unsafe fn cublasZgelsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    m: i32,
-    n: i32,
-    nrhs: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: T0,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     Carray: T1,
-    ldc: i32,
+    ldc: ::core::ffi::c_int,
     mut info: T2,
     mut devInfoArray: T3,
-    batchSize: i32,
+    batchSize: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasZgelsBatched(
             handle,
             trans,
-            m as _,
-            n as _,
-            nrhs as _,
+            m,
+            n,
+            nrhs,
             Aarray.as_const_ptr() as *const _,
-            lda as _,
+            lda,
             Carray.as_const_ptr() as *const _,
-            ldc as _,
+            ldc,
             info.as_mut_ptr() as *mut _,
             devInfoArray.as_mut_ptr() as *mut _,
-            batchSize as _,
+            batchSize,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasStpttr<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, AP: T0, mut A: T1, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStpttr(handle, uplo, n as _, AP.as_const_ptr() as *const _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasStpttr<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: T0, mut A: T1, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasStpttr(handle, uplo, n, AP.as_const_ptr() as *const _, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDtpttr<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, AP: T0, mut A: T1, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtpttr(handle, uplo, n as _, AP.as_const_ptr() as *const _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasDtpttr<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: T0, mut A: T1, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDtpttr(handle, uplo, n, AP.as_const_ptr() as *const _, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCtpttr<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, AP: T0, mut A: T1, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtpttr(handle, uplo, n as _, AP.as_const_ptr() as *const _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasCtpttr<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: T0, mut A: T1, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCtpttr(handle, uplo, n, AP.as_const_ptr() as *const _, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZtpttr<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, AP: T0, mut A: T1, lda: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtpttr(handle, uplo, n as _, AP.as_const_ptr() as *const _, A.as_mut_ptr() as *mut _, lda as _) };
+pub unsafe fn cublasZtpttr<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, AP: T0, mut A: T1, lda: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZtpttr(handle, uplo, n, AP.as_const_ptr() as *const _, A.as_mut_ptr() as *mut _, lda) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasStrttp<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, A: T0, lda: i32, mut AP: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasStrttp(handle, uplo, n as _, A.as_const_ptr() as *const _, lda as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasStrttp<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut AP: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasStrttp(handle, uplo, n, A.as_const_ptr() as *const _, lda, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDtrttp<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, A: T0, lda: i32, mut AP: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDtrttp(handle, uplo, n as _, A.as_const_ptr() as *const _, lda as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasDtrttp<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut AP: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDtrttp(handle, uplo, n, A.as_const_ptr() as *const _, lda, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCtrttp<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, A: T0, lda: i32, mut AP: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCtrttp(handle, uplo, n as _, A.as_const_ptr() as *const _, lda as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasCtrttp<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut AP: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCtrttp(handle, uplo, n, A.as_const_ptr() as *const _, lda, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZtrttp<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: i32, A: T0, lda: i32, mut AP: T1) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZtrttp(handle, uplo, n as _, A.as_const_ptr() as *const _, lda as _, AP.as_mut_ptr() as *mut _) };
+pub unsafe fn cublasZtrttp<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cublasHandle_t, uplo: cublasFillMode_t, n: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut AP: T1) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZtrttp(handle, uplo, n, A.as_const_ptr() as *const _, lda, AP.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSgetrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, mut P: T1, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSgetrfBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, P.as_mut_ptr() as *mut _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasSgetrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut P: T1, mut info: T2, batchSize: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSgetrfBatched(handle, n, A.as_const_ptr() as *const _, lda, P.as_mut_ptr() as *mut _, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDgetrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, mut P: T1, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDgetrfBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, P.as_mut_ptr() as *mut _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasDgetrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut P: T1, mut info: T2, batchSize: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDgetrfBatched(handle, n, A.as_const_ptr() as *const _, lda, P.as_mut_ptr() as *mut _, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCgetrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, mut P: T1, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCgetrfBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, P.as_mut_ptr() as *mut _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasCgetrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut P: T1, mut info: T2, batchSize: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCgetrfBatched(handle, n, A.as_const_ptr() as *const _, lda, P.as_mut_ptr() as *mut _, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZgetrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, mut P: T1, mut info: T2, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZgetrfBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, P.as_mut_ptr() as *mut _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasZgetrfBatched<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(handle: cublasHandle_t, n: ::core::ffi::c_int, A: T0, lda: ::core::ffi::c_int, mut P: T1, mut info: T2, batchSize: ::core::ffi::c_int) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZgetrfBatched(handle, n, A.as_const_ptr() as *const _, lda, P.as_mut_ptr() as *mut _, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasSgetriBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, P: T1, C: T2, ldc: i32, mut info: T3, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasSgetriBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, P.as_const_ptr() as *const _, C.as_const_ptr() as *const _, ldc as _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasSgetriBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    P: T1,
+    C: T2,
+    ldc: ::core::ffi::c_int,
+    mut info: T3,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSgetriBatched(handle, n, A.as_const_ptr() as *const _, lda, P.as_const_ptr() as *const _, C.as_const_ptr() as *const _, ldc, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasDgetriBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, P: T1, C: T2, ldc: i32, mut info: T3, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasDgetriBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, P.as_const_ptr() as *const _, C.as_const_ptr() as *const _, ldc as _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasDgetriBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    P: T1,
+    C: T2,
+    ldc: ::core::ffi::c_int,
+    mut info: T3,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDgetriBatched(handle, n, A.as_const_ptr() as *const _, lda, P.as_const_ptr() as *const _, C.as_const_ptr() as *const _, ldc, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasCgetriBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, P: T1, C: T2, ldc: i32, mut info: T3, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasCgetriBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, P.as_const_ptr() as *const _, C.as_const_ptr() as *const _, ldc as _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasCgetriBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    P: T1,
+    C: T2,
+    ldc: ::core::ffi::c_int,
+    mut info: T3,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasCgetriBatched(handle, n, A.as_const_ptr() as *const _, lda, P.as_const_ptr() as *const _, C.as_const_ptr() as *const _, ldc, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cublasZgetriBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cublasHandle_t, n: i32, A: T0, lda: i32, P: T1, C: T2, ldc: i32, mut info: T3, batchSize: i32) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasZgetriBatched(handle, n as _, A.as_const_ptr() as *const _, lda as _, P.as_const_ptr() as *const _, C.as_const_ptr() as *const _, ldc as _, info.as_mut_ptr() as *mut _, batchSize as _) };
+pub unsafe fn cublasZgetriBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cublasHandle_t,
+    n: ::core::ffi::c_int,
+    A: T0,
+    lda: ::core::ffi::c_int,
+    P: T1,
+    C: T2,
+    ldc: ::core::ffi::c_int,
+    mut info: T3,
+    batchSize: ::core::ffi::c_int,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasZgetriBatched(handle, n, A.as_const_ptr() as *const _, lda, P.as_const_ptr() as *const _, C.as_const_ptr() as *const _, ldc, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasSgetrsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    n: i32,
-    nrhs: i32,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: T0,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     devIpiv: T1,
     Barray: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut info: T3,
-    batchSize: i32,
+    batchSize: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasSgetrsBatched(
-            handle,
-            trans,
-            n as _,
-            nrhs as _,
-            Aarray.as_const_ptr() as *const _,
-            lda as _,
-            devIpiv.as_const_ptr() as *const _,
-            Barray.as_const_ptr() as *const _,
-            ldb as _,
-            info.as_mut_ptr() as *mut _,
-            batchSize as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasSgetrsBatched(handle, trans, n, nrhs, Aarray.as_const_ptr() as *const _, lda, devIpiv.as_const_ptr() as *const _, Barray.as_const_ptr() as *const _, ldb, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasDgetrsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    n: i32,
-    nrhs: i32,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: T0,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     devIpiv: T1,
     Barray: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut info: T3,
-    batchSize: i32,
+    batchSize: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasDgetrsBatched(
-            handle,
-            trans,
-            n as _,
-            nrhs as _,
-            Aarray.as_const_ptr() as *const _,
-            lda as _,
-            devIpiv.as_const_ptr() as *const _,
-            Barray.as_const_ptr() as *const _,
-            ldb as _,
-            info.as_mut_ptr() as *mut _,
-            batchSize as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasDgetrsBatched(handle, trans, n, nrhs, Aarray.as_const_ptr() as *const _, lda, devIpiv.as_const_ptr() as *const _, Barray.as_const_ptr() as *const _, ldb, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasCgetrsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    n: i32,
-    nrhs: i32,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: T0,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     devIpiv: T1,
     Barray: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut info: T3,
-    batchSize: i32,
+    batchSize: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasCgetrsBatched(
-            handle,
-            trans,
-            n as _,
-            nrhs as _,
-            Aarray.as_const_ptr() as *const _,
-            lda as _,
-            devIpiv.as_const_ptr() as *const _,
-            Barray.as_const_ptr() as *const _,
-            ldb as _,
-            info.as_mut_ptr() as *mut _,
-            batchSize as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasCgetrsBatched(handle, trans, n, nrhs, Aarray.as_const_ptr() as *const _, lda, devIpiv.as_const_ptr() as *const _, Barray.as_const_ptr() as *const _, ldb, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasZgetrsBatched<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cublasHandle_t,
     trans: cublasOperation_t,
-    n: i32,
-    nrhs: i32,
+    n: ::core::ffi::c_int,
+    nrhs: ::core::ffi::c_int,
     Aarray: T0,
-    lda: i32,
+    lda: ::core::ffi::c_int,
     devIpiv: T1,
     Barray: T2,
-    ldb: i32,
+    ldb: ::core::ffi::c_int,
     mut info: T3,
-    batchSize: i32,
+    batchSize: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasZgetrsBatched(
-            handle,
-            trans,
-            n as _,
-            nrhs as _,
-            Aarray.as_const_ptr() as *const _,
-            lda as _,
-            devIpiv.as_const_ptr() as *const _,
-            Barray.as_const_ptr() as *const _,
-            ldb as _,
-            info.as_mut_ptr() as *mut _,
-            batchSize as _,
-        )
-    };
+    let status = unsafe { crate::sys::cublasZgetrsBatched(handle, trans, n, nrhs, Aarray.as_const_ptr() as *const _, lda, devIpiv.as_const_ptr() as *const _, Barray.as_const_ptr() as *const _, ldb, info.as_mut_ptr() as *mut _, batchSize) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cublasUint8gemmBias<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(
@@ -12309,20 +12140,20 @@ pub unsafe fn cublasUint8gemmBias<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2
     transa: cublasOperation_t,
     transb: cublasOperation_t,
     transc: cublasOperation_t,
-    m: i32,
-    n: i32,
-    k: i32,
+    m: ::core::ffi::c_int,
+    n: ::core::ffi::c_int,
+    k: ::core::ffi::c_int,
     A: T0,
-    A_bias: i32,
-    lda: i32,
+    A_bias: ::core::ffi::c_int,
+    lda: ::core::ffi::c_int,
     B: T1,
-    B_bias: i32,
-    ldb: i32,
+    B_bias: ::core::ffi::c_int,
+    ldb: ::core::ffi::c_int,
     mut C: T2,
-    C_bias: i32,
-    ldc: i32,
-    C_mult: i32,
-    C_shift: i32,
+    C_bias: ::core::ffi::c_int,
+    ldc: ::core::ffi::c_int,
+    C_mult: ::core::ffi::c_int,
+    C_shift: ::core::ffi::c_int,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasUint8gemmBias(
@@ -12330,20 +12161,20 @@ pub unsafe fn cublasUint8gemmBias<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2
             transa,
             transb,
             transc,
-            m as _,
-            n as _,
-            k as _,
+            m,
+            n,
+            k,
             A.as_const_ptr() as *const _,
-            A_bias as _,
-            lda as _,
+            A_bias,
+            lda,
             B.as_const_ptr() as *const _,
-            B_bias as _,
-            ldb as _,
+            B_bias,
+            ldb,
             C.as_mut_ptr() as *mut _,
-            C_bias as _,
-            ldc as _,
-            C_mult as _,
-            C_shift as _,
+            C_bias,
+            ldc,
+            C_mult,
+            C_shift,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS { Ok(()) } else { Err(status) }

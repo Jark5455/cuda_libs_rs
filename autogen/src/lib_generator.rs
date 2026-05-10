@@ -130,6 +130,7 @@ impl<'a> Generator<'a> {
             .default_enum_style(bindgen::EnumVariation::Rust { non_exhaustive: false })
             .layout_tests(false)
             .derive_default(true)
+            .use_core()
             .allowlist_function(self.config.allowlist_functions)
             .allowlist_type(self.config.allowlist_types)
             .allowlist_var(self.config.allowlist_vars)
