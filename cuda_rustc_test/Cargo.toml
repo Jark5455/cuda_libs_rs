@@ -1,0 +1,17 @@
+[package]
+name = "cuda_rustc_test"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cuda_libs = { path = "..", features = [
+    "runtime-link",
+    "driver",
+    "cudart",
+] }
+# Direct dep so cuda_rustc's device build can forward this crate into the
+# nvptx-side derived crate (the umbrella `cuda_libs` is host-only).
+cuda_libs_cudart = { path = "../cuda_libs_cudart" }
+cuda_rustc_runtime = { path = "../cuda_rustc_runtime" }
+
+[workspace]

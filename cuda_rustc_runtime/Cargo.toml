@@ -1,0 +1,12 @@
+[package]
+name = "cuda_rustc_runtime"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = ["host"]
+host = ["dep:cuda_libs_driver"]
+device = []
+
+[dependencies]
+cuda_libs_driver = { path = "../cuda_libs_driver", optional = true }

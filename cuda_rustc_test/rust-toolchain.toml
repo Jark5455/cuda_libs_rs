@@ -1,0 +1,4 @@
+[toolchain]
+channel = "cuda"
+targets = ["nvptx64-nvidia-cuda"]
+components = ["rust-src"]
