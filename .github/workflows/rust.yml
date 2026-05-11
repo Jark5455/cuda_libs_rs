@@ -27,7 +27,7 @@ jobs:
       uses: actions-rust-lang/setup-rust-toolchain@v1
       with:
         toolchain: nightly
-        targets: [nvptx64-nvidia-cuda, x86_64-unknown-linux-gnu, x86_64-pc-windows-msvc, x86_64-pc-windows-gnu]
+        target: nvptx64-nvidia-cuda
         components: rust-src,rustfmt,clippy,rust-analyzer
     - uses: actions/checkout@v4
     - name: Run Autogen
