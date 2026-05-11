@@ -33,7 +33,7 @@ jobs:
     - name: Run Autogen
       run: cargo +nightly run -p autogen --verbose
     - name: Build
-      run: cargo +nightly build --verbose
+      run: cargo +nightly build --workspace --verbose
     - name: Assemble cuda toolchain
       run: cargo +nightly run -p cuda_rustc --bin cuda_toolchain_build
     - name: Dereference toolchain symlinks

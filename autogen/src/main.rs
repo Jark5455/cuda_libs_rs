@@ -29,7 +29,7 @@ fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cudart",
         out_dir: "./cuda_libs_cudart/src",
-        headers: vec![&format!("{}/include/cuda_runtime.h", cuda_home)],
+        headers: vec![&format!("{}/include/cuda_runtime.h", cuda_home), &format!("{}/include/cuComplex.h", cuda_home)],
         allowlist_functions: "cuda.*",
         allowlist_types: "cuda.*|cu.*|libraryPropertyType.*|libraryPropertyType_t|float2|double2|__BindgenBitfieldUnit",
         allowlist_vars: "cuda.*|CUDA.*|cu.*|CU.*|LIBRARY_.*",
