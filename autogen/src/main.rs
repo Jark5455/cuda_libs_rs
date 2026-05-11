@@ -1,7 +1,6 @@
 pub mod lib_generator;
 
 use lib_generator::{HandleConfig, LibraryConfig, generate_library};
-use std::fmt::format;
 
 fn main() {
     let cuda_home = env!("CUDA_HOME");
