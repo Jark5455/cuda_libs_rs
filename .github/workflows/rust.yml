@@ -28,3 +28,18 @@ jobs:
       run: cargo run -p autogen --verbose
     - name: Build
       run: cargo build --verbose
+    - name: Install nightly Rust
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        toolchain: nightly
+        targets: nvptx64-nvidia-cuda
+        components: rust-src,rustfmt,clippy,rust-analyzer
+    - name: Assemble cuda toolchain
+      run: cargo run -p cuda_rustc --bin cuda_toolchain_build
+    - name: Dereference toolchain symlinks
+      run: tar -czhf cuda-toolchain.tar.gz -C target cuda-toolchain
+    - name: Upload cuda toolchain artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: cuda-toolchain
+        path: cuda-toolchain.tar.gz
