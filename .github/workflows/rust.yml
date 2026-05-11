@@ -23,19 +23,19 @@ jobs:
       run: wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb && sudo dpkg -i cuda-keyring_1.1-1_all.deb
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y build-essential cuda libcudnn-dev
-    - uses: actions/checkout@v4
-    - name: Run Autogen
-      run: cargo run -p autogen --verbose
-    - name: Build
-      run: cargo build --verbose
-    - name: Install nightly Rust
+    - name: Install nightly rust toolchain
       uses: actions-rust-lang/setup-rust-toolchain@v1
       with:
         toolchain: nightly
-        targets: nvptx64-nvidia-cuda
+        targets: [nvptx64-nvidia-cuda, x86_64-unknown-linux-gnu, x86_64-pc-windows-msvc, x86_64-pc-windows-gnu]
         components: rust-src,rustfmt,clippy,rust-analyzer
+    - uses: actions/checkout@v4
+    - name: Run Autogen
+      run: cargo +nightly run -p autogen --verbose
+    - name: Build
+      run: cargo +nightly build --verbose
     - name: Assemble cuda toolchain
-      run: cargo run -p cuda_rustc --bin cuda_toolchain_build
+      run: cargo +nightly run -p cuda_rustc --bin cuda_toolchain_build
     - name: Dereference toolchain symlinks
       run: tar -czhf cuda-toolchain.tar.gz -C target cuda-toolchain
     - name: Upload cuda toolchain artifact
